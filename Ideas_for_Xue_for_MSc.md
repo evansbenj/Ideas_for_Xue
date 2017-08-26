@@ -4,11 +4,15 @@ Previous discussions with Xue about her upcomming M.Sc. work centered on using X
 
 To this end we did RNAseq on liver tissue from a mother, a father, three daughters and three sons. These were multiplexed over at least two lanes (BenF can confirm). The point of doing this with a family is that we should be able to identify SNPs on the W and Z of the mother and distinguish the level of expression of each allele in the daughters and compare them individually to the Z alleles in the sons.
 
-Questions for Ben:
+# Collaborative nature of the project
+
+This work will be a collaborative project that crucially involves BenF and very much build on and depends on the discoveries he made during his Ph.D. thesis work.  BenF will contribute to various aspects of this project as he wishes, and the division of labour will likely be a work in progress as the project goes on.
+
+# Questions for Ben:
 * Did we do the RNAseq on the smae individuals for which we have WGS data?
 * Did we do the RNAseq on only liver tissue or did we also include gonad?
 
-I met with Ben a few weeks ago and we identified several directions the work could take.
+# Main Directions 
 
 * One could test whether the overall expression level of the nonPAR alleles in the mother and daughters is similar to that in the father and sons.
 
@@ -18,6 +22,10 @@ I met with Ben a few weeks ago and we identified several directions the work cou
 
 * we could also do more detailed analysis of molecular evolution and splicing (which is the focus of the work the Xue did for her undergrad thesis).
 
+# Pros and Cons
+
 One of the neat aspects of doing this in Xenopus borealis is that all of these comparisons can be done in tandem with analysis of the homeologous genes on chromosome 8S, which is not sex-linked.
 
 A challenge, I think, may be to ensure that we can distinguish between the homeologs on 8L and 8S with very high confidence.
+
+
