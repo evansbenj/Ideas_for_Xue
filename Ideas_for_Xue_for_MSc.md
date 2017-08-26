@@ -6,7 +6,7 @@ To this end we did RNAseq on liver tissue from a mother, a father, three daughte
 
 # Collaborative nature of the project
 
-This work will be a collaborative project that crucially involves BenF and very much build on and depends on the discoveries he made during his Ph.D. thesis work.  BenF will contribute to various aspects of this project as he wishes, and the division of labour will likely be a work in progress as the project goes on.
+This work will be a collaborative project that crucially involves BenF and both builds on and depends on the discoveries he made during his Ph.D. thesis work.  BenF will contribute to various aspects of this project as he wishes, and the division of labour will likely be a work in progress as the project goes on.
 
 # Questions for Ben:
 * Did we do the RNAseq on the smae individuals for which we have WGS data?
