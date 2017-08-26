@@ -12,6 +12,7 @@ This work will be a collaborative project that crucially involves BenF and both 
 * Did we do the RNAseq on the smae individuals for which we have WGS data?
 * Did we do the RNAseq on only liver tissue or did we also include gonad?
 * How many lanes did we do again?
+* Did you back up the data on the lab tower?
 
 # Main Directions 
 
