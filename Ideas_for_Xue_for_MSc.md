@@ -16,13 +16,13 @@ This work will be a collaborative project that crucially involves BenF and both 
 
 # Main Directions 
 
-* One could test whether the overall expression level of the nonPAR alleles in the mother and daughters is similar to that in the father and sons.
+* We can test whether the overall expression level of the nonPAR alleles in the mother and daughters is similar to that in the father and sons.
 
-* One could test in the mother, whether the expression level of the W allele differs from the Z allele, and whether each of these differs from the Z allele in the sons and father.
+* We can test in the mother, whether the expression level of the W allele differs from the Z allele, and whether each of these differs from the Z allele in the sons and father.
 
-* We could test whther, in non-PAR sex linked genes, expression divergence between the sexes (the magnitude of expression divergence) tends to be more pronounced compared to the autosomes. The prediction if this region is a warehouse for genes with sexually antagonistic function is that there should be more sex biased expression divergence (even on Z alleles after controlling for copy number) than the autosomes.
+* We can test whether, in non-PAR sex linked genes, expression divergence between the sexes (the magnitude of expression divergence) tends to be more pronounced compared to the autosomes. The prediction if this region is a warehouse for genes with sexually antagonistic function is that there should be more sex biased expression divergence (even on Z alleles after controlling for copy number) than the autosomes.
 
-* we could also do more detailed analysis of molecular evolution and splicing (which is the focus of the work the Xue did for her undergrad thesis).
+* we can also do more detailed analysis of molecular evolution and splicing (which is the focus of the work the Xue did for her undergrad thesis) and divide this up in to genes with sex biased expression and non-sex biased expression.
 
 # Pros and Cons
 
