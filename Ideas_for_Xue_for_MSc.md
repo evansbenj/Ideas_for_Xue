@@ -12,9 +12,17 @@ This work will be a collaborative project that crucially involves BenF and both 
 
 # Questions for Ben:
 * Did we do the RNAseq on the smae individuals for which we have WGS data?
+** BenF says yes - cool!
+
 * Did we do the RNAseq on only liver tissue or did we also include gonad?
+** BenF says no - cool!  We did liver on everyone and we did gonad on everyoen except the mother (her RNAseq did not work)
+
 * How many lanes did we do again?
+** BenF says 3 lane - each sample multiplexed across all three
+
 * Did you back up the data on the lab tower?
+** BenF will do this.
+
 
 # Main Directions
 
