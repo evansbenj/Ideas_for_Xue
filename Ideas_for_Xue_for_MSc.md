@@ -1,8 +1,10 @@
 # Ideas for Xue for M.Sc. work
 
-Previous discussions with Xue about her upcomming M.Sc. work centered on using X. laevis to test for evidence of dosage compensation in amphibians. Ben Furman and I both realized that X. borealis would be a much better candidate to do this with because the region of suppressed recombination in X. borealis is much larger than in X. laevis.  So there should be many more genes to explore.
+Previous discussions with Xue about her upcomming M.Sc. work centered on using *X. laevis* to test for evidence of dosage compensation in amphibians. Ben Furman and I both realized that *X. borealis* would be a much better candidate to do this with because the region of suppressed recombination in *X. borealis* is much larger than in *X. laevis*.  So there should be many more genes to explore.
 
 To this end we did RNAseq on liver tissue from a mother, a father, three daughters and three sons. These were multiplexed over at least two lanes (BenF can confirm). The point of doing this with a family is that we should be able to identify SNPs on the W and Z of the mother and distinguish the level of expression of each allele in the daughters and compare them individually to the Z alleles in the sons.
+
+A major caveat of this project is that *X. boealis* may not have much divergence on it's sex chromosomes, which means *a priori* we do not expect there to be much expression differentiation. 
 
 # Collaborative nature of the project
 
@@ -14,7 +16,7 @@ This work will be a collaborative project that crucially involves BenF and both 
 * How many lanes did we do again?
 * Did you back up the data on the lab tower?
 
-# Main Directions 
+# Main Directions
 
 * We can test whether the overall expression level of the nonPAR alleles in the mother and daughters is similar to that in the father and sons.
 
@@ -29,5 +31,3 @@ This work will be a collaborative project that crucially involves BenF and both 
 One of the neat aspects of doing this in Xenopus borealis is that all of these comparisons can be done in tandem with analysis of the homeologous genes on chromosome 8S, which is not sex-linked.
 
 A challenge, I think, may be to ensure that we can distinguish between the homeologs on 8L and 8S with very high confidence.
-
-
