@@ -4,7 +4,7 @@ Previous discussions with Xue about her upcomming M.Sc. work centered on using *
 
 To this end we did RNAseq on liver tissue from a mother, a father, three daughters and three sons. These were multiplexed over at least two lanes (BenF can confirm). The point of doing this with a family is that we should be able to identify SNPs on the W and Z of the mother and distinguish the level of expression of each allele in the daughters and compare them individually to the Z alleles in the sons.
 
-A major caveat of this project is that *X. boealis* may not have much divergence on it's sex chromosomes, which means *a priori* we do not expect there to be much expression differentiation. 
+A major caveat of this project is that *X. boealis* may not have much divergence on it's sex chromosomes, which means *a priori* we do not expect there to be much expression differentiation.
 
 # Collaborative nature of the project
 
@@ -12,16 +12,16 @@ This work will be a collaborative project that crucially involves BenF and both 
 
 # Questions for Ben:
 * Did we do the RNAseq on the smae individuals for which we have WGS data?
-** BenF says yes - cool!
+  - BenF says yes - cool!
 
 * Did we do the RNAseq on only liver tissue or did we also include gonad?
-** BenF says no - cool!  We did liver on everyone and we did gonad on everyoen except the mother (her RNAseq did not work)
+  - BenF says no - cool!  We did liver on everyone and we did gonad on everyone except the mother (her RNAseq did not work)
 
 * How many lanes did we do again?
-** BenF says 3 lane - each sample multiplexed across all three
+  - BenF says 3 lane - each sample multiplexed across all three
 
 * Did you back up the data on the lab tower?
-** BenF will do this.
+  - BenF will do this.
 
 
 # Main Directions
