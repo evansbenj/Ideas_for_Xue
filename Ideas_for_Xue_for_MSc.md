@@ -36,6 +36,15 @@ This work will be a collaborative project that crucially involves BenF and both 
 
 # Pros and Cons
 
-One of the neat aspects of doing this in Xenopus borealis is that all of these comparisons can be done in tandem with analysis of the homeologous genes on chromosome 8S, which is not sex-linked.
+One of the neat aspects of doing this in *Xenopus borealis* is that all of these comparisons can be done in tandem with analysis of the homeologous genes on chromosome 8S, which is not sex-linked.
 
 A challenge, I think, may be to ensure that we can distinguish between the homeologs on 8L and 8S with very high confidence.
+
+Possible solution: when we need to distinguish, collect an *S. tropcialis* ortholog and the two *X. laevis* homeologs and build trees. 
+
+
+# Other
+
+* Maybe get *X. laevis* transcriptomes to assess "proto-sex chromosome" dosage balances. I.e., what was the dosage level of the gene before being established as a sex chromosome? This gets at the idea of the "ancestral dosage" level.
+	- that dosage review paper BenE sent said this "The hypothetically ideal experiment would be to compare the focal species with differentiated allosomes to a progenitor with undifferentiated proto-sex chromosomes."
+	- with *X. laevis*, we could do exactly this.
