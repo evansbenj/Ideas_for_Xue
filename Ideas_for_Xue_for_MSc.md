@@ -40,11 +40,11 @@ One of the neat aspects of doing this in *Xenopus borealis* is that all of these
 
 A challenge, I think, may be to ensure that we can distinguish between the homeologs on 8L and 8S with very high confidence.
 
-Possible solution: when we need to distinguish, collect an *S. tropcialis* ortholog and the two *X. laevis* homeologs and build trees. 
+Possible solution: when we need to distinguish, collect an *S. tropcialis* ortholog and the two *X. laevis* homeologs and build trees.
 
 
 # Other
 
 * Maybe get *X. laevis* transcriptomes to assess "proto-sex chromosome" dosage balances. I.e., what was the dosage level of the gene before being established as a sex chromosome? This gets at the idea of the "ancestral dosage" level.
 	- that dosage review paper BenE sent said this "The hypothetically ideal experiment would be to compare the focal species with differentiated allosomes to a progenitor with undifferentiated proto-sex chromosomes."
-	- with *X. laevis*, we could do exactly this.
+	- with *X. laevis*, we could do exactly this. That paper suggests that given the wide variation in autosomal expression levels, comparing the sex chromosomes to the autosomes is not a good way to do the study. Instead, comparing it to an outgroup (like *X. laevis*) offers much more power and accuracy. For example, the sex chromosome may have higher expression than the autosomes, as when it was an autosome it had higher expression than the other autosomes. Therefore, if there was a dip in expression levels, we wouldn't detect it when comparing to the other autosomes but would detect it if comparing to the same chromosomes in an outgroup. 
