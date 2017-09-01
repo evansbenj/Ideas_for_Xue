@@ -50,4 +50,9 @@ Possible solution: when we need to distinguish, collect an *S. tropcialis* ortho
 	- with *X. laevis*, we could do exactly this. That paper suggests that given the wide variation in autosomal expression levels, comparing the sex chromosomes to the autosomes is not a good way to do the study. Instead, comparing it to an outgroup (like *X. laevis*) offers much more power and accuracy. For example, the sex chromosome may have higher expression than the autosomes, as when it was an autosome it had higher expression than the other autosomes. Therefore, if there was a dip in expression levels, we wouldn't detect it when comparing to the other autosomes but would detect it if comparing to the same chromosomes in an outgroup.
 
 
-* Then again, we are also comparing males and females...so we'll be fine without *X. laevis* transcriptomes. They could just offer a different picture. 
+* Then again, we are also comparing males and females...so we'll be fine without *X. laevis* transcriptomes. They could just offer a different picture.
+
+
+# Approaches for SA expression
+
+I think it will be informative to take two approaches. One is a totally *de novo* differential expression analysis, where we find genes of interest, then map them back to the genome. The other approach would be to leverage the genome mapping from the start, and look for differences. These should converge on similar answers, of course, but may pick up some differences, i.e., some genes won't map to the genome (bad for method 2), or some transcripts may not be assembled correctly (bad for method 1). 
