@@ -6,6 +6,11 @@ To this end we did RNAseq on liver tissue from a mother, a father, three daughte
 
 A major caveat of this project is that *X. boealis* may not have much divergence on it's sex chromosomes, which means *a priori* we do not expect there to be much expression differentiation.
 
+Broad qustions I see (BenF):
+1. Are the sex chromosomes a hot spot for sexually antagonism loci? (And, are the even any SA loci?)
+2. Is there some degree of dosage compenstation? -- nobody has really assessed this in frogs, and again, *X. borealis* is not ideal, as there is minimal degeneration, so *a priori* there should be no reason for expression differences...but is still interesting to look at. 
+3. Is the W allele more degraded than the Z allele -- i.e., more mutations?
+
 # Collaborative nature of the project
 
 This work will be a collaborative project that crucially involves BenF and both builds on and depends on the discoveries he made during his Ph.D. thesis work.  BenF will contribute to various aspects of this project as he wishes, and the division of labour will likely be a work in progress as the project goes on.
