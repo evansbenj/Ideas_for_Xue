@@ -2,7 +2,7 @@
 
 Trinity manual suggests doing a single build across all samples for DE analysis, and I guess that makes sense. Afterwards, DE analysis involves mapping reads back to a transcriptome to get level counts, thus, either we map to a chosen transcriptome (yuck), or to a single build.
 
-Trinity manual says 1Gb ~ 1Mil reads, the trimmed files have about 53Mil per sample (for each direction...only kept paired reads). So that is 50Gb per sample (or is it 100Gb? they don't say if this is per direction), with 15 samples is at least 750 Gb (and they say 0.5 - 1 h per 1Mil...which is potentially 750 hours, i.e., a month! -- better not be).
+Trinity manual says 1Gb ~ 1Mil reads, the trimmed files have about 53Mil per sample (for each direction...only kept paired reads). So that is 50Gb per sample (or is it 100Gb? they don't say if this is per direction), with 15 samples is at least 750 Gb (and they say 0.5 - 1 h per 1Mil...which is potentially 750 hours, i.e., a month! -- better not be). The builds did not take this much memory or time.
 
 Would individual transcriptomes be useful for sex specific sequences? I guess mapping to a single build would inform us of this as well (e.g., all females map, males do not).
 
@@ -26,13 +26,15 @@ sqsub -q threaded -n 10 --mpp=500g -r 120h -o borealis-allTogether-goblin500GB-1
 ```
 
 Trying on Info too
+
 *Location:/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/*
+
 ```bash
 /home/benf/bin/Trinity-v2.4.0/Trinity --seqType fq --left ../../Trimmed/borealis_allSamples_left.fastq.gz --right ../../Trimmed/borealis_allSamples_right.fastq.gz --CPU 20 --full_cleanup --max_memory 200G
 
 # mapping to the laevis genome, we'll need that eventually. Or could wait and just map transcripts of interest....hmm, this is something to think about b/c exons...GMAP, BLAT...maybe just use mapped reads?
 ```
-So the info build seems to have finished. I'll let the goblin one continue for now, but it's been qued for days.
+So the info build seems to have finished. I'll let the goblin one continue for now, but it's been qued for days. Killed. Need to remove files (password wasn't working).
 
 
 ## Building Individually
@@ -40,6 +42,7 @@ So the info build seems to have finished. I'll let the goblin one continue for n
 I need to do individual builds, maybe, to try and resolve W and Z copies, though they should be present in the complete build too. Minimally, I should do mom and dad builds, then maybe I could do all daughters and all sons as two more builds (again, offspring should get one allele from each and perhaps with more repetition there may be more confidence in each allele construction).
 
 
+*Location:/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/*
 ```bash
 # mom
 /home/benf/bin/Trinity-v2.4.0/Trinity --seqType fq --left ../../Trimmed/BJE3897_mom_liver_R1_scythe.fastq.gz --right ../../Trimmed/BJE3897_mom_liver_R2_scythe.fastq.gz --CPU 15 --full_cleanup --max_memory 200G --output mom_trinity

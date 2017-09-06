@@ -4,7 +4,7 @@ We need to associate the transcripts with the genome at various points.
 
 # Reads direct to the genome
 
-I wanted to explore mapping the trimmed reads directly to the genome, without buidling a transciptome first. Because, really, in the end I am basically going to do this (but though the transcriptome build, which will likely have less mapping errors because the transcripts are longer than the reads, better distinguishing the homeologs).
+I wanted to explore mapping the trimmed reads directly to the genome, without buidling a transciptome first. The transcriptome build, which will likely have less mapping errors because the transcripts are longer than the reads, will perhaps distinguishing the homeologs better.
 
 In the end, we will likely run differential expression analyses, get values for transcripts, map these back to the genome, and map the transcripts to the genome. For now, I can assess coverage of mapped reads.
 

@@ -29,7 +29,7 @@ screen -S dadLv -d -m java -jar ~/bin/Trimmomatic-0.36/trimmomatic-0.36.jar PE -
 
 Will need some semi-intelligent script to pair the files and loop across them all.
 
-*Location:/data/RawReads/[mom|dad|girls|boys]/*
+*Location:/Borealis-Family-Transcriptomes-July2017/data/RawReads/[mom|dad|girls|boys]/*
 
 ```bash
 # will operate in a directory, find files and pair them up/created necessary names for Trimmomatic.
@@ -54,5 +54,3 @@ Need to check all with fastqc again to confirm it's all good.
 Looked good for dad, some odd kmer stuff hanging around, but pretty minor. Could try trimmomatic again, but likely unnecessary. These odd start kmers are probably related to biases in hexamer priming (which is expected). So I ran on all files.
 
 I then deleted the trimmomatic outputs, keeping just the scythe.
-
- 
