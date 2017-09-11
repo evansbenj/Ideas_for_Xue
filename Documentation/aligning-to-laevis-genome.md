@@ -4,9 +4,9 @@ We need to associate the transcripts with the genome at various points.
 
 # Reads direct to the genome
 
-**I just realized this is probably stupid! Reads are from RNA, thus a single Illumina read may span two exons and have very distant mapping locations on a genome. I'm not sure Bowtie is designed to handle that. Quick search suggests I should have used TopHat**
+**I just realized this is stupid! Reads are from RNA, thus a single Illumina read may span two exons and have very distant mapping locations on a genome. BWA is not designed to handle that. Quick search suggests I should have used TopHat (or another splice junction aware aligner).**
 
-I wanted to explore mapping the trimmed reads directly to the genome, without buidling a transciptome first. The transcriptome build, which will likely have less mapping errors because the transcripts are longer than the reads, will perhaps distinguishing the homeologs better.
+I wanted to explore mapping the trimmed reads directly to the genome, without building a transcriptome first. The transcriptome build, which will likely have less mapping errors because the transcripts are longer than the reads, will perhaps distinguishing the homeologs better.
 
 In the end, we will likely run differential expression analyses, get values for transcripts, map these back to the genome, and map the transcripts to the genome. For now, I can assess coverage of mapped reads.
 
