@@ -69,4 +69,8 @@ cat ../../../Trimmed/BJE4072_girl*R1_scythe.fastq.gz > ../../../Trimmed/BJE4072_
 # BJE3929_boy
 cat ../../../Trimmed/BJE3929_boy*R1_scythe.fastq.gz > ../../../Trimmed/BJE3929_boy_all_left.fastq.gz ; cat ../../../Trimmed/BJE3929_boy*R2_scythe.fastq.gz > ../../../Trimmed/BJE3929_boy_all_right.fastq.gz ; /home/benf/bin/Trinity-v2.4.0/Trinity --seqType fq --left ../../../Trimmed/BJE3929_boy_all_left.fastq.gz --right ../../../Trimmed/BJE3929_boy_all_right.fastq.gz --CPU 15 --full_cleanup --max_memory 200G --output BJE3929_boy_trinity
 
+
+# BJE4082_girl
+cat ../../../Trimmed/BJE4082_girl*R1_scythe.fastq.gz > ../../../Trimmed/BJE4082_girl_all_left.fastq.gz ; cat ../../../Trimmed/BJE4082_girl*R2_scythe.fastq.gz > ../../../Trimmed/BJE4082_girl_all_right.fastq.gz ; /home/benf/bin/Trinity-v2.4.0/Trinity --seqType fq --left ../../../Trimmed/BJE4082_girl_all_left.fastq.gz --right ../../../Trimmed/BJE4082_girl_all_right.fastq.gz --CPU 15 --full_cleanup --max_memory 150G --output BJE4082_girl_trinity
+
 ```
