@@ -27,7 +27,7 @@ grep -c ">" chr8L_raw_gffread.fa
 
 Would be good to confirm that a few genes that should be there are and that they have the full sequence they should.
 
-For now I have just grabbed <57000000, which is not the precise boundary of sex linkage according to the cross. So, I'll have to keep inheritance in mind and what not (at least confirm that these three individiuals of each sex have the same seq, which trees should resolve).
+For now I have just grabbed < 57000000, which is not the precise boundary of sex linkage according to the cross. So, I'll have to keep inheritance in mind and what not (at least confirm that these three individiuals of each sex have the same seq, which trees should resolve).
 
 
 Make a blastdb of the chr8L sequences and confirm genes are there. Should probably compare to genome sequence exons+primes.
@@ -73,4 +73,15 @@ cd testing_blast_outs/
 for i in BJE*blasts ; do name=$(grep -o "BJE[0-9]*_[a-z]*" <(echo $i)) ; blastParser.pl --blast=$i --fasta=../../../Data/Trinity-Build-Info/Individually/$name/$name\_trinity.Trinity.fasta --hit ; mv BlastSequences.fas $name\_sox3_blastHits.fa ; done
 
 for i in BJE*fa ; do name=$(grep -o "BJE[0-9]*_[a-z]*" <(echo $i)) ; sed  -i "s/>/>$name/g" $i ; done
+```
+
+Hm, of course, blast is pulling out other genes (sox9) with similar domains. But, can't just take top trascriptome hit as there will be lots of top hits. Then again, could take the top hit of the gene set from each transcript and group together by similar top hits (should only be one from the genome). You know, a proper reciprocal blast approach.
+
+**Blasting transcriptomes to the Xl chr8L sex linked gene set**
+
+Need to set up a reciprocal blast, which will involve blasting each gene against the laevis genome. I guess I should use the whole genome just to trim down on noise (as outlined above). But, just grabbing the Xl genes from the genome, I lose positional information, so I'd have to fish that back out (with a best blast between the Xl genes of the sex linked region or whatever). Or, I need to make gene headers with positional information to grep it out. 
+
+Each transcriptome to genome:
+```bash
+blastn -task blastn -evalue 0.0000000001 -db
 ```
