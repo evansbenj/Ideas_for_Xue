@@ -79,9 +79,22 @@ Hm, of course, blast is pulling out other genes (sox9) with similar domains. But
 
 **Blasting transcriptomes to the Xl chr8L sex linked gene set**
 
-Need to set up a reciprocal blast, which will involve blasting each gene against the laevis genome. I guess I should use the whole genome just to trim down on noise (as outlined above). But, just grabbing the Xl genes from the genome, I lose positional information, so I'd have to fish that back out (with a best blast between the Xl genes of the sex linked region or whatever). Or, I need to make gene headers with positional information to grep it out. 
+Need to set up a reciprocal blast, which will involve blasting each gene against the laevis genome. I guess I should use the whole genome just to trim down on noise (as outlined above). But, just grabbing the Xl genes from the genome, I lose positional information, so I'd have to fish that back out (with a best blast between the Xl genes of the sex linked region or whatever). Or, I need to make gene headers with positional information to grep it out.
 
 Each transcriptome to genome:
 ```bash
-blastn -task blastn -evalue 0.0000000001 -db
+
 ```
+
+
+## Alternate approach
+
+Align reads to the transcriptome and looks for maternal het sites and how they are inherited. Could then look at read depth for the identified Z and W SNPs at each site.
+
+- average for a gene? Each SNPs is not independent in a gene.
+- need to associated with genomic positions, not just sex linked inheritance, as 3 offspring of each sex is not enough to diagnose sex linkage.
+- Transcriptome will have multiple individual transcripts per gene, read will have multiple map positions, which will have low scores. Also, some reads may map better to one transcript, the other read may map to a different transcript. **And this right here kills this approach**
+
+Instead we will need to map reads to the genome and look at moms genotype for sex linked inheritance. This is also better as we really only need SNPs for chr8L called and have the GFF file to extract regions corresponding to genes after (should be the only sequence present, but we can now be explicit about that).
+
+Ok, in the aligning-to-laevis-genome.md file there is the commands used to call SNPs and the alignment to the genome.
