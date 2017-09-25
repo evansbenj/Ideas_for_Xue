@@ -6,12 +6,14 @@ time perl /home/xue/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --t
 time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix trans_counts  --name_sample_by_basedir BJE3897_mom/abundance.tsv BJE3929_boy/abundance.tsv BJE4009_girl/abundance.tsv BJE4017_boy/abundance.tsv BJE4039_boy/abundance.tsv BJE4072_girl/abundance.tsv BJE4082_girl/abundance.tsv dad/abundance.tsv
 
 ```
+A bash script (```/home/xue/borealis_DE/kallisto_abundance_commands.sh```) were used to reapeat the above steps for each individual. Each takes about 45min - 1hr. The bash script finish running overnight(7-8hrs).    
+
 Differential expression between two individual using Trinity scripts. Specifying EdgeR as the method as it is the recommended method when no biological replicate was available:
 ```
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix trans_counts.counts.matrix --method edgeR --dispersion 0.1
 
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/analyze_diff_expr.pl --matrix ../trans_counts.TMM.EXPR.matrix -P 1e-3 -C 2
 ```
-Output DE files were stored in: ``` /home/xue/borealis_DE/edgeR.8320.dir```
+Output DE files were stored in: ``` /home/xue/borealis_DE/edgeR.8320.dir```. 
 
 
