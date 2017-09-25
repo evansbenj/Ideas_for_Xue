@@ -1,4 +1,4 @@
-# Kallisto + EdgeR
+# Differential Expression Analysis with Kallisto + EdgeR
 Building abundance index and matrix with Kallisto with Trinity scripts. Trimmed reads were mapped to the assembled transcriptome with all the sample reads
 ```
 time perl /home/xue/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/borealis_allSamples_right.fastq.gz --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/borealis_allSamples_left.fastq.gz --est_method kallisto --output_dir /home/xue/borealis_DE --trinity_mode --prep_reference
