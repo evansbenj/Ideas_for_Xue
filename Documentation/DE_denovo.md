@@ -1,5 +1,5 @@
 # Differential Expression Analysis with Kallisto + EdgeR
-Building abundance index and matrix with Kallisto with Trinity scripts. Trimmed reads were mapped to the assembled transcriptome with all the sample reads
+Building abundance index and matrix with Kallisto using Trinity scripts. Trimmed reads were mapped to the assembled transcriptome with reads from all the samples
 ```
 time perl /home/xue/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/borealis_allSamples_right.fastq.gz --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/borealis_allSamples_left.fastq.gz --est_method kallisto --output_dir /home/xue/borealis_DE --trinity_mode --prep_reference
 
@@ -8,7 +8,7 @@ time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --
 ```
 A bash script (```/home/xue/borealis_DE/kallisto_abundance_commands.sh```) were used to reapeat the above steps for each individual. Each takes about 45min - 1hr. The bash script finish running overnight(7-8hrs).    
 
-Differential expression between two individual using Trinity scripts. Specifying EdgeR as the method as it is the recommended method when no biological replicate was available:
+Differential expression between two individuals using Trinity scripts. Specifying EdgeR as the method as it is the recommended method when no biological replicate was available:
 ```
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix trans_counts.counts.matrix --method edgeR --dispersion 0.1
 
