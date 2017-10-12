@@ -14,6 +14,8 @@ time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.0/util/align_and_estimat
 ```
 To compute the matrix:
 ```
+time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix all  --name_sample_by_basedir male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv male_rep5/abundance.tsv male_rep6/abundance.tsv male_rep7/abundance.tsv female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv female_rep5/abundance.tsv female_rep6/abundance.tsv female_rep7/abundance.tsv
+
 time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix trans_counts  --name_sample_by_basedir BJE3897_mom/abundance.tsv BJE3929_boy/abundance.tsv BJE4009_girl/abundance.tsv BJE4017_boy/abundance.tsv BJE4039_boy/abundance.tsv BJE4072_girl/abundance.tsv BJE4082_girl/abundance.tsv dad/abundance.tsv
 ```
 
