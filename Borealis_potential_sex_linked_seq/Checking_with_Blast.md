@@ -7,6 +7,27 @@ ACCCCTTCTTGGAAAATATAAGCATATTATAAGTTAAAGAGAAGTTCCATGACAATATAA
 AAGGACAAGGCCGAAGGCAGAGTGTTTTTATACAGGCCATGGAACTCTGAGGTAACCTCT
 AATATCCTCATATTGTACAGCATGGGG
 ```
+The command that I used for constructing the blast database and running blast:
+```
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/BJE3929_boy/BJE3929_boy_trinity.Trinity.fasta -dbtype nucl -out db_BJE3929_boy
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/BJE4009_girl/BJE4009_girl_trinity.Trinity.fasta -dbtype nucl -out db_BJE4009_girl
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/BJE4017_boy/BJE4017_boy_trinity.Trinity.fasta -dbtype nucl -out db_BJE4017_boy
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/BJE4039_boy/BJE4039_boy_trinity.Trinity.fasta -dbtype nucl -out db_BJE4039_boy
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/BJE4072_girl/BJE4072_girl_trinity.Trinity.fasta -dbtype nucl -out db_BJE4072_girl
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/BJE4082_girl/BJE4082_girl_trinity.Trinity.fasta -dbtype nucl -out db_BJE4082_girl
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/Dad/Dad_trinity.Trinity.fasta -dbtype nucl -out db_Dad
+makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/Individually/Mom/mom_trinity.Trinity.fasta -dbtype nucl -out db_Mom
+
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_BJE3929_boy -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/BJE3929_boy
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_BJE4009_girl -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/BJE4009_girl
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_BJE4039_boy -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/BJE4017_boy
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_BJE4017_boy -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/BJE4039_boy
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_BJE4072_girl -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/BJE4072_girl
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_BJE4082_girl -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/BJE4082_girl
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_Dad -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/Dad
+blastn -task blastn -db /home/xue/borealis_int_seq/transcriptome_blastdb/db_Mom -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_int_seq/int_transcript.fasta -out /home/xue/borealis_int_seq/Mom
+```
+
 Below is the BLAST results in output format6:
 ```
 ==> BJE3929_boy <==
