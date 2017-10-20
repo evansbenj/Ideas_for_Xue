@@ -70,12 +70,7 @@ The top 10 primers were shown. I went through them manually to see which one was
   - reasonable GC content: 40-60%
 
 The below primer pair is the best among the result after consider the above criteria:
-```
-TAGTTACAAATGGTGGGTTCTGA
-CACTTTGCCTCACCCTCATAG
 
-```
-with the following statistic:
 ```
                  Sequence (5'->3')	Template strand_Length	Start	Stop	Tm	GC%	Self_complementarity	Self_3'_complementarity
 Forward primer	TAGTTACAAATGGTGGGTTCTGA	Plus	23	997	1019	57.43	39.13	3.00	3.00
@@ -84,7 +79,6 @@ Product length	460
 ```
 The above was chosen among the others(below):
 ```
-
 Sequence (5'->3')	Template strand	Length	Start	Stop	Tm	GC%	Self complementarity	Self 3' complementarity
 Forward primer	ACTAGTTACAAATGGTGGGTTCT	Plus	23	995	1017	57.42	39.13	6.00	0.00
 Reverse primer	CACTTTGCCTCACCCTCATA	Minus	20	1456	1437	57.21	50.00	2.00	2.00
@@ -124,4 +118,5 @@ Forward primer	AGTTACAAATGGTGGGTTCTGA	Plus	22	66	87	57.55	40.91	3.00	3.00
 Reverse primer	GCAACAGCCTCGAATGTTCT	Minus	20	750	731	58.84	50.00	4.00	2.00
 Product length	685
 ```
-The forward sequence is the same as attemp 1 but reverse is different
+The forward primer sequence is the same as attemp 1 but reverse is different. 
+
