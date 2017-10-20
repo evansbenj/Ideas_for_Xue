@@ -1,4 +1,4 @@
-Purpose: design primer to amplify the maybe sex-linked Borealis transcript
+Purpose: design primer to amplify a potentially sex-linked Borealis transcript
 # Sequence of interest
 SEQUENCE TO TRY TO AMPLIFY (Especially second 2/3rds):
 ```
