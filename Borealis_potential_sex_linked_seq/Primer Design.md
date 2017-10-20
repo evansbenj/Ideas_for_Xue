@@ -105,3 +105,6 @@ Forward primer	TGAGTATGCATCTATTCCTGTCAC	Plus	24	973	996	58.15	41.67	6.00	3.00
 Reverse primer	GAGATTCAGGCCCAGCACTTT	Minus	21	1471	1451	60.62	52.38	4.00	1.00
 Product length	499
 ```
+### Second range
+1-118
+676-765
