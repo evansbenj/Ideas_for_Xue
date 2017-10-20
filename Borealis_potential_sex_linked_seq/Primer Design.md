@@ -63,10 +63,11 @@ TGGCCTATGTACATTCTGATTAAGGTAATTA
 # Primer Blast
 I used the scafold sequence as input query for Primer Blast. Specified that the forward primer range as 961-1049 and reverse primer range as 1400-1509.
 The top 10 primers were shown. I went through them manually to see which one was the best based on the following criteria:
-  - didnt't start with long "TTTT"
+  - didnt't start with long "TTTT" or "AAAA"
+  - start with G or C
   - have lower number of self-completarity
-  - melting point closer to 60C
-  - reasonable GC content
+  - melting temp is in the range of 50-60C
+  - reasonable GC content: 40-60%
 
 The below primer pair is the best among the result after consider the above criteria:
 ```
