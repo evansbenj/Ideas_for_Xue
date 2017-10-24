@@ -36,7 +36,7 @@ Output DE files were stored in: ``` /home/xue/borealis_DE/```.
 A script were used to extract the sequence of DE transcripts and output to a .fa file.
 ```
 ```
-# Blast extracted sequence against annotated X.laevis transcriptome
+# Blast DE X.borealis sequence against annotated X.laevis transcriptome
 To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
 ```
 ```
