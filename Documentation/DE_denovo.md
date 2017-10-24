@@ -30,6 +30,15 @@ time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_a
 
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/analyze_diff_expr.pl --matrix ../trans_counts.TMM.EXPR.matrix -P 1e-3 -C 2
 ```
-Output DE files were stored in: ``` /home/xue/borealis_DE/edgeR.8320.dir```. 
+Output DE files were stored in: ``` /home/xue/borealis_DE/```.
+
+# Extract sequences of DE genes
+A script were used to extract the sequence of DE transcripts and output to a .fa file.
+```
+```
+# Blast extracted sequence against annotated X.laevis transcriptome
+To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
+```
+```
 
 
