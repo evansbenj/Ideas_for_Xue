@@ -6,7 +6,7 @@ To assess dosage compensation in *X.borealis* using gene expression level with d
 # De novo approach: mapping to assembled transcriptome
 ### Method
 - mapping reads to assembled transcriptome that were assembled with reads from all X.l inididuals
--  
+- 
 ### Advantage
 - will be able to capture genes that is missing in the X.l genome
 ### Caveats
