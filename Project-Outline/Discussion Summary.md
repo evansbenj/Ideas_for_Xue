@@ -3,7 +3,7 @@ This is a summary of our conversations regarding assessing dosage compensation i
 # Objective
 To assess dosage compensation in *X.borealis* through gene expression levels with difference approaches. 
 
-# *De novo* approach: mapping to assembled transcriptome
+## *De novo* approach: mapping to assembled transcriptome
 ### Method
 - mapping reads to assembled transcriptome that were assembled with reads from all *X.borealis* inididuals
   - 4 comparisons:
@@ -19,7 +19,7 @@ To assess dosage compensation in *X.borealis* through gene expression levels wit
 - large amount of transcripts in the assembled transcriptome could be allelic variants, splicing variants, and chimeric 
 - we were talking about abandoming this approach; we think it is still valuable and maybe there are ways that we can improve it. I will look into literatures about DE in polyploids (like plants) to see their way of doing DE in the absence of properly assembled genome.  
 
-# Genome mapping approach 1: mapping to reference genome; allele specific expression
+## Genome mapping approach 1: mapping to reference genome; allele specific expression
 ### Method
 - this is the approach that BenF is investigating
 - build a reference *X.l* genome by pulling annotated genes from the *X.l* genome
@@ -31,7 +31,7 @@ To assess dosage compensation in *X.borealis* through gene expression levels wit
 ### Caveats
 - relies on the quality of *X.l* genome
 
-# Genome mapping approach 2: mapping to Unigene duplicates; locus expression
+## Genome mapping approach 2: mapping to Unigene duplicates; locus expression
 ### Method
 - download genome of *X.laevis* duplicates from unigene database
 - map the reads to the duplicates
