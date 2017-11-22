@@ -17,6 +17,7 @@ To assess dosage compensation in *X.borealis* through gene expression levels wit
 - will be able to capture genes that are missing in the *X.l* genome
 ### Caveats
 - large amount of transcripts in the assembled transcriptome could be allelic variants, splicing variants, and chimeric 
+- we were talking about abandoming this approach; I think it is still valuable and maybe there are ways that we can improve it. I will look into litertures about DE in polyploids (maybe plants) to see if there are better way 
 
 # Genome mapping approach 1: mapping to reference genome; allele specific expression
 ### Method
