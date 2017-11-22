@@ -1,7 +1,7 @@
-This is a summary of our conversations regarding the *X.borealis* dosage compensation project
+This is a summary of our conversations regarding assessing dosage compensation in *X.borealis* 
 
 # Objective
-To assess dosage compensation in *X.borealis* using gene expression level with difference approaches. 
+To assess dosage compensation in *X.borealis* through gene expression levels with difference approaches. 
 
 # De novo approach: mapping to assembled transcriptome
 ### Method
