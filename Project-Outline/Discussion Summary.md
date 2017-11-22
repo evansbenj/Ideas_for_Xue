@@ -5,17 +5,26 @@ To assess dosage compensation in *X.borealis* through gene expression levels wit
 
 # De novo approach: mapping to assembled transcriptome
 ### Method
-- mapping reads to assembled transcriptome that were assembled with reads from all X.l inididuals
-- 
+- mapping reads to assembled transcriptome that were assembled with reads from all *X.borealis* inididuals
+  - 4 comparisons:
+    - female tissues vs male tissues
+    - female liver vs male liver
+    - female gonad vs male gonad
+    - liver vs gonad
+- identify transcripts that have differentially expressed(DE) levels
+- blasting DE transcripts to *X.l* genome to identify genomic location 
 ### Advantage
-- will be able to capture genes that is missing in the X.l genome
+- will be able to capture genes that are missing in the *X.l* genome
 ### Caveats
 - large amount of transcripts in the assembled transcriptome could be allelic variants, splicing variants, and chimeric 
 
 # Genome mapping approach 2: mapping to reference genome
 ### Method
+- this is the approach that BenF is investigating
 - build a reference genome by pulling annotated genes from the genome
-- 
+- map assembled individual transcriptome to the genome
+- look for sex-linked SNPs that are heterozygous in female and homozygous in male
+- assess the coverage for each SNP 
 ### Advantage
 - 
 ### Caveats
