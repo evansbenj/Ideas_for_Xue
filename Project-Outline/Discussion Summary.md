@@ -29,7 +29,7 @@ To assess dosage compensation in *X.borealis* through gene expression levels wit
 ### Advantage
 - 
 ### Caveats
-- relies on the quality of *X.l*
+- relies on the quality of *X.l* genome
 
 # Genome mapping approach 2: mapping to Unigene duplicates; locus expression
 ### Method
