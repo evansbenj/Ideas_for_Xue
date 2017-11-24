@@ -20,7 +20,7 @@ This is a summary of our conversations regarding assessing dosage compensation i
 - large amount of transcripts in the assembled transcriptome could be allelic variants, splicing variants, and chimeric 
 - we were talking about abandoming this approach; we think it is still valuable and maybe there are ways that we can improve it. I will look into literatures about estimating gene expression levels in polyploids (like plants) to see their way of doing it in the absence of properly assembled genome.  
 
-## Genome mapping approach 1: mapping to reference genome; allele specific expression
+## Genome mapping approach 1: mapping to *X.l* genome
 #### Method
 - this is the approach that BenF is investigating
 - build a reference *X.l* genome by pulling annotated genes from the *X.l* genome
@@ -35,14 +35,14 @@ This is a summary of our conversations regarding assessing dosage compensation i
   - problem: genes on the W chromosome is expected to have higher accumulation of mutation due to lack of recombination This will decrease mapping accuracy and underestimate gene expression level of genes on W chromosome compare to genes on Z chromosome or autosome. Thus, if expression level of W genes, we can't tell whether it is due to mapping error or true biological expression level. 
   - solution: find out what others are doing with estimating expression level of Z/W in the absence of reference genome
 
-## Genome mapping approach 2: mapping to Unigene duplicates; locus expression
+## Genome mapping approach 2: mapping to reference genome
 #### Questions
 - are there different expression levels of genes (in the sex-link region) in males and in females? 
 - are there more sex-biased genes in the sex-linked region than autosome regions?
 - are there more sex-biased genes in the sex-linked region than the same region in the homeology chromosome?
 - does the gene expression level of the sex-linked region (8L) in *X.b* higher compare to 8L in *X.l*?  
 #### Method
-- download genome of *X.laevis* duplicates from unigene database
+- talked about download genome of *X.laevis* duplicates from unigene database
 - map the reads to the duplicates and estimate gene expression levels (read counts)
 - DE analysis with RESEM (or others)
 #### Advantages
