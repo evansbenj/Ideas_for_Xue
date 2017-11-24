@@ -4,7 +4,7 @@ This is a summary of our conversations regarding assessing dosage compensation i
 - To assess dosage compensation in *X.borealis* with difference approaches.
 - Quantify gene expression levels in tetraploid *X.b* in the absense of properly assembled genome
 
-## *De novo* approach: mapping to assembled transcriptome
+# *De novo* approach: mapping to assembled transcriptome
 #### Method
 - mapping reads to assembled transcriptome that were assembled with reads from all *X.borealis* inididuals -> done
   - 4 comparisons: -> done
