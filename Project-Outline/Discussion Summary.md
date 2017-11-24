@@ -15,7 +15,7 @@ This is a summary of our conversations regarding assessing dosage compensation i
 - identify transcripts that have differentially expressed(DE) levels: FC > 2, FDR <0.05;  -> done
 - blast DE transcripts to *X.l* genome to identify chromosomal location 
 #### Advantage
-- would be able to capture genes that are present only in *X.b* but are missing in the *X.l* genome
+- would be able to capture genes that are present only in *X.b* or are missing in the *X.l* genome
 #### Caveats
 - large amount of transcripts in the assembled transcriptome could be allelic variants, splicing variants, and chimeric 
 - we were talking about abandoning this approach; we think it is still valuable and maybe there are ways that we can improve it. I will look into literatures about estimating gene expression levels in polyploids (like plants) to see their way of doing it in the absence of properly assembled genome.  
