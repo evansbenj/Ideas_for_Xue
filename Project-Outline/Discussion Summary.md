@@ -6,13 +6,13 @@ This is a summary of our conversations regarding assessing dosage compensation i
 
 ## *De novo* approach: mapping to assembled transcriptome
 #### Method
-- mapping reads to assembled transcriptome that were assembled with reads from all *X.borealis* inididuals
-  - 4 comparisons:
+- mapping reads to assembled transcriptome that were assembled with reads from all *X.borealis* inididuals -> done
+  - 4 comparisons: -> done
     - female tissues vs male tissues
     - female liver vs male liver
     - female gonad vs male gonad
     - liver vs gonad
-- identify transcripts that have differentially expressed(DE) levels
+- identify transcripts that have differentially expressed(DE) levels -> done
 - blasting DE transcripts to *X.l* genome to identify genomic location 
 #### Advantage
 - will be able to capture genes that are present only in *X.b* but are missing in the *X.l* genome
