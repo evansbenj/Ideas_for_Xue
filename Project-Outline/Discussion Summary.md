@@ -50,6 +50,6 @@ This is a summary of our conversations regarding assessing dosage compensation i
 #### Caveats
 - singleton genes will not be included
 - *X.l* duplicates might diverge enough that the *X.b* duplicates will only be mapped to one of the *X.l* duplicates
-- the last update of the duplicates in the unigen database is 
+- the last update of the duplicates in the unigen database is Mar 3 2013 
 
 
