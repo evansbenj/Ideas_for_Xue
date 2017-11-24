@@ -2,29 +2,29 @@ This is a summary of our conversations regarding assessing dosage compensation i
 
 # Objective
 - To assess dosage compensation in *X.borealis* with difference approaches.
-- Quantify gene expression levels in tetraploid *X.b* in the absense of properly assembled genome
+- Quantify gene expression levels in tetraploid *X.b* in the absense of high quality *X.b* genome
 
 # *De novo* approach: mapping to assembled transcriptome
 #### Method
-- mapping reads to assembled transcriptome that were assembled with reads from all *X.borealis* inididuals -> done
+- mapping reads to assembled transcriptome that was assembled with reads from all *X.borealis* inididuals -> done
   - 4 comparisons: -> done
     - female tissues vs male tissues
     - female liver vs male liver
     - female gonad vs male gonad
     - liver vs gonad
-- identify transcripts that have differentially expressed(DE) levels -> done
-- blasting DE transcripts to *X.l* genome to identify genomic location 
+- identify transcripts that have differentially expressed(DE) levels: FC > 2, FDR <0.05;  -> done
+- blast DE transcripts to *X.l* genome to identify chromosomal location 
 #### Advantage
-- will be able to capture genes that are present only in *X.b* but are missing in the *X.l* genome
+- would be able to capture genes that are present only in *X.b* but are missing in the *X.l* genome
 #### Caveats
 - large amount of transcripts in the assembled transcriptome could be allelic variants, splicing variants, and chimeric 
-- we were talking about abandoming this approach; we think it is still valuable and maybe there are ways that we can improve it. I will look into literatures about estimating gene expression levels in polyploids (like plants) to see their way of doing it in the absence of properly assembled genome.  
+- we were talking about abandoning this approach; we think it is still valuable and maybe there are ways that we can improve it. I will look into literatures about estimating gene expression levels in polyploids (like plants) to see their way of doing it in the absence of properly assembled genome.  
 
 # Genome mapping approach 
 ## Mapping to whole *X.l* genome
 #### Method
 - this is the approach that BenF is investigating
-- map assembled individual transcriptome to the *x.l* genome with splicing aware aligner
+- map assembled individual transcriptome to the *X.l* genome with splicing aware aligner
 - look for sex-linked SNPs that are heterozygous in female and homozygous in male
 - assess the coverage for each SNP 
 
@@ -40,13 +40,10 @@ This is a summary of our conversations regarding assessing dosage compensation i
   - Alternative method for building a reference genome: get *X.l* coordinates from every *X.b* transcript and then collapse overlapping coordinates into a “gene" and sum the expression counts
 - map the reads to the reference genome and estimate gene expression levels (read counts) with RESEM(or others)
 - DE analysis with edgeR or DESeq2
-#### Advantages
-- allow distinction between duplicates so that expression level of duplicates would not get overestimated 
-
 
 ## Problem with genome mapping approach
-- genes on the W chromosome is expected to have higher accumulation of mutation due to lack of recombination This will decrease mapping accuracy and underestimate gene expression level of genes on W chromosome compare to genes on Z chromosome or autosome. Thus, if expression level of W genes, we can't tell whether it is due to mapping error or true biological expression level. 
-- *X.l* homeologs might diverge enough that both the *X.b* homeologs will be mapped to only one of the *X.l* hemeologs
+- genes on the W chromosome are expected to accumulate more mutations due to lack of recombination. This will decrease mapping accuracy and underestimate gene expression level of genes on W chromosome compares to genes on Z chromosome or autosomes. Thus, if the analysis shows that W genes have lower expression level, we can't tell whether it is due to mapping errors or true biological variantions. 
+- *X.l* homeologs might diverge enough that both *X.b* homeologs might be mapped to only one of the *X.l* hemeologs
 - solution: find out what others are doing to estimate expression level of Z/W in the absence of reference genome
 
 
