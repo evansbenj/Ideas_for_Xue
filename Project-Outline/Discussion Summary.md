@@ -31,6 +31,9 @@ This is a summary of our conversations regarding assessing dosage compensation i
 - mapping to a reference genome would be a better alternative for mapping to a reference transcriptome.  
 #### Caveats
 - relies on the quality of *X.l* genome
+- suggestion: get *X.l* coordinates from every *X.b* transcript and then collapse overlapping coordinates into a “gene" and sum the expression counts
+  - problem: genes on the W chromosome is expected to have higher accumulation of mutation due to lack of recombination This will decrease mapping accuracy and underestimate gene expression level of genes on W chromosome compare to genes on Z chromosome or autosome. Thus, if expression level of W genes, we can't tell whether it is due to mapping error or true biological expression level. 
+  - solution: find out what others are doing with estimating expression level of Z/W in the absence of reference genome
 
 ## Genome mapping approach 2: mapping to Unigene duplicates; locus expression
 #### Questions
