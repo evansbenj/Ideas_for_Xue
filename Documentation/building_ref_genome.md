@@ -10,7 +10,7 @@ The format of gff3 file:
 >
 > line 1: define the boundaries of region being annotated (gene name, start, end)
 > 
-> Line 2: gene annotations start, each row contains information for the the following columns (separate by tap):  
+> Line 2: gene annotations start, each row contains information for the the following columns (separated by tap):  
 > 1. **seqid**:
 > 2. **source**: the algorithm or operating procedure that generate the featuer. Ex,"Genescan", "Genebank"
 > 3. **type**: sequence ontology or an SO accession number; ex, "CDS", "stop codon", "exon"
