@@ -7,6 +7,7 @@ wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla9.2/XENLA_9.2_Xenbase.gff3
 ```
 The format of gff3 file:
 > Line 0: GFF version
+
 > line 1: define the boundaries of region being annotated (gene name, start, end)
 > Line 2: gene annotations start, each row contains information for the the following columns (separate by tap):  
 > 1. **seqid**:
