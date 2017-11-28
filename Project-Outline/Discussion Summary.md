@@ -36,9 +36,9 @@ This is a summary of our conversations regarding assessing dosage compensation i
 - does the gene expression level of the sex-linked region (8L) in *X.b* higher compare to 8L in *X.l*?  
 #### Method
 - talked about download genome of *X.laevis* duplicates from unigene database -> abandoned because *X.l* files in Unigene database was previously updated in Mar 3 2013 
-- build a *X.l* reference  genome by pulling annotated genes(exons) from the *X.l* genome based on gff3 files
+- build a *X.l* reference  genome by pulling annotated genes(exons) from the *X.l* genome based on gff3 files using Bedtool
   - Alternative method for building a reference genome: get *X.l* coordinates from every *X.b* transcript and then collapse overlapping coordinates into a “gene" and sum the expression counts
-- map the assembled *X.b* transcriptome to the *X.l* reference  genome
+- align the assembled *X.b* transcriptome to the *X.l* reference  genome using BWA or Bowtie
 - determine the consesus transcripts 
 - Map read to the transcriptome and estimate gene expression levels with 
 - DE analysis with edgeR or DESeq2
