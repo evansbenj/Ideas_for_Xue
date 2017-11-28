@@ -20,3 +20,9 @@ The format of gff3 file:
 > 7. **strand**: +/- or . for unknown/not stranded
 > 8. **phase**: reading frame indicated by 0-2 if the type is "CDS"
 > 9. **attributes**: a list of information related to the seqid; separated by ";". Information such as ID, alias, parents, name, gap
+
+### extract exons using bedtool
+For each annotated gene in gff3 file, I will extract all the exons of each gene
+```
+bedtools merge -s 
+```
