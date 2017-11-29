@@ -22,7 +22,14 @@ The format of gff3 file:
 > 9. **attributes**: a list of information related to the seqid; separated by ";". Information such as ID, alias, parents, name, gap
 
 ### extract exons using bedtool
-Ideally, I would like to pull transcripts and each of them contains exons of the gene. It seems like bedtools doesn't have the option to group the exons by gene and then pull the gene sequence. So i did some initial filtering and create a gff file that contains only the exons.
+Ideally, I would like to pull transcripts and each of them contains exons of the gene. It seems like bedtools doesn't have the option to group the exons by gene and then pull the gene sequence. Here are some ways that others tried:
+```
+https://www.biostars.org/p/196047/
+http://cole-trapnell-lab.github.io/cufflinks/file_formats/
+
+```
+
+Way1: So i did some initial filtering and create a gff file that contains only the exons.
 ```
 grep -w "exon" XENLA_9.2_Xenbase.gff3 > XENLA_exon.gff3
 ```
