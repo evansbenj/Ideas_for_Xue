@@ -24,13 +24,22 @@ Each takes about 45min - 1hr. The trinity perl script would CMD kallisto as foll
 kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx  -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
 ```
 
-Differential expression between two individuals using Trinity scripts. Specifying EdgeR as the method as it is the recommended method when no biological replicate was available:
+Differential expression between two individuals using Trinity scripts. Specifying EdgeR as the method as it is the recommended method :
 ```
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix trans_counts.counts.matrix --method edgeR --dispersion 0.1
 
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/analyze_diff_expr.pl --matrix ../trans_counts.TMM.EXPR.matrix -P 1e-3 -C 2
 ```
 Output DE files were stored in: ``` /home/xue/borealis_DE/```.
+
+# get the id of DE transcript (FDR<0.05)
+```
+awk '$5<0.05 {print $1}' all.counts.matrix.female_vs_male.edgeR.DE_results > all_mvsf_fdr005.tsv
+awk '$2 > 2 && $5<0.05  {print $1}' gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > gonad_fdr005.tsv
+awk '$5<0.05 {print $1}' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
+awk '$5<0.05 {print $1}' tissue.counts.matrix.gonad_vs_liver.edgeR.DE_results > tissue_fdr005.tsv
+
+```
 
 # Extract sequences of DE genes
 A script were used to extract the sequence of DE transcripts and output to a .fa file.
