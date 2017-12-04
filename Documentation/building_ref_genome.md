@@ -30,6 +30,9 @@ http://cole-trapnell-lab.github.io/cufflinks/file_formats/
 https://www.biostars.org/p/196047/
 https://deweylab.github.io/RSEM/rsem-prepare-reference.html
 http://www.gettinggeneticsdone.com/2014/03/visualize-coverage-exome-targeted-ngs-bedtools.html
+https://www.biostars.org/p/196047/
+https://www.biostars.org/p/46281/
+http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/extractfeat.html
 ```
 **method 1: use gffread command**
 
