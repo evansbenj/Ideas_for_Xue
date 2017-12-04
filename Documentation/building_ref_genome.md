@@ -21,7 +21,7 @@ The format of gff3 file:
 > 8. **phase**: reading frame indicated by 0-2 if the type is "CDS"
 > 9. **attributes**: a list of information related to the seqid; separated by ";". Information such as ID, alias, parents, name, gap
 
-### extract transcripts using bedtool
+### Extract transcripts using bedtool
 X.laevis gff3 file includes splice vairiants of a gene as differernt mRNAs. Splice variants have different combination of exons from the same gene. There are two ways that I can extract the transcripts. One way is to extract all mRNAs and preverse the splicing variants of each gene. Another way is that I can extract exons from mRNAs (of the same gene) and collapse them into a transcript. I will lose splice variants information by doing latter but I will be able to capture splice variants that are present in X.borealis and absence in X.laevis. I talked to BenF about this. We didn't come to a conclusion on which way is better. I decide to proceed with the former for now (**will talke to BenE about this when skype**).       
 I am trying to extract mRNA sequences based on annotation information in the X.laevis gff3 file. Here are some ways that others tried:
 ```
