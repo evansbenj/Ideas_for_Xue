@@ -35,7 +35,9 @@ I ran gffread as below. gffread extracted mRNA based on CDS coordinates and not 
 
 
 **method 2: Bedops + bedtools**
+
 About Bedop: http://bedops.readthedocs.io/en/latest/content/reference/file-management/conversion/gff2bed.html
+
 About Bentools: http://bedtools.readthedocs.io/en/latest/content/bedtools-suite.html
 
 I did some initial filtering and create a gff file that contains only the exons.
