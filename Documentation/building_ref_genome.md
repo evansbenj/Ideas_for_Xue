@@ -56,10 +56,10 @@ bedtools getfasta -fi XL9_2.fa -bed XENLA_exon.gff3 -fo exons.fa
 but this gave me 
 
 ## Mapping transcriptome to referencce genome
-The alignment was done with BWA.
+The alignment was done with BWA as below. It took 111 minutes to run. 
 ```
 ```
-The default output of BWA is sam. In a sam file, the second column of each row is the flag column, which indicates the status of the alignment (ex, mapped or unmapped). If the flag is 4, it means that the sequence is unmapped. I filtered out the transcripts that is unmapped:
+The default output of BWA is SAM file. In a SAM file, the second column of each row is the flag column, which indicates the status of the alignment (ex, mapped or unmapped). If the flag is 4, it means that the sequence is unmapped. I filtered out the transcripts that is unmapped:
 ```
 awk '$2 != 4 {print}' bwa_XBtoXL_output > fillter_XBtoXL_output.sam
 ```
