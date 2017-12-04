@@ -53,4 +53,12 @@ bedtools getfasta -fi XL9_2.fa -bed XENLA_exon.gff3 -fo exons.fa
 but this gave me 
 
 
+## Differential expression
+
+discussion about FPKM vs counts vs RPKM
+```
+http://www.cureffi.org/2013/09/12/counts-vs-fpkms-in-rna-seq/
+```
+
+
 
