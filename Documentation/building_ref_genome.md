@@ -28,6 +28,7 @@ I am trying to extract mRNA sequences based on annotation information in the X.l
 ```
 http://cole-trapnell-lab.github.io/cufflinks/file_formats/
 https://www.biostars.org/p/196047/
+https://deweylab.github.io/RSEM/rsem-prepare-reference.html
 ```
 **method 1: use gffread command**
 
