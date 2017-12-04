@@ -1,9 +1,10 @@
 This page will document the commands and progress of qualifying gene expression level of *Xenopus borealis* through a reference genome mapping approach.
 
 # Building *X.laevis* reference genome
-gff3 file of X.laevis was downloaded form Xenbase:
+gff3 file includes coordinate information of genes, RNAs, exons, and CDS. I will use X.laevis gff3 to extract transcript sequences from X.laevis genome. The newest version(9.2) of X.laevis gff3 and genome were downloaded form Xenbase:
 ```
 wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla9.2/XENLA_9.2_Xenbase.gff3
+wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xenla9.2/XL9_2.fa.gz
 ```
 The format of gff3 file:
 > Line 0: GFF version
