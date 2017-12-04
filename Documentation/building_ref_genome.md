@@ -31,7 +31,7 @@ https://www.biostars.org/p/196047/
 ```
 **method 1: use gffread command**
 
-I ran gffread as below. gffread extracted mRNA based on CDS coordinates and not exon coordiantes. Since CDS sequences are shorter than exons sequences and don't include sequences of 5'UTR and 3'UTR, the UTR sequences will be lost. This might not be ideasl since RNA-seq does sequence UTR regions, which will be present in the transcriptome.  
+I ran gffread as below. gffread extracted mRNA based on CDS coordinates and not exon coordiantes (about gffread: http://ccb.jhu.edu/software/stringtie/gff.shtml). Since CDS sequences are shorter than exons sequences and don't include sequences of 5'UTR and 3'UTR, the UTR sequences will be lost. This might not be ideasl since RNA-seq does sequence UTR regions, which will be present in the transcriptome.  
 
 
 **method 2: Bedpods + bedtools**
