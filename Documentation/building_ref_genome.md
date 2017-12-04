@@ -28,11 +28,13 @@ I am trying to extract mRNA sequences based on annotation information in the X.l
 http://cole-trapnell-lab.github.io/cufflinks/file_formats/
 https://www.biostars.org/p/196047/
 ```
-Way 1: use gffread command
+method 1: use gffread command
+
 I ran gffread as below. gffread extracted mRNA based on CDS coordinates and not exon coordiantes. Since CDS sequences are shorter than exons sequences and don't include sequences of 5'UTR and 3'UTR, the UTR sequences will be lost. This might not be ideasl since RNA-seq does sequence UTR regions, which will be present in the transcriptome.  
 
 
-Way2: Bedpods + bedtools
+method 2: Bedpods + bedtools
+
 I did some initial filtering and create a gff file that contains only the exons.
 ```
 grep -w "exon" XENLA_9.2_Xenbase.gff3 > XENLA_exon.gff3
