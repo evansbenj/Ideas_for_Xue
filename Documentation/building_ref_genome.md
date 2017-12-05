@@ -59,7 +59,7 @@ but this gave me
 The alignment was done with BWA as below. It took 111 minutes to run. 
 ```
 ```
-The default output of BWA is SAM file (format detail: https://samtools.github.io/hts-specs/SAMv1.pdf). In a SAM file, the second column of each row is the flag column, which indicates the status of the alignment (ex, mapped or unmapped). If the flag is 4, it means that the sequence is unmapped. I filtered out the transcripts that is unmapped:
+The default output of BWA is SAM file (SAM format detail: https://samtools.github.io/hts-specs/SAMv1.pdf). In a SAM file, the second column of each row is the flag column, which indicates the status of the alignment (ex, mapped or unmapped). If the flag is 4, it means that the sequence is unmapped. I filtered out the transcripts that is unmapped:
 ```
 awk '$2 != 4 {print}' bwa_XBtoXL_output > fillter_XBtoXL_output.sam
 ```
