@@ -69,6 +69,7 @@ The default output of BWA is SAM file (SAM format detail: https://samtools.githu
 ```
 awk '$2 != 4 {print}' bwa_XBtoXL_output > fillter_XBtoXL_output.sam
 ```
+The total number of transcript IDs is 1629500 before filtering and is 1062075 after filtering. 
 
 
 ## Differential expression
