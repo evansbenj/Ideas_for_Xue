@@ -30,18 +30,19 @@ http://cole-trapnell-lab.github.io/cufflinks/file_formats/
 https://www.biostars.org/p/196047/
 https://deweylab.github.io/RSEM/rsem-prepare-reference.html
 http://www.gettinggeneticsdone.com/2014/03/visualize-coverage-exome-targeted-ngs-bedtools.html
-https://www.biostars.org/p/196047/
 https://www.biostars.org/p/46281/
 http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/extractfeat.html
 ```
 **method 1: use gffread command**
 
-I ran gffread as below. gffread extracted mRNA based on CDS coordinates and not exon coordiantes (about gffread: http://ccb.jhu.edu/software/stringtie/gff.shtml). Since CDS sequences are shorter than exons sequences and don't include sequences of 5'UTR and 3'UTR, the UTR sequences will be lost. This might not be ideal since RNA-seq does sequence UTR regions, which will be present in the transcriptome. Actually, q 
+I ran gffread as below. gffread extracted mRNA based on CDS coordinates and not exon coordiantes (about gffread: http://ccb.jhu.edu/software/stringtie/gff.shtml). Since CDS sequences are shorter than exons sequences and don't include sequences of 5'UTR and 3'UTR, the UTR sequences will be lost. This might not be ideal since RNA-seq does sequence UTR regions, which will be present in the transcriptome. Actually, gffread does extract just the exons by using flage -w (-c for CDS).  
 ```
- gffread/gffread/gffread XENLA_noCDS.gff3 -g XL9_2.fa -w xl_mRNA.fasta 
-
+gffread/gffread/gffread XENLA_noCDS.gff3 -g XL9_2.fa -w xl_mRNA.fasta 
 ```
-
+Just as a cautious test, I removed all the CDS information in the gff3 and then do the sequence extraction again. 
+```
+awk '$3 != "CDS"{print}' XENLA_9.2_Xenbase.gff3 > XENLA_noCDS.gff3
+```
 
 **method 2: Bedops + bedtools**
 
@@ -60,17 +61,15 @@ bedtools getfasta -fi XL9_2.fa -bed XENLA_exon.gff3 -fo exons.fa
 Acutally, gffread do extract transcripts with exon coordinates. gffread doesn't need additional filtering step thus, I am not going to use the bedops+bedtools method.  
 
 ## Mapping transcriptome to referencce genome
-The alignment was done with BWA as below. It took 111 minutes to run. Keep everything in bam file or zip format
+Before starting the alignment, database pre was done with the following:
 ```
- time bwa mem XLmrna_bwa_db /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta > bwa_XBtoXL_output.sam
- 
- time bwa mem XLmrna_bwa_db /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta |samtools view -b > bwa_XBtoXL_output.bam 
 ```
-The default output of BWA is SAM file (SAM format detail: https://samtools.github.io/hts-specs/SAMv1.pdf). In a SAM file, the second column of each row is the flag column, which indicates the status of the alignment (ex, mapped or unmapped). If the flag is 4, it means that the sequence is unmapped. I filtered out the transcripts that is unmapped:
+
+The alignment was done with BWA as below. It took 111 minutes to run. The default output of BWA is SAM file (SAM format detail: https://samtools.github.io/hts-specs/SAMv1.pdf). In a SAM file, the second column of each row is the flag column, which indicates the status of the alignment (ex, mapped or unmapped). If the flag is 4, it means that the sequence is unmapped. I filtered out the transcripts that is unmappedOutput files was kept in bam file (to save storage space). 
 ```
-awk '$2 != 4 {print}' bwa_XBtoXL_output.sam > fillter_XBtoXL_output.sam
-samtools -v
+time bwa mem XLmrna_bwa_db /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta |samtools view -b > bwa_XBtoXL_output.bam 
 ```
+
 
 The total number of transcript IDs is 1629500 before filtering and is 1062075 after filtering. 
 Filter out: multimapping transcripts, mapping quality
