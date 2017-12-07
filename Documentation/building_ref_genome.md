@@ -80,15 +80,17 @@ samtools mpileup -ugf xl_mRNA.fasta -t DP,AD -s XBtoXL_sorted.bam |bcftools call
 ```
 The total number of transcript IDs is 1629500 before filtering and is 1062075 after filtering. 
 
+___________Others____________________
+
 ## Differential expression
 
 discussion about FPKM vs counts vs RPKM
 ```
 http://www.cureffi.org/2013/09/12/counts-vs-fpkms-in-rna-seq/
 ```
-
-_______________________
- 
-
+other aligner
+Stampy: http://www.well.ox.ac.uk/~gerton/README.txt
+lastz: http://www.bx.psu.edu/~rsharris/lastz/README.lastz-1.04.00.html
+mummer: http://mummer.sourceforge.net/
 
 
