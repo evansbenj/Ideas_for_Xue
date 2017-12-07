@@ -62,8 +62,9 @@ bedtools getfasta -fi XL9_2.fa -bed XENLA_exon.gff3 -fo exons.fa
 Acutally, gffread do extract transcripts with exon coordinates. gffread doesn't need additional filtering step thus, I am not going to use the bedops+bedtools method.  
 
 # Mapping transcriptome to referencce genome
-Before starting the alignment, database pre was done with the following:
+Before starting the alignment, database pre/indexing was done with the following:
 ```
+bwa index -p XLmrna_bwa_db -a is xl_mRNA.fasta
 ```
 The alignment was done with BWA as below. It took 111 minutes to run. The default output of BWA is SAM file (SAM format detail: https://samtools.github.io/hts-specs/SAMv1.pdf).  Output files was kept in bam file (to save storage space).  
 ```
