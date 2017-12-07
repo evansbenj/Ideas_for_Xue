@@ -74,7 +74,7 @@ In a SAM file, the second column of each row is the flag column, which indicates
 ```
 samtools view -b -F 4 bwa_XBtoXL_output.bam |samtools sort -o XBtoXL_sorted.bam
 ```
-Then I did some more filtering and genotyping. Filter out: multimapping transcripts, mapping quality. genotyping: samtool
+Then I did some more filtering and genotyping. Filter out: multimapping transcripts, mapping quality. genotyping: BCF tool: skip indel/SNP sites (-V indels), alternative modelfor multiallelic and rare-variant calling(-m), output format is compressed VCF (-O z) 
 ```
 samtools mpileup -ugf xl_mRNA.fasta -t DP,AD -s XBtoXL_sorted.bam |bcftools call -V indels --format-fields GQ -m -O z -o XBtoXL_consensus.vcf
 ```
