@@ -59,7 +59,7 @@ then pulled the sequence of exons using bedtools
 ```
 bedtools getfasta -fi XL9_2.fa -bed XENLA_exon.gff3 -fo exons.fa
 ```
-Acutally, gffread do extract transcripts with exon coordinates. gffread doesn't need additional filtering step thus, I am not going to use the bedops+bedtools method. However this method might be useful in extracting gene sequence (no splice variants). 
+Acutally, gffread do extract transcripts with exon coordinates. gffread doesn't need additional filtering step thus, I am not going to use the bedops+bedtools method. However this method might be useful in extracting individual gene sequence with all exons (no splice variants). 
 
 # Mapping transcriptome to referencce genome
 Before starting the alignment, database pre/indexing was done with the following:
