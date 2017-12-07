@@ -44,10 +44,16 @@ awk '$5<0.05 {print $1}' tissue.counts.matrix.gonad_vs_liver.edgeR.DE_results > 
 # Extract sequences of DE genes
 A script were used to extract the sequence of DE transcripts and output to a .fa file.
 ```
+
 ```
 # Blast DE X.borealis sequence against annotated X.laevis genome
 To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
 ```
+blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
+```
+I extract the sequence that is mapped to the Chr8L.
+```
+awk ' $2 == "chr2L" {print $1}' all_mvsf_blastout > DEgene_onchr2L
 ```
 
 
