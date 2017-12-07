@@ -53,7 +53,7 @@ blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6
 ```
 I extract the sequence that is mapped to the Chr8L.
 ```
-awk ' $2 == "chr2L" {print $1}' all_mvsf_blastout > DEgene_onchr2L
+awk ' $2 == "chr8L" {print $1}' all_mvsf_blastout > DEgene_onchr8L
 ```
 
 
