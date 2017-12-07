@@ -80,7 +80,7 @@ samtools mpileup -ugf xl_mRNA.fasta -t DP,AD -s XBtoXL_sorted.bam |bcftools call
 ```
 The total number of transcript IDs is 1629500 before filtering and is 1062075 after filtering. 
 
-___________Others____________________
+As a note for future use______________________________________________________________
 
 ## Differential expression
 
