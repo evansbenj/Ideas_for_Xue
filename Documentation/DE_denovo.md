@@ -85,13 +85,13 @@ The above steps are repeated for DE result from two comparision: male all sample
 |chr2L|4.7%|3%|
 |chr2S|5.5%|2.8%|
 
-- DE genes that were mapped to chr8L in the first 50Mb have higher gene expression in which sex? 
+- DE genes that were mapped to chr8L in the first 50Mb have higher gene expression in which sex? positive logFC (>0) means the transcript has higher expression level in male and nagetive logFC (<0) means the transcript has higher expression level in female.
 
 
 |logFC|all|liver
 |--- | --- | ---
 |>0|34|24
-|<0|116|92
+|<0|116 (77%)|92 (86%)
 
 
 
