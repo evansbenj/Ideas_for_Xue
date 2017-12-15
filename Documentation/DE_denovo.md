@@ -107,6 +107,11 @@ From this point on, I will do the preceeding analysis with DE result from liver 
 
 # Do trinity assembly for XB transcriptome with different setting
 
+# things that we could do but not urgent
+- repeat DE analysis with different softwware package (RESM, DESeq2 etc)
+- repeat the pipeline with DE comparison pair (all male smaples vs all female samples, male gonad vs female gonad, liver vs gonad)
+
+
 
 
 
