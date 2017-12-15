@@ -88,10 +88,10 @@ The above steps are repeated for DE result from two comparision: male all sample
 - DE genes that were mapped to chr8L in the first 50Mb have higher gene expression in which sex? 
 
 
-logFC|all|liver
---- | --- | ---
->0|34|24
-<0|116|92
+|logFC|all|liver
+|--- | --- | ---
+|>0|34|24
+|<0|116|92
 
 
 
