@@ -74,7 +74,7 @@ I combined all of the above into a bash script so that it will be easier to repe
 . postDE_analysis.sh
 ```
 The above steps are repeated for DE result from two comparision: male all sample vs female all sample; male liver vs female liver. The result are below:
-
+- location distribution of DE genes
 |chr #|all samples|liver samples|
 |--- | --- | ---|
 |total|957|432|
@@ -82,6 +82,8 @@ The above steps are repeated for DE result from two comparision: male all sample
 |chr8S|70(7.3%)|9%|
 |chr2L|4.7%|3%|
 |chr2S|5.5%|2.8%|
+
+- Direction of upregulation
 
 
 
