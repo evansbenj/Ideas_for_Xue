@@ -94,6 +94,8 @@ The above steps are repeated for DE result from two comparision: male all sample
 |<0|116 (77%)|92 (86%)|
 
 From this point on, I will do the preceeding analysis with DE result from liver samples only to complete the pipline. 
+Check the following to make sure the data 
+
 
 # Binning trancripts 
 - group overlapping transcripts into bins.  
