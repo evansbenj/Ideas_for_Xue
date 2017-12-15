@@ -80,8 +80,8 @@ The above steps are repeated for DE result from two comparision: male all sample
 |chr #|all samples|liver samples|
 |--- | --- | ---|
 |total|957|432|
-|chr8L|229(23.9%)|160(37%)|
-|chr8S|70(7.3%)|9%|
+|chr8L|229 (23.9%)|160 (37%)|
+|chr8S|70 (7.3%)|9%|
 |chr2L|4.7%|3%|
 |chr2S|5.5%|2.8%|
 
