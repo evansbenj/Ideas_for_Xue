@@ -89,9 +89,9 @@ The above steps are repeated for DE result from two comparision: male all sample
 
 
 |logFC|all|liver
-|--- | --- | ---
-|>0|34|24
-|<0|116 (77%)|92 (86%)
+|--- | --- | ---|
+|>0|34|24|
+|<0|116 (77%)|92 (86%)|
 
 
 
