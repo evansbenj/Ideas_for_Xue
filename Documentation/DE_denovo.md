@@ -110,6 +110,38 @@ Check the following to make sure the data are not biased due to the present of m
 - do a volcano plot to visualize those expression levels 
 
 # Do trinity assembly for XB transcriptome with different setting
+how did others do polyploid transcriptome assembly?
+```
+Duan, J., Xia, C., Zhao, G., Jia, J. &Kong, X. Optimizing de novo common wheat transcriptome assembly using short-read RNA-Seq data. BMC Genomics 13, 392 (2012).
+ALLPATHSLG error correction, and the paired fragment length was set to 200 bp
+
+Chopra, R. et al. Comparisons of De Novo Transcriptome Assemblers in Diploid and Polyploid Species Using Peanut (Arachis spp.) RNA-Seq Data.
+the default kmer of 25, minimum coverage of 2
+
+Nakasugi, K., Crowhurst, R., Bally, J., Waterhouse, P. &Mittapalli, O. Combining Transcriptome Assemblies from Multiple De Novo Assemblers in the Allo-Tetraploid Plant Nicotiana benthamiana. PLoS One 9, (2014).
+default setting
+
+Gutierrez-Gonzalez, J. J., Tu, Z. J., & Garvin, D. F. (2013). Analysis and annotation of the hexaploid oat seed transcriptome. BMC genomics, 14(1), 471.
+minimum assembled transcript length = 100 nt
+
+Nakasugi, K., Crowhurst, R., Bally, J., Waterhouse, P. &Mittapalli, O. Combining Transcriptome Assemblies from Multiple De Novo Assemblers in the Allo-Tetraploid Plant Nicotiana benthamiana. PLoS One 9, (2014).
+Reads were normalized by the perl script insilico_read_normalization.pl (Trinity package) for Trinity;
+Two settings of k-mer 25 and k-mer 31
+
+He, B. et al. Optimal assembly strategies of transcriptome related to ploidies of eukaryotic organisms. (2011). doi:10.1186/s12864-014-1192-7
+Trinity_release_20131110 (http://trinityrnaseq.github.io/) [16], which used in default parameter, kmer =25, was used in SASP strategy and its Command-line parameters were “--seqType fq --left Reads_1.fq --right Reads_2.fq --CPU 20”
+
+McKain, M. R. et al. A phylogenomic assessment of ancient polyploidy and genome evolution across the Poales. Genome Biol. Evol. 8, evw060 (2016).
+Trinity (Release 2012-06-08; Grabherr et al. 2011 ) with default parameters
+
+Li, H.-Z. et al. Evaluation of Assembly Strategies Using RNA-Seq Data Associated with Grain Development of Wheat (Triticum aestivum L.). PLoS One 8, e83530 (2013).
+Trinity (release 20120608) with minimum contig length  =  100, default parameter
+
+Chen, S., McElroy, J. S., Dane, F. &Peatman, E. Optimizing Transcriptome Assemblies for Leaf and Seedling by Combining Multiple Assemblies from Three De Novo Assemblers. Plant Genome 8, 0 (2015).
+- normalized with Trinity’s in silico read normalization (http://Trinityrnaseq.sourceforge.net/), with maximum coverage of 30 and k-mer size of 25
+-  The merged assembly was first processed by CD-HIT-EST v4.6.1-2012-08-27 (http://weizhong-lab.ucsd.edu/cd-hit/) with the strictest parameters “-c 1.0-n 10” to remove identical fragments and then subjected to the EvidentialGene tr2aacds pipeline (http://arthropods.eugenes.org/EvidentialGene/about/EvidentialGene_trassembly_pipe.html). 
+
+```
 
 # things that we could do but not urgent
 - repeat DE analysis with different softwware package (RESM, DESeq2 etc)
