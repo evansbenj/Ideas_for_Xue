@@ -64,7 +64,7 @@ The I extracted the DE information from EdgeR result for the above genes.
 . get_DE_chr8L.sh
 ```
 
-Then I examine the direction of gene expression regulation by counting the number of DE have positive logFC and negative logFC. Positive logFC means the transcript is upregulated in male and nagetive logFC means the transcript is upregulated in female.
+Then I examine the direction of gene expression by counting the number of DE have positive logFC and negative logFC. Positive logFC means the transcript has higher expression level in male and nagetive logFC means the transcript has higher expression level in female.
 ```
 awk '$2>0{print}' DE_chr8L_50mb_EdgeR.tsv |wc -l
 awk '$2<0{print}' DE_chr8L_50mb_EdgeR.tsv |wc -l
@@ -85,7 +85,7 @@ The above steps are repeated for DE result from two comparision: male all sample
 |chr2L|4.7%|3%|
 |chr2S|5.5%|2.8%|
 
-- Direction of upregulation
+- 
 
 
 
