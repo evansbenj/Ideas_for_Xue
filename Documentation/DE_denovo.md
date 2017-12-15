@@ -76,6 +76,7 @@ I combined all of the above into a bash script so that it will be easier to repe
 The above steps are repeated for DE result from two comparision: male all sample vs female all sample; male liver vs female liver. The result are below:
 
 |chr #|all|liver|
+|--- | --- | ---|
 |total|957|432|
 |chr8L|229(23.9%)|160(37%)|
 |chr8S|70(7.3%)|9%|
