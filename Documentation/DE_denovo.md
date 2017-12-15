@@ -51,9 +51,32 @@ To find out the chromosomal location of the extracted X.borealis sequences, the 
 ```
 blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
 ```
-I extract the sequence that is mapped to the Chr8L.
+I cleaned up the blastn output by filtering by e-value and bitscore.
 ```
-awk ' $2 == "chr8L" {print $1}' all_mvsf_blastout > DEgene_onchr8L
+perl filter_blastout.pl all_mvsf_blastout > tophit_ebs_blastout 
 ```
+I extract the transcript ID of DE genes that is mapped to the Chr8L and is mapped to the first 50Mbp of chr8L.
+```
+awk '$2=="chr8L" && $9<50000000 && $10<50000000{print $1}' tophit_ebs_blastout > tophit_chr8L_50mb_blastout
+```
+The I extracted the DE information from EdgeR result for the above genes.
+```
+. get_DE_chr8L.sh
+```
+
+Then I examine the direction of gene expression regulation by counting the number of DE have positive logFC and negative logFC. Positive logFC means the transcript is upregulated in male and nagetive logFC means the transcript is upregulated in female.
+```
+awk '$2>0{print}' DE_chr8L_50mb_EdgeR.tsv |wc -l
+awk '$2<0{print}' DE_chr8L_50mb_EdgeR.tsv |wc -l
+```
+I combined all of the above into a bash script so that it will be easier to repeat the above in the future. I also trying to do the same in R, which seems like it will be easier (in progress).
+```
+. postDE_analysis.sh
+```
+The above steps are repeated for DE result from two comparision: male all sample vs female all sample; male liver vs female liver. The result are below:
+
+
+
+
 
 
