@@ -105,7 +105,7 @@ Check the following to make sure the data
 # Compare to *X.laevis* chr8L
 - do the same pipleline with XL RNA-seq data
 - compare the expression level of DE genes in XB male, XB female, XL male, and XL female
-- do a volcano plot to visualize those expression 
+- do a volcano plot to visualize those expression levels 
 
 # Do trinity assembly for XB transcriptome with different setting
 
