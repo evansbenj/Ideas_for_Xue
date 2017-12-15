@@ -94,7 +94,9 @@ The above steps are repeated for DE result from two comparision: male all sample
 |<0|116 (77%)|92 (86%)|
 
 From this point on, I will do the preceeding analysis with DE result from liver samples only to complete the pipline. 
-Check the following to make sure the data 
+Check the following to make sure the data are not biased due to the present of missing data.
+- missing information, ex, 0 experssion level in male but have expression leve in female
+- check how many DE mapped to chr8L or chr8S with same e-value (but different bitscore)
 
 
 # Binning trancripts 
