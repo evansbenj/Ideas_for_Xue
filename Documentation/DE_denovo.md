@@ -93,6 +93,8 @@ The above steps are repeated for DE result from two comparision: male all sample
 |>0|34|24|
 |<0|116 (77%)|92 (86%)|
 
+From this point on, I will do the preceeding analysis with DE result from liver samples only to complete the pipline. 
+
 # Binning trancripts 
 - group overlapping transcripts into bins.  
 - count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
