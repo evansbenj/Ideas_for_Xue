@@ -93,7 +93,17 @@ The above steps are repeated for DE result from two comparision: male all sample
 |>0|34|24|
 |<0|116 (77%)|92 (86%)|
 
+# Binning trancripts 
+- group overlapping transcripts into bins.  
+- count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
+- sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
 
+# Compare to *X.laevis* chr8L
+- do the same pipleline with XL RNA-seq data
+- compare the expression level of DE genes in XB male, XB female, XL male, and XL female
+- do a volcano plot to visualize those expression 
+
+# Do trinity assembly for XB transcriptome with different setting
 
 
 
