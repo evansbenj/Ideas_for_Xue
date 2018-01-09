@@ -167,6 +167,11 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 - repeat DE analysis with different softwware package (RESM, DESeq2 etc)
 - repeat the pipeline with DE comparison pair (all male smaples vs all female samples, male gonad vs female gonad, liver vs gonad)
 
+# Path to laevis RNAseq read data
+```
+/home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA
+```
+
 
 
 
