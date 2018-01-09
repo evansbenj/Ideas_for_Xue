@@ -143,20 +143,20 @@ Chen, S., McElroy, J. S., Dane, F. &Peatman, E. Optimizing Transcriptome Assembl
 
 ```
 Try #1: increase min contig length to 300 -> stopped and abandoned
-By increasing the filter limit for minimum contig length (--min_contig_length), short fragment that is smaller than the limit would not be output by Trinity. Default is 200 so I increase it to 300. However, this might lead to some information loss.
+- By increasing the filter limit for minimum contig length (--min_contig_length), short fragment that is smaller than the limit would not be output by Trinity. Default is 200 so I increase it to 300. However, this might lead to some information loss.
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R2*  --CPU 20 --full_cleanup --max_memory 200G --min_contig_length 300 
 ```
 
 Try #2: change the kmer size to 31 -> still in progress
-Maximum kmer size for Trinity is 32. One of the above paper set it to 31. 
+- Maximum kmer size for Trinity is 32. One of the above paper set it to 31. 
 Accouding to this paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5237644/), assembly produces less transcripts with larger kmer size. 
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R2*  --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 31 --output /home/xue/xborealis_alltogether/xb_kmer31_trinity
 ```
 
 Try #3: with RNA-seq from liver only -> stopped and abandoned 
-Since sex-specific genes could have different expression level in liver and gonad. When doing expression analysis, 
+- Since sex-specific genes could have different expression level in liver and gonad. When doing expression analysis, 
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R2*  --CPU 20 --full_cleanup --max_memory 200G  --output /home/xue/xborealis_alltogether/xb_liver_trinity
 ```
