@@ -100,9 +100,19 @@ Check the following to make sure the data are not biased due to the present of m
 
 
 # Binning trancripts 
-- group overlapping transcripts into bins.  
-- count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
-- sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
+The Perl script that do the binning would: 
+  - group overlapping transcripts into bins.  
+  - count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
+  - sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
+
+Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First step is indexing:
+```
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --sjdb0verhand 100 --genomeChrBinNbits 16
+```
+Second step is mapping:
+```
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset10000.fa   
+```
 
 # Compare to *X.laevis* chr8L
 - do the same pipleline with XL RNA-seq data
