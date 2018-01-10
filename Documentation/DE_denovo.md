@@ -115,8 +115,13 @@ Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First 
 STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --genomeChrBinNbits 16
 ```
 Second step is mapping:
+Path to file: /home/xue/borealis_DE/xbxl_mapping_STAR/
 ```
-STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset10000.fa   
+time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa --genomeLoad LoadAndRemove -outFileNamePrefix /home/xue/borealis_DE/xl_genome/STAR_XLgenome/xb_STAR_1 --outSAMtype BAM Unsorted
+
+
+
+time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa  --genomeLoad LoadAndRemove -outFileNamePrefix ./xb_STAR4 --outSAMtype BAM Unsorted
 ```
 
 # Compare to *X.laevis* chr8L
