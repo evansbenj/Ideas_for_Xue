@@ -130,7 +130,7 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 - do a volcano plot to visualize those expression levels 
 
 # Do trinity assembly for XB transcriptome with different setting
-how did others do polyploid transcriptome assembly?
+how did others do polyploid transcriptome assembly using Trinity? -> mostly default setting; 
 ```
 Duan, J., Xia, C., Zhao, G., Jia, J. &Kong, X. Optimizing de novo common wheat transcriptome assembly using short-read RNA-Seq data. BMC Genomics 13, 392 (2012).
 > ALLPATHSLG error correction, and the paired fragment length was set to 200 bp
