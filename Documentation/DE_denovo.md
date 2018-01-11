@@ -35,8 +35,8 @@ Output DE files were stored in: ``` /home/xue/borealis_DE/```.
 # Get the id of DE transcript (FDR<0.05)
 ```
 awk '$5<0.05 {print $1}' all.counts.matrix.female_vs_male.edgeR.DE_results > all_mvsf_fdr005.tsv
-awk '$2 > 2 && $5<0.05  {print $1}' gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > gonad_fdr005.tsv
-awk '$5<0.05 {print $1}' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
+awk '$2 > 1 && $5<0.05  {print $1}' gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > gonad_fdr005.tsv
+awk '($2 < -1||$2 >1) && $5<0.05  {print $1}' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
 awk '$5<0.05 {print $1}' tissue.counts.matrix.gonad_vs_liver.edgeR.DE_results > tissue_fdr005.tsv
 
 ```
