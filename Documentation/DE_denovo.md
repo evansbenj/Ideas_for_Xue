@@ -122,6 +122,8 @@ time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgen
 time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa  --genomeLoad LoadAndRemove -outFileNamePrefix ./xb_STAR4 --outSAMtype BAM Unsorted
 
 STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
+
+STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../xb_transcriptome_trinityout.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
 ```
 
 # Compare to *X.laevis* chr8L
