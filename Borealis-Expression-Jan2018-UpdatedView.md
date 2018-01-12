@@ -116,4 +116,4 @@ Some language to keep straight:
 
 ## Learning from the pros
 
-<img src="https://github.com/evansbenj/Ideas_for_Xue/blob/master/misc/benevans-style.jpg" width="200" />
+<img src="https://github.com/evansbenj/Ideas_for_Xue/blob/master/misc/benevans-style.jpg" width="400" />
