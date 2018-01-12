@@ -112,7 +112,7 @@ Coverting GFF3 file into GTF file
 
 Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First step is indexing:
 ```
-STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --genomeChrBinNbits 16
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --sjdbOverhang 100 --genomeChrBinNbits 16
 ```
 Second step is mapping:
 Path to file: /home/xue/borealis_DE/xbxl_mapping_STAR/
