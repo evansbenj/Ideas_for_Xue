@@ -113,3 +113,5 @@ Some language to keep straight:
 **Figures/Outputs/Analyses**
 
 * figure or maybe table describing the characteristics of differentially expressed genes.
+
+![alt text](misc/benevans_style.jpg =100x)
