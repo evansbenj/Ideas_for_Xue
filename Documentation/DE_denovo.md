@@ -32,17 +32,17 @@ time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/analyze_
 ```
 Output DE files were stored in: ``` /home/xue/borealis_DE/```.
 
-# get the id of DE transcript (FDR<0.05)
+# Get the id of DE transcript (FDR<0.05)
 ```
 awk '$5<0.05 {print $1}' all.counts.matrix.female_vs_male.edgeR.DE_results > all_mvsf_fdr005.tsv
-awk '$2 > 2 && $5<0.05  {print $1}' gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > gonad_fdr005.tsv
-awk '$5<0.05 {print $1}' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
+awk '$2 > 1 && $5<0.05  {print $1}' gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > gonad_fdr005.tsv
+awk '($2 < -1||$2 >1) && $5<0.05  {print $1}' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
 awk '$5<0.05 {print $1}' tissue.counts.matrix.gonad_vs_liver.edgeR.DE_results > tissue_fdr005.tsv
 
 ```
 
 # Extract sequences of DE genes
-A script were used to extract the sequence of DE transcripts and output to a .fa file.
+A script were used to extract the sequence of DE transcripts and output to a fasta (.fa) file.
 ```
 . get_trans_fdr005.sh
 ```
@@ -100,9 +100,31 @@ Check the following to make sure the data are not biased due to the present of m
 
 
 # Binning trancripts 
-- group overlapping transcripts into bins.  
-- count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
-- sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
+The Perl script that do the binning would: 
+  - group overlapping transcripts into bins.  
+  - count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
+  - sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
+  
+Coverting GFF3 file into GTF file
+```
+/home/xue/borealis_DE/ref_approach/gffread/gffread/gffread -E XENLA_9.2_Xenbase.gff3 -T -o XENLA_9.2_Xenbase.gtf 
+```
+
+Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First step is indexing:
+```
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --genomeChrBinNbits 16
+```
+Second step is mapping:
+Path to file: /home/xue/borealis_DE/xbxl_mapping_STAR/
+```
+time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa --genomeLoad LoadAndRemove -outFileNamePrefix /home/xue/borealis_DE/xl_genome/STAR_XLgenome/xb_STAR_1 --outSAMtype BAM Unsorted
+
+time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa  --genomeLoad LoadAndRemove -outFileNamePrefix ./xb_STAR4 --outSAMtype BAM Unsorted
+
+STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
+
+STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../xb_transcriptome_trinityout.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
+```
 
 # Compare to *X.laevis* chr8L
 - do the same pipleline with XL RNA-seq data
@@ -110,42 +132,67 @@ Check the following to make sure the data are not biased due to the present of m
 - do a volcano plot to visualize those expression levels 
 
 # Do trinity assembly for XB transcriptome with different setting
-how did others do polyploid transcriptome assembly?
+how did others do polyploid transcriptome assembly using Trinity? -> mostly default setting; 
 ```
 Duan, J., Xia, C., Zhao, G., Jia, J. &Kong, X. Optimizing de novo common wheat transcriptome assembly using short-read RNA-Seq data. BMC Genomics 13, 392 (2012).
-ALLPATHSLG error correction, and the paired fragment length was set to 200 bp
+> ALLPATHSLG error correction, and the paired fragment length was set to 200 bp
 
 Chopra, R. et al. Comparisons of De Novo Transcriptome Assemblers in Diploid and Polyploid Species Using Peanut (Arachis spp.) RNA-Seq Data.
-the default kmer of 25, minimum coverage of 2
+> the default kmer of 25, minimum coverage of 2
 
 Nakasugi, K., Crowhurst, R., Bally, J., Waterhouse, P. &Mittapalli, O. Combining Transcriptome Assemblies from Multiple De Novo Assemblers in the Allo-Tetraploid Plant Nicotiana benthamiana. PLoS One 9, (2014).
-default setting
+> default setting
 
 Gutierrez-Gonzalez, J. J., Tu, Z. J., & Garvin, D. F. (2013). Analysis and annotation of the hexaploid oat seed transcriptome. BMC genomics, 14(1), 471.
-minimum assembled transcript length = 100 nt
+> minimum assembled transcript length = 100 nt
 
 Nakasugi, K., Crowhurst, R., Bally, J., Waterhouse, P. &Mittapalli, O. Combining Transcriptome Assemblies from Multiple De Novo Assemblers in the Allo-Tetraploid Plant Nicotiana benthamiana. PLoS One 9, (2014).
-Reads were normalized by the perl script insilico_read_normalization.pl (Trinity package) for Trinity;
-Two settings of k-mer 25 and k-mer 31
+> Reads were normalized by the perl script insilico_read_normalization.pl (Trinity package) for Trinity;
+> Two settings of k-mer 25 and k-mer 31
 
 He, B. et al. Optimal assembly strategies of transcriptome related to ploidies of eukaryotic organisms. (2011). doi:10.1186/s12864-014-1192-7
-Trinity_release_20131110 (http://trinityrnaseq.github.io/) [16], which used in default parameter, kmer =25, was used in SASP strategy and its Command-line parameters were “--seqType fq --left Reads_1.fq --right Reads_2.fq --CPU 20”
+> Trinity_release_20131110 (http://trinityrnaseq.github.io/) [16], which used in default parameter, kmer =25, was used in SASP strategy and its Command-line parameters were “--seqType fq --left Reads_1.fq --right Reads_2.fq --CPU 20”
 
 McKain, M. R. et al. A phylogenomic assessment of ancient polyploidy and genome evolution across the Poales. Genome Biol. Evol. 8, evw060 (2016).
-Trinity (Release 2012-06-08; Grabherr et al. 2011 ) with default parameters
+> Trinity (Release 2012-06-08; Grabherr et al. 2011 ) with default parameters
 
 Li, H.-Z. et al. Evaluation of Assembly Strategies Using RNA-Seq Data Associated with Grain Development of Wheat (Triticum aestivum L.). PLoS One 8, e83530 (2013).
-Trinity (release 20120608) with minimum contig length  =  100, default parameter
+> Trinity (release 20120608) with minimum contig length  =  100, default parameter
 
 Chen, S., McElroy, J. S., Dane, F. &Peatman, E. Optimizing Transcriptome Assemblies for Leaf and Seedling by Combining Multiple Assemblies from Three De Novo Assemblers. Plant Genome 8, 0 (2015).
-- normalized with Trinity’s in silico read normalization (http://Trinityrnaseq.sourceforge.net/), with maximum coverage of 30 and k-mer size of 25
--  The merged assembly was first processed by CD-HIT-EST v4.6.1-2012-08-27 (http://weizhong-lab.ucsd.edu/cd-hit/) with the strictest parameters “-c 1.0-n 10” to remove identical fragments and then subjected to the EvidentialGene tr2aacds pipeline (http://arthropods.eugenes.org/EvidentialGene/about/EvidentialGene_trassembly_pipe.html). 
+> normalized with Trinity’s in silico read normalization (http://Trinityrnaseq.sourceforge.net/), with maximum coverage of 30 and k-mer size of 25
+>  The merged assembly was first processed by CD-HIT-EST v4.6.1-2012-08-27 (http://weizhong-lab.ucsd.edu/cd-hit/) with the strictest parameters “-c 1.0-n 10” to remove identical fragments and then subjected to the EvidentialGene tr2aacds pipeline (http://arthropods.eugenes.org/EvidentialGene/about/EvidentialGene_trassembly_pipe.html). 
 
 ```
+Try #1: increase min contig length to 300 -> stopped and abandoned
+- By increasing the filter limit for minimum contig length (--min_contig_length), short fragment that is smaller than the limit would not be output by Trinity. Default is 200 so I increase it to 300. However, this might lead to some information loss.
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R2*  --CPU 20 --full_cleanup --max_memory 200G --min_contig_length 300 
+```
+
+Try #2: change the kmer size to 31 -> still in progress
+- Maximum kmer size for Trinity is 32. One of the above paper set it to 31. 
+Accouding to this paper (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5237644/), assembly produces less transcripts with larger kmer size. 
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*R2*  --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 31 --output /home/xue/xborealis_alltogether/xb_kmer31_trinity
+```
+
+Try #3: with RNA-seq from liver only -> stopped and abandoned 
+- Since sex-specific genes could have different expression level in liver and gonad. When doing expression analysis, 
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R2*  --CPU 20 --full_cleanup --max_memory 200G  --output /home/xue/xborealis_alltogether/xb_liver_trinity
+```
+
+
 
 # things that we could do but not urgent
 - repeat DE analysis with different softwware package (RESM, DESeq2 etc)
 - repeat the pipeline with DE comparison pair (all male smaples vs all female samples, male gonad vs female gonad, liver vs gonad)
+
+# Path to laevis RNAseq read data
+```
+/home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA
+```
 
 
 
