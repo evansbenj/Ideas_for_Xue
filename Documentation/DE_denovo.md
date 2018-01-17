@@ -194,7 +194,14 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R2*  --CPU 20 --full_cleanup --max_memory 200G  --output /home/xue/xborealis_alltogether/xb_liver_trinity
 ```
-
+#count the number of zero expresssion combinations
+It was done with a perl script.
+|                |Female-0        |Female-1        |Female-2        |Female-3        |Female-4
+|--- | --- | ---|--- | --- | ---|
+|Male-0 |17     |2      |5      |7      |65
+|Male-1 |16     |0      |0      |3      |25
+|Male-2 |13     |0      |0      |0      |0
+|Male-3 |35     |2      |0      |0      |0
 
 
 # things that we could do but not urgent
