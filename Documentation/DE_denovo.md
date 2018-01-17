@@ -196,7 +196,17 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 ```
 # count the number of zero expresssion combinations
 It was done with a perl script.
+- all
 
+| |Female-0|Female-1|Female-2|Female-3|Female-4|
+|---|---|---|---|---|---|
+|Male-0 |96655  |52399  |17786  |7466   |2211|
+|Male-1 |33485  |41692  |38417  |29014  |14119|
+|Male-2 |11046  |33589  |55878  |69523  |56068|
+|Male-3 |4474   |22143  |60984  |125930 |167275|
+
+
+- DE 
 
 | |Female-0|Female-1|Female-2|Female-3|Female-4|
 |---|---|---|---|---|---|
