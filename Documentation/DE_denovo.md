@@ -119,6 +119,13 @@ Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First 
 STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --sjdbOverhang 100 --genomeChrBinNbits 16
 ```
 Second step is mapping:
+mapping liver DE transcripts to XL genome:
+```
+STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../liver_trans_fdr005.fa  --genomeLoad LoadAndKeep --outFileNamePrefix ./Liver_StarOut --outSAMtype BAM Unsorted
+```
+
+
+
 Path to file: /home/xue/borealis_DE/xbxl_mapping_STAR/
 ```
 time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa --genomeLoad LoadAndRemove -outFileNamePrefix /home/xue/borealis_DE/xl_genome/STAR_XLgenome/xb_STAR_1 --outSAMtype BAM Unsorted
