@@ -50,7 +50,7 @@ A script were used to extract the sequence of DE transcripts and output to a fas
 ```
 . get_trans_fdr005.sh
 ```
-# Blast DE X.borealis sequence against annotated X.laevis genome
+# Mapping Method 1: Blast DE X.borealis sequence against annotated X.laevis genome
 To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
 ```
 blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
@@ -102,31 +102,23 @@ Check the following to make sure the data are not biased due to the present of m
 - missing information, ex, 0 experssion level in male but have expression leve in female
 - check how many DE mapped to chr8L or chr8S with same e-value (but different bitscore)
 
+# Mapping with Star
 
-# Binning trancripts 
-The Perl script that do the binning would: 
-  - group overlapping transcripts into bins.  
-  - count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
-  - sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
-  
-Coverting GFF3 file into GTF file
+Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First step is indexing. I used the default setting and provided gft file of the X.laevis genome (Coverting GFF3 file into GTF file):
 ```
 /home/xue/borealis_DE/ref_approach/gffread/gffread/gffread -E XENLA_9.2_Xenbase.gff3 -T -o XENLA_9.2_Xenbase.gtf 
-```
 
-Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First step is indexing:
-```
 STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --sjdbOverhang 100 --genomeChrBinNbits 16
 ```
-Second step is mapping:
-mapping liver DE transcripts to XL genome:
+Indexing without gft file:
+```
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --genomeChrBinNbits 16
+```
+Second step is mapping.Mapping liver DE transcripts to XL genome:
 ```
 STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../liver_trans_fdr005.fa  --genomeLoad LoadAndKeep --outFileNamePrefix ./Liver_StarOut --outSAMtype BAM Unsorted
 ```
-
-
-
-Path to file: /home/xue/borealis_DE/xbxl_mapping_STAR/
+Then I mapped the assembled X.borealis transcriptome to the X.laevis genome. Path to mapping output: ```/home/xue/borealis_DE/xbxl_mapping_STAR/```
 ```
 time STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn /home/xue/borealis_DE/xl_genome/xb_transcriptome_subset/xb_tra_subset0.fa --genomeLoad LoadAndRemove -outFileNamePrefix /home/xue/borealis_DE/xl_genome/STAR_XLgenome/xb_STAR_1 --outSAMtype BAM Unsorted
 
@@ -136,6 +128,15 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 
 STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../xb_transcriptome_trinityout.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
 ```
+
+
+# Binning trancripts 
+The Perl script that do the binning would: 
+  - group overlapping transcripts into bins.  
+  - count the number of transcripts in each bin. If 100k transcripts were mapped to chr8L, how many of them overlapped?
+  - sum the expression level of transcripts in the same bin -> see if bins on chr8L non-recombinating region have different expression level than other bins (on chr8L non-sex-linked region and other autosomes)
+  
+
 
 # Compare to *X.laevis* chr8L
 - do the same pipleline with XL RNA-seq data
@@ -204,6 +205,8 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 ```
 /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA
 ```
+
+
 
 
 
