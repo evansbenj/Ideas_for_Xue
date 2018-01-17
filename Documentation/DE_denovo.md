@@ -215,6 +215,13 @@ It was done with a perl script.
 |Male-2|13|0|0|0|0|
 |Male-3|35|2|0|0|0|
 
+- on chr8L
+
+
+- on chr8L sex link region
+
+ 
+
 
 # things that we could do but not urgent
 - repeat DE analysis with different softwware package (RESM, DESeq2 etc)
