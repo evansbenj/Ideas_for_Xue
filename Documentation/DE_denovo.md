@@ -54,6 +54,7 @@ A script were used to extract the sequence of DE transcripts and output to a fas
 To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
 ```
 blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
+
 ```
 I cleaned up the blastn output by filtering by e-value and bitscore.
 ```
@@ -108,7 +109,7 @@ Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First 
 ```
 /home/xue/borealis_DE/ref_approach/gffread/gffread/gffread -E XENLA_9.2_Xenbase.gff3 -T -o XENLA_9.2_Xenbase.gtf 
 
-STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --genomeFastaFiles XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --sjdbOverhang 100 --genomeChrBinNbits 16
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome_wGTF --genomeFastaFiles ../XL9_2.fa --sjdbGTFfile /home/xue/borealis_DE/ref_approach/XENLA_9.2_Xenbase.gtf --genomeChrBinNbits 16
 ```
 Indexing without gft file:
 ```
