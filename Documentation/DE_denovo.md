@@ -209,12 +209,14 @@ It was done with a perl script.
 
 - DE 
 
-| |Female-0|Female-1|Female-2|Female-3|Female-4|
+|                |Female-0       |Female-1       |Female-2       |Female-3       |Female-4|
 |---|---|---|---|---|---|
-|Male-0|17|2|5|7|65|
-|Male-1|16|0|0|3|25|
-|Male-2|13|0|0|0|0|
-|Male-3|35|2|0|0|0|
+|Male-0 |3.92%  |0.46%  |1.15%  |1.61%  |14.98%|
+|Male-1 |3.69%  |0      |0      |0.69%  |5.76%|
+|Male-2 |3.00%  |0      |0      |0      |0|
+|Male-3 |8.06%  |0.46%  |0      |0      |0|
+|Male-4 |50.46% |5.76%  |0      |0      |0|
+
 
 - on chr8L
 
