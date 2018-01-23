@@ -50,7 +50,8 @@ A script were used to extract the sequence of DE transcripts and output to a fas
 ```
 . get_trans_fdr005.sh
 ```
-# Mapping Method 1: Blast DE X.borealis sequence against annotated X.laevis genome
+# Mapping DE X.borealis sequence against annotated X.laevis genome
+### Mapping with Blastn
 To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
 ```
 blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
@@ -103,7 +104,7 @@ Check the following to make sure the data are not biased due to the present of m
 - missing information, ex, 0 experssion level in male but have expression leve in female
 - check how many DE mapped to chr8L or chr8S with same e-value (but different bitscore)
 
-# Mapping with Star
+## Mapping with Star
 
 Mapping assembled X.borealis transcriptome to X.laevis genome using STAR. First step is indexing. I used the default setting and provided gft file of the X.laevis genome (Coverting GFF3 file into GTF file):
 ```
@@ -130,6 +131,8 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../xb_transcriptome_trinityout.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
 ```
 
+### Mapping with GMAP
+STAR wasn't working properly for me so I am going to try GMAP, which is another splice aware aligner. 
 
 # Binning trancripts 
 The Perl script that do the binning would: 
@@ -140,6 +143,12 @@ The Perl script that do the binning would:
 
 
 # Compare to *X.laevis* chr8L
+### *De novo* assembled *X.laevis* transcriptome
+The path to *X.laevis* RNA-seq trimmed data and assembled transcriptome: /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA. The path to the assembled transcriptome: /home/xue/borealis_DE/Session_Xl_DeNovo_Transcriptome  
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA/*R1_scythe*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA/*R2_scythe*  --CPU 20 --full_cleanup --max_memory 200G  --output /home/xue/borealis_DE/Session_Xl_DeNovo_Transcriptome/Xl_Transcript_TrinityOut
+```
+
 - do the same pipleline with XL RNA-seq data
 - compare the expression level of DE genes in XB male, XB female, XL male, and XL female
 - do a volcano plot to visualize those expression levels 
