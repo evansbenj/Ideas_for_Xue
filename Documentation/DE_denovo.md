@@ -200,7 +200,7 @@ It was done with a perl script.
 - all
 
 
-|               |Female-0       |Female-1       |Female-2       |Female-3       |Female-4|
+|                |Female-0       |Female-1       |Female-2       |Female-3       |Female-4|
 |---|---|---|---|---|---||Male-0        |5.93%  |3.22%  |1.09%  |0.46%  |0.14%|
 |Male-1 |2.05%  |2.56%  |2.36%  |1.78%  |0.87%|
 |Male-2 |0.68%  |2.06%  |3.43%  |4.27%  |3.44%|
