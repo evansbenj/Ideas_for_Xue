@@ -102,6 +102,8 @@ Some language to keep straight:
 
 * sex specific subgenome expression, the roly of polyploidy in resolving sexual antagonism. Is it that females express an L copy and males express and S copy?
 
+* If we find interesting genes in *X. borealis*, we could look at their expression across *X. laevis* tissues (Sessions et al. data) to see if they have broad or narrow expression profiles. 
+
 **Analysis Methods/Directions**
 
 * likely involve some genome mapping approaches
@@ -114,6 +116,6 @@ Some language to keep straight:
 
 * figure or maybe table describing the characteristics of differentially expressed genes.
 
-## Learning from the pros
+## Learning from the pro
 
 <img src="https://github.com/evansbenj/Ideas_for_Xue/blob/master/misc/benevans-style.jpg" width="600" />
