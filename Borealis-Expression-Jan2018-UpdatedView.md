@@ -104,6 +104,8 @@ Some language to keep straight:
 
 * If we find interesting genes in *X. borealis*, we could look at their expression across *X. laevis* tissues (Sessions et al. data) to see if they have broad or narrow expression profiles. 
 
+* With interesting genes (IDed by liver transcriptomes), we can look at expression in sex specific tissues to see if they are high in one and absent in the other -- suggestive of sex specific function (we expect female specific genes to accumulate on the W).
+
 **Analysis Methods/Directions**
 
 * likely involve some genome mapping approaches
