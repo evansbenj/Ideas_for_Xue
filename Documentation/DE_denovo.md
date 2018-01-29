@@ -205,7 +205,7 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R2*  --CPU 20 --full_cleanup --max_memory 200G  --output /home/xue/xborealis_alltogether/xb_liver_trinity
 ```
 # count the number of zero expresssion combinations
-It was done with a perl script.
+It was done with a perl script 'count_ZeroExpComb.pl'.
 - all
 
 
@@ -219,7 +219,7 @@ It was done with a perl script.
 
 
 
-- DE 
+- DE: total = 432 
 
 |                |Female-0       |Female-1       |Female-2       |Female-3       |Female-4|
 |---|---|---|---|---|---|
@@ -230,13 +230,37 @@ It was done with a perl script.
 |Male-4 |50.46% |5.76%  |0      |0      |0|
 
 
-- on chr8L
+- on chr8L: total DE = 160
 
 
-- on chr8L sex link region
+|		|Female-0	|Female-1	|Female-2	|Female-3	|Female-4|
+|---|---|---|---|---|---|
+|Male-0	|5.62%	|0	|0.62%	|1.88%	|7.50%|
+|Male-1	|4.38%	|0	|0	|0.62%	|0.62%|
+|Male-2	|5.00%	|0	|0	|0	|0|
+|Male-3	|8.12%	|0	|0	|0	|0|
+|Male-4	|64.38%	|1.25%	|0	|0	|0|
 
+- on chr8L sex link region: total DE = 137
+
+
+|		|Female-0	|Female-1	|Female-2	|Female-3	|Female-4|
+|---|---|---|---|---|---|
+|Male-0	|5.84%	|0	|0.73%	|1.46%	|8.03%|
+|Male-1	|3.65%	|0	|0	|0.73%	|0.73%|
+|Male-2	|5.11%	|0	|0	|0	|0|
+|Male-3	|7.30%	|0	|0	|0	|0|
+|Male-4	|64.96%	|1.46%	|0	|0	|0|
  
+- on chr8L sex link region: total DE = 23
 
+|		|Female-0	|Female-1	|Female-2	|Female-3	|Female-4|
+|---|---|---|---|---|---|
+|Male-0	|4.35%	|0	|0	|4.35%	|4.35%|
+|Male-1	|8.70%	|0	|0	|0	|0|
+|Male-2	|4.35%	|0	|0	|0	|0|
+|Male-3	|13.04%	|0	|0	|0	|0|
+|Male-4	|60.87%	|0	|0	|0	|0|
 
 # things that we could do but not urgent
 - repeat DE analysis with different softwware package (RESM, DESeq2 etc)
