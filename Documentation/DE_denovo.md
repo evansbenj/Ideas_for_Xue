@@ -208,8 +208,8 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 It was done with a perl script 'count_ZeroExpComb.pl'.
 - all
 
-
-|                |Female-0       |Female-1       |Female-2       |Female-3       |Female-4|
+|                |number of females who have 0 expression|
+|                |0       |1       |2       |3       |4|
 |---|---|---|---|---|---|
 |Male-0        |5.93%  |3.22%  |1.09%  |0.46%  |0.14%|
 |Male-1 |2.05%  |2.56%  |2.36%  |1.78%  |0.87%|
