@@ -100,15 +100,15 @@ Some language to keep straight:
 
 * trying to assess the mechanism of sexual antagonism, as opposed to just a description of its presence (which is sections \#1 & \#2)
 
-* splice variant differences between females and males? (i.e., both express the gene, just different forms)
+* splice variant differences between females and males? (i.e., both express the gene, just different forms). Theory predicts less differential expression of splice variants in the sex-linked region because SA is already resolved by recombination suppression.
 
-* whole gene expression differences (i.e., no expression of a gene in one sex)
+* whole gene expression differences (i.e., no expression of a gene in one sex). Expected to be more frequent in suppresed recombination region 
 
-* sex specific subgenome expression, the roly of polyploidy in resolving sexual antagonism. Is it that females express an L copy and males express and S copy?
+* sex specific subgenome expression, the roly of polyploidy in resolving sexual antagonism. Is it that females express an L copy and males express and S copy?  Interesting idea - unlikely I think but worth checking.
 
 * If we find interesting genes in *X. borealis*, we could look at their expression across *X. laevis* tissues (Sessions et al. data) to see if they have broad or narrow expression profiles. 
 
-* With interesting genes (IDed by liver transcriptomes), we can look at expression in sex specific tissues to see if they are high in one and absent in the other -- suggestive of sex specific function (we expect female specific genes to accumulate on the W).
+* With interesting genes (IDed by liver transcriptomes), we can look at expression in sex specific tissues to see if they are high in one and absent in the other -- suggestive of sex specific function (we expect female specific genes to accumulate on the W).  Possible, but not so interesting?
 
 **Analysis Methods/Directions**
 
@@ -122,6 +122,12 @@ Some language to keep straight:
 
 * figure or maybe table describing the characteristics of differentially expressed genes.
 
-## Learning from the pro
+## 5. Other sources of information
+
+Later possibly compare rates of evolution (in nucleotides or dN/dS) of genes with and without sex biased expression patterns in and out of suppressed recombi region.
+
+
+
+## Learning from the pro (beautiful!)
 
 <img src="https://github.com/evansbenj/Ideas_for_Xue/blob/master/misc/benevans-style.jpg" width="600" />
