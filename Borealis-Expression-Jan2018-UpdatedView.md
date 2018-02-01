@@ -1,12 +1,13 @@
 # *Xenopus Borealis* Gene Expression Study
 
-There are (at least) 4 broad objectives of this project, outlined below. We have RNASeq data from parents and offspring for liver, and non-homologous sex specific tissues.
+There are (at least) 4 broad objectives of this project, outlined below. We have RNASeq data from parents and offspring for adult liver, and non-homologous sex specific tissues. We soon will have comparable data from adult liver of 3 male and 3 female XL.
 
-The main objective of this project is to test if newly evolved sex chromosomes have accumulated gene expression differences. Also want to look at allelic specific expression to test for degeneration of sex chromosomes (maybe a little dosage comp stuff, if we find differences).
+The main objective of this project is to test if newly evolved sex chromosomes have accumulated gene expression differences. This is a test that recombination suppression is favored by natural selection as a way to resolve sexual antagonism. Also want to look at allelic specific expression to test for degeneration of sex chromosomes (maybe a little dosage comp stuff, if we find differences).
 
 Some language to keep straight:
 
 * With the transcriptome, we are really only looking at differential transcript expression, and not differential gene expression.
+* Once we have expression from the same gene in two species, and potentially two paralogs from one or both, we can make inferences about the directionality of expression evolution (e.g. this gene was upregulated or downregulated in females, etc).
 
 
 ## 1. The Level of Sexual Antagonism (SA) in the Genome
@@ -20,6 +21,9 @@ Some language to keep straight:
 
 **Analysis Methods/Directions:**
 * Kallisto, full *de novo* approach
+** I'd like more details on how this approach works
+** Also need to look into syncing data from XL and XB
+*** We plan to generate expression levels from each species using transcriptome assemblies from each species, and then sync the noramlized data after this in a way that is not influenced by the sequencing depth of each dataset (possibly using reads per million).
 
 * new Tuxedo package, full genomic approach
 
@@ -38,11 +42,11 @@ Some language to keep straight:
 
 * percentage compared to the autosomes and 8S. Test if 8L has a disproportionate amount of SA genes
 
-* variation of expression level along 8L. Test if there is a peak somewhere (indicate earliest sex linked region?)
+* variation of expression level, also variation in level of sex biased expression along 8L and compared to autosomes. Test if there is a peak somewhere (indicate earliest sex linked region?)
 
 * Can we tease apart alleles of the differentially expressed 8L genes. Is it an expression of the W copy in females high expression, both Z and W?
 
-* look at 8L in *X. laevis*, does it have more SA genes than other autosomes? (a speculation on my part that I am curious about.)
+* look at 8L in *X. laevis*, does it have more SA genes than other autosomes? (a speculation on my part that I am curious about.)  And this is predicted by thory - genomic regions with more sexual antagonism presumably should be favored by natural selection to become new sex chromosomes.
 
 **Analysis Methods/Directions**
 
