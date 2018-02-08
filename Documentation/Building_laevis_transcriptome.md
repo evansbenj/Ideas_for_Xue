@@ -39,4 +39,8 @@ time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phre
 ```
 
 # Building Trascriptome
+Building transcriptomes with 2 liver RNA-seq data:
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/*R1_paired_scythe.fastq.gz* --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/*R2_paired_scythe.fastq.gz* --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_TrinityOut
 
+```
