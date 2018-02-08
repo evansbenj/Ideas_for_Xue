@@ -204,6 +204,19 @@ Try #3: with RNA-seq from liver only -> stopped and abandoned
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R1*  --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/*liver_R2*  --CPU 20 --full_cleanup --max_memory 200G  --output /home/xue/xborealis_alltogether/xb_liver_trinity
 ```
+Error message:
+```
+Error: Encountered internal Bowtie 2 exception (#1)
+Command: bowtie2-build --wrapper basic-0 --threads 20 -o 3 /home/xue/xborealis_alltogether/xb_liver_trinity/chrysalis/inchworm.K25.L25.DS.fa.min100 /home/xue/xborealis_alltogether/xb_liver_trinity/chrysalis/inchworm.K25.L25.DS.fa.min100
+Error, cmd: bowtie2-build --threads 20 -o 3 /home/xue/xborealis_alltogether/xb_liver_trinity/chrysalis/inchworm.K25.L25.DS.fa.min100 /home/xue/xborealis_alltogether/xb_liver_trinity/chrysalis/inchworm.K25.L25.DS.fa.min100 1>/dev/null 2>tmp.39623.stderr died with ret 256 at /home/xue/software/trinityrnaseq-Trinity-v2.5.1/PerlLib/Pipeliner.pm line 166.
+        Pipeliner::run(Pipeliner=HASH(0x1f440d0)) called at /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity line 1827
+        main::run_chrysalis("/home/xue/xborealis_alltogether/xb_liver_trinity/inchworm.K25"..., "/home/xue/xborealis_alltogether/xb_liver_trinity/both.fa", 200, 500, undef, "/home/xue/xborealis_alltogether/xb_liver_trinity/both.fa", "/home/xue/xborealis_alltogether/xb_liver_trinity/both.fa") called at /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity line 1667
+        main::run_Trinity() called at /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity line 1320
+        eval {...} called at /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity line 1319
+
+Trinity run failed. Must investigate error above.
+```
+
 # count the number of zero expresssion combinations
 It was done with a perl script 'count_ZeroExpComb.pl'.
 - all
