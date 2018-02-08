@@ -13,6 +13,11 @@ BenF downloaded raw RNA-seq data of two female liver, two female oviduct, and tw
 for i in *SRR2515140*; do gzip $i; done
 #trim it with trimmomatic, which was done for all through a perl script
 perl run_trimmomatic.pl
+#trim it again with Scythe to remove 3' contamination
+/home/xue/software/scythe-master/scythe -a /home/benf/bin/Trimmomatic-0.36/adapters/trimming-seqs.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_1_R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_1_R1_paired_scythe.fastq.gz 
+
+
+
 #quality check with fastqc
 
 ```
