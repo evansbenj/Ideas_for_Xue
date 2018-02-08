@@ -9,10 +9,13 @@ BenF downloaded raw RNA-seq data of two female liver, two female oviduct, and tw
 ```
 #download RNAseq from SRA database; split it into R1 and R2; and processed it in proper file format that Trinity can use (time used: about 25min)
 /home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR2515140
+
 #gzip the downloaded file
 for i in *SRR2515140*; do gzip $i; done
+
 #trim it with trimmomatic, which was done for all through a perl script
 perl run_trimmomatic.pl
+
 #trim it again with Scythe to remove 3' contamination 
 /home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_1_R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_1_R1_paired_scythe.fastq.gz 
 
@@ -23,8 +26,6 @@ perl run_trimmomatic.pl
 /home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515140_2_R2_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515140_2_R2_paired_scythe.fastq.gz
 
 /home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_2_R2_unpaired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_2_R2_unpaired_scythe.fastq.gz 
-
-
 
 #quality check with fastqc
 
