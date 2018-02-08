@@ -22,6 +22,10 @@ perl run_trimmomatic.pl
 
 /home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515140_2_R2_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515140_2_R2_paired_scythe.fastq.gz
 
+/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_2_R2_unpaired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_2_R2_unpaired_scythe.fastq.gz 
+
+
+
 #quality check with fastqc
 
 ```
