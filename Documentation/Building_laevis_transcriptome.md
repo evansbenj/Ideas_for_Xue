@@ -38,6 +38,12 @@ Running Trimmomatic with the same setting as what Benf did before (see Documenti
 ```
 time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 /home/xue/Xlaevis_transcriptome_QA/Laevis_TranscriptomeData/Sample_BenEvansBJE4168cDNA_Library/BenEvansBJE4168cDNA_Library_ACAGTG_L004_R1_001.fastq.gz /home/xue/Xlaevis_transcriptome_QA/Laevis_TranscriptomeData/Sample_BenEvansBJE4168cDNA_Library/BenEvansBJE4168cDNA_Library_ACAGTG_L004_R2_001.fastq.gz /home/xue/Xlaevis_transcriptome_QA/Laevis_TranscriptomeData/BJE4168_laevis_trimmed_data/BJE4168_L004_R1_paired.fastq.gz /home/xue/Xlaevis_transcriptome_QA/Laevis_TranscriptomeData/BJE4168_laevis_trimmed_data/BJE4168_L004_R1_unpaired.fastq.gz /home/xue/Xlaevis_transcriptome_QA/Laevis_TranscriptomeData/BJE4168_laevis_trimmed_data/BJE4168_L004_R2_paired.fastq.gz /home/xue/Xlaevis_transcriptome_QA/Laevis_TranscriptomeData/BJE4168_laevis_trimmed_data/BJE4168_L004_R2_unpaired.fastq.gz ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 ```
+Running Trinity:
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/BJE4168_R1_paired_fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/BJE4168_R2_paired_fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/
+
+```
+
 
 # Building Trascriptome
 Building transcriptomes with 2 liver RNA-seq data:
