@@ -1,5 +1,5 @@
 # Differential Expression Analysis with Kallisto + EdgeR
-Building abundance index and matrix with Kallisto using Trinity scripts. Each pair of trimmed reads (R1+R2) were mapped to the assembled transcriptome with reads from all the samples
+Building transcriptome index and abundance matrix with Kallisto using Trinity perl scripts. Each pair of trimmed reads (R1+R2) were pseudoaligned to the assembled transcriptome that were built with RNA-seq reads from all X.borealis individuals. More about how kallisto works, please see my note here (). 
 ```
 time perl /home/xue/software/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --samples_file all_mvsf_samplefile.txt --est_method kallisto --output_dir /home/xue/borealis_DE/all_mvsf --trinity_mode --prep_reference
 
@@ -12,6 +12,15 @@ time perl /home/xue/software/trinityrnaseq-2.2.0/util/align_and_estimate_abundan
 time perl /home/xue/software/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --samples_file liver_vs_gonad_samplefile.tsv --est_method kallisto --output_dir /home/xue/borealis_DE/liver_vs_gonad --trinity_mode --prep_reference
 
 ```
+The Trinity perl script CMD-ed kallisto as following. Kallisto can do quantification for one sample at a time. Each quantification takes about 45min - 1hr. I would run the same command if I were to run kallisto by myself. One extra thing that I can do if I am running the quantification step without the Trinity scripts is that I can do bootstraping with 
+```
+#Indexing
+kallisto index -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta
+
+#Quantification
+kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx  -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
+```
+
 To compute the matrix (time cost: ~10min):
 ```
 time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix all  --name_sample_by_basedir male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv male_rep5/abundance.tsv male_rep6/abundance.tsv male_rep7/abundance.tsv female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv female_rep5/abundance.tsv female_rep6/abundance.tsv female_rep7/abundance.tsv
@@ -19,12 +28,9 @@ time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --
 time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix trans_counts  --name_sample_by_basedir BJE3896_dad_liver/abundance.tsv BJE3896_dad_testis/abundance.tsv BJE3897_mom_liver/abundance.tsv BJE3929_boy_liver/abundance.tsv BJE3929_boy_testis/abundance.tsv BJE4009_girl_liver/abundance.tsv BJE4009_girl_oviduct/abundance.tsv BJE4017_boy_liver/abundance.tsv BJE4017_boy_testis/abundance.tsv BJE4039_boy_liver/abundance.tsv BJE4039_boy_testis/abundance.tsv BJE4072_girl_liver/abundance.tsv BJE4072_girl_oviduct/abundance.tsv BJE4082_girl_liver/abundance.tsv BJE4082_girl_oviduct/abundance.tsv
 ```
 
-Each takes about 45min - 1hr. The trinity perl script would CMD kallisto as following:
-```
-kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx  -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
-```
 
-Differential expression between two individuals using Trinity scripts. Specifying EdgeR as the method as it is the recommended method :
+
+Differential expression between two individuals with EdgeR using the Trinity scripts. Specifying EdgeR as the method as it is the recommended method :
 ```
 time perl /home/xue/software/trinityrnaseq-2.2.0//Analysis/DifferentialExpression/run_DE_analysis.pl --matrix liver.counts.matrix --method edgeR --samples_file liver_mvsf_samplefile_EdgeR.tsv
 
@@ -35,6 +41,19 @@ time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.1//Analysis/Differential
 
 
 Output DE files were stored in: ``` /home/xue/borealis_DE/```.
+
+If I was to run kallisto without the Trinity scripts, I would do the following. But it is not neccessary to run it as it is essentially the same commands that Trinity was running. 
+```
+#building index for the assembled transcriptome
+kallisto index -i /home/xue/borealis_DE/kallisto_index/Borealis_assembled_transcriptome_Trinity_kallisto_idx /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta
+
+#quantification step of kallisto for each sample, can do quantification for one sample at a time
+kallisto quant -i /home/xue/borealis_DE/kallisto_index/Borealis_assembled_transcriptome_Trinity_kallisto_idx -o /home/xue/borealis_DE/kallisto_index --plaintext -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
+
+#EdgeR
+
+```
+
 
 # Get the id of DE transcript (FDR<0.05)
 ```
