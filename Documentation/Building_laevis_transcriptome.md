@@ -40,7 +40,7 @@ time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phre
 ```
 Running Trinity:
 ```
-/home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/BJE4168_R1_paired_fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/BJE4168_R2_paired_fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/
+/home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/Trinity_Run2/BJE4168_laevis_trimmed_data/BJE4168_R1_paired_fastq.gz --right /home/xue/Trinity_Run2/BJE4168_laevis_trimmed_data/BJE4168_R2_paired_fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/Trinity_Run2/BJE4168_laevis_trimmed_data
 
 ```
 
