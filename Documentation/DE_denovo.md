@@ -14,10 +14,10 @@ time perl /home/xue/software/trinityrnaseq-2.2.0/util/align_and_estimate_abundan
 ```
 The Trinity perl script CMD-ed kallisto as following. Kallisto can do quantification for one sample at a time. Each quantification takes about 45min - 1hr. I would run the same command if I were to run kallisto by myself. One extra thing that I can do if I am running the quantification step without the Trinity scripts is that I can do bootstraping with 
 ```
-#Indexing
+#Indexing the transcriptomes
 kallisto index -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta
 
-#Quantification
+#Transcript abundance quantification
 kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx  -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
 ```
 
