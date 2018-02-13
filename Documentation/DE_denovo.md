@@ -56,17 +56,12 @@ kallisto quant -i /home/xue/borealis_DE/kallisto_index/Borealis_assembled_transc
 ```
 
 
-# Get the id of DE transcript (FDR<0.05)
+# Filter DE transcripts (FDR<0.05)
+I filtered the edgeR output with a FDR treshold of 0.05 and select those transcripts that have at least fold change of 2 (or log2foldchange of 1). 
 ```
-awk '$5<0.05 {print $1}' all.counts.matrix.female_vs_male.edgeR.DE_results > all_mvsf_fdr005.tsv
-awk '$2 > 1 && $5<0.05  {print $1}' gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > gonad_fdr005.tsv
-awk '($2 < -1||$2 >1) && $5<0.05  {print $1}' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
-awk '$5<0.05 {print $1}' tissue.counts.matrix.gonad_vs_liver.edgeR.DE_results > tissue_fdr005.tsv
-
+awk '($2 < -1||$2 >1) && $5<0.05  {print }' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
 ```
-
-# Extract sequences of DE genes
-A script were used to extract the sequence of DE transcripts and output to a fasta (.fa) file.
+A script were used to extract the sequence of significant DE transcripts and outputed the sequence to a fasta (.fa) file.
 ```
 . get_trans_fdr005.sh
 ```
