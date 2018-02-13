@@ -1,5 +1,5 @@
 # Differential Expression Analysis with Kallisto + EdgeR
-Building transcriptome index and abundance matrix with Kallisto using Trinity perl scripts. Each pair of trimmed reads (R1+R2) were pseudoaligned to the assembled transcriptome that were built with RNA-seq reads from all X.borealis individuals. More about how kallisto works, please see my note here (). 
+Building transcriptome index and abundance matrix with Kallisto using Trinity perl scripts. Each pair of trimmed reads (R1+R2) were pseudoaligned to the assembled transcriptome that were built with RNA-seq reads from all X.borealis individuals. More about how kallisto works, please see my note here (https://github.com/Sarahxys/Borealis/blob/master/About%20differential%20expression%20analysis.md). 
 ```
 time perl /home/xue/software/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --samples_file all_mvsf_samplefile.txt --est_method kallisto --output_dir /home/xue/borealis_DE/all_mvsf --trinity_mode --prep_reference
 
