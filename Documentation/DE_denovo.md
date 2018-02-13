@@ -30,17 +30,18 @@ time perl /home/xue/trinityrnaseq-2.2.0/util/abundance_estimates_to_matrix.pl --
 
 
 
-Differential expression between two individuals with EdgeR using the Trinity scripts. Specifying EdgeR as the method as it is the recommended method :
+Differential expression between two conditions (ex, male_liver samples vs female_liver samples) with EdgeR using Trinity scripts. Specifying EdgeR as the method as it is the recommended method :
 ```
 time perl /home/xue/software/trinityrnaseq-2.2.0//Analysis/DifferentialExpression/run_DE_analysis.pl --matrix liver.counts.matrix --method edgeR --samples_file liver_mvsf_samplefile_EdgeR.tsv
 
 time perl /home/xue/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/analyze_diff_expr.pl --matrix ../trans_counts.TMM.EXPR.matrix -P 1e-3 -C 2
-______________________
+
+#with a newer version of Trinity
 time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.1//Analysis/DifferentialExpression/run_DE_analysis.pl --matrix ../liver.counts.matrix --method edgeR --samples_file ../liver_mvsf_samplefile_EdgeR.tsv
 ```
 
 
-Output DE files were stored in: ``` /home/xue/borealis_DE/```.
+Output DE files were stored in: ` /home/xue/borealis_DE/edgeR_out`.
 
 If I was to run kallisto without the Trinity scripts, I would do the following. But it is not neccessary to run it as it is essentially the same commands that Trinity was running. 
 ```
