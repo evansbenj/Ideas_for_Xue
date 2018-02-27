@@ -9,9 +9,11 @@ BenF downloaded raw RNA-seq data of two female liver, two female oviduct, and tw
 ```
 #download RNAseq from SRA database; split it into R1 and R2; and processed it in proper file format that Trinity can use (time used: about 25min)
 /home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR2515140
+/home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR2515154
 
 #gzip the downloaded file
 for i in *SRR2515140*; do gzip $i; done
+for i in *SRR2515154*; do gzip $i; done
 
 #trim it with trimmomatic, which was done for all through a perl script
 perl run_trimmomatic.pl
