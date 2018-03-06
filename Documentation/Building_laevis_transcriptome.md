@@ -18,6 +18,8 @@ for i in *SRR2515154*; do gzip $i; done
 #trim it with trimmomatic, which was done for all through a perl script
 perl run_trimmomatic.pl
 
+time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 ../Laevis_Session_RawData/SRR2515154_1.fastq.gz ../Laevis_Session_RawData/SRR2515154_1.fastq.gz SRR2515154__R1_paired.fastq.gz SRR2515154__R1_unpaired.fastq.gz SRR2515154__R2_paired.fastq.gz SRR2515154__R2_unpaired.fastq.gz ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+
 #trim it again with Scythe to remove 3' contamination 
 /home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_1_R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_1_R1_paired_scythe.fastq.gz 
 
