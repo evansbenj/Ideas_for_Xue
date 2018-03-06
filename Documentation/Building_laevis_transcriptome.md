@@ -11,13 +11,13 @@ BenF downloaded raw RNA-seq data of two female liver, two female oviduct, and tw
 /home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR2515140
 /home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR2515154
 
-#gzip the downloaded file
+#gzip the downloaded file (about 10min)
 for i in *SRR2515140*; do gzip $i; done
 for i in *SRR2515154*; do gzip $i; done
 
-#trim it with trimmomatic, which was done for all through a perl script
+#trim them with trimmomatic, which was done for all through a perl script
 perl run_trimmomatic.pl
-
+#trim each of them individually  with trimmomatic (about 35min)
 time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 ../Laevis_Session_RawData/SRR2515154_1.fastq.gz ../Laevis_Session_RawData/SRR2515154_1.fastq.gz SRR2515154__R1_paired.fastq.gz SRR2515154__R1_unpaired.fastq.gz SRR2515154__R2_paired.fastq.gz SRR2515154__R2_unpaired.fastq.gz ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 
 #trim it again with Scythe to remove 3' contamination 
