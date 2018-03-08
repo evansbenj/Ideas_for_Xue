@@ -298,6 +298,26 @@ It was done with a perl script 'count_ZeroExpComb.pl'.
 /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Session-SRA
 ```
 
+# Directionarity of expression evolution
+## Big Frame work
+We want to examine the directionality of expression evolution of *X. borealis* SA gene by fitting them to BM model.
+
+Phylogenetic tree:
+- XB female/male expression ratio
+- XL ortholog female/male expression ratio
+- XT or XMT ortholog female/male expression ratio
+
+We are going to test for 4 models:
+-  all genes have 1 same sigma
+- 1 rate for 8L sex linked region and 1 rate for the rest
+- each gene have 2 sigma (one for XL and one for XB)
+- all gene have 1 sigma but have different rate for different gene
+
+Below are some detail for each step
+
+#
+
+
 
 
 
