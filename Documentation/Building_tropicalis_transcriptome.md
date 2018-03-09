@@ -54,3 +54,18 @@ Building transcriptomes with 2 liver RNA-seq data:
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/*R1_paired* --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/*R2_paired* --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_TrinityOut; echo "trinity is done at info114" | mail sarahsongxy@gmail.com
 ```
+
+# Tropicalis
+We are using the RNA-seq data of X. tropicalis as a outgroup for an analysis where we examine directionality of expression level (up-regulated or down-regulated) in X. borealis. 
+
+## RNA-seq raw data
+here are RNA-seq data that are from adult liver tissues and have sex information but the researchers did single end sequencing (BioProject:PRJNA381064). Those are from a study about dosage compensation mechanism in a reptile lineage. (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5741051/). We download RNA-seq data for 2 female liver samples (SRR5412274 and SRR5412273) and 2 male liver samples (SRR5412276 and SRR5412275). 
+```
+# run bash script to download 4 samples
+. download_sra_rnaseq.sh
+#command(in the script) to download SRA files  
+/home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR5412274
+```
+
+
+
