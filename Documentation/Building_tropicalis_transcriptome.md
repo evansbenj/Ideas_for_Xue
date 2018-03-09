@@ -64,6 +64,7 @@ here are RNA-seq data that are from adult liver tissues and have sex information
 # run bash script to download 4 samples
 . download_sra_rnaseq.sh
 #command(in the script) to download SRA files  
+
 /home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --split-files SRR5412274
 ```
 
