@@ -68,10 +68,6 @@ Running Trinity:
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/Trinity_Run2/BJE4168_laevis_trimmed_data/BJE4168_R1_paired_fastq.gz --right /home/xue/Trinity_Run2/BJE4168_laevis_trimmed_data/BJE4168_R2_paired_fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/Trinity_Run2/BJE4168_laevis_trimmed_data
 ```
-
-
-
-
 # *X. Tropicalis* with Marin et al data
 We are using the RNA-seq data of X. tropicalis as a outgroup for an analysis where we examine directionality of expression level (up-regulated or down-regulated) in X. borealis. 
 
