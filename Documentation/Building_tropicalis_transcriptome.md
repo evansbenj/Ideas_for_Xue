@@ -75,14 +75,15 @@ Running Trinity:
 # Tropicalis with Marin data
 We are using the RNA-seq data of X. tropicalis as a outgroup for an analysis where we examine directionality of expression level (up-regulated or down-regulated) in X. borealis. 
 
-### RNA-seq raw data from SRA
+### RNA-seq raw data from SRA + Pre-processing
 here are RNA-seq data that are from adult liver tissues and have sex information but the researchers did single end sequencing (BioProject:PRJNA381064). Those are from a study about dosage compensation mechanism in a reptile lineage. (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5741051/). We download RNA-seq data for 2 female liver samples (SRR5412274 and SRR5412273) and 2 male liver samples (SRR5412276 and SRR5412275). 
 ```
 # run bash script to download 4 samples
-. download_sra_rnaseq.sh
-#command(in the script) to download SRA files  
-
+sra_single_trimmomatic.pl
+#commands(in the script) to download SRA files  
 /home/xue/software/ncbi/sratoolkit.2.8.2-1-centos_linux64/bin/fastq-dump  --defline-seq '@$sn[_$rn]/$ri' --gzip SRR5412274
+#trimmomatic command for individual sample in the script
+time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 $infile_name $outfile_name ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 ```
 ### Transcriptome
 Building transcriptomes with 2 liver RNA-seq data:
