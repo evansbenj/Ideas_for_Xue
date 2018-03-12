@@ -16,7 +16,7 @@ ATGCAAACCCTTCAGCCCAAAGTGGCCAGCTCCATCTACATTAACTCTGGCAGTGTCTTCCTACACGTTGACCTGAAGGA
 
 
 
-# Blast 
+# Blastn 
 ```
 #build blastn database index
 makeblastdb -in /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/Laevis_Session_TrinityOutAll.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome
