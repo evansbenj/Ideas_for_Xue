@@ -53,6 +53,18 @@ Running Trinity:
 Building transcriptomes with 2 liver RNA-seq data:
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/*R1_paired* --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/*R2_paired* --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_TrinityOut; echo "trinity is done at info114" | mail sarahsongxy@gmail.com
+
+```
+Build individual transcriptome for each sample
+```
+#liver female 1
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515140__R1_paired.fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515140__R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/individual/liver_f1_trinityout; echo "trinity is done in screen liver at info114" | mail sarahsongxy@gmail.com
+#liver female 2
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154__R1_paired.fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154__R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/individual/liver_f2_trinityout; echo "trinity is done in screen liver at info115" | mail sarahsongxy@gmail.com
+#testis male 1
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515162__R1_paired.fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515162__R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/individual/testis_m1_trinityout; echo "trinity is done in screen testis at info114" | mail sarahsongxy@gmail.com
+#testis male 2
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515148__R1_paired.fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515148__R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/individual/testis_m2_trinityout; echo "trinity is done in screen testis at info115" | mail sarahsongxy@gmail.com
 ```
 
 # Tropicalis
