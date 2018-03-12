@@ -148,7 +148,15 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 Output file from STAR only contain mapping information for 8-30 mapping. I checked online and most people used STAR for mapping RNA-seq reads to genome but not mapping transcripts to genome. It might not be a tool that is capable for mapping transcripts to genome. Ben said he got ~80% mapping with STAR. I check with him and it seems like he had done read mapping but not transcripts mapping before. STAR doesn't seem like working for me, so switched to try other splice aware aligner such as GMAP or BLAT. 
 
 ### Mapping with GMAP
-GMAP is another splice aware aligner and its user manual is here (http://research-pub.gene.com/gmap/src/README). I compiled it as instructed and installed it in '/home/xue/software/gmap-2018-03-11' (updated with latest version as March 12 2018). 
+GMAP is another splice aware aligner and its user manual is here (http://research-pub.gene.com/gmap/src/README). It is already installed on the cluster (version 2012-04-27). 
+
+```
+#building local database index for *X. laevis* 9.2
+#running gmap to map borealis transcriptome to laevis genome
+
+#running gmap to map laevis transcriptome to laevis genome
+
+```
 
 # Binning trancripts 
 The Perl script that do the binning would: 
