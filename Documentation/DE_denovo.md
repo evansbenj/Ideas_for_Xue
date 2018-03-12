@@ -152,8 +152,9 @@ GMAP is another splice aware aligner and its user manual is here (http://researc
 
 ```
 #building local database index for *X. laevis* 9.2
-#running gmap to map borealis transcriptome to laevis genome
 
+#running gmap to map borealis transcriptome to laevis genome
+gmap -d -A -Z -f sampe
 #running gmap to map laevis transcriptome to laevis genome
 
 ```
