@@ -72,7 +72,7 @@ Running Trinity:
 
 
 
-# Tropicalis with Marin data
+# *X. Tropicalis* with Marin et al data
 We are using the RNA-seq data of X. tropicalis as a outgroup for an analysis where we examine directionality of expression level (up-regulated or down-regulated) in X. borealis. 
 
 ### RNA-seq raw data from SRA + Pre-processing
