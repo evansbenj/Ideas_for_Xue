@@ -145,9 +145,10 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 
 STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../xb_transcriptome_trinityout.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
 ```
+Output file from STAR only contain mapping information for 8-30 mapping. I checked online and most people used STAR for mapping RNA-seq reads to genome but not mapping transcripts to genome. It might not be a tool that is capable for mapping transcripts to genome. Ben said he got ~80% mapping with STAR. I check with him and it seems like he had done read mapping but not transcripts mapping before. STAR doesn't seem like working for me, so switched to try other splice aware aligner such as GMAP or BLAT. 
 
 ### Mapping with GMAP
-STAR wasn't working properly for me so I am going to try GMAP, which is another splice aware aligner. 
+GMAP is another splice aware aligner and its user manual is here (http://research-pub.gene.com/gmap/src/README). I compiled it as instructed and installed it in '/home/xue/software/gmap-2018-03-11' (updated with latest version as March 12 2018). 
 
 # Binning trancripts 
 The Perl script that do the binning would: 
@@ -299,7 +300,7 @@ It was done with a perl script 'count_ZeroExpComb.pl'.
 ```
 
 # Directionarity of expression evolution
-## Big Frame work
+## BM: Big Frame work
 We want to examine the directionality of expression evolution of *X. borealis* SA gene by fitting them to BM model.
 
 Phylogenetic tree:
@@ -313,9 +314,10 @@ We are going to test for 4 models:
 - each gene have 2 sigma (one for XL and one for XB)
 - all gene have 1 sigma but have different rate for different gene
 
-Below are some detail for each step
+We decided that PGLS might be a better model for this analysis. We are putting the BM model on hold.
 
-#
+# PGLS
+
 
 
 
