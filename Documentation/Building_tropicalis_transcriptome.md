@@ -89,6 +89,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --samp
 ### Differential expression analysis
 
 ```
+#building kallisto index
+kallisto index -i /home/xue/borealis_DE/tropicalis_transcriptome/ /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trinityout.Trinity.fasta
 ```
 
 
