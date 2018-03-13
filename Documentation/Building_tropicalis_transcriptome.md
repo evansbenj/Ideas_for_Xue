@@ -26,19 +26,14 @@ perl run_trimmomatic.pl
 #trim each of them individually  with trimmomatic (about 35min)
 time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 ../Laevis_Session_RawData/SRR2515154_1.fastq.gz ../Laevis_Session_RawData/SRR2515154_1.fastq.gz SRR2515154__R1_paired.fastq.gz SRR2515154__R1_unpaired.fastq.gz SRR2515154__R2_paired.fastq.gz SRR2515154__R2_unpaired.fastq.gz ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 
-#trim it again with Scythe to remove 3' contamination 
-/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_1_R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_1_R1_paired_scythe.fastq.gz 
-
-/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_2_R2_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_2_R2_paired_scythe.fastq.gz 
-
-/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515140_1_R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515140_1_R1_paired_scythe.fastq.gz 
-
-/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515140_2_R2_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515140_2_R2_paired_scythe.fastq.gz
-
-/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515154_2_R2_unpaired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Scythed/SRR2515154_2_R2_unpaired_scythe.fastq.gz 
-
 #quality check with fastqc
 fastqc *paired*
+
+#trim it again with Scythe to remove 3' contamination 
+/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_trimmed/SRR2515140__R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515140_R1_scythed.fastq.gz 
+
+#quality check with fastqc
+fastqc *
 ```
 
 ### Building Trascriptome
