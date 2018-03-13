@@ -32,6 +32,9 @@ fastqc *paired*
 #trim it again with Scythe to remove 3' contamination 
 /home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_trimmed/SRR2515140__R1_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515140_R1_scythed.fastq.gz 
 
+/home/xue/software/scythe-master/scythe -a /home/xue/software/scythe-master/illumina_adapters.fa -p 0.1 /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_trimmed/SRR2515140__R2_paired.fastq.gz | gzip > /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515140_R2_scythed.fastq.gz 
+
+
 #quality check with fastqc
 fastqc *
 ```
