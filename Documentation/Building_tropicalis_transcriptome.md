@@ -90,7 +90,16 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --samp
 
 ```
 #building kallisto index
-kallisto index -i /home/xue/borealis_DE/tropicalis_transcriptome/ /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trinityout.Trinity.fasta
+kallisto index -i /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_kallisto/tropicalis_trinityout.idx /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trinityout.Trinity.fasta
+#kallisto quantification for each individual file
+kallisto quant -i /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_kallisto/tropicalis_trinityout.idx -o /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_kallisto/SRR5412273 -b 100 --single -l 100 -s 20 <(gunzip -c /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trimmed/SRR5412273_trimmed.fastq.gz)
+
+Or
+
+#running kallisto using Trinity script
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trinityout.Trinity.fasta --seqType fa --samples_file /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_kallisto/tropicalis_samplefile.txt --est_method kallisto --output_dir /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_kallisto --output_prefix tropicalis --trinity_mode --prep_reference
+
+
 ```
 
 
