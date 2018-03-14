@@ -154,13 +154,36 @@ GMAP is another splice aware aligner and its user manual is here (http://researc
 #building local database index for *X. laevis* 9.2
 
 #running gmap to map borealis transcriptome to laevis genome
-gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse -B 5 -A -t 6  /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1 > /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1_gmap.sam
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse -B 5 -t 6  /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1 > /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1_gmap.sam
+
 #running gmap to map DE transcript to laevis genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
+#testing to see which one will give me faster alignment, higher alignment success, and output in BAM file
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa | samtools view -S -b > sample.bam
+
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 6 --cross-species -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa | samtools view -S -b > sample.bam
+
+
+
 #running gmap to map laevis transcriptome to laevis genome
 ```
 When I tested with a subset of 100000 transcripts, it took 44734.07 seconds (12.4hrs, 2.24 queries/sec). 
+Below is a detailed note about parameter used in the above commands:
+```
+-D: path to the Genome directory
+-d: name of the genome database
+-A: Show alignments
+-Z: Print output in compressed format -> probably dont want this if I want to pipe samtools to convert SAM to BAM
+-B: batch mode; 5 is 
+-f samse:specify output format; samse = SAM format (without setting paired_read bit); since the input is transcripts, they are single end. 
+-t 6: number of thread that gmap can use; I indicated 6 thread/core
+--cross-species: tell the program that it is a cross species alignment
 
+```
+Quick note about samtools: to count the number of unmapped transcripts
+```
+samtools view -f 0x4 sample.bam | wc -l
+```
 
 # Binning trancripts 
 The Perl script that do the binning would: 
