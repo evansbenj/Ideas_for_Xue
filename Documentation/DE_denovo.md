@@ -66,6 +66,16 @@ A script were used to extract the sequence of significant DE transcripts and out
 . get_trans_fdr005.sh
 ```
 # Mapping DE X.borealis sequence against annotated X.laevis genome
+There are a few options that we tried:
+- blastn: not going to work well since it is not splice aware
+- STAR: didn't work at first; BenF found that the package STAR-LONG works but dont have much documentation
+- GMAP: tried with varies parameter; with DE transcripts, 93% mapping success; 
+Others options:
+- BLAT
+- minimap2: very new (2018); from https://github.com/lh3/minimap2
+- Exonerate: from https://www.ebi.ac.uk/about/vertebrate-genomics/software/exonerate-manual
+
+
 ### Mapping with Blastn
 To find out the chromosomal location of the extracted X.borealis sequences, the extracted sequence will be mapped to the annotated X.laevis transcriptome using Blast. 
 ```
@@ -156,12 +166,13 @@ GMAP is another splice aware aligner and its user manual is here (http://researc
 #running gmap to map borealis transcriptome to laevis genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse -B 5 -t 6  /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1 > /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1_gmap.sam
 
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1 | samtools view -S -b > /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1_gmap.bam
+
 #running gmap to map DE transcript to laevis genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
 #testing to see which one will give me faster alignment, higher alignment success, and output in BAM file
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa | samtools view -S -b > sample.bam
 
-gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 6 --cross-species -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa | samtools view -S -b > sample.bam
 
 
 
