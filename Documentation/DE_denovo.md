@@ -145,7 +145,7 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 
 STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome --readFilesIn ../xb_transcriptome_trinityout.fasta  --genomeLoad LoadAndKeep --outFileNamePrefix ./xbxl_ --outSAMtype BAM Unsorted
 ```
-Output file from STAR only contain mapping information for 8-30 mapping. I checked online and most people used STAR for mapping RNA-seq reads to genome but not mapping transcripts to genome. It might not be a tool that is capable for mapping transcripts to genome. Ben said he got ~80% mapping with STAR. I check with him and it seems like he had done read mapping but not transcripts mapping before. STAR doesn't seem like working for me, so switched to try other splice aware aligner such as GMAP or BLAT. 
+Output file from STAR only contain mapping information for 8-30 mapping. I checked online and most people used STAR for mapping RNA-seq reads to genome but not mapping transcripts to genome. It might not be a tool that is capable for mapping transcripts to genome. Ben said he got ~80% mapping with STAR. I check with him and it seems like he had done read mapping but not transcripts mapping before. STAR doesn't seem like working for me, so switched to try other splice aware aligner such as GMAP or BLAT. It seems like BenF get STAR to work with a package called STAR-Long
 
 ### Mapping with GMAP
 GMAP is another splice aware aligner and its user manual is here (http://research-pub.gene.com/gmap/src/README). It is already installed on the cluster (version 2012-04-27). 
@@ -158,9 +158,9 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z
 #running gmap to map DE transcript to laevis genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
 #running gmap to map laevis transcriptome to laevis genome
-
-
 ```
+When I tested with a subset of 100000 transcripts, it took 44734.07 seconds (12.4hrs, 2.24 queries/sec). 
+
 
 # Binning trancripts 
 The Perl script that do the binning would: 
