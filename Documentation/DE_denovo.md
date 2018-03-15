@@ -163,10 +163,8 @@ GMAP is another splice aware aligner and its user manual is here (http://researc
 ```
 #building local database index for *X. laevis* 9.2
 
-#running gmap to map borealis transcriptome to laevis genome
-gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse -B 5 -t 6  /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1 > /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1_gmap.sam
-
-gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1 | samtools view -S -b > /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_1_gmap.bam
+#running gmap to map borealis transcriptome to laevis genome (testing with subset of 100000 transcripts)
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_2.fasta | samtools view -S -b > /home/xue/borealis_DE/borealis_transcriptome/test/borealis_subset_2_gmap.bam
 
 #running gmap to map DE transcript to laevis genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
@@ -183,7 +181,7 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -S
 
 #running gmap to map laevis transcriptome to laevis genome
 ```
-When I tested with a subset of 100000 transcripts, it took 44734.07 seconds (12.4hrs, 2.24 queries/sec). 
+When I tested with a subset of 100000 transcripts, it took 27719.79 seconds (7.7hrs, 3.61 queries/sec). 
 Below is a detailed note about parameter used in the above commands:
 ```
 -D: path to the Genome directory
