@@ -181,7 +181,7 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -S
 
 #running gmap to map laevis transcriptome to laevis genome
 ```
-When I tested with a subset of 100000 transcripts, it took 27719.79 seconds (7.7hrs, 3.61 queries/sec). 
+When I tested with a subset of 100000 transcripts, it took 27719.79 seconds (7.7hrs, 3.61 queries/sec) and 43731/100000(43.7%) were unmapped. When I tested with DE transcripts, 31/432(7.2%) were not mapped. 
 Below is a detailed note about parameter used in the above commands:
 ```
 -D: path to the Genome directory
