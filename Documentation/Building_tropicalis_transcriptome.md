@@ -42,8 +42,10 @@ fastqc *
 ### Building Trascriptome
 Building *De Novo* transcriptomes using Trinity with RAN-seq reads from 2 female liver samples and 2 male testis samples:
 ```
+#with the trimmed data
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/*R1_paired* --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/*R2_paired* --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_TrinityOut; echo "trinity is done at info114" | mail sarahsongxy@gmail.com
-
+#with RNA-seq for 2 female liver, 2 female oviduct, and 2 male testis
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/laevis_session_R1_scythed.fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/laevis_session_R2_scythed.fastq.gz --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_trinityout; echo "trinity is done at info115" | mail sarahsongxy@gmail.com
 ```
 Build individual transcriptome for each sample
 ```
