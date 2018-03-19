@@ -20,10 +20,13 @@ ATGCAAACCCTTCAGCCCAAAGTGGCCAGCTCCATCTACATTAACTCTGGCAGTGTCTTCCTACACGTTGACCTGAAGGA
 ```
 #build blastn database index
 makeblastdb -in /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/Laevis_Session_TrinityOutAll.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome
+
+/home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/Laevis_Session_TrinityOutAll.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome
+
 #mapping the gene with blastn
 blastn -task blastn -db /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/laevis_dosageCompensated_gene/cap5n.fasta -out /home/xue/laevis_dosageCompensated_gene/cap5n_blastout
 ```
-Mapping the transcript to the laevis genome with GMAP:
+Tester: mapping the transcript to the laevis genome with GMAP:
 ```
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f sampe /home/xue/laevis_dosageCompensated_gene/cap5n.fasta > cap5n_gmap.sam
 ```
