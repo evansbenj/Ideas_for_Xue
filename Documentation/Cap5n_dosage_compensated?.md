@@ -19,12 +19,20 @@ ATGCAAACCCTTCAGCCCAAAGTGGCCAGCTCCATCTACATTAACTCTGGCAGTGTCTTCCTACACGTTGACCTGAAGGA
 # Blastn 
 ```
 #build blastn database index
-makeblastdb -in /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/Laevis_Session_TrinityOutAll.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome
+makeblastdb -in /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_session_trinityout.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome
 
-/home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/Laevis_Session_TrinityOutAll.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome
+makeblastdb -in /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_SRR2515140_trinity.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_SRR2515140
+
+makeblastdb -in /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_SRR2515162_trinity.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_SRR2515162
+
 
 #mapping the gene with blastn
-blastn -task blastn -db /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/laevis_dosageCompensated_gene/cap5n.fasta -out /home/xue/laevis_dosageCompensated_gene/cap5n_blastout
+blastn -task blastn -db /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_transcriptome/ -outfmt 6 -evalue 0.00005 -query  /home/xue/laevis_dosageCompensated_gene/cap5n.fasta -out /home/xue/laevis_dosageCompensated_gene/cap5n_blastout
+
+blastn -task blastn -db /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_SRR2515140 -outfmt 6 -evalue 0.00005 -query  /home/xue/laevis_dosageCompensated_gene/cap5n.fasta -out /home/xue/laevis_dosageCompensated_gene/cap5n_SRR2515140_blastout
+
+blastn -task blastn -db /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_SRR2515162 -outfmt 6 -evalue 0.00005 -query  /home/xue/laevis_dosageCompensated_gene/cap5n.fasta -out /home/xue/laevis_dosageCompensated_gene/cap5n_SRR2515162_blastout
+
 ```
 Tester: mapping the transcript to the laevis genome with GMAP:
 ```
