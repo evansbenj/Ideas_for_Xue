@@ -199,6 +199,24 @@ Quick note about samtools: to count the number of unmapped transcripts
 samtools view -f 0x4 sample.bam | wc -l
 ```
 
+# Mapping with minimap
+
+Install like this following instruction on https://github.com/lh3/minimap2
+```
+git clone https://github.com/lh3/minimap2
+cd minimap2 && make
+```
+Indexing for laevis genome (/home/xue/genome_data/laevis_genome/db_minimap_laevis_92/XL9_2.mmi)
+```
+/home/xue/software/minimap2/minimap2 -d XL9_2.mmi ../XL9_2.fa
+```
+Trying mapping DE to laevis genome and see how long it will take
+```
+/home/xue/software/minimap2/minimap2 -cx asm20 --cs /home/xue/genome_data/laevis_genome/db_minimap_laevis_92/XL9_2.mmi /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.paf
+sort -k6,6 -k8,8n liver_DE.paf | /home/xue/software/minimap2/paftools.js call -f ecoli_ref.fa -L10000 -l1000 - > /home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.vcf
+```
+Output of tester run: `/home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.paf`
+
 # Binning trancripts 
 The Perl script that do the binning would: 
   - group overlapping transcripts into bins.  
