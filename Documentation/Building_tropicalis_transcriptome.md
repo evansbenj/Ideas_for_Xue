@@ -59,6 +59,28 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --left /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515148__R1_paired.fastq.gz --right /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/Laevis_Session_Trimmed/SRR2515148__R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/individual/testis_m2_trinityout; echo "trinity is done in screen testis at info115" | mail sarahsongxy@gmail.com
 ```
 
+### Differential expression with kallisto and EdgeR
+```
+#kallisto with laevis transcriptome
+
+samplefile.txt
+female    f1_liver       /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515154_R1_scythed.fastq.gz /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515154_R2_scythed.fastq.gz
+female    f2_liver       /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515140_R1_scythed.fastq.gz /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515140_R2_scythed.fastq.gz
+female    f1_ovary       /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515157_R1_scythed.fastq.gz /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515157_R2_scythed.fastq.gz
+female    f2_ovary       /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515143_R1_scythed.fastq.gz /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515143_R2_scythed.fastq.gz
+male    m1_testis      /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515162_R1_scythed.fastq.gz /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515162_R2_scythed.fastq.gz
+male    m2_testis       /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515148_R1_scythed.fastq.gz /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_scythed/SRR2515148_R2_scythed.fastq.gz
+
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/laevis_session_transcriptome/laevis_session_trinityout.Trinity.fasta --seqType fa --samples_file sample_file.txt --est_method kallisto --output_dir /home/xue/borealis_DE/session_laevis_deNovo_transcriptome/expression_estimate_all_kallisto --trinity_mode --prep_reference
+
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix session2 --name_sample_by_basedir f1_liver/abundance.tsv f2_liver/abundance.tsv f1_ovary/abundance.tsv f2_ovary/abundance.tsv m1_testis/abundance.tsv m2_testis/abundance.tsv
+
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix session2.counts.matrix --method edgeR --samples_file sample_file.txt
+
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix session2.counts.matrix --method edgeR --samples_file sample_file_EdgeR.txt
+
+```
+
 ### Pre-processing of BJE4168 RNA-seq (Abadoned, unknow sex)
 Running Trimmomatic with the same setting as what Benf did before (see Documention/Raw-reads-preparation.md). The original RNA_seq read files were seperated into small files. So I need to run trimmomatic for each subsets and I used a perl script (run_trimmomatic.pl) to repeat the following command:  . 
 ```
