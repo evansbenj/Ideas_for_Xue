@@ -39,10 +39,10 @@ wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XENTR_9.1_Xenbase.GTF
 wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XENTR_9.1_Xenbase.gff3
 
 #building Star Index
-STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --genomeFastaFiles <(gunzip /home/xue/genome_data/tropicalis_genome/XT9_1.fa.gz) --sjdbGTFfile  /home/xue/genome_data/tropicalis_genome/XENTR_9.1_Xenbase.GTF   --genomeChrBinNbits 16
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --genomeFastaFiles /home/xue/genome_data/tropicalis_genome/XT9_1.fa --sjdbGTFfile  /home/xue/genome_data/tropicalis_genome/XENTR_9.1_Xenbase.GTF   --genomeChrBinNbits 16
 
-#mapping tropicalis RNAseq to tropicalis genome
-STAR --runThreadN 20 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --readFilesCommand zcat --readFilesIn /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R1_scythe.fastq.gz /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R2_scythe.fastq.gz --outFileNamePrefix /home/xue/laevis_transcriptome_mar2018/laevis_RNAseq_Star --outSAMtype BAM SortedByCoordinate
+#mapping tropicalis RNAseq to tropicalis genome to get the SortedbyCoordinate.bam file
+STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_star --readFilesCommand zcat --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_scythed/tropicalis_sra_scythed.fastq.gz  --outFileNamePrefix /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genome --outSAMtype BAM SortedByCoordinate
 
 ```
 Building *de novo* transcriptomes with 4 liver RNA-seq data:
