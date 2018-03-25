@@ -24,12 +24,28 @@ sra_single_trimmomatic.pl
 #trimmomatic command for individual sample in the script
 time java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 $infile_name $outfile_name ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 ```
-### Transcriptome
-Building transcriptomes with 2 liver RNA-seq data:
+### Building tropicalis transcriptome using Trinity (*de novo*)
+Building *de novo* transcriptomes with 4 liver RNA-seq data:
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq --samples_file /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trimmed/tropicalis_samples_file --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trinityout; echo "trinity is done at info114" | mail sarahsongxy@gmail.com
 
 ```
+### Building tropicalis transcriptome using Trinity (genome guided)
+Map RNAseq to tropicalis genome (v9.1). 
+```
+#getting tropicalis genome v9.1, gff3 and GTF files
+wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XT9_1.fa.gz
+wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XENTR_9.1_Xenbase.GTF
+wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XENTR_9.1_Xenbase.gff3
+
+#building Star Index
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --genomeFastaFiles <(gunzip /home/xue/genome_data/tropicalis_genome/XT9_1.fa.gz) --sjdbGTFtagExonParentTranscript /home/xue/genome_data/tropicalis_genome/XENTR_9.1_Xenbase.gff3   --genomeChrBinNbits 16
+
+#mapping tropicalis RNAseq to tropicalis genome
+
+```
+Building *de novo* transcriptomes with 4 liver RNA-seq data:
+
 
 ### Differential expression analysis
 Kallisto
