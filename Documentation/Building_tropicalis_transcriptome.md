@@ -42,7 +42,7 @@ wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XENTR_9.1_Xenbase.gff3
 STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --genomeFastaFiles /home/xue/genome_data/tropicalis_genome/XT9_1.fa --sjdbGTFfile  /home/xue/genome_data/tropicalis_genome/XENTR_9.1_Xenbase.GTF   --genomeChrBinNbits 16
 
 #mapping tropicalis RNAseq to tropicalis genome to get the SortedbyCoordinate.bam file
-STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_star --readFilesCommand zcat --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_scythed/tropicalis_sra_scythed.fastq.gz  --outFileNamePrefix /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genome --outSAMtype BAM SortedByCoordinate
+STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_star --readFilesCommand zcat --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_scythed/SRR5412273_scythed.fastq.gz,/home/xue/tropicalis_transcriptome/tropicalis_scythed/SRR5412274_scythed.fastq.gz,/home/xue/tropicalis_transcriptome/tropicalis_scythed/SRR5412275_scythed.fastq.gz,/home/xue/tropicalis_transcriptome/tropicalis_scythed/SRR5412276_scythed.fastq.gz --outFileNamePrefix /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genome --outSAMtype BAM SortedByCoordinate
 
 ```
 Building *de novo* transcriptomes with 4 liver RNA-seq data:
