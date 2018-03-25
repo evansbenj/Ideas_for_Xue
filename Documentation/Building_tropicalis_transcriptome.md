@@ -49,6 +49,7 @@ STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_s
 ```
 Building genome-guided *de novo* transcriptomes with 4 liver RNA-seq data:
 ```
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --samples_file /home/xue/tropicalis_transcriptome/tropicalis_trimmed/tropicalis_samples_file --genome_guided_bam /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genomeAligned.sortedByCoord.out.bam --genome_guided_max_intron 20000 --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/laevis_transcriptome_mar2018/laevis_transcriptome_trinityout; echo "trinity is done at info113 in screen tropicalis" | mail sarahsongxy@gmail.com
 
 ```
 
