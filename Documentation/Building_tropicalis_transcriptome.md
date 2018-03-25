@@ -48,8 +48,8 @@ STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_s
 Building *de novo* transcriptomes with 4 liver RNA-seq data:
 
 
-### Differential expression analysis
-Kallisto
+### Differential expression analysis (with de-novo built transcriptome)
+Kallisto with de-novo built transcriptome
 ```
 #building kallisto index
 kallisto index -i /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_kallisto/tropicalis_trinityout.idx /home/xue/borealis_DE/tropicalis_transcriptome/tropicalis_trinityout.Trinity.fasta
