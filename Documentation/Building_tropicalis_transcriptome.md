@@ -47,11 +47,6 @@ STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_s
 #dont know why, didn't work with scythe-trimmed data, trying with trimmomatic trimmed data
 STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_star --readFilesCommand zcat --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_trimmed/SRR5412273_trimmed.fastq.gz,/home/xue/tropicalis_transcriptome/tropicalis_trimmed/SRR5412274_trimmed.fastq.gz,/home/xue/tropicalis_transcriptome/tropicalis_trimmed/SRR5412275_trimmed.fastq.gz,/home/xue/tropicalis_transcriptome/tropicalis_trimmed/SRR5412276_trimmed.fastq.gz --outFileNamePrefix /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genome --outSAMtype BAM SortedByCoordinate
 
-
-
-SRR5412273_trimmed.fastq.gz
-
-
 ```
 Building *de novo* transcriptomes with 4 liver RNA-seq data:
 
