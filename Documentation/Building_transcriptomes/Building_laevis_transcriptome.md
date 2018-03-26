@@ -16,7 +16,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --lef
 ### Trinity: *de novo* transcriptome assembly
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left //home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R1_scythe.fastq.gz --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R2_scythe.fastq.gz --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome_trinityout; echo "trinity is done at info114 in screen laevis" | mail sarahsongxy@gmail.com
-
-
-
+```
+### Kallisto
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta --seqType fq --samples_file /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_trimmed_samples_files.tsv --est_method kallisto --output_dir /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/kallisto_out --trinity_mode --prep_reference
 ```
