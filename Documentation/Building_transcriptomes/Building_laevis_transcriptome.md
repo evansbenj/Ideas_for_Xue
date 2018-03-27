@@ -48,6 +48,8 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -S
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_seq.fasta | samtools view -S -b > /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_genome_gmap.bam
 ```
 
-### mapping those sequence to borealis DE transcript using Blastn
-
+### mapping those sequence to borealis DE transcript using Blastn (14sec)
+```
+time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/db_laevis_DE_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/liver_mvsf/post_edgeR/liver_trans_fdr005_header.fa -out /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_blastout
+```
 
