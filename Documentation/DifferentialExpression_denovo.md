@@ -176,10 +176,9 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -n 0 
 
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -S -B 5 -t 8 --cross-species -S /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > alignment_only
 
+#running gmap to map borealis transcriptome to laevis genome
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 --cross-species -f samse /home/xue/borealis_DE/borealis_transcriptome/borealis_subset/borealis_subset_17.fasta | samtools view -S -b > /home/xue/borealis_DE/borealis_transcriptome/test/borealis_subset_17_gmap.bam
 
-
-
-#running gmap to map laevis transcriptome to laevis genome
 ```
 When I tested with a subset of 100000 transcripts, it took 27719.79 seconds (7.7hrs, 3.61 queries/sec) and 43731/100000(43.7%) were unmapped. When I tested with DE transcripts, 31/432(7.2%) were not mapped. 
 Below is a detailed note about parameter used in the above commands:
