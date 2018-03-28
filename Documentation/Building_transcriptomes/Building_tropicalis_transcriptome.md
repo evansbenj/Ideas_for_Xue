@@ -95,7 +95,9 @@ blastn: mapping DE transcripts to tropicalis genome
 makeblastdb -in /home/xue/genome_data/tropicalis_genome/XT9_1.fa.gz -dbtype nucl -out /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn
 
 
-time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/DEtranscript_mapping_to_genome_blastout.tsv
-
+time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovo_DEtranscript_seq.fasta -out /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/post_edgeR/DEtranscript_mappingto_genome_blastout.fasta
+```
+GMAP: mapping DE transcripts to tropicalis genome
+```
 ```
 
