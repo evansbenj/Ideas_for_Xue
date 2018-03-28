@@ -14,6 +14,7 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --lef
 ```
 # Building laevis transcriptome with Trinity (de novo)
 ### Trinity: *de novo* transcriptome assembly
+total number of transcript: 608120
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left //home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R1_scythe.fastq.gz --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R2_scythe.fastq.gz --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome_trinityout; echo "trinity is done at info114 in screen laevis" | mail sarahsongxy@gmail.com
 ```
@@ -88,5 +89,9 @@ time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denov
 
 
 ```
+### blastn the differential expressed transcripts to the laevis genome
 
+```
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/DEtranscript_mapping_to_genome_blastout.tsv
+```
 
