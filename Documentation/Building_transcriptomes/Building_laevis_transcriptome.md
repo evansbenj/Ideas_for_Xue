@@ -94,4 +94,9 @@ time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denov
 ```
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/DEtranscript_mapping_to_genome_blastout.tsv
 ```
+### Star: mapping laevis denovo transcriptome to the laevis genome
+```
+STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_laevisGenome_wGTF --outFileNamePrefix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_TG_mapping_star/laevis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta --seedPerReadNmax 10000
+
+```
 
