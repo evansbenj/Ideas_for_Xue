@@ -99,5 +99,10 @@ time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropical
 ```
 GMAP: mapping DE transcripts to tropicalis genome
 ```
+
+```
+Star: mapping transcriptome to tropicalis genome
+```
+home/benf/bin/STAR-2.5.3a/bin/Linux_x86_64/STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --outFileNamePrefix tropicalis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta --seedPerReadNmax 10000
 ```
 
