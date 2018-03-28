@@ -79,16 +79,25 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to
 differential analysis with EdgeR
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0//Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_samplefile.txt
+
+#v2
+time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_samplefile.txt
+
 ```
 extract the differential expressed transcripts; Total number: 2846
 ```
 awk '($2 < -1||$2 >1) && $5<0.05  {print }' tropicalis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_out/tropicalis_fdr005.tsv
 
+#v2
+awk '($2 < -1||$2 >1) && $5<0.05  {print }' tropicalis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/tropicalis_fdr005.tsv
 ```
 
 extract the sequence of those DE transcripts
 ```
 perl ~/script/extract_sequence.pl /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_out/tropicalis_fdr005.tsv /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta > tropicalis_denovo_DEtranscript_seq.fasta
+
+#v2
+perl ~/script/extract_sequence.pl /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/tropicalis_fdr005.tsv /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta > tropicalis_denovo_DEtranscript_seq.fasta
 ```
 blastn: mapping DE transcripts to tropicalis genome
 ```
@@ -96,6 +105,10 @@ makeblastdb -in /home/xue/genome_data/tropicalis_genome/XT9_1.fa.gz -dbtype nucl
 
 
 time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovo_DEtranscript_seq.fasta -out /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/post_edgeR/DEtranscript_mappingto_genome_blastout.fasta
+
+#v2
+time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_seq.fasta -out /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/DEtranscript_mappingto_genome_blastout.fasta
+
 ```
 GMAP: mapping DE transcripts to tropicalis genome
 ```
