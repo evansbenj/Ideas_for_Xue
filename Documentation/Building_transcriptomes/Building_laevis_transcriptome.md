@@ -35,11 +35,15 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0//Analysis/DifferentialExpre
 time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/kallisto_out/laevis_denovo.counts.matrix --method edgeR --samples_file /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_trimmed_samples_files.tsv
 
 ```
-### extract the differential expressed transcripts (~10sec)
-Total number
-- v4: 11806
+### extract the differentially expressed transcripts (~10sec)
+Total number of differentially expressed transcripts 
+- v4: 1261
 - v2: 1647
 ```
+#v4
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' laevis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > laevis_edgeR_result_fdr005.tsv
+
+#v2
 awk '($2 < -1||$2 >1) && $5<0.05  {print }' laevis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > laevis_edgeR_result_fdr005.tsv
 
 ```
