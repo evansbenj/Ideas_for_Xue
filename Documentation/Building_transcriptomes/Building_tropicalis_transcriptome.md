@@ -84,9 +84,9 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0//Analysis/DifferentialExpre
 time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_samplefile.txt
 
 ```
-extract the differential expressed transcripts; Total number: 2846
+extract the differential expressed transcripts; Total number: 1
 ```
-awk '($2 < -1||$2 >1) && $5<0.05  {print }' tropicalis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_out/tropicalis_fdr005.tsv
+awk '($4 < -1||$4 >1) && $7<0.05  {print }' tropicalis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_out/tropicalis_fdr005.tsv
 
 #v2
 awk '($2 < -1||$2 >1) && $5<0.05  {print }' tropicalis_denovo.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/tropicalis_fdr005.tsv
