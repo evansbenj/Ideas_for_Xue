@@ -59,6 +59,7 @@ kallisto quant -i /home/xue/borealis_DE/kallisto_index/Borealis_assembled_transc
 ```
 
 
+
 # Filter DE transcripts (FDR<0.05)
 I filtered the edgeR output with a FDR treshold of 0.05 and select those transcripts that have at least fold change of 2 (or log2foldchange of 1). 
 
@@ -73,6 +74,29 @@ A script were used to extract the sequence of significant DE transcripts and out
 ```
 . get_trans_fdr005.sh
 ```
+
+# DE with Trinity_v4
+```
+#filter edgeR results and select transcripts that have |logfc|>1 and fdr<0.05; total number = 
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_liver.counts.matrix.female_vs_male.edgeR.DE_results > liver_edgeRout_de.tsv
+
+#extract transcript sequences of de transcripts
+perl ~/script/extract_sequence.pl liver_edgeRout_de.tsv /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta > liver_DE_seq.fa
+
+#map those seq to laevis genome using blastn
+blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/liver_mvsf/edgeR_out/edgeR_trinity4/edgeR_liver_fvsm/liver_DE_seq.fa -out /home/xue/borealis_DE/liver_mvsf/edgeR_out/edgeR_trinity4/edgeR_liver_fvsm/liver_de_seq_blastout.tsv
+```
+
+# DE with Trinity_v51
+```
+#filter edgeR results and select transcripts that have |logfc|>1 and fdr<0.05; total number = 653
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_liver.counts.matrix.female_vs_male.edgeR.DE_results > liver_edgeRout_de.tsv
+
+#extract transcript sequences of de transcripts
+perl ~/script/extract_sequence.pl liver_edgeRout_de.tsv /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta > liver_DE_seq.fa
+```
+
+
 # Mapping DE X.borealis sequence against annotated X.laevis genome
 There are a few options that we tried:
 - blastn: not going to work well since it is not splice aware
