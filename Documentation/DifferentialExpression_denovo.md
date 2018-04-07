@@ -61,7 +61,12 @@ kallisto quant -i /home/xue/borealis_DE/kallisto_index/Borealis_assembled_transc
 
 # Filter DE transcripts (FDR<0.05)
 I filtered the edgeR output with a FDR treshold of 0.05 and select those transcripts that have at least fold change of 2 (or log2foldchange of 1). 
+
 ```
+#v4: total = 653
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_liver.counts.matrix.female_vs_male.edgeR.DE_results > liver_fdr005.tsv
+
+#v2: 
 awk '($2 < -1||$2 >1) && $5<0.05  {print }' liver.counts.matrix.female_liver_vs_male_liver.edgeR.DE_results > liver_fdr005.tsv
 ```
 A script were used to extract the sequence of significant DE transcripts and outputed the sequence to a fasta (.fa) file.
