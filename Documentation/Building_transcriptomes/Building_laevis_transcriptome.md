@@ -26,7 +26,7 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --lef
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix laevis_denovo  --name_sample_by_basedir liver_f1/abundance.tsv liver_f2/abundance.tsv liver_f3/abundance.tsv liver_m1/abundance.tsv liver_m2/abundance.tsv liver_m3/abundance.tsv 
 ```
-### differential analysis with EdgeR
+### EdgeR: differential analysis 
 ```
 #trinity versin 4.0
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0//Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/kallisto_out/laevis_denovo.counts.matrix --method edgeR --samples_file laevis_trimmed_samples_files.tsv
