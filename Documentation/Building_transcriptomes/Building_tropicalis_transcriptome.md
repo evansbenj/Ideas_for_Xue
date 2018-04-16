@@ -92,10 +92,19 @@ time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropical
 #v2
 time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_seq.fasta -out /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/DEtranscript_mappingto_genome_blastout.tsv
 ```
+GMAP: mapping DE transcripts to tropicalis genome
+```
+#4
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_denovo_DEtranscript_seq.fasta | samtools view -S -b > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_denovo_DEtranscript_genome_gmap.bam
+
+#v2
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_seq.fasta | samtools view -S -b > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_genome_gmap.bam
+```
 Star: mapping transcriptome to tropicalis genome
 ```
 STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --outFileNamePrefix tropicalis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta --seedPerReadNmax 10000
 ```
+
 
 
 
@@ -159,7 +168,11 @@ time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropical
 ```
 GMAP: mapping DE transcripts to tropicalis genome
 ```
+#4
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovo_DEtranscript_seq.fasta | samtools view -S -b > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovo_DEtranscript_genome_gmap.bam
 
+#v2
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_seq.fasta | samtools view -S -b > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_genome_gmap.bam
 ```
 Star: mapping transcriptome to tropicalis genome
 ```
