@@ -49,8 +49,32 @@ STAR --runThreadN 20 --genomeDir ~/genome_data/tropicalis_genome/db_tropicalis_s
 ```
 Building genome-guided *de novo* transcriptomes with 4 liver RNA-seq data:
 ```
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --samples_file /home/xue/tropicalis_transcriptome/tropicalis_trimmed/tropicalis_samples_file --genome_guided_bam /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genomeAligned.sortedByCoord.out.bam --genome_guided_max_intron 20000 --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/tropicalis_transcriptome/tropicalis_transcriptome_trinityout; echo "trinity is done at info113 in screen tropicalis" | mail sarahsongxy@gmail.com
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --samples_file /home/xue/tropicalis_transcriptome/tropicalis_trimmed/tropicalis_samples_file --genome_guided_bam /home/xue/tropicalis_transcriptome/tropicalis_RNAseq_genome_Star/tropicalis_mapping_RNAseq_genomeAligned.sortedByCoord.out.bam --genome_guided_max_intron 20000 --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/tropicalis_transcriptome/tropicalis_transcriptome_trinityout; echo "trinity is done at info114 in screen tropicalis" | mail sarahsongxy@gmail.com
+```
+Kallisto with genome-guided built transcriptome
+```
+#building kallisto index
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta --seqType fa --samples_file /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_samplefile.txt --est_method kallisto --output_dir /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto --output_prefix tropicalis --trinity_mode --prep_reference
+```
+Compiling the matrix for edgeR
+```
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix tropicalis_gg  --name_sample_by_basedir f_liver1/abundance.tsv f_liver2/abundance.tsv m_liver1/abundance.tsv m_liver2/abundance.tsv 
+```
+differential analysis with EdgeR
+```
+#v4
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_gg.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_samplefile.txt
 
+#v2
+time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_gg.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_samplefile.txt
+```
+extract the differential expressed transcripts; Total number: 1
+```
+#v4
+awk '($4 < -1||$4 >1) && $7<0.05  {print }' tropicalis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_fdr005.tsv
+
+#v2
+awk '($2 < -1||$2 >1) && $5<0.05  {print }' tropicalis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_fdr005.tsv
 ```
 
 ### Differential expression analysis (with de-novo built transcriptome)
@@ -78,7 +102,7 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to
 ```
 differential analysis with EdgeR
 ```
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0//Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_samplefile.txt
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_samplefile.txt
 
 #v2
 time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_samplefile.txt
