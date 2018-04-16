@@ -68,14 +68,37 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpres
 #v2
 time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_gg.counts.matrix --method edgeR --samples_file /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_kallisto/tropicalis_samplefile.txt
 ```
-extract the differential expressed transcripts; Total number: 1
+extract the differential expressed transcripts
 ```
-#v4
+#v4 -> total DE transcripts:382
 awk '($4 < -1||$4 >1) && $7<0.05  {print }' tropicalis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_fdr005.tsv
 
-#v2
+#v2 -> total DE transcripts: 229
 awk '($2 < -1||$2 >1) && $5<0.05  {print }' tropicalis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_fdr005.tsv
 ```
+extract the sequence of those DE transcripts
+```
+#v4
+perl ~/script/extract_sequence.pl /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_fdr005.tsv /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_denovo_DEtranscript_seq.fasta
+
+#v2
+perl ~/script/extract_sequence.pl /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_fdr005.tsv /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_seq.fasta
+```
+blastn: mapping DE transcripts to tropicalis genome
+```
+#4
+time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/tropicalis_denovo_DEtranscript_seq.fasta -out /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v4_out/DEtranscript_mappingto_genome_blastout.tsv
+
+#v2
+time blastn -task blastn -db /home/xue/genome_data/tropicalis_genome/db_tropicali_blastn/db_tropicali_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tropicalis_denovo_DEtranscript_seq.fasta -out /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/DEtranscript_mappingto_genome_blastout.tsv
+```
+Star: mapping transcriptome to tropicalis genome
+```
+STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --outFileNamePrefix tropicalis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta --seedPerReadNmax 10000
+```
+
+
+
 
 ### Differential expression analysis (with de-novo built transcriptome)
 Kallisto with de-novo built transcriptome
@@ -140,6 +163,6 @@ GMAP: mapping DE transcripts to tropicalis genome
 ```
 Star: mapping transcriptome to tropicalis genome
 ```
-home/benf/bin/STAR-2.5.3a/bin/Linux_x86_64/STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --outFileNamePrefix tropicalis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta --seedPerReadNmax 10000
+STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --outFileNamePrefix tropicalis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta --seedPerReadNmax 10000
 ```
 
