@@ -55,6 +55,19 @@ perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_
 #v2
 perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_edgeR_result_fdr005.tsv /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_DEtranscript_seq.fasta
 ```
+### blastn the differential expressed transcripts to the laevis genome
+
+```
+#v4
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/DEtranscript_mapping_to_genome_blastout.tsv
+
+#v2
+cd /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn/
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn/subset_1.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn/subset_1_blastout.tsv
+
+
+```
+
 ### mapping those sequence to laevis genome using GMAP (~3min)
 ```
 #v4
@@ -66,7 +79,7 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B
 Check on some mapping stat (v2):
 - unmapped: 6
 
-### Filter mapping result 
+### Filter mapping result from GMAP
 ```
 #filter by flag - 0x40 indicated unmapped transcript; and by mapping quality - 0 indicate there is 
 samtools view -F 0X4 laevis_denovo_DEtranscript_genome_gmap.bam|awk '$5>0 {print $1,$3,$4}' > laevis_denovo_DEtranscript_mapping_filtered.tsv
@@ -93,11 +106,7 @@ time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denov
 
 
 ```
-### blastn the differential expressed transcripts to the laevis genome
 
-```
-time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/laevis_denovo_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/post_DE/DEtranscript_mapping_to_genome_blastout.tsv
-```
 ### Star: mapping laevis denovo transcriptome to the laevis genome
 ```
 STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_laevisGenome_wGTF --outFileNamePrefix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_TG_mapping_star/laevis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta --seedPerReadNmax 10000
