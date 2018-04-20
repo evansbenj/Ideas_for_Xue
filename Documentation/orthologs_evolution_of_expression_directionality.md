@@ -24,7 +24,7 @@ makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-
 
 
   
-# Identify orthology by genomic location
+# Identify orthologs by genomic location
 ### borealis-laevis orthologs
 blastn: mapping laevis transcriptome to laevis genome; 
  - blast is good for looking for highly similar sequence but might map the most conserve region of the transcript to the most converse region of the gene and might not identify the right gene
