@@ -1,3 +1,9 @@
+# Evolution of expression directionality
+### Purpose
+The question we can to answer:
+- does DE transcript/genes in the sex-link region 
+
+
 # Finding Orthologs
 ### general method 
 1. bidirectional best hit/reciprocal best hit
@@ -10,10 +16,15 @@
   - orthology = borealis transcript that is in the same genomic region of laevis transcript
 
 # Reciprocal best hit
-### borealis-laevis orthologs
+### borealis-laevis orthologs - all DE transcript
 ```
-#blast borealis DE to laevis transcriptome
-time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/db_laevis_denovo_transcriptome -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/liver_mvsf/post_edgeR/ -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcriptome_genome/subset_blastout/subset_25_blastout.tsv
+#blast borealis DE to laevis transcriptome (time cost: 6min)
+time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/db_laevis_denovo_transcriptome -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa -out /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisTranscriptome_blastout.tsv
+
+#identify the tophit of each transcript; tophit (lowest evalue, highest bitscore)
+perl ~/script/blastout_filter_summary.pl borealisDE_laevisTranscriptome_blastout.tsv laevis tophit_borealisDE_laevisT
+rm -f *problematic*
+rm -f *summary*
 
 
 
