@@ -17,6 +17,7 @@ The question we can to answer:
 
 # Reciprocal best hit
 ### borealis-laevis orthologs - all DE transcript
+finding ortholog through reciprocal best hit
 ```
 #blast borealis DE to laevis transcriptome (time cost: 6min)
 time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/db_laevis_denovo_transcriptome -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa -out /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisTranscriptome_blastout.tsv
@@ -26,11 +27,29 @@ perl ~/script/blastout_filter_summary.pl borealisDE_laevisTranscriptome_blastout
 rm -f *problematic*
 rm -f *summary*
 
-
+# extract seq of the tophit laevis transcripts 
+perl ~/script/extract_sequence.pl /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisT_blastout_tophit.tsv /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta 2 > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/bl_tophit_laevis_transcriptSeq.fa
 
 #building blastn db index for borealis transcriptome
 makeblastdb -in /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta -dbtype nucl -out /home/xue/borealis_DE/db_borealist_transcriptome_blastn/db_borealist_transcriptome_blastn
+
+#blast the tophit laevis seq to borealis transcriptome
+time blastn -task blastn -db /home/xue/borealis_DE/db_borealis_transcriptome_blastn/db_borealis_transcriptome_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/bl_tophit_laevis_transcriptSeq.fa -out /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/laevisTophit_borealiseT_blastout.tsv
+
+#identify the tophit of each transcript; tophit (lowest evalue, highest bitscore)
+cd /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/
+perl ~/script/blastout_filter_summary.pl laevisTophit_borealiseT_blastout.tsv laevis tophit_laevisTophit_borealisT
+rm -f *summary*
+
+
+#with a perl script: check if transcripts are reciprocal best hit for each other -> need a perl script to do this
+
 ```
+Extract expression level in TPM for each transcript
+```
+#extract 
+```
+
 
 
 
