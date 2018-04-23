@@ -32,7 +32,7 @@ time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_
 ### extract the differentially expressed transcripts (~10sec)
 Total number of differentially expressed transcripts 
 - v4: 
-- v2: 
+- v2: 453
 ```
 #v4
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg.counts.matrix.female_vs_male.edgeR.DE_results > home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv
@@ -47,7 +47,7 @@ awk '($2 < -1||$2 >1) && $5<0.05  {print }' /home/xue/laevis_transcriptome_mar20
 perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta
 
 #v2
-perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_edgeRoutv2_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta
+perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_edgeRoutv2_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta 1 > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta
 ```
 ### blastn the differential expressed transcripts to the laevis genome
 
@@ -56,10 +56,22 @@ perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/DEtranscript_mapping_to_genome_blastout.tsv
 
 #v2
-time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/DEtranscript_mapping_to_genome_blastout.tsv
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/DEtranscript_mapping_to_genome_blastout.tsv
 ```
 ### filter blastout result and generate a summary
 ```
+#v4
+perl ~/script/blastout_filter_summary.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/DEtranscript_mapping_to_genome_blastout.tsv laevis /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/tophit_laevis_de_v4
+
+#v2
+perl ~/script/blastout_filter_summary.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/DEtranscript_mapping_to_genome_blastout.tsv laevis /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/tophit_laevis_de_v2
+```
+### add the genomic location to the edgeR output of DE transcripts
+```
+#v4
+
+
+#v2
 
 ```
 
@@ -117,7 +129,8 @@ perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_
 #v2
 perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_edgeR_result_fdr005.tsv /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_DEtranscript_seq.fasta
 ```
-### blastn the differential expressed transcripts to the laevis genome
+
+## blastn the differential expressed transcripts to the laevis genome
 
 ```
 #v4
@@ -126,8 +139,14 @@ time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/
 #v2
 cd /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn/
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn/subset_1.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn/subset_1_blastout.tsv
-
-
+```
+### filter the blastn output and generate summary
+```
+```
+### combine genomic information and differential expression information
+```
+cd /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_de_blastn
+perl ~/script/add_location_v3.pl laevis_denovo_v2_blastout_tophit.tsv ../laevis_edgeR_result_fdr005.tsv laevis > laevis_edgeR_result_glocation_fromblastn.tsv
 ```
 
 ### mapping those sequence to laevis genome using GMAP (~3min)
@@ -165,8 +184,6 @@ time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denov
 makeblastdb -in /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/laevis_denovo_DEtranscript_seq.fasta -dbtype nucl -out /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/db_laevis_DE_blastn
 
 time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/edgeR_v2_out/db_laevis_DE_blastn -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/liver_mvsf/post_edgeR/liver_trans_fdr005_header.fa -out /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_v2_blastout.tsv
-
-
 ```
 
 ### Star: mapping laevis denovo transcriptome to the laevis genome
