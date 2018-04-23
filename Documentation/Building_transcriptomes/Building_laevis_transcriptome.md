@@ -72,7 +72,7 @@ perl ~/script/blastout_filter_summary.pl /home/xue/laevis_transcriptome_mar2018/
 
 
 #v2
-
+perl ~/script/add_location_v3.pl tophit_laevis_de_v2_blastout_tophit.tsv laevis_gg_edgeRoutv2_de_filtered.tsv laevis > laevis_gg_edgeRoutv2_de_filtered_glocation.tsv
 ```
 
 
