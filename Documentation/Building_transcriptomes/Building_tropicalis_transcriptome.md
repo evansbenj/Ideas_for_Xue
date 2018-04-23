@@ -104,6 +104,22 @@ Star: mapping transcriptome to tropicalis genome
 ```
 STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/tropicalis_genome/db_tropicalis_star --outFileNamePrefix tropicalis_denovo_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta --seedPerReadNmax 10000
 ```
+### filter blastout result and generate a summary
+```
+#v4
+perl ~/script/blastout_filter_summary.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/DEtranscript_mappingto_genome_blastout.tsv tropicalis /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/tophit_laevis_de_v4
+
+#v2
+perl ~/script/blastout_filter_summary.pl /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/DEtranscript_mappingto_genome_blastout.tsv tropicalis /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/edgeR_v2_out/tophit_tropicalis_de_v2
+```
+### add the genomic location to the edgeR output of DE transcripts
+```
+#v4
+perl ~/script/add_location_v3.pl tophit_laevis_de_v4_blastout_tophit.tsv laevis_gg_edgeRoutv4_de_filtered.tsv laevis > laevis_gg_edgeRoutv4_de_filtered_glocation.tsv
+
+#v2
+perl ~/script/add_location_v3.pl tophit_tropicalis_de_v2_blastout_tophit.tsv tropicalis_fdr005.tsv tropicalis > tropicalis_gg_edgeRoutv2_de_filtered_glocation.tsv
+```
 
 
 
