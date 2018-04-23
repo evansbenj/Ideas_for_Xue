@@ -31,25 +31,25 @@ time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_
 ```
 ### extract the differentially expressed transcripts (~10sec)
 Total number of differentially expressed transcripts 
-- v4: 
+- v4: 251
 - v2: 453
 ```
 #v4
-awk '($4 < -2||$4 >2) && $7<0.05  {print }' /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg.counts.matrix.female_vs_male.edgeR.DE_results > home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv
 
 #v2
 awk '($2 < -1||$2 >1) && $5<0.05  {print }' /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_edgeRoutv2_de_filtered.tsv
 
 ```
-### extract the sequence of those DE transcripts (~10sec)
+### extract the sequence of those DE transcripts (~5min)
 ```
 #v4
-perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta
+perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta 1 > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta
 
 #v2
 perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_edgeRoutv2_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta 1 > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta
 ```
-### blastn the differential expressed transcripts to the laevis genome
+### blastn the differential expressed transcripts to the laevis genome 
 
 ```
 #v4
@@ -69,7 +69,7 @@ perl ~/script/blastout_filter_summary.pl /home/xue/laevis_transcriptome_mar2018/
 ### add the genomic location to the edgeR output of DE transcripts
 ```
 #v4
-
+perl ~/script/add_location_v3.pl tophit_laevis_de_v4_blastout_tophit.tsv laevis_gg_edgeRoutv4_de_filtered.tsv laevis > laevis_gg_edgeRoutv4_de_filtered_glocation.tsv
 
 #v2
 perl ~/script/add_location_v3.pl tophit_laevis_de_v2_blastout_tophit.tsv laevis_gg_edgeRoutv2_de_filtered.tsv laevis > laevis_gg_edgeRoutv2_de_filtered_glocation.tsv
