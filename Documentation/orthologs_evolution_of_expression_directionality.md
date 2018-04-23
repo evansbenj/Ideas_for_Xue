@@ -43,7 +43,7 @@ rm -f *summary*
 
 
 #with a perl script: check if transcripts are reciprocal best hit for each other -> need a perl script to do this
-
+perl ~/script/ortholog_check_rbh.pl borealisDE_laevisT_blastout_tophit.tsv laevisTophit_borealisT_blastout_tophit.tsv > ortholog_borealis_de_laevis_denovoT_list.tsv
 ```
 Extract expression level in TPM for each transcript
 ```
@@ -63,10 +63,8 @@ cd /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcr
 perl ~/script/split_fasta.pl ../../laevis_genomeguided_transcriptome.fasta 9000
 
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcriptome_genome/subset_seq/subset_25.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcriptome_genome/subset_blastout/subset_25_blastout.tsv
-
-
 ```
-gmap: 
+STARlong: 
 ```
 ```
 
