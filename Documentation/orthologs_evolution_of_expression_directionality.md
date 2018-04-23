@@ -56,7 +56,7 @@ Extract expression level in TPM for each transcript
   
 # Identify orthologs by genomic location
 ### borealis-laevis orthologs
-blastn: mapping laevis transcriptome to laevis genome; 
+blastn: mapping borealis DE and laevis_gg_transcriptom to laevis genome 
  - blast is good for looking for highly similar sequence but might map the most conserve region of the transcript to the most converse region of the gene and might not identify the right gene
 ```
 cd /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcriptome_genome/subset_seq
@@ -64,8 +64,26 @@ perl ~/script/split_fasta.pl ../../laevis_genomeguided_transcriptome.fasta 9000
 
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcriptome_genome/subset_seq/subset_25.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/blastn_transcriptome_genome/subset_blastout/subset_25_blastout.tsv
 ```
-STARlong: 
+STARlong: mapping borealis DE and laevis_gg_transcriptom to laevis genome
 ```
+#mapping borealis_de_transcripts to laevis genome: only 29 transcripts were mapped; it is weird, what if I try without all the filtering parameter 
+STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_laevisGenome_wGTF --outFileNamePrefix /home/xue/borealis_DE/liver_mvsf/mapping_star/borealis_de_laevis_genome_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/borealis_DE/liver_mvsf/mapping_star/liver_DEseq_IDonly.fasta --seedPerReadNmax 10000
+
+#mapping borealis_de_transcripts to laevis genome: without all the filtering parameter, nothing mapped; re-run the above
+STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_laevisGenome_wGTF --outFileNamePrefix /home/xue/borealis_DE/liver_mvsf/mapping_star/borealis_de_laevis_genome_mapping_star --outSAMtype BAM SortedByCoordinate  --readFilesIn /home/xue/borealis_DE/liver_mvsf/mapping_star/liver_DEseq_IDonly.fasta --seedPerReadNmax 10000
+
+#mapping laevis_gg_transcriptom to laevis genome
+STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_laevisGenome_wGTF --outFileNamePrefix /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/laevis_gg_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta --seedPerReadNmax 10000
+```
+GMAP: mapping borealis DE and laevis_gg_transcriptom to laevis genome
+```
+#mapping borealis_de_transcripts to laevis genome:already done; the path is /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam
+cd /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation
+mv /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam . 
+
+
+#mapping laevis_gg_transcriptom to laevis genome
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
 ```
 
 ### laevis-tropicalis orthologs
