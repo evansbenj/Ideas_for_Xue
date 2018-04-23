@@ -12,6 +12,68 @@ This took about 2.5-3 days. The total number of transcripts is 219207.
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left //home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R1_scythe.fastq.gz --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Laevis-Trimmed/laevis_liver_R2_scythe.fastq.gz --genome_guided_bam /home/xue/laevis_transcriptome_mar2018/laevis_RNAseq_star/laevis_RNAseq_StarAligned.sortedByCoord.out.bam --genome_guided_max_intron 20000 --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/laevis_transcriptome_mar2018/laevis_transcriptome_trinityout; echo "trinity is done at info115 in screen laevis" | mail sarahsongxy@gmail.com
 ```
+### Kallisto
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta --seqType fq --samples_file /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out/laevis_trimmed_samples_files.tsv --est_method kallisto --output_dir /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out --trinity_mode --prep_reference
+```
+### Covert the quantification into matrix for EdgeR
+```
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix laevis_gg  --name_sample_by_basedir liver_f1/abundance.tsv liver_f2/abundance.tsv liver_f3/abundance.tsv liver_m1/abundance.tsv liver_m2/abundance.tsv liver_m3/abundance.tsv 
+```
+### EdgeR: differential analysis 
+```
+#trinity versin 4.0
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out/laevis_gg.counts.matrix --method edgeR --samples_file /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out/laevis_trimmed_samples_files.tsv --output /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/
+
+#trinity version 2.2
+time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out/laevis_gg.counts.matrix --method edgeR --samples_file /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out/laevis_trimmed_samples_files.tsv --output /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/
+
+```
+### extract the differentially expressed transcripts (~10sec)
+Total number of differentially expressed transcripts 
+- v4: 
+- v2: 
+```
+#v4
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg.counts.matrix.female_vs_male.edgeR.DE_results > home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv
+
+#v2
+awk '($2 < -1||$2 >1) && $5<0.05  {print }' /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_edgeRoutv2_de_filtered.tsv
+
+```
+### extract the sequence of those DE transcripts (~10sec)
+```
+#v4
+perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_edgeRoutv4_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta
+
+#v2
+perl ~/script/extract_sequence.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_edgeRoutv2_de_filtered.tsv /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta > /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta
+```
+### blastn the differential expressed transcripts to the laevis genome
+
+```
+#v4
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/DEtranscript_mapping_to_genome_blastout.tsv
+
+#v2
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/laevis_gg_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v2_out/DEtranscript_mapping_to_genome_blastout.tsv
+```
+### filter blastout result and generate a summary
+```
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 # Building laevis transcriptome with Trinity (de novo)
 ### Trinity: *de novo* transcriptome assembly
 total number of transcript: 608120
