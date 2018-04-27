@@ -19,7 +19,7 @@ time /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_
 ```
 ### extract the differentially expressed transcripts (~10sec)
 Total number of differentially expressed transcripts 
-- v4: 
+- v4: 8556
 - v2: 961
 ```
 #v4
