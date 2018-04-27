@@ -41,7 +41,7 @@ perl ~/script/extract_sequence.pl /home/xue/borealis_DE/all_de_sex/borealis_all_
 
 ```
 #v4
-time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/laevis_gg_DEtranscript_seq.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/DEtranscript_mapping_to_genome_blastout.tsv
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/borealis_all_DEtranscript_seq.fasta -out /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/DEtranscript_mapping_to_genome_blastout.tsv
 
 #v2 (~2hrs)
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v2_denovo/borealis_all_DEtranscript_seq.fasta -out /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v2_denovo/DEtranscript_mapping_to_genome_blastout.tsv
@@ -49,7 +49,7 @@ time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/
 ### filter blastout result and generate a summary
 ```
 #v4
-perl ~/script/blastout_filter_summary.pl /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/DEtranscript_mapping_to_genome_blastout.tsv laevis /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/edgeR_v4_out/tophit_laevis_de_v4
+perl ~/script/blastout_filter_summary.pl /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/DEtranscript_mapping_to_genome_blastout.tsv borealis /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/borealis_all_de_v2
 
 #v2
 perl ~/script/blastout_filter_summary.pl /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v2_denovo/DEtranscript_mapping_to_genome_blastout.tsv borealis /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v2_denovo/borealis_all_de_v2
@@ -57,8 +57,8 @@ perl ~/script/blastout_filter_summary.pl /home/xue/borealis_DE/all_de_sex/boreal
 ### add the genomic location to the edgeR output of DE transcripts
 ```
 #v4
-perl ~/script/add_location_v3.pl tophit_laevis_de_v4_blastout_tophit.tsv laevis_gg_edgeRoutv4_de_filtered.tsv laevis > laevis_gg_edgeRoutv4_de_filtered_glocation.tsv
+perl ~/script/add_location_v3.pl borealis_all_de_v4_blastout_tophit.tsv borealis_all_edgeRoutv4_de_filtered.tsv borealis > borealis_all_edgeRoutv4_de_filtered_glocation.tsv
 
 #v2
-perl ~/script/add_location_v3.pl tophit_laevis_de_v2_blastout_tophit.tsv laevis_gg_edgeRoutv2_de_filtered.tsv laevis > laevis_gg_edgeRoutv2_de_filtered_glocation.tsv
+perl ~/script/add_location_v3.pl borealis_all_de_v2_blastout_tophit.tsv borealis_all_edgeRoutv2_de_filtered.tsv borealis > borealis_all_edgeRoutv2_de_filtered_glocation.tsv
 ```
