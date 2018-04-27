@@ -21,7 +21,7 @@ time perl /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression
 ### extract the differentially expressed transcripts (~10sec)
 Total number of differentially expressed transcripts 
 - v4: 
-- v2: 
+- v2: 107481
 ```
 #v4
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v4_denovo/borealis_gonad.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v4_denovo/borealis_gonad_edgeRoutv4_de_filtered.tsv
