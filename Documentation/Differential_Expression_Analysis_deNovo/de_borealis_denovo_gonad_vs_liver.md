@@ -1,13 +1,15 @@
 # DE analysis between sex using gonad tissue samples
 ### Kallisto
 ```
-mkdir /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo
-time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --samples_file /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/broealis_de_gonad_samplefile.tsv --est_method kallisto --output_dir /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/ --trinity_mode --prep_reference
+mkdir /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta --seqType fa --samples_file /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo/borealis_de_gonad_vs_liver_samplefile.tsv --est_method kallisto --output_dir /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo/ --trinity_mode --prep_reference
 ```
 ### Covert the quantification into matrix for EdgeR (~10min)
 ```
-cd /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/borealis_gonad  --name_sample_by_basedir female_gonad_rep1/abundance.tsv female_gonad_rep2/abundance.tsv female_gonad_rep3/abundance.tsv male_gonad_rep1/abundance.tsv male_gonad_rep2/abundance.tsv male_gonad_rep3/abundance.tsv
+cd /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo/borealis_de_tissue  --name_sample_by_basedir gonad_rep1/abundance.tsv gonad_rep2/abundance.tsv gonad_rep3/abundance.tsv gonad_rep4/abundance.tsv gonad_rep5/abundance.tsv gonad_rep6/abundance.tsv gonad_rep7/abundance.tsv liver_rep1/abundance.tsv liver_rep2/abundance.tsv liver_rep3/abundance.tsv liver_rep4/abundance.tsv liver_rep5/abundance.tsv liver_rep6/abundance.tsv liver_rep7/abundance.tsv
+
+
 ```
 ### EdgeR: differential analysis 
 ```
