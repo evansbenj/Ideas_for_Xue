@@ -17,7 +17,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/borealis_gonad.counts.matrix --method edgeR --samples_file /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/broealis_de_gonad_samplefile.tsv --output /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v4_denovo/
 
 #trinity version 2.2 (~13min)
-time perl /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/borealis_gonad.counts.matrix --method edgeR --samples_file /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_kallisto_denovo/broealis_de_gonad_samplefile.tsv --output /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v2_denovo/
+mkdir /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_edgeR_v2_denovo
+time perl /home/xue/software/trinityrnaseq-2.2.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo/borealis_de_tissue.counts.matrix --method edgeR --samples_file /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_kallisto_denovo/borealis_de_gonad_vs_liver_samplefile.tsv --output /home/xue/borealis_DE/de_liver_vs_gonad/borealis_gonad_vs_liver_edgeR_v2_denovo
 
 ```
 ### extract the differentially expressed transcripts (~10sec)
