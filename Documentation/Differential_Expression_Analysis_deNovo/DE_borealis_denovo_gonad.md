@@ -27,7 +27,7 @@ Total number of differentially expressed transcripts
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v4_denovo/borealis_gonad.counts.matrix.female_vs_male.edgeR.DE_results > /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v4_denovo/borealis_gonad_edgeRoutv4_de_filtered.tsv
 
 #v2 (~3sec)
-awk '($2 < -1||$2 >1) && $5<0.05  {print }' /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v2_denovo/borealis_gonad.counts.matrix.female_vs_male.edgeR.DE_results > //home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v2_denovo/borealis_gonad_edgeRoutv2_de_filtered.tsv
+awk '($2 < -1||$2 >1) && $5<0.05  {print }' /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v2_denovo/borealis_gonad.counts.matrix.female_gonad_vs_male_gonad.edgeR.DE_results > /home/xue/borealis_DE/gonad_de_sex/borealis_gonad_edgeR_v2_denovo/borealis_gonad_edgeRoutv2_de_filtered.tsv
 
 ```
 ### extract the sequence of those DE transcripts 
