@@ -49,7 +49,7 @@ time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/
 ### filter blastout result and generate a summary
 ```
 #v4
-perl ~/script/blastout_filter_summary.pl /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/DEtranscript_mapping_to_genome_blastout.tsv borealis /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/borealis_all_de_v2
+perl ~/script/blastout_filter_summary.pl /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/DEtranscript_mapping_to_genome_blastout.tsv borealis /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v4_denovo/borealis_all_de_v4
 
 #v2
 perl ~/script/blastout_filter_summary.pl /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v2_denovo/DEtranscript_mapping_to_genome_blastout.tsv borealis /home/xue/borealis_DE/all_de_sex/borealis_all_edgeR_v2_denovo/borealis_all_de_v2
