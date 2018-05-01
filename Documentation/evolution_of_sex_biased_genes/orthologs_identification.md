@@ -79,8 +79,26 @@ cd /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/boreali
 mv /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam . 
 
 
-#mapping laevis_gg_transcriptom to laevis genome
+#mapping laevis_denovo_transcriptom to laevis genome (time cost: ~15hrs)
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap/laevis_denovo_transcriptome_genome_gmap.bam
+
+
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
+```
+
+GMAP: mapping borealis DE and laevis_denovo_transcriptome to laevis v91 genome; just because the laevis-tropicalis alignment files contains alignment to laevis v91 genome
+```
+#the folder for the output are in 
+/home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap_xla_v91
+
+#indexing the laevis_v91 genome
+gmap_build -D /home/xue/genome_data/laevis_genome/db_gmap_xl91 -s none -g -d laevis91_gmap ../Xla.v91.fa.gz
+
+#mapping borealis_de_transcripts to laevis_v91 genome
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl91 -d laevis91_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap_xla_v91/borealis_de_laevis91_genome_gmap.bam
+
+#mapping laevis_denovo_transcriptome to laevis_v91 genome
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl91 -d laevis91_gmap -A -B 5 -t 8 -f samse /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap_xla_v91/laevis_denovo_transcriptome_genome_gmap.bam
 ```
 
 ### laevis-tropicalis orthologs
