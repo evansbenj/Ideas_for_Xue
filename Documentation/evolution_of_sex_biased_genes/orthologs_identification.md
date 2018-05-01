@@ -91,7 +91,7 @@ The files are stored in two different account:
  `/home/xue/borealis_DE/genomic-alignment-tropicalis-laevisLS`
 
 The formatting of the file is:
-    - TotalT.tab is a table file where the first column is the alignment "name" (starts at aln_0 and counts up), second is the "class" where XLS is a 3-way alignment between trop, laevis L, and laevis S, XL is just trop and L, XS trop and S, LS is only L and S. The rest of the columns are the scaffold, start, stop strand of the sequences based on the class (meaning class LS lists the laevis L location first, and has no information for tropicalis)
+- TotalT.tab is a table file where the first column is the alignment "name" (starts at aln_0 and counts up), second is the "class" where XLS is a 3-way alignment between trop, laevis L, and laevis S, XL is just trop and L, XS trop and S, LS is only L and S. The rest of the columns are the scaffold, start, stop strand of the sequences based on the class (meaning class LS lists the laevis L location first, and has no information for tropicalis)
 ```
 ```
 
