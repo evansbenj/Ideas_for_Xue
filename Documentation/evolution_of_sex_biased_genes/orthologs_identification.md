@@ -85,9 +85,9 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z
 
 ### laevis-tropicalis orthologs
 We got the alignment files from Austin.
-The files are stored in two different account:
+The files are stored @
  `/home/benf/Borealis-Family-Transcriptomes-July2017/Data/genomic-alignment-tropicalis-laevisLS`
- and 
+ and a back-up copy @
  `/home/xue/borealis_DE/genomic-alignment-tropicalis-laevisLS`
 
 The formatting of the file is:
