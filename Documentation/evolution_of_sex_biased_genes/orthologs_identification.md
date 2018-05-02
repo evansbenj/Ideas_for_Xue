@@ -51,6 +51,25 @@ Extract expression level in TPM for each transcript
 ```
 
 
+
+Just out of curiousity: if gmap and blastn will get the same result. Theoritically they should be very similar
+GMAP: mapping borealis DE to laevis_denovo_transcriptome; 
+```
+#indexing the laevis_denovo_transcriptome
+gmap_build -D /home/xue/laevis_transcriptome_mar2018/db_laevis_denovo_transcriptome_gmap -s none -d laevis_denovo_transcriptome_gmap   /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta
+
+#indexing the laevis_gg_transcriptome
+gmap_build -D /home/xue/laevis_transcriptome_mar2018/db_laevis_gg_transcriptome_gmap -s none -d laevis_gg_transcriptome_gmap   /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta
+
+#mapping borealis de transcripts to laevis_denovo_transcriptome
+gmap -D /home/xue/laevis_transcriptome_mar2018/db_laevis_denovo_transcriptome_gmap -d laevis_denovo_transcriptome_gmap  -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_denovoT_gmap.bam
+
+
+#mapping borealis de transcripts to laevis_gg_transcriptome
+gmap -D /home/xue/laevis_transcriptome_mar2018/db_laevis_gg_transcriptome_gmap -d laevis_gg_transcriptome_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_ggT_gmap.bam
+```
+
+
 # Identify orthologs by genomic location
 ### borealis-laevis orthologs
 blastn: mapping borealis DE and laevis_gg_transcriptom to laevis genome 
@@ -99,6 +118,7 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl91 -d laevis91_gmap -A -B 
 #mapping laevis_denovo_transcriptome to laevis_v91 genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl91 -d laevis91_gmap -A -B 5 -t 8 -f samse /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap_xla_v91/laevis_denovo_transcriptome_genome_gmap.bam
 ```
+
 
 ### laevis-tropicalis orthologs
 We got the alignment files from Austin.
