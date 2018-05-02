@@ -85,7 +85,6 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B
 
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
 ```
-
 GMAP: mapping borealis DE and laevis_denovo_transcriptome to laevis v91 genome; just because the laevis-tropicalis alignment files contains alignment to laevis v91 genome
 ```
 #the folder for the output are in 
@@ -111,7 +110,19 @@ The files are stored @
 The formatting of the file is:
 - TotalT.tab is a table file where the first column is the alignment "name" (starts at aln_0 and counts up), second is the "class" where XLS is a 3-way alignment between trop, laevis L, and laevis S, XL is just trop and L, XS trop and S, LS is only L and S. The rest of the columns are the scaffold, start, stop strand of the sequences based on the class (meaning class LS lists the laevis L location first, and has no information for tropicalis)
 
+GMAP: mapping tropicalis transcriptome to tropicalis v71 genome; just because the laevis-tropicalis alignment files contains alignment of tropicalis v71 genome and laevis_v91 genome
+```
+#indexing the tropicalis_v71_genome
+gmap_build -D /home/xue/genome_data/tropicalis_genome/db_gmap_tropicalisv71  -s none -g -d tropicalis71_gmap /home/xue/genome_data/tropicalis_genome/tropicalis_v71_main_genome/Xenopus_tropicalis_main_genome_scaffolds.fasta.gz
 
+#mapping tropicali_denovo_transcriptome to tropicalis_v71_genome
+gmap -D /home/xue/genome_data/tropicalis_genome/db_gmap_tropicalisv71 -d tropicalis71_gmap -A -B 5 -t 8 -f samse /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta | samtools view -S -b > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovoT_genomev71_mapping_gmap/tropicalis_denovo_transcriptome_genomeV71_gmap.bam
+
+
+#mapping tropicali_gg_transcriptome to tropicalis_v71_genome
+gmap -D /home/xue/genome_data/tropicalis_genome/db_gmap_tropicalisv71 -d tropicalis71_gmap -A -B 5 -t 8 -f samse /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta | samtools view -S -b > /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_ggT_genomev71_mapping_gmap/tropicalis_gg_transcriptome_genomeV71_gmap.bam
+
+```
 
 ### borealis-laevis-tropicalis orthologs
 
