@@ -104,6 +104,16 @@ mv /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam .
 #mapping laevis_denovo_transcriptom to laevis genome (time cost: ~15hrs)
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap/laevis_denovo_transcriptome_genome_gmap.bam
 ```
+Bedtool: extract alignment coordinates for transcripts based on their CIGAR strings; 
+```
+bedtools bamtobed -i liver_DE_gmap_out.bam > liver_DE_gmap_out_bedfile.tsv
+bedtools bamtobed -i laevis_denovo_transcriptome_genome_gmap.bam > laevis_denovo_transcriptome_genome_gmap_bedfile.tsv
+```
+Identify orthology by running perl script orthologs_identification_byGenomicLocation.pl
+```
+perl ~/script/orthologs_identification_byGenomicLocation.pl liver_DE_gmap_out_bedfile.tsv laevis_denovo_transcriptome_genome_gmap_bedfile.tsv > list_orthologs_borealis_de_laevis_transcriptome.tsv
+```
+
 GMAP: mapping borealis DE and laevis_denovo_transcriptome to laevis v91 genome; just because the laevis-tropicalis alignment files contains alignment to laevis v91 genome
 ```
 #the folder for the output are in 
