@@ -61,11 +61,11 @@ gmap_build -D /home/xue/laevis_transcriptome_mar2018/db_laevis_denovo_transcript
 #indexing the laevis_gg_transcriptome
 gmap_build -D /home/xue/laevis_transcriptome_mar2018/db_laevis_gg_transcriptome_gmap -s none -d laevis_gg_transcriptome_gmap   /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta
 
-#mapping borealis de transcripts to laevis_denovo_transcriptome
+#mapping borealis de transcripts to laevis_denovo_transcriptome: 96 unmapped (unmapped defined by 0x4 flag in field #2); 
 gmap -D /home/xue/laevis_transcriptome_mar2018/db_laevis_denovo_transcriptome_gmap -d laevis_denovo_transcriptome_gmap  -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_denovoT_gmap.bam
 
 
-#mapping borealis de transcripts to laevis_gg_transcriptome
+#mapping borealis de transcripts to laevis_gg_transcriptome: 278 mapped (unmapped defined by 0x4 flag in field #2); 
 gmap -D /home/xue/laevis_transcriptome_mar2018/db_laevis_gg_transcriptome_gmap -d laevis_gg_transcriptome_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_DE/liver_mvsf/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_ggT_gmap.bam
 ```
 
