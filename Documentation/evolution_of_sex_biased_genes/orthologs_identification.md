@@ -91,18 +91,18 @@ STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_
 #mapping laevis_gg_transcriptom to laevis genome
 STARlong --runThreadN 5 --genomeDir /home/xue/genome_data/laevis_genome/db_star_laevisGenome_wGTF --outFileNamePrefix /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/laevis_gg_TG_mapping_star --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --outSAMattrRGline ID:Transcriptome SM:allTogether PL:Trinity LB:LB-transcriptome --readFilesIn /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/laevis_genomeguided_transcriptome.fasta --seedPerReadNmax 10000
 ```
-GMAP: mapping borealis DE and laevis_gg_transcriptom to laevis genome
+GMAP: mapping borealis DE and laevis_denovo_transcriptom to laevis genome
 ```
-#mapping borealis_de_transcripts to laevis genome:already done; the path is /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam
+#mapping borealis_de_transcripts to laevis genome:already done;
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
+#the sam file were converted to bam file and store at:
+/home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam
 cd /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation
 mv /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.bam . 
 
 
 #mapping laevis_denovo_transcriptom to laevis genome (time cost: ~15hrs)
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap/laevis_denovo_transcriptome_genome_gmap.bam
-
-
-gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_GMAP/liver_DE_gmap_out.sam
 ```
 GMAP: mapping borealis DE and laevis_denovo_transcriptome to laevis v91 genome; just because the laevis-tropicalis alignment files contains alignment to laevis v91 genome
 ```
