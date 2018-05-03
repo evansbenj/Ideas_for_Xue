@@ -1,4 +1,4 @@
-# path to files:
+# Path to files:
 ```
 #path to borealis_genome_v1 from Austin
 /home/xue/borealis_transcriptome/borealis_genome_v1/Xbo.v1.fa.gz
