@@ -2,11 +2,12 @@
 ```
 #path to borealis_genome_v1 from Austin
 /home/xue/borealis_transcriptome/borealis_genome_v1/Xbo.v1.fa.gz
-#path to borealis RNAseq trimmed data
-/home/benf/Borealis-Family-Transcriptomes-July2017/Data/
-#path to the genome-guided transcriptome
 
-#path to 
+#path to borealis RNAseq trimmed data
+/home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/
+
+#path to borealis genome-guided transcriptome
+home/xue/borealis_transcriptome/borealis_gg_transcriptome_may2018/
 ```
 
 # Trinity: genome-guided transcriptome assembly
