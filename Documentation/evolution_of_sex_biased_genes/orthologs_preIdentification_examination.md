@@ -21,12 +21,12 @@ The questions that I am interest in looking at is
 
 To answer the first question, I run the perl script that I developped for my undergraduate thesis with the DE_laevis_genome_blastout
 ```
-# Examining the DE_laevis_transcriptome_blastout
 cd /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/pre-identification_examination 
 
 perl ~/script/BlastnOutputAnalysis_4168_Feb20.pl /home/xue/borealis_DE/liver_mvsf/mapping_blastn/liver_mvsf_blastout > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/pre-identification_examination/problematic_transcripts.tsv
-
-#just out of curiosity: count the number of mapped transcripts; the result is 432. The total number of DE transcripts is 434, so it means that 2 DE transcripts was not mapped(why? maybe i can extract their sequence and do a separate blastn mapping).
+```
+just out of curiosity: count the number of mapped transcripts; the result is 432. The total number of DE transcripts is 434, so it means that 2 DE transcripts was not mapped(why? maybe i can extract their sequence and do a separate blastn mapping).
+```
 cd /home/xue/borealis_DE/liver_mvsf/mapping_blastn
 cut -f 1 liver_mvsf_blastout | sort -u | wc -l
 ``
