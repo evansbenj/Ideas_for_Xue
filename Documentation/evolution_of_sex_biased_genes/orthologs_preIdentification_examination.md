@@ -29,4 +29,4 @@ just out of curiosity: count the number of mapped transcripts; the result is 432
 ```
 cd /home/xue/borealis_DE/liver_mvsf/mapping_blastn
 cut -f 1 liver_mvsf_blastout | sort -u | wc -l
-``
+```
