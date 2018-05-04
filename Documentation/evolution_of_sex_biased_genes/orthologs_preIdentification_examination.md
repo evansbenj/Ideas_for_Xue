@@ -23,7 +23,7 @@ To answer the first question, I run the perl script that I developped for my und
 ```
 cd /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/pre-identification_examination 
 
-perl 
+perl ~/script/BlastnOutputAnalysis_4168_Feb20.pl /home/xue/borealis_DE/liver_mvsf/mapping_blastn/liver_mvsf_blastout > /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/pre-identification_examination/problematic_transcripts.tsv
 
 ``
 # Examining the DE_laevis_transcriptome_blastout
