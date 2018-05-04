@@ -30,7 +30,7 @@ just out of curiosity: count the number of mapped transcripts; the result is 432
 cd /home/xue/borealis_DE/liver_mvsf/mapping_blastn
 cut -f 1 liver_mvsf_blastout | sort -u | wc -l
 ```
-I think I should re-run the blastn to make sure it was done properly when I did it like 7 months ago.
+I think I should re-run the blastn to make sure it was done properly when I did it like 7 months ago. I will do it later when the cluster is back on
 ```
 
 ```
