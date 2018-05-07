@@ -189,7 +189,7 @@ STAR --runThreadN 20 --genomeDir /home/xue/borealis_DE/xl_genome/STAR_XLgenome -
 ```
 Output file from STAR only contain mapping information for 8-30 mapping. I checked online and most people used STAR for mapping RNA-seq reads to genome but not mapping transcripts to genome. It might not be a tool that is capable for mapping transcripts to genome. Ben said he got ~80% mapping with STAR. I check with him and it seems like he had done read mapping but not transcripts mapping before. STAR doesn't seem like working for me, so switched to try other splice aware aligner such as GMAP or BLAT. It seems like BenF get STAR to work with a package called STAR-Long
 
-### Mapping with GMAP
+## Mapping with GMAP
 GMAP is another splice aware aligner and its user manual is here (http://research-pub.gene.com/gmap/src/README). It is already installed on the cluster (version 2012-04-27). 
 
 ```
@@ -230,7 +230,7 @@ Quick note about samtools: to count the number of unmapped transcripts
 samtools view -f 0x4 sample.bam | wc -l
 ```
 
-# Mapping with minimap
+## Mapping with minimap
 
 Install like this following instruction on https://github.com/lh3/minimap2
 ```
@@ -244,10 +244,23 @@ Indexing for laevis genome (/home/xue/genome_data/laevis_genome/db_minimap_laevi
 Trying mapping DE to laevis genome and see how long it will take
 ```
 /home/xue/software/minimap2/minimap2 -cx asm20 --cs /home/xue/genome_data/laevis_genome/db_minimap_laevis_92/XL9_2.mmi /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.paf
-sort -k6,6 -k8,8n liver_DE.paf | /home/xue/software/minimap2/paftools.js call -f ecoli_ref.fa -L10000 -l1000 - > /home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.vcf
+sort -k6,6 -k8,8n liver_DE.paf | /home/xue/software/minimap2/paftools.js call -f ecoli_ref.fa -L10000 -l1000 -> /home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.vcf
 ```
 Output of tester run: `/home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE.paf`
 
+# Mapping borealis DE transcript to borealis genome
+## mapping with Blastn to borealis genome_v1
+Since we got the assembled borealis genome form Austin, I want to redo the mapping again
+```
+makeblastdb -in /home/xue/borealis_transcriptome/borealis_genome_v1/Xbo.v1.fa.gz -dbtype nucl -out /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_blastn/borealis_genome_v1
+```
+## mapping with GMAP to borealis genome_v1
+```
+#building index
+gmap_build -d borealis_genome_v1 -D /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_gmap/ -g ../Xbo.v1.fa.gz 
+#mapping
+gmap gmap_build -d borealis_genome_v1 -D /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_gmap/ -g ../Xbo.v1.fa.gz -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/de_sex_liver/mapping_GMAP_to_borealis_genome/liver_de_borealisGenome_gmap_out.sam
+```
 # Binning trancripts 
 The Perl script that do the binning would: 
   - group overlapping transcripts into bins.  
