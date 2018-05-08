@@ -163,20 +163,13 @@ Basically, I will align borealis de transcripts to laevis denovo transcriptome. 
 #### path to files
 borealis de transcripts to laevis denovo transcriptome: 
   - blastn
-  ```
-  /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisTranscriptome_blastout.tsv
-  ```
+  `/home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisTranscriptome_blastout.tsv`
   - gmap
+  `/home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_denovoT_gmap.bam`
+borealis de transcript to laevis genome v92 `/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap/liver_DE_gmap_out_bedfile.tsv`
+laevis denovo transcriptome to laevis genome v92
   ```
-  /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_denovoT_gmap.bam
-  ```
-borealis de transcript to laevis genome v92
-  ```
-  
-  ```
-  - laevis denovo transcriptome to laevis genome v92
-  ```
-  
+  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap/laevis_denovo_transcriptome_genome_gmap_bedfile.tsv
   ```
 
 
