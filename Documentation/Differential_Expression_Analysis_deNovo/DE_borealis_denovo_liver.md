@@ -252,14 +252,17 @@ Output of tester run: `/home/xue/borealis_DE/liver_mvsf/mapping_minimap/liver_DE
 ## mapping with Blastn to borealis genome_v1
 Since we got the assembled borealis genome form Austin, I want to redo the mapping again
 ```
-makeblastdb -in /home/xue/borealis_transcriptome/borealis_genome_v1/Xbo.v1.fa.gz -dbtype nucl -out /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_blastn/borealis_genome_v1
+#indexing
+makeblastdb -in /home/xue/borealis_transcriptome/borealis_genome_v1/Xbo_v1.fa -dbtype nucl -out /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_blastn/borealis_genome_v1
+#mapping with blastn
+blastn -task blastn -db /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_blastn/borealis_genome_v1 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/de_sex_liver/post_edgeR/borealis_liver_de_transcriptSeq.fa -out /home/xue/borealis_DE/de_sex_liver/mapping_blastn_to_borealis_genome/borealis_de_borealis_genome_blastout.tsv
 ```
 ## mapping with GMAP to borealis genome_v1
 ```
 #building index
 gmap_build -d borealis_genome_v1 -D /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_gmap/ -g ../Xbo.v1.fa.gz 
 #mapping
-gmap gmap_build -d borealis_genome_v1 -D /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_gmap/ -g ../Xbo.v1.fa.gz -A -Z -f samse /home/xue/borealis_DE/liver_mvsf/filtered_edgeRout/liver_trans_fdr005_header.fa > /home/xue/borealis_DE/de_sex_liver/mapping_GMAP_to_borealis_genome/liver_de_borealisGenome_gmap_out.sam
+gmap -D /home/xue/borealis_transcriptome/borealis_genome_v1/db_borealis_genome_v1_gmap/ -d borealis_genome_v1 -A -B 5 -t 8 -f samse /home/xue/borealis_DE/de_sex_liver/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b > /home/xue/borealis_DE/de_sex_liver/mapping_GMAP_to_borealis_genome/liver_de_borealisGenome_gmap_out.bam
 ```
 
 
