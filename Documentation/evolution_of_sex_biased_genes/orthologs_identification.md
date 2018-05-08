@@ -163,7 +163,7 @@ Basically, I will align borealis de transcripts to laevis denovo transcriptome. 
 #### path to files
 borealis de transcripts to laevis denovo transcriptome: 
   - blastn
-  `/home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisTranscriptome_blastout.tsv`
+  `/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_bbh/borealisDE_laevisTranscriptome_blastout.tsv`
   - gmap
   `/home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_denovoT_gmap.bam`
 
