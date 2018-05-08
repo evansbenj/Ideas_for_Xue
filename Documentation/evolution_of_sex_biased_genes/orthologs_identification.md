@@ -156,4 +156,27 @@ gmap -D /home/xue/genome_data/tropicalis_genome/db_gmap_tropicalisv71 -d tropica
 
 ### borealis-laevis-tropicalis orthologs
 
+# Identifying orthologs: combination method
+The method will combine partial output from bbh and genomic-based method. 
+Basically, I will align borealis de transcripts to laevis denovo transcriptome. For the best hits, look at their genomic location. The genomic location of borealis de transcripts is obtained by mapping de transcripts to laevis genome v92. The genomic locaiton of laevis transcripts is obtained by mapping laevis transcripts to laevis genome v92. Most of those information are available from previous work.
+
+#### path to files
+borealis de transcripts to laevis denovo transcriptome: 
+  - blastn
+  ```
+  /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs/borealisDE_laevisTranscriptome_blastout.tsv
+  ```
+  - gmap
+  ```
+  /home/xue/borealis_DE/liver_mvsf/borealis_laevis_tropicalis_orthologs/borealis_de_laevis_transcriptome_gmap/borealis_de_laevis_denovoT_gmap.bam
+  ```
+borealis de transcript to laevis genome v92
+  ```
+  
+  ```
+  - laevis denovo transcriptome to laevis genome v92
+  ```
+  
+  ```
+
 
