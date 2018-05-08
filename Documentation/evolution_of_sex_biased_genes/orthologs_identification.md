@@ -179,7 +179,8 @@ laevis denovo transcriptome to laevis genome v92
 
 #### perl script
 ```
-perl ~/script/orthologs_TT_TG_output_analysis.pl ../../borealis_laevis_orthologs_bbh/ortholog_borealis_de_laevis_denovoT_list.tsv borealis_de_laevis91_genome_gmap_bedfile.tsv laevis_denovo_transcriptome_genome_gmap_bedfile_tsv|less
+cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_byGenomicLocation/mapped_gmap
+perl ~/script/blastout_besthit.pl /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_bbh/borealisDE_laevisTranscriptome_blastout.tsv > borealis_de_laevis_denovoT_blastout_besthit.tsv 
 
 ```
 
