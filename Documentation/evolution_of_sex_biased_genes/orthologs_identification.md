@@ -185,8 +185,8 @@ cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borea
 #select blast best hit for each DE transcripts
 perl ~/script/blastout_besthit.pl /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_bbh/borealisDE_laevisTranscriptome_blastout.tsv > borealis_de_laevis_denovoT_blastout_besthit.tsv 
 
-#
-perl ~/script/orthologs_TT_TG_output_analysis.pl borealis_de_laevis_denovoT_blastout_besthit.tsv ../laevis_denovo_transcriptome_genome_gmap_bedfile.tsv ../liver_DE_gmap_out_bedfile.tsv|less
+#identify borealis_laevis_orthologs
+perl ~/script/orthologs_TT_TG_output_analysis.pl borealis_de_laevis_denovoT_blastout_besthit.tsv ../liver_DE_gmap_out_bedfile.tsv ../laevis_denovo_transcriptome_genome_gmap_bedfile.tsv > orthologList_borealis_de_laevis_denovoT_combinationMethod.tsv
 
 ```
 
