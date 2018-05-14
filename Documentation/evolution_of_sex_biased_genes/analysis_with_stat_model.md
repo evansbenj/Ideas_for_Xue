@@ -16,5 +16,10 @@ We are going to test for 4 models:
 We decided that PGLS might be a better model for this analysis. We are putting the BM model on hold.
 
 # PGLS
+### Input file
+Input file format:
+```
+Xborealis_DE_Transcript_ID	borealis_F/M_ratio	laevis_F/M_ratio	tropicalis_F/M_ratio_randomNum
+```
 
 
