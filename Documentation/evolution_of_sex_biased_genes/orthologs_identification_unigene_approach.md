@@ -39,6 +39,6 @@ blastn -task megablast -db /home/xue/genome_data/laevis_genome/db_blastn_laevisU
 run Makes_diads_and_triads_XLunigene_STensembl.pl from BenE. This generate output ST_unigene_XL_unigene_dyads_and_triads_unigene_minlen_200 and trop_unigene_IDs_with_no_reciprocal_best_blast_hit_unigene
 ```
 cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach
-perl ~/script/Makes_diads_and_triads_XLunigene_STensembl.pl ST_to_XL_unigene_megablastout.tsv XL_to_ST_unigene_megablastout.tsv 
+perl ~/script/Makes_diads_and_triads_XLunigene_STensembl.pl XL_to_ST_unigene_megablastout.tsv ST_to_XL_unigene_megablastout.tsv
 ```
 
