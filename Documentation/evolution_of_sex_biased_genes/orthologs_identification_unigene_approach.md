@@ -27,4 +27,18 @@ cd /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome
 
 time blastn -task blastn -db /home/xue/genome_data/laevis_genome/db_blastn_laevisUnigene/db_blastn_laevisUnigene -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/subset/subset_8.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/subset/blastout_subset_8.fasta
 ```
+## laevis_tropicalis unigene
+blast laevis unigene and tropicalis unigenes to each other
+```
+#blast laevis to tropicalis
+blastn -task megablast -db /home/xue/genome_data/tropicalis_genome/db_blastn_tropicalisUnigene/db_blastn_tropicalisUnigene -query /home/xue/genome_data/laevis_genome/Xl_seq_uniq.fa -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/ST_to_XL_unigene_blastnout.tsv 
+
+#blast tropicalis to laevis
+blastn -task megablast -db /home/xue/genome_data/laevis_genome/db_blastn_laevisUnigene/db_blastn_laevisUnigene -query /home/xue/genome_data/tropicalis_genome/str_seq_uniq.fa -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/ST_to_XL_unigene_megablastout.tsv
+```
+run Makes_diads_and_triads_XLunigene_STensembl.pl from BenE. This generate output ST_unigene_XL_unigene_dyads_and_triads_unigene_minlen_200 and trop_unigene_IDs_with_no_reciprocal_best_blast_hit_unigene
+```
+cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach
+perl ~/script/Makes_diads_and_triads_XLunigene_STensembl.pl ST_to_XL_unigene_megablastout.tsv XL_to_ST_unigene_megablastout.tsv 
+```
 
