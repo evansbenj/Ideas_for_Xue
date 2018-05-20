@@ -35,6 +35,13 @@ blastn -task megablast -db /home/xue/genome_data/tropicalis_genome/db_blastn_tro
 
 #blast tropicalis to laevis
 blastn -task megablast -db /home/xue/genome_data/laevis_genome/db_blastn_laevisUnigene/db_blastn_laevisUnigene -query /home/xue/genome_data/tropicalis_genome/str_seq_uniq.fa -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/ST_to_XL_unigene_megablastout.tsv
+
+#blast tropicalis transcriptome to tropicalis unigene
+blastn -task megablast -db /home/xue/genome_data/tropicalis_genome/db_blastn_tropicalisUnigene/db_blastn_tropicalisUnigene -query /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/st_transcriptome_to_st_unigene_blastnout.tsv
+
+blastn -task megablast -db /home/xue/genome_data/tropicalis_genome/db_blastn_tropicalisUnigene/db_blastn_tropicalisUnigene -query /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/st_denovoT_to_st_unigene_blastnout.tsv
+
+
 ```
 run Makes_diads_and_triads_XLunigene_STensembl.pl from BenE. This generate output ST_unigene_XL_unigene_dyads_and_triads_unigene_minlen_200 and trop_unigene_IDs_with_no_reciprocal_best_blast_hit_unigene
 ```
