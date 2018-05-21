@@ -75,8 +75,24 @@ run Makes_diads_and_triads_XLunigene_STensembl.pl from BenE. This generate outpu
 cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach
 perl ~/script/Makes_diads_and_triads_XLunigene_STensembl.pl XL_to_ST_unigene_megablastout.tsv ST_to_XL_unigene_megablastout.tsv
 ```
-identify tropicalis orthology of laevis unigenes that is orthology to borealis DE
+identify tropicalis unigene orthologs of laevis unigenes that is orthology to borealis DE
 ```
+cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach
 perl ~/script/orthologs_st_xl_trias_dias_filter.pl borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneID.tsv ST_unigene_XL_unigene_dyads_and_triads_unigene_minlen_200 >  ST_unigene_XL_unigene_dyads_and_triads_borealisDE_ortho.tsv
+```
+filter tropicalis blastn out besthit 
+```
+#only select transcripts that mapped to tropicalis unigene orthologs
+perl ~/script/orthologs_st_xl_trias_dias_filter.pl ST_unigene_XL_unigene_dyads_and_triads_borealisDE_ortho.tsv st_ggT_to_st_unigene_blastnout_besthit.tsv > st_ggT_to_st_unigene_blastnout_besthit_borealisDE_ortho.tsv
+#only select keep the tophit
+perl ~/script/blastout_tophit.pl st_ggT_to_st_unigene_blastnout_besthit_borealisDE_ortho.tsv  st_ggT_to_st_unigene_blastnout_besthit_borealisDE_ortho
+```
+filter tropicalis blastn out besthit 
+```
+#only select transcripts that mapped to laevis unigene orthologs
+perl ~/script/orthologs_st_xl_trias_dias_filter.pl borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneID.tsv laevis_ggT_laevis_unigene_blastout_besthit.tsv > laevis_ggT_laevis_unigene_blastout_besthit_borealis_ortho.tsv
+#only select keep the tophit
+perl ~/script/blastout_tophit.pl laevis_ggT_laevis_unigene_blastout_besthit_borealis_ortho.tsv laevis_ggT_laevis_unigene_blastout_besthit_borealis_ortho
+
 ```
 
