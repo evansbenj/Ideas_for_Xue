@@ -69,12 +69,14 @@ blastn -task megablast -db /home/xue/genome_data/laevis_genome/db_blastn_laevisU
 blastn -task megablast -db /home/xue/genome_data/tropicalis_genome/db_blastn_tropicalisUnigene/db_blastn_tropicalisUnigene -query /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/st_transcriptome_to_st_unigene_blastnout.tsv
 
 blastn -task megablast -db /home/xue/genome_data/tropicalis_genome/db_blastn_tropicalisUnigene/db_blastn_tropicalisUnigene -query /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_trinityout.Trinity.fasta -outfmt 6 -evalue 1e-20 -max_target_seqs 2 -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/st_denovoT_to_st_unigene_blastnout.tsv
-
-
 ```
 run Makes_diads_and_triads_XLunigene_STensembl.pl from BenE. This generate output ST_unigene_XL_unigene_dyads_and_triads_unigene_minlen_200 and trop_unigene_IDs_with_no_reciprocal_best_blast_hit_unigene
 ```
 cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach
 perl ~/script/Makes_diads_and_triads_XLunigene_STensembl.pl XL_to_ST_unigene_megablastout.tsv ST_to_XL_unigene_megablastout.tsv
+```
+identify tropicalis orthology of laevis unigenes that is orthology to borealis DE
+```
+perl ~/script/orthologs_st_xl_trias_dias_filter.pl borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneID.tsv ST_unigene_XL_unigene_dyads_and_triads_unigene_minlen_200 >  ST_unigene_XL_unigene_dyads_and_triads_borealisDE_ortho.tsv
 ```
 
