@@ -17,6 +17,7 @@ makeblastdb -in /home/xue/genome_data/tropicalis_genome/str_seq_uniq.fa -dbtype 
 #indexing laevis unigenes
 makeblastdb -in /home/xue/genome_data/laevis_genome/Xl_seq_uniq.fa -dbtype nucl -out /home/xue/genome_data/laevis_genome/db_blastn_laevisUnigene/db_blastn_laevisUnigene
 ```
+## borealis_laevis orthologs
 blastn: blast borealis DE and laevis transcriptome into laevis unigenes
 ```
 #blast borealis DE into laevis unigenes
@@ -25,9 +26,37 @@ time blastn -task blastn -db /home/xue/genome_data/laevis_genome/db_blastn_laevi
 #blast laevis transcriptome into laevis unigenes
 cd /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome
 
-time blastn -task blastn -db /home/xue/genome_data/laevis_genome/db_blastn_laevisUnigene/db_blastn_laevisUnigene -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/subset/subset_8.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/subset/blastout_subset_8.fasta
+time blastn -task blastn -db /home/xue/genome_data/laevis_genome/db_blastn_laevisUnigene/db_blastn_laevisUnigene -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/subset/subset_8.fasta -out /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_ggT_laevis_unigene_blastout_besthit.tsv
 ```
-## laevis_tropicalis unigene
+filter: keep best hit only (lowest evalue)
+```
+#borealis de
+perl ~/script/blastout_besthit.pl borealis_de_laevis_unigene_blastout.tsv > borealis_de_laevis_unigene_blastout_besthit.tsv
+
+#laevis transcriptome
+scp /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_ggT_laevis_unigene_blastn/laevis_ggT_laevis_unigene_blastout_besthit.tsv .
+
+```
+Combine the two besthit files
+```
+cat borealis_de_laevis_unigene_blastout_besthit.tsv laevis_ggT_laevis_unigene_blastout_besthit.tsv > borealis_laevis_transcriptome_laevis_unigene_besthit.tsv
+```
+sort the file and group the transcript IDs by unigene IDs
+```
+sort -k 2,2 borealis_laevis_transcriptome_laevis_unigene_besthit.tsv
+```
+extracting the sequence of unique laevis unigenes
+```
+sort -u -k2,2 borealis_laevis_transcriptome_laevis_unigene_besthit_sorted_filtered.tsv |awk '$2 {print}' > borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneID.tsv
+
+perl ~/script/extract_sequence.pl borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneID.tsv ~/genome_data/laevis_genome/Xl_seq_uniq.fa 1 > borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneSeq.fa
+```
+gmap the laevis unigenes to the laevis genome to find out their genomic location
+```
+gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneSeq.fa | samtools view -S -b > /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneSeq_gmap.bam
+
+```
+## laevis_tropicalis orthologs
 blast laevis unigene and tropicalis unigenes to each other
 ```
 #blast laevis to tropicalis
