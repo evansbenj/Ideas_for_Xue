@@ -48,8 +48,9 @@ Checking the mapping result and count the number of problematic transcripts, whi
 ```
 cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/mapped_to_laevis_unigene
 
-
-perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap.bam > SuperDuper_splitted_gmap_summary_noLS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisUnigene.bam > SuperDuper_splitted_gmap_laevisUnigene_summary_LS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisUnigeneAligned.out.bam > SuperDuper_splitted_star_laevisUnigene_summary_LS.tsv
 vi ~/script/check_supertranscript.pl
-perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap.bam > SuperDuper_splitted_gmap_summary_LS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisUnigene.bam > SuperDuper_splitted_gmap_laevisUnigene_summary_noLS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisUnigeneAligned.out.bam > SuperDuper_splitted_star_laevisUnigene_summary_noLS.tsv
 ```
