@@ -1,6 +1,6 @@
 # orthologs identification
 
-directory:'/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach'
+directory:`/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach`
 
 ## check supertranscript
 split and map then check if the parts mapped to same chromosome
