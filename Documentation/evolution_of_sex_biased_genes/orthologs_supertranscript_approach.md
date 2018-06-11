@@ -76,3 +76,5 @@ vi ~/script/check_supertranscript.pl #command in the chop to chop off the 'L' or
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisUnigene.bam > SuperDuper_splitted_gmap_laevisUnigene_summary_noLS.tsv
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisUnigeneAligned.out.bam > SuperDuper_splitted_star_laevisUnigene_summary_noLS.tsv
 ```
+
+
