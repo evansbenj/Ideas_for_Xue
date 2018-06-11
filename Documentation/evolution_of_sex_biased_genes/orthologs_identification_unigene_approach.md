@@ -95,4 +95,14 @@ perl ~/script/orthologs_st_xl_trias_dias_filter.pl borealis_laevis_transcriptome
 perl ~/script/blastout_tophit.pl laevis_ggT_laevis_unigene_blastout_besthit_borealis_ortho.tsv laevis_ggT_laevis_unigene_blastout_besthit_borealis_ortho
 
 ```
+## XB_XL_ST orthologs
+Use a perl script to compile the ortholog information together and extract the ID of transcripts. Logic:
+```
+#idenntifying orthology - unigene approach
+#combining all the mapping output and extract the ortholog information
 
+#read file borealis_laevis_transcriptome_laevis_unigene_besthit.tsv
+#store the information in a hash 
+#$xb_xl_ortho{XB_DE_ID}{XL_unigene}{laevis_t_ID/st_unigene_ID/ST_T_ID}[] = ID_name
+#
+```
