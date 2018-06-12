@@ -1,4 +1,8 @@
 # Identification of orthologs using laevis and tropicalis unigene
+working directory:
+```
+/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach
+```
 getting unigene 
 ```
 #getting tropicalis unigenes
@@ -39,11 +43,19 @@ scp /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_ggT_la
 ```
 Combine the two besthit files
 ```
+#add the "xb_" and "xl_" in front of the trinity transcript id of borealis and laevis respectively. 
+sed 's/^/xb_/' borealis_de_laevis_unigene_blastout_besthit.tsv > borealis_de_laevis_unigene_blastout_besthit_flagged.tsv
+sed 's/^/xl_/' laevis_ggT_laevis_unigene_blastout_besthit.tsv > laevis_ggT_laevis_unigene_blastout_besthit_flagged.tsv
+
+#combine them together
 cat borealis_de_laevis_unigene_blastout_besthit.tsv laevis_ggT_laevis_unigene_blastout_besthit.tsv > borealis_laevis_transcriptome_laevis_unigene_besthit.tsv
+
+cat borealis_de_laevis_unigene_blastout_besthit_flagged.tsv laevis_ggT_laevis_unigene_blastout_besthit_flagged.tsv > borealis_laevis_transcriptome_laevis_unigene_besthit_flagged.tsv
 ```
 sort the file and group the transcript IDs by unigene IDs
 ```
-sort -k 2,2 borealis_laevis_transcriptome_laevis_unigene_besthit.tsv
+sort -k 2,2 borealis_laevis_transcriptome_laevis_unigene_besthit.tsv > borealis_laevis_transcriptome_laevis_unigene_besthit_sorted_filtered.tsv
+sort -k 2,2 borealis_laevis_transcriptome_laevis_unigene_besthit_flagged.tsv > borealis_laevis_transcriptome_laevis_unigene_besthit_flagged_sorted_filtered.tsv
 ```
 extracting the sequence of unique laevis unigenes
 ```
@@ -56,6 +68,29 @@ gmap the laevis unigenes to the laevis genome to find out their genomic location
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneSeq.fa | samtools view -S -b > /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/borealis_laevis_transcriptome_laevis_unigene_besthit_unigeneSeq_gmap.bam
 
 ```
+After sorting the catanated files, one borealis transcript and multiple laevis transcripts might map to one laevis unigene transcript. So a thing to try is to map borealis_DE transcript to laevis_genomeguided_transcriptome and then pick only the top hit pair. 
+```
+#indexing laevis_ggT for blastn mapping;
+makeblastdb -in /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta -dbtype nucl -out /home/xue/laevis_transcriptome_mar2018/db_laevis_gg_transcriptome_blastn/db_blastn_laevis_ggT
+
+time blastn -task blastn -db /home/xue/laevis_transcriptome_mar2018/db_laevis_gg_transcriptome_blastn/db_blastn_laevis_ggT -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/de_sex_liver/post_edgeR/borealis_liver_de_transcriptSeq.fa -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_unigeneApproach/borealis_de_laevis_ggT_blastout.tsv 
+
+
+```
+Another thing to try is to pick the laevis transcript that mapped to laevis unigene with the lowest e-value and highest bitscore
+```
+#current label position: laevis_ggT_ID  laevis_unigene_ID 
+
+#pick the top hit for each unigene ID
+
+```
+out of curiousity, does two xb_de transcript mapped to the same unigene? -> no 
+```
+sort -u -k2,2 borealis_de_laevis_unigene_blastout_besthit_flagged.tsv > borealis_de_laevis_unigene_blastout_besthit_flagged_sorted.tsv
+
+awk 'x[$2]++ == 1 { print $2 " is duplicated"}' borealis_de_laevis_unigene_blastout_besthit_flagged_sorted.tsv
+```
+
 ## laevis_tropicalis orthologs
 blast laevis unigene and tropicalis unigenes to each other
 ```
