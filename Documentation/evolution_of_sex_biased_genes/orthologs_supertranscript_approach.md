@@ -70,11 +70,11 @@ Checking the mapping result and count the number of problematic transcripts, whi
 ```
 cd /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/mapped_to_laevis_genome/
 
-perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisUnigene.bam > SuperDuper_splitted_gmap_laevisUnigene_summary_LS.tsv
-perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisUnigeneAligned.out.bam > SuperDuper_splitted_star_laevisUnigene_summary_LS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisGenome.bam > SuperDuper_splitted_gmap_laevisGenome_summary_LS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisGenomeAligned.out.bam > SuperDuper_splitted_star_laevisGenome_summary_LS.tsv
 vi ~/script/check_supertranscript.pl #command in the chop to chop off the 'L' or 'S'
-perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisUnigene.bam > SuperDuper_splitted_gmap_laevisUnigene_summary_noLS.tsv
-perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisUnigeneAligned.out.bam > SuperDuper_splitted_star_laevisUnigene_summary_noLS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisGenome.bam > SuperDuper_splitted_gmap_laevisGenome_summary_noLS.tsv
+perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisGenomeAligned.out.bam > SuperDuper_splitted_star_laevisGenome_summary_noLS.tsv
 ```
 
 
