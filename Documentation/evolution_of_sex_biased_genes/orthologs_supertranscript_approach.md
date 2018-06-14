@@ -77,17 +77,41 @@ perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisGenome.bam
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisGenomeAligned.out.bam > SuperDuper_splitted_star_laevisGenome_summary_noLS.tsv
 ```
 ## borealis_laevis orthologs
-indexing the supertranscripts
-```
-#indexing for blastn
+Use borealis supertranscript as ref genome. Map everything to it
+  - indexing the supertranscripts
+  ```
+  #indexing for blastn
+  makeblastdb -in /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta  -dbtype nucl -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper
+
+  #indexing for gmap
+  gmap_build -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta 
+
+  #indexing for star
+  STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_star_borealisSuper --genomeFastaFiles /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta --genomeChrBinNbits 16
+  ```
+  - mapping: borealis de transcript to borealis super-transcripts 
+  ```
+  #blastn borealis_De to borealis_supertranscript
+  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_DE/de_sex_liver/post_edgeR/borealis_liver_de_transcriptSeq.fa -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/borealis_de_borealis_superT_blastout.tsv
+
+  #gmap borealis_De to borealis_supertranscript
+  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach -A -Z -f samse /home/xue/borealis_DE/de_sex_liver/post_edgeR/borealis_liver_de_transcriptSeq.fa | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/borealis_de_borealis_superT_gmap.bam
+
+  ```
+  - mapping: laevis transcripts to borealis super-transcripts 
+  ```
+  #blastn laevis ggT to borealis_supertranscript
+  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_ggT_borealis_superT_blastout.tsv
+
+  #blastn laevis ggT to borealis_supertranscript
+  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_denovoT_borealis_superT_blastout.tsv
+
+  #gmap laevis ggT to borealis_supertranscript
+  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_ggT_borealis_superT_gmap.bam
 
 
-#indexing for gmap
-gmap_build -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta 
-
-#indexing for star
-STAR --runThreadN 20 --runMode genomeGenerate --genomeDir home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_star_borealisSuper --genomeFastaFiles /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta --genomeChrBinNbits 16
-```
-mapping 
+  #gmap laevis denovo transcriptome to borealis_supertranscript
+  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_denovoT_borealis_superT_gmap.bam
+  ```
 
 
