@@ -87,7 +87,7 @@ Use borealis supertranscript as ref genome. Map everything to it
   gmap_build -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta 
 
   #indexing for star
-  STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_star_borealisSuper --genomeFastaFiles /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta --genomeChrBinNbits 16
+  STAR --runThreadN 20 --runMode genomeGenerate --genomeDir /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_star_borealisSuper --genomeFastaFiles /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta --genomeChrBinNbits 16 --limitGenomeGenerateRAM=64660815232
   ```
   - mapping: borealis de transcript to borealis super-transcripts 
   ```
