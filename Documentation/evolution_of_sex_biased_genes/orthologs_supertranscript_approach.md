@@ -76,5 +76,18 @@ vi ~/script/check_supertranscript.pl #command in the chop to chop off the 'L' or
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisGenome.bam > SuperDuper_splitted_gmap_laevisGenome_summary_noLS.tsv
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisGenomeAligned.out.bam > SuperDuper_splitted_star_laevisGenome_summary_noLS.tsv
 ```
+## borealis_laevis orthologs
+indexing the supertranscripts
+```
+#indexing for blastn
+
+
+#indexing for gmap
+gmap_build -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta 
+
+#indexing for star
+STAR --runThreadN 20 --runMode genomeGenerate --genomeDir home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_star_borealisSuper --genomeFastaFiles /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/SuperDuper.fasta --genomeChrBinNbits 16
+```
+mapping 
 
 
