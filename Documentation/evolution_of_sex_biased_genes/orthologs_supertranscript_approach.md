@@ -76,6 +76,7 @@ vi ~/script/check_supertranscript.pl #command in the chop to chop off the 'L' or
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_gmap_laevisGenome.bam > SuperDuper_splitted_gmap_laevisGenome_summary_noLS.tsv
 perl ~/script/check_supertranscript.pl SuperDuper_splitted_star_laevisGenomeAligned.out.bam > SuperDuper_splitted_star_laevisGenome_summary_noLS.tsv
 ```
+
 ## borealis_laevis orthologs
 Use borealis supertranscript as ref genome. Map everything to it
   - indexing the supertranscripts
