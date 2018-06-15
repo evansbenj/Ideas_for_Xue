@@ -114,4 +114,31 @@ Use borealis supertranscript as ref genome. Map everything to it
   gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_denovoT_borealis_superT_gmap.bam
   ```
 
+Filter the mapping output
+  -  filter: keep top hit only (lowest evalue, highest bitscore)
+  ```
+  #borealis de
+  #perl ~/script/blastout_tophit.pl borealis_de_borealis_superT_blastout.tsv > borealis_de_borealis_superT_blastout_tophit.tsv
+  perl ~/script/blastout_tophit.pl borealis_de_borealis_superT_blastout.tsv borealis_de_borealis_superT
+  #laevis ggT
+  #perl ~/script/blastout_tophit.pl laevis_ggT_borealis_superT_blastout.tsv > laevis_ggT_borealis_superT_blastout_tophit.tsv
+  perl ~/script/blastout_tophit.pl laevis_ggT_borealis_superT_blastout.tsv laevis_ggT_borealis_superT
+  ```
+  - Combine the two tophit files
+  ```
+  #add the "xb_" and "xl_" in front of the trinity transcript id of borealis and laevis respectively. 
+  sed 's/^/xb_/' borealis_de_borealis_superT_blastout_tophit.tsv > borealis_de_borealis_superT_blastout_tophit_flagged.tsv;
+  sed 's/^/xl_/' laevis_ggT_borealis_superT_blastout_tophit.tsv > laevis_ggT_borealis_superT_blastout_tophit_flagged.tsv
 
+  #combine them together
+  cat borealis_de_borealis_superT_blastout_tophit_flagged.tsv laevis_ggT_borealis_superT_blastout_tophit_flagged.tsv > borealis_laevis_transcriptome_borealis_superT_tophit_flagged.tsv
+  ```
+  - sort the file and group the transcript IDs by unigene IDs
+  ```
+  sort -k 2,2 borealis_laevis_transcriptome_borealis_superT_tophit_flagged.tsv > borealis_laevis_transcriptome_borealis_superT_tophit_flagged_sorted.tsv
+  ```
+  - keep only transcript that mapped to supertranscripts that match a borealis de transcript
+  ``` 
+   perl ~/script/xl_xb_to_unigene_blastout_filter.pl borealis_laevis_transcriptome_borealis_superT_tophit_flagged_sorted.tsv > borealis_laevis_transcriptome_borealis_superT_tophit_flagged_sorted_filtered.tsv
+  
+  ```
