@@ -19,7 +19,9 @@ gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B
 
 #gmap: mapping tropicalis genome guided transcriptome to laevis genome
 gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta | samtools view -S -b > /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/laevis_tropicalis_orthologs_laevisGenomeApproach/tropicalis_ggT_laevisV92_genome_gmap.bam
+```
 
-
-
+## extract laevis gene information from laevis gff3 file
+```
+awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > XENLA_gene.gff3
 ```
