@@ -47,15 +47,29 @@ samtools view -F 0x04 -b tropicalis_denovoT_laevisV92_genome_gmap.bam | bedtools
 ## filter the bedfile and keep only the top hit
 filter the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score, keep the first one only;
 ```
-perl ~/script/orthologs_identification_filterBedfile.pl borealis_de_laevisV92_genome_gmap_bedfile.tsv > borealis_de_laevisV92_genome_gmap_bedfile_filtered.tsv
+perl ~/script/orthologs_identification_filterBedfile.pl borealis_de_laevisV92_genome_gmap_bedfile.bed > borealis_de_laevisV92_genome_gmap_bedfile_filtered.tsv
 
-perl ~/script/orthologs_identification_filterBedfile.pl laevis_denovoT_laevisV92_genome_gmap_bedfile.tsv > laevis_denovoT_laevisV92_genome_gmap_bedfile_filtered.tsv
+perl ~/script/orthologs_identification_filterBedfile.pl laevis_denovoT_laevisV92_genome_gmap_bedfile.bed > laevis_denovoT_laevisV92_genome_gmap_bedfile_filtered.tsv
 
-perl ~/script/orthologs_identification_filterBedfile.pl tropicalis_denovoT_laevisV92_genome_gmap_bedfile.tsv > tropicalis_denovoT_laevisV92_genome_gmap_bedfile_filtered.tsv
+perl ~/script/orthologs_identification_filterBedfile.pl tropicalis_denovoT_laevisV92_genome_gmap_bedfile.bed > tropicalis_denovoT_laevisV92_genome_gmap_bedfile_filtered.tsv
 ```
 
 ## extract laevis gene information from laevis gff3 file
 ```
-cd 
-awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > XENLA_gene.gff3
+cd /home/xue/genome_data/laevis_genome/gff3_xl9_2/
+awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
+
+#extract the sequence of each gene
+
+#blastn gene to laevis genome
+time blastn -task megablast -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.fa -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_genes_laevisV92_genome_blastout.tsv
+
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.fa -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_genes_laevisV92_genome_blastnout.tsv
+
+
+```
+
+## check for overlap between laevis gff genes and transcripts
+```
+bedtools intersect -wao -a /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3 -b borealis_de_laevisV92_genome_gmap_bedfile.bed, laevis_denovoT_laevisV92_genome_gmap_bedfile.bed, tropicalis_denovoT_laevisV92_genome_gmap_bedfile.bed > orthologs_list.tsv
 ```
