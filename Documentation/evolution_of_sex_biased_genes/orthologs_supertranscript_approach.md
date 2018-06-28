@@ -116,18 +116,18 @@ Use borealis supertranscript as ref genome. Map everything to it
   ```
    - mapping: tropicalis transcripts to borealis super-transcripts 
   ```
-  #blastn tropicalis ggT to borealis_supertranscript
-  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_ggT_borealis_superT_blastout.tsv
+ #blastn tropicalis ggT to borealis_supertranscript - screen gg
+  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/tropicalis_ggT_borealis_superT_blastout.tsv
 
-  #blastn tropicalis ggT to borealis_supertranscript
-  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_denovoT_borealis_superT_blastout.tsv
+  #blastn tropicalis denovoT to borealis_supertranscript - screen denovo
+  time blastn -task blastn -db /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/db_blastn_borealisSuper/blastn_borealisSuper -outfmt 6 -evalue 0.00005 -query /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovo_transcriptome_trinityout.fasta -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/supertranscript_as_refGenome/tropicalis_denovoT_borealis_superT_blastout.tsv
 
-  #gmap laevis ggT to borealis_supertranscript
-  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/laevis_transcriptome_mar2018/laevis_gg_transcriptome/laevis_genomeguided_transcriptome.fasta | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_ggT_borealis_superT_gmap.bam
+  #gmap tropicalis ggT to borealis_supertranscript - screen tropicalis
+  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/tropicalis_transcriptome/tropicalis_gg_transcriptome/tropicalis_gg_transcriptome.fasta | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/supertranscript_as_refGenome/tropicalis_ggT_borealis_superT_gmap.bam
 
 
-  #gmap laevis denovo transcriptome to borealis_supertranscript
-  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/laevis_denovo_transcriptome_trinityout.Trinity.fasta | samtools view -S -b >  /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_supertranscriptApproach/supertranscript_as_refGenome/laevis_denovoT_borealis_superT_gmap.bam
+  #gmap tropicalis denovo transcriptome to borealis_supertranscript - screen laevis
+  gmap -d db_gmap_borealisSuper/ -D /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach -A -Z -f samse --cross-species /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_denovo_transcriptome_trinityout.fasta | samtools view -S -b > /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/supertranscript_as_refGenome/tropicalis_denovoT_borealis_superT_gmap.bam
   ```
 
 Filter the mapping output
