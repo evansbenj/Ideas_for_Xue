@@ -8,6 +8,10 @@ I have done some of trancriptome-laevis genome mapping for laevis denovo transcr
 
   #gmap: mapping borealis genome guided transcriptome to laevis genome
   gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_gg_transcriptome_may2018/borealis_ggT_trinityOut.fasta | samtools view -S -b > /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/borealis_laevis_orthologs_laevisGenomeApproach/borealis_ggT_laevisV92_genome_gmap.bam
+  
+  #the transcriptome are too large, so mapping the entire transcriptome to the genome fail after running gmap for two weeks. I am going to split the transcriptome into separate file, each contains 100000 transcripts
+   cd /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017 
+time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/subset_15.fasta | samtools view -S -b > /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/borealis_denovoT_laevisV92_genome_gmap_subset15.bam
   ```
 - mapping tropicalis transcriptome to laevis genome
   ```
