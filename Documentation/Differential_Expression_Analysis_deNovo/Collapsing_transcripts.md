@@ -2,4 +2,56 @@
 Collapsing the 1.6 million transcripts to a number that is more biologically realistic (i.e. remove all of the false transcripts due to sequence error, polymorphism, etc..).
 
 The callapsing of transcript was done using a perl script. The script can be found in the script folder. Here I will illustrate the basic sctructure of the script. 
-  1. 
+
+
+##### extract gene information from gff file
+##### awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
+
+##### mapping transcriptome to genome
+##### time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/subset_1.fasta | samtools view -S -b > /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/borealis_denovoT_laevisV92_genome_gmap_subset1.bam
+#filter the mapping read remove the unmapped reads, which is indicated by flag 0x04. Then I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings;
+##### samtools view -F 0x04 -b borealis_denovoT_laevisV92_genome_gmap.bam | bedtools bamtobed -i > borealis_denovoT_laevisV92_genome_gmap_bedfile.bed
+# filter the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score, keep the first one only;
+##### perl ~/script/orthologs_identification_filterBedfile.pl borealis_denovoT_laevisV92_genome_gmap_bedfile.bed > borealis_de_laevisV92_genome_gmap_bedfile_filtered.tsv
+
+##### expression matrix 
+#Indexing the transcriptomes:
+##### kallisto index -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta
+# Transcript abundance quantification:
+##### kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx  -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
+# compile the read count for each samples into a matrix; used a script included in the Trinity RNAseq analysis package
+##### time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv
+
+Path to all my input files
+```
+#laevis gff
+#####/home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
+#alignment files: borealis, laevis, tropicals
+### /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/borealis_denovoT_laevisV92_genome_gmap_filtered.bed
+/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed
+/home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/tropicalis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed
+
+#expression matrix: borealis, laevis, tropicalis
+/home/xue/borealis_DE/de_sex_liver/kallisto_out/borealis_liver.counts.matrix
+/home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/kallisto_out/laevis_denovo.counts.matrix
+/home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix
+```
+
+Path to all the output files
+```
+/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/sum_expression/borealis_expression_matrix_per_gene.tsv
+
+/home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/sum_expression/laevis_expression_matrix_per_gene.tsv
+
+/home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/sum_expression/tropicalis_expression_matrix_per_gene.tsv
+```
+
+My usage
+```
+time perl ~/script/identify_genomic_location_for_transcripts.pl
+
+time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed --matrix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/kallisto_out/laevis_denovo.counts.matrix > laevis_expression_matrix_per_gene.tsv
+
+time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/tropicalis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix > tropicalis_expression_matrix_per_gene.tsv
+```
+
