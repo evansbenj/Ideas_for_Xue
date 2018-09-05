@@ -4,8 +4,10 @@ Collapsing the 1.6 million transcripts to a number that is more biologically rea
 The callapsing of transcript was done using a perl script. The script can be found in the script folder. Here I will illustrate the basic sctructure of the script. 
 
 
-##### extract gene information from gff file
-##### awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
+### extract gene information from gff file
+'''
+awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
+'''
 
 ##### mapping transcriptome to genome
 ##### time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92/ -d laevis92_gmap -A -B 5 -t 8 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/subset_1.fasta | samtools view -S -b > /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/borealis_denovoT_laevisV92_genome_gmap_subset1.bam
