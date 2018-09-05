@@ -3,7 +3,10 @@ Collapsing the 1.6 million transcripts to a number that is more biologically rea
 
 The callapsing of transcript was done using a perl script. The script can be found in the script folder. Here I will illustrate the basic sctructure of the script. 
 
-
+1.This perl script will take in the mapping file, in which the transcriptome was mapped to a genome and will provide the genomic location of mapping.
+2. With the aid of gff file, which contain genomic coordinate of all annotated genes, the script can figure out which genes the transcripts mapped to.
+3. Afterward, the script will read in the expression value of each transcript (output of kallisto) and sum the expression value of transcripts that mapped to the same gene.
+4. Lastly, it will output the callapsed expression value for each gene in the same format as kallisto output.
 
 
 #### generate gene only gff file 
