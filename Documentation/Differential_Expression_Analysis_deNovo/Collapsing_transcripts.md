@@ -38,7 +38,7 @@ kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinit
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv
 ```
 
-####bPath to all my input files
+#### Path to all my input files
 ```
 #laevis gff
 #####/home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
