@@ -6,7 +6,7 @@ The callapsing of transcript was done using a perl script. The script can be fou
 
 
 
-### generate gene only gff file 
+#### generate gene only gff file 
 extract gene information from gff file
 ```
 awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.gff3
