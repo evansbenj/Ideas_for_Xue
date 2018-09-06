@@ -6,7 +6,7 @@ The callapsing of transcripts was done using a perl script. The script can be fo
  - This perl script will take in the mapping file, in which the transcriptome was mapped to a genome and will provide the genomic location of mapping.
  - With the aid of the laevis gff file, which contain genomic coordinates of all annotated genes, the script can figure out which gene the transcripts mapped to based on genomic coordinate.
  - Afterward, the script will read in the expression value of each transcript (output of kallisto) and sum the expression value of transcripts that mapped to the same gene.
- - Lastly, it will output the callapsed expression value for each gene.
+ - Lastly, it will output the callapsed expression value for each gene. An example of the output file is at the end of this document. 
 
 
 #### generate gene only gff file 
