@@ -87,5 +87,18 @@ Scaffold100:209407-303984       43      105.5498        58      73      98      
 
 
 ```
+### DE of collapsed transcripts
+DE with edgeR and DESeq2
+```
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix borealis_expression_per_gene.matrix --method edgeR --samples_file /home/xue/borealis_DE/de_sex_liver/edgeR_out/borealis_liver_samples_files.tsv
+
+time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix borealis_expression_per_gene.matrix --method DESeq2 --samples_file /home/xue/borealis_DE/de_sex_liver/edgeR_out/borealis_liver_samples_files.tsv
+
+```
+filter by FDR
+```
+awk ' $7<0.45  {print }' borealis_expression_per_gene.matrix.female_vs_male.DESeq2.DE_results > liver_deseq2_fdr045.tsv
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_expression_per_gene.matrix.female_vs_male.DESeq2.DE_results > liver_logfc2_fdr005.tsv
+```
 
 
