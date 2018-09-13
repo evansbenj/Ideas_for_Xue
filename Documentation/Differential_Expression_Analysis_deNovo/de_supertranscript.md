@@ -20,9 +20,16 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to
 ```
 DE using EdgeR
 ```
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/borealis_DE/liver_mvsf/kallisto_out/borealis_liver.counts.matrix --method edgeR --samples_file /home/xue/borealis_DE/liver_mvsf/edgeR_out/borealis_liver_samples_files.tsv
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/kallisto_out/borealis_supertranscript_liver.counts.matrix --method edgeR --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/borealis_de_liver_samplefile.tsv
 ```
 DE using DESeq2
+```
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpression/run_DE_analysis.pl --matrix /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/kallisto_out/borealis_supertranscript_liver.counts.matrix --method DESeq2 --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/borealis_de_liver_samplefile.tsv
+
+```
+
+
+## Summarize DE output
 ```
 
 ```
