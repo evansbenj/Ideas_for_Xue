@@ -88,22 +88,7 @@ Scaffold100:209407-303984       43      105.5498        58      73      98      
 
 ```
 ### DE of collapsed transcripts
-Kallisto
-```
-/home/unix/bhaas/GITHUB/trinityrnaseq/util/align_and_estimate_abundance.pl --transcripts Trinity.fasta --est_method RSEM --aln_method bowtie --trinity_mode --prep_reference
 
-build index
- time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta   --est_method kallisto --output_dir /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/kallisto_out/ --trinity_mode --prep_reference
- 
- kallisto
- time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta --seqType fa --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/borealis_de_liver_samplefile.tsv --est_method kallisto --output_dir /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/kallisto_out/ --trinity_mode
- 
- time perl /home/xue/software/trinityrnaseq-2.2.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta --seqType fa --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/borealis_de_liver_samplefile.tsv --est_method kallisto --output_dir /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/kallisto_out/ --trinity_mode
- 
- #running kallisto manually
- kallisto quant -i /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta.kallisto_idx  -o female_rep1 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R2_scythe.fastq.gz)
- 
-```
 
 DE with edgeR and DESeq2
 ```
