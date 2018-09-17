@@ -24,7 +24,17 @@ build index
  
  #running kallisto manually
  kallisto quant -i /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta.kallisto_idx  -o female_rep1 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R2_scythe.fastq.gz)
- 
+
+kallisto quant -i /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta.kallisto_idx  -o male_rep4 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4039_boy_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4039_boy_liver_R2_scythe.fastq.gz)
+
+female  female_rep1     /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R1_scythe.fastq.gz   
+female  female_rep2     /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4009_girl_liver_R1_scythe.fastq.gz 
+female  female_rep3     /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4072_girl_liver_R1_scythe.fastq.gz 
+female  female_rep4     /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz 
+male    male_rep1       /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3896_dad_liver_R1_scythe.fastq.gz   
+male    male_rep2       /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3929_boy_liver_R1_scythe.fastq.gz   
+male    male_rep3       /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4017_boy_liver_R1_scythe.fastq.gz   
+male    male_rep4       /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4039_boy_liver_R1_scythe.fastq.gz   
 ```
 convert to estimate matrix
 ```
