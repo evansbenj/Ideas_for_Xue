@@ -53,6 +53,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpres
 
 ## Summarize DE output
 ```
+awk ' $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_male.DESeq2.DE_results > supertranscript_deseq2_fdr005.tsv
 
+awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_male.DESeq2.DE_results > supertranscript_logfc2_fdr005.tsv
 ```
 
