@@ -102,7 +102,7 @@ filter by FDR
 awk ' $7<0.45  {print }' borealis_expression_per_gene.matrix.female_vs_male.DESeq2.DE_results > liver_deseq2_fdr045.tsv
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_expression_per_gene.matrix.female_vs_male.DESeq2.DE_results > liver_logfc2_fdr005.tsv
 
-awk ' $7<0.05  {print }' borealis_expression_per_gene.matrix.female_vs_male.edgeR.DE_results > liver_edgeR_fdr005.tsv
+awk ' $7<0.45  {print }' borealis_expression_per_gene.matrix.female_vs_male.edgeR.DE_results > liver_edgeR_fdr045.tsv
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_expression_per_gene.matrix.female_vs_male.edgeR.DE_results > liver_edgeR_logfc2_fdr005.tsv
 
 
