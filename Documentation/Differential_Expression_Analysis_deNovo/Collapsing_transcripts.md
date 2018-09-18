@@ -74,7 +74,7 @@ time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xu
 time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/tropicalis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/sum_expression/tropicalis_expression_matrix_per_gene_allowOverlap.tsv
 ```
 
-An example of the output format (sorry, the format is kinda off when I try to copy it on my phone) 
+An example of the output format 
 ```
         female_rep1     female_rep2     female_rep3     female_rep4     male_rep1     male_rep2     male_rep3     male_rep4
 MT:10711-11491  973972  299235  179192  227215  276145  327805  229833  375904
