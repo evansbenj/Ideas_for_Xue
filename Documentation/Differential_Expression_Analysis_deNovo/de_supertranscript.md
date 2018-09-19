@@ -4,6 +4,14 @@ mapping super transcript to laveis genome
 gmap -d laevis92_gmap/ -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -A -B 5 -t 24 -f samse --cross-species /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_supertranscriptApproach/SuperDuper.fasta | samtools view -S -b > /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/SuperDuper_gmap_laevisGenome.bam
 
 ```
+convert to bedfile
+```
+samtools view -F 0x04 -b SuperDuper_gmap_laevisGenome.bam | bedtools bamtobed -i > SuperDuper_gmap_laevisGenome.bed
+```
+filter bedfile
+```
+perl ~/script/orthologs_identification_filterBedfile.pl SuperDuper_gmap_laevisGenome.bed > SuperDuper_gmap_laevisGenome_bedfile_filtered.tsv
+```
 
 ## DE
 Working directory:
@@ -57,4 +65,5 @@ awk ' $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_
 
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_male.DESeq2.DE_results > supertranscript_logfc2_fdr005.tsv
 ```
+
 
