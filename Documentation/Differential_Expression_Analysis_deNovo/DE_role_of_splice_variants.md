@@ -1,4 +1,6 @@
-# Objective
+# Role of splice variant in sex-biased transcript expression
+
+## Objective
 The purpose of this analysis is to see if splice variants contribute to the borealis DE distribution pattern.
 There are two boroad area that we should look at. One is looking into the 432 DE borealis transcripts. The other one is look deeper into 160 collapsed gene. 
 
