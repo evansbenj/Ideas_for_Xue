@@ -7,6 +7,12 @@ The things to check in the DE borealise transcripts that mapped to chr8L sex lin
 - [ ] 2. how many of them are differential expressed when look at the transcript level but not DE when collasped into gene?
 - [ ] 3. how many of them get merged when collasped into gene?
 
-The things to check in the collapsed gene. 
-- [ ] 1. how many of them 
+The things to check in the DE collapsed genes. 
+- [ ] 1. how many of them contain mix of DE transcripts and non-DE transcripts? where are they?
+- [ ] 2. how many of them contain non-DE transcripts only? - why do the gene become DE while it consist of non-DE transcript only?
+- [ ] 3. 
+
+The tings to check with non-DE collapsed genes.
+- [ ] 1. how many of them contain DE transcripts but are non-DE collapsed genes? 
 - [ ] 2. 
+
