@@ -29,9 +29,11 @@ The tings to check with non-DE collapsed genes.
 ### how many transcript are lost when mapped to the annotated laevis gff genes?
 use R: read the bedfile of borealis transcript mapping to laevis gff genes; read the list of DE transcript that mapped to chr8L sex-link region. List/count the number of transcripts that are in both list. 
 
-- DE result (trinity v2.2 edgeR) of borealis v2.4 transcriptome: total de = 434, common with collapsed = 212, 
-- DE result (trinity v2.4 edgeR) of borealis v2.4 transcriptome: total de = 652, common with collapsed = 309,
-
+- for all DE result (using R script: )
+  - DE result (trinity v2.2 edgeR) of borealis v2.4 transcriptome: total de = 434, common with collapsed = 212, 
+  - DE result (trinity v2.4 edgeR) of borealis v2.4 transcriptome: total de = 652, common with collapsed = 309,
+- for DE result that mapped to the sex linked region of chr8L (using R script: )
+  - DE result (trinity v2.2 edgeR) of borealis v2.4 transcriptome: total de = 137, mapped to laevis genome = , collapsed = 69,
 
 
 ### how many of them are differential expressed when look at the transcript level but not DE when collasped into gene?
