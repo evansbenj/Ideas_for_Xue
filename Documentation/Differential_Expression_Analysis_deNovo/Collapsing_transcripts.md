@@ -65,12 +65,16 @@ Path to all the output files
 
 My usage of the perl script
 ```
-time perl ~/script/identify_genomic_location_for_transcripts.pl
+#borealis
+time perl ~/script/identify_genomic_location_for_transcripts.pl 
 
+#borealis
 time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/borealis_denovoT_laevisV92_genome_gmap_filtered.bed --matrix /home/xue/borealis_DE/de_sex_liver/kallisto_out/borealis_liver.counts.matrix > borealis_expression_matrix_per_gene_allowOverlap.tsv
 
+#laevis
 time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed --matrix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/kallisto_out/laevis_denovo.counts.matrix > /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/sum_expression/laevis_expression_matrix_per_gene_allowOverlap.tsv
 
+#tropicalis
 time perl ~/script/identify_genomic_location_for_transcripts.pl --align /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/tropicalis_denovoT_laevisV92_genome_gmap_bedfile_filtered.bed --matrix /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/tropicalis_kallisto_denovo/tropicalis_denovo.counts.matrix > /home/xue/tropicalis_transcriptome/tropicalis_denovo_transcriptome/sum_expression/tropicalis_expression_matrix_per_gene_allowOverlap.tsv
 ```
 
