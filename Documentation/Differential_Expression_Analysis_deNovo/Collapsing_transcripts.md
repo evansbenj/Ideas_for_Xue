@@ -1,4 +1,4 @@
-# Callapsing transcripts
+# Collapsing transcripts
 Collapsing the 1.6 million transcripts to a number that is more biologically realistic (i.e. remove all of the false transcripts due to sequence error, polymorphism, etc..).
 
 The callapsing of transcripts was done using a perl script. The script can be found in the script folder on info (path: /home/xue/script/identify_genomic_location_for_transcripts.pl) . Here I will illustrate the basic sctructure of the script. 
