@@ -7,7 +7,7 @@ Steps:
 3. summarize the output of DE and output the summarize
 
 
-# reading input file
+# Reading input file
 ### example of input file
 Example of a typical input file is a matrix with one culumn of gene/transcript ID and with columns of raw read count in each samples (ex, liver_female1, liver_female2). Below is an example of a matrix with gene ID and actual read count numbers.
 ```
@@ -33,7 +33,7 @@ Default is the matrix with transcript IDs.
 - [ ] getOption: matrix with transcript ID or gene ID? default is transcript ID
 - [ ] a subroutine to read in mapping file **doesnt need to do at this step, can do it in the summaring step**
 
-# perform DE
+# Performing DE
 ### information needed
 - read matrix: from above input
 - filter: only sex-biased or inlcuded both sex-biased and sex-specific
@@ -43,7 +43,13 @@ Default is the matrix with transcript IDs.
 - output the result
 
 # Summarizing DE result
-### 
+### what type of summary do we want?
+- summarize based on %DE per chr 
+  -  output stat for each chr
+  - output stat for categories; different categories for borealis, laevis, and tropicalis
+    - borealis: chr8L sex link, chr8L non-sex link, chr8S, other chromosomes, scaffolds
+    - laevis: chr2l sex link, chr2L non-sex link, chr2S, other chromosomes, scaffolds
+    - tropicalis: 
 
 
 
