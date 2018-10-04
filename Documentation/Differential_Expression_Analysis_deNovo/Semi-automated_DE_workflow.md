@@ -49,7 +49,8 @@ Default is the matrix with transcript IDs.
   - output stat for categories; different categories for borealis, laevis, and tropicalis
     - borealis: chr8L sex link, chr8L non-sex link, chr8S, other chromosomes, scaffolds
     - laevis: chr2l sex link, chr2L non-sex link, chr2S, other chromosomes, scaffolds
-    - tropicalis: 
+    - tropicalis: chr7, other chromosomes, scaffolds
+- 
 
 
 
