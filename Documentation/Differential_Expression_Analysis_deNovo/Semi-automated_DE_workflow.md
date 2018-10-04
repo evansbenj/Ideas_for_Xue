@@ -50,7 +50,9 @@ Default is the matrix with transcript IDs.
     - borealis: chr8L sex link, chr8L non-sex link, chr8S, other chromosomes, scaffolds
     - laevis: chr2l sex link, chr2L non-sex link, chr2S, other chromosomes, scaffolds
     - tropicalis: chr7, other chromosomes, scaffolds
-- 
+
+# How to write the script for it?
+- R? perl?
 
 
 
