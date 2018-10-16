@@ -65,13 +65,16 @@ awk '$3 == "gene"{print}' XENLA_9.2_Xenbase.gff3 > /home/xue/genome_data/laevis_
 
 #extract the sequence of each gene
 
-#blastn gene to laevis genome
+#blastn gff gene to laevis genome
 time blastn -task megablast -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.fa -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_genes_laevisV92_genome_blastout.tsv
 
 time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/genome_data/laevis_genome/gff3_xl9_2/XENLA_gene.fa -out /home/xue/borealis_DE/de_sex_liver/borealis_laevis_tropicalis_orthologs/orthologs_laevisGenomeApproach/laevis_genes_laevisV92_genome_blastnout.tsv
 
-
+#blast expanded_part_borealis_mapped_uncollapsed_transcript gff genome to laevis genome
+time blastn -task blastn -db ~/genome_data/laevis_genome/db_blastn_laevisGenome/Xl9_2_blastn_db -outfmt 6 -evalue 0.00005 -query /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/expanded_laevis_gff_genome/expanded_laevis_gffGenome_laevis_genome_blastn/subset_15.fasta -out /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/expanded_laevis_gff_genome/expanded_laevis_gffGenome_laevis_genome_blastn/subset_15_blastout
 ```
+
+
 
 ## check for overlap between laevis gff genes and transcripts
 ```
