@@ -60,6 +60,11 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Analysis/DifferentialExpres
 
 
 ## Summarize DE output
+EdgeR result
+```
+/home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_supertranscript_de/
+```
+Deseq2 result
 ```
 awk ' $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_male.DESeq2.DE_results > supertranscript_deseq2_fdr005.tsv
 
