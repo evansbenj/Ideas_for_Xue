@@ -74,3 +74,16 @@ cat ../../../Trimmed/BJE3929_boy*R1_scythe.fastq.gz > ../../../Trimmed/BJE3929_b
 cat ../../../Trimmed/BJE4082_girl*R1_scythe.fastq.gz > ../../../Trimmed/BJE4082_girl_all_left.fastq.gz ; cat ../../../Trimmed/BJE4082_girl*R2_scythe.fastq.gz > ../../../Trimmed/BJE4082_girl_all_right.fastq.gz ; /home/benf/bin/Trinity-v2.4.0/Trinity --seqType fq --left ../../../Trimmed/BJE4082_girl_all_left.fastq.gz --right ../../../Trimmed/BJE4082_girl_all_right.fastq.gz --CPU 15 --full_cleanup --max_memory 150G --output BJE4082_girl_trinity
 
 ```
+
+# Building borealise transcriptome - with different parameter
+Ian and Ben's suggestion: try to trim raw read with a different trimmomatic paramet to see if we can cut down more low quality sequence. and then build the transcriptome again to see if we can reduce the amount of isoforms
+- Trimmomatic
+```
+```
+- Trinity de novo transcriptome assembly
+```
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz
+ --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz
+ --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
+
+```
