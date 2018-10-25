@@ -52,7 +52,9 @@ Default is the matrix with transcript IDs.
     - tropicalis: chr7, other chromosomes, scaffolds
 
 # How to write the script for it?
-- R? perl?
+- perl? R?
+  -  use perl to do the overall flow and do DE/filtering in R
+  
 
 
 
