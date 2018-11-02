@@ -89,5 +89,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --lef
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE
 
-time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 30 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
+
+#included --no_salmon because the current version of salmon is 0.8, and trinity2.7 need min Salmon v0.9.1. In order to install salmon v0.9, it needs g++ v4.7 and current version is v4.4.7. I can't update g++ compilor and hence give up on installing salmon. Salmon was used for quick expression estimates and filtering of likely artifacts. I guess it would be fine 
+
+time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 30 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --no_salmon --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
 ```
