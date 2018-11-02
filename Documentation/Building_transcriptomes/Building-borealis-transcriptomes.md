@@ -82,6 +82,12 @@ Ian and Ben's suggestion: try to trim raw read with a different trimmomatic para
 ```
 - Trinity de novo transcriptome assembly
 ```
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
 
+```
+- Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE
+
+time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 30 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
 ```
