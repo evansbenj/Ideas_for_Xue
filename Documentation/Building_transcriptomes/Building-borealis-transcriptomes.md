@@ -87,8 +87,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --lef
 ```
 - Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
 ```
-/home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE
-
+#export path
+export PATH="/home/xue/software/jellyfish-2.2.5/bin:$PATH"
 
 #included --no_salmon because the current version of salmon is 0.8, and trinity2.7 need min Salmon v0.9.1. In order to install salmon v0.9, it needs g++ v4.7 and current version is v4.4.7. I can't update g++ compilor and hence give up on installing salmon. Salmon was used for quick expression estimates and filtering of likely artifacts. I guess it would be fine 
 
