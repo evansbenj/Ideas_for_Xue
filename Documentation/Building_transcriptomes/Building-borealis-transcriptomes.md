@@ -97,26 +97,27 @@ The amount of transcripts that we end up having after running the above assembly
 ### Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
 I would like to try the newer version of trinity. I tried to build the newest version v2.8 but it needs the most updated version of cmake 2.9 (current version on info is v2.8.12.2). To install cmake 2.9, it needs g++ v4.7 and current version is v4.4.7. I can't update g++ compilor and hence give up on installing Trinity v2.8. I go down the Trinty version list and install Trinity v2.7.0. Trinity v2.7.0 need a newer version of jellyfish and bowtie2 than what we have on info. Hence, I locally install them and export their path. 
 ```
-#installing Trinity v2.7.0
+# installing Trinity v2.7.0
+# installation instruction: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Installing-Trinity
 make 
 make plugins
 
-#to test Trinity
+# to test Trinity
 cd sample_data/test_Trinity_Assembly/
 ./runMe.sh
 
-#installing jellyfish 2.2.5; I tried to install the newest jellyfish v2.2.10 but it needs g++ v4.7 as well
-#manual: https://github.com/gmarcais/Jellyfish
+# installing jellyfish 2.2.5; I tried to install the newest jellyfish v2.2.10 but it needs g++ v4.7 as well
+# manual: https://github.com/gmarcais/Jellyfish
 ./configure --prefix=/home/xue/software/jellyfish-2.2.5/
 make -j 4
 
-#installing bowtie2 ()
-#manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2
+# installing bowtie2 ()
+# manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#obtaining-bowtie-2
 make static-libs
 make STATIC_BUILD=1
 make
 
-#export path
+# export path
 export PATH="/home/xue/software/jellyfish-2.2.5/bin:$PATH"
 export PATH="/home/xue/software/bowtie2-2.3.4.3:$PATH"
 ```
