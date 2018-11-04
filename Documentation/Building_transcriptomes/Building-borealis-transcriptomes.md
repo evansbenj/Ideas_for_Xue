@@ -88,7 +88,7 @@ java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 $
 ```
 ### Trinity de novo transcriptome assembly with version 2.4.0
 I run trinity v2.4.0 with an additional parameter `--min_kmer_cov 2` (suggested by Ian), which should reduce the amount of low coverage transcript. 
-```
+```bash
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
 
 ```
@@ -96,7 +96,7 @@ The amount of transcripts that we end up having after running the above assembly
 
 ### Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
 I would like to try the newer version of trinity. I tried to build the newest version v2.8 but it needs the most updated version of cmake 2.9 (current version on info is v2.8.12.2). To install cmake 2.9, it needs g++ v4.7 and current version is v4.4.7. I can't update g++ compilor and hence give up on installing Trinity v2.8. I go down the Trinty version list and install Trinity v2.7.0. Trinity v2.7.0 need a newer version of jellyfish and bowtie2 than what we have on info. Hence, I locally install them and export their path. 
-```
+```bash
 # installing Trinity v2.7.0
 # installation instruction: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Installing-Trinity
 make 
