@@ -75,7 +75,7 @@ cat ../../../Trimmed/BJE4082_girl*R1_scythe.fastq.gz > ../../../Trimmed/BJE4082_
 
 ```
 
-# Building borealise transcriptome - with different parameter
+# Re-Building borealise transcriptome with different parameters
 Ian and Ben's suggestion: try to trim raw read with a different trimmomatic paramet to see if we can cut down more low quality sequence. and then build the transcriptome again to see if we can reduce the amount of isoforms
 ### Trimmomatic
 A perl script that was written by BenF was modified to run Trimmomatic on each inidividual rnaseq read files
@@ -100,7 +100,8 @@ I would like to try the newer version of trinity. Trinity v2.7.0 need a newer ve
 #installing jellyfish
 
 #installing bowtie2
-
+make static-libs
+make STATIC_BUILD=1
 
 #export path
 export PATH="/home/xue/software/jellyfish-2.2.5/bin:$PATH"
