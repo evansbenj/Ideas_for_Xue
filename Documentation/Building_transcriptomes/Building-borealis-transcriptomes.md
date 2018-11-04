@@ -77,20 +77,37 @@ cat ../../../Trimmed/BJE4082_girl*R1_scythe.fastq.gz > ../../../Trimmed/BJE4082_
 
 # Building borealise transcriptome - with different parameter
 Ian and Ben's suggestion: try to trim raw read with a different trimmomatic paramet to see if we can cut down more low quality sequence. and then build the transcriptome again to see if we can reduce the amount of isoforms
-- Trimmomatic
+### Trimmomatic
+A perl script that was written by BenF was modified to run Trimmomatic on each inidividual rnaseq read files
 ```
+perl run_trimmomatic.pl 
 ```
-- Trinity de novo transcriptome assembly
+The Trimmomatic command in the script is:
+```
+java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 $r1_name $r2_name $r1_par_out $r1_unpar_out $r2_par_out $r2_unpar_out ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:30:0.7 MINLEN:36
+```
+### Trinity de novo transcriptome assembly
+I run trinity v2.4.0 with an additional parameter `--min_kmer_cov 2` (suggested by Ian), which should reduce the amount of low coverage transcript. 
 ```
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
 
 ```
-- Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
+The amount of transcripts that we end up having after running the above assembly is 1.5m. The initial run in Sept 2017 had 1.6m. This Oct2018 run have 0.1m less transcripts but still not very good. 
+
+### Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
+I would like to try the newer version of trinity. Trinity v2.7.0 need a newer version of jellyfish and bowtie2 than what we have on info. Hence, I locally install them and export their path. 
 ```
+#installing jellyfish
+
+#installing bowtie2
+
+
 #export path
 export PATH="/home/xue/software/jellyfish-2.2.5/bin:$PATH"
+export PATH="/home/xue/software/bowtie2-2.3.4.3:$PATH"
+```
+In this assembly run, I included `--no_salmon` because the current version of Salmon on info is 0.8, and trinity2.7 need min Salmon v0.9.1. In order to install salmon v0.9, it needs g++ v4.7 and current version is v4.4.7. I can't update g++ compilor and hence give up on installing salmon. Salmon was used for quick expression estimates and filtering of likely artifacts. By running the assembly with `--no_salmon`, we would lose the opportunity to ultilize the new filtering function of trinity, but I guess it would be fine.  
 
-#included --no_salmon because the current version of salmon is 0.8, and trinity2.7 need min Salmon v0.9.1. In order to install salmon v0.9, it needs g++ v4.7 and current version is v4.4.7. I can't update g++ compilor and hence give up on installing salmon. Salmon was used for quick expression estimates and filtering of likely artifacts. I guess it would be fine 
-
-time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 30 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --no_salmon --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
+```
+time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 25 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --no_salmon --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info113 in screen assembly" | mail songxy2@mcmaster.ca
 ```
