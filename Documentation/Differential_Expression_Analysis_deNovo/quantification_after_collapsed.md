@@ -51,3 +51,16 @@ time perl ~/script/identify_genomic_location_for_transcripts.pl --matrix /home/x
 ```bash
 
 ```
+
+
+## Assess the quality of the reference transcriptome
+```
+#build a mapping index
+bowtie2-build ../mapped_borealis_transcript_sequence.fa ../mapped_borealis_transcript_sequence.fa 
+
+#
+bowtie2 -p 10 -q --no-unal -k 20 -x Trinity.fasta -1 /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/Borealis_scythe_R1.fastq.gz -2 /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/Borealis_scythe_R2.fastq.gz align_stats.txt| samtools view -@10 -Sb -o reads_alignment_to_mapped_borealis_transcript_bowtie2.bam 
+     
+cat 2>&1 align_stats.txt
+
+```
