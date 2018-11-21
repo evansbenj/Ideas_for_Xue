@@ -1,6 +1,6 @@
-### Step
-1. go through the alignment file and extract only sequence of mapped transcrips
-2. redo the quantification with the mapped transcripts
+### Steps
+1. go through the alignment file and extract only sequence of mapped transcrips *done
+2. redo the quantification with the mapped transcripts *running
 3. collapse the raw count
 4. run DE
 
