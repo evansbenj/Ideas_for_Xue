@@ -5,17 +5,17 @@
 4. collapse the raw count
 5. run DE
 
-*collect transcript ID of the mapped transcripts*
+**collect transcript ID of the mapped transcripts**
 ```bash
 
 ```
 
 
 
-*extract sequence of the mapped transcripts*
+**extract sequence of the mapped transcripts**
 
-*quantification*
+**quantification**
 
-*collapse the raw count*
+**collapse the raw count**
 
-*run DE*
+**run DE**
