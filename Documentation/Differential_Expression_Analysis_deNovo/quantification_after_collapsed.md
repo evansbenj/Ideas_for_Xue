@@ -67,6 +67,7 @@ cat 2>&1 align_stats.txt
 
 # laevis
 **working directory**
+
 ```bash
 cd /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/collapsed_laevis_transriptome_DE/countQuantification_mappedTransOnly````
 
