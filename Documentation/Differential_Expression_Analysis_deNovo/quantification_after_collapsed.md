@@ -69,7 +69,8 @@ cat 2>&1 align_stats.txt
 **working directory**
 
 ```bash
-cd /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/collapsed_laevis_transriptome_DE/countQuantification_mappedTransOnly````
+cd /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/collapsed_laevis_transriptome_DE/countQuantification_mappedTransOnly
+```
 
 **extract sequence of the mapped transcripts**
 ```bash
