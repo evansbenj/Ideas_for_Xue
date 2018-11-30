@@ -104,7 +104,7 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to
 
 **collapse the raw count**
 ```bash
-time perl ~/script/identify_genomic_location_for_transcripts.pl --matrix /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/borealis_liver.counts.matrix > borealis_expression_matrix_per_gene.tsv
+time perl ~/script/identify_genomic_location_for_transcripts.pl --matrix /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcriptome/collapse_laevis_transcriptome_withMappedTransOnly/countQuantification_mappedTransOnly/laevis_liver_mapped.counts.matrix  > borealis_expression_matrix_per_gene.tsv
 ```
 
 
