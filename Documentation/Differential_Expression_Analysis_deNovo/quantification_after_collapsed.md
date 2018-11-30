@@ -98,7 +98,7 @@ kallisto quant -i /home/xue/laevis_transcriptome_mar2018/laevis_denovo_transcrip
 
 
 #To compute the matrix (time cost: ~10min):
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix laevis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv  male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv 
 
 ```
 
