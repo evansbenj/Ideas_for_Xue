@@ -6,5 +6,7 @@ awk '$3 == "exon"{print }' XENLA_9.2_Xenbase.gff3 > XENLA_exon.gff3
 #extract the sequence of exons
  bedtools getfasta -fi ../XL9_2.fa -bed XENLA_exon.gff3 -fo XENLA_exon.fa
  
+ #use gffread to extract the sequence of gene
+ -Z 
  
 ```
