@@ -71,4 +71,23 @@ awk ' $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_
 awk '($4 < -2||$4 >2) && $7<0.05  {print }' borealis_supertranscript_liver.counts.matrix.female_vs_male.DESeq2.DE_results > supertranscript_logfc2_fdr005.tsv
 ```
 
+# Differential Transcript Usage
+Working directory `/home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_superTrans_DTU`. 
+
+Following tutorial in https://github.com/trinityrnaseq/trinityrnaseq/wiki/DiffTranscriptUsage#differential-transcript-usage-via-supertranscripts. Firstly, I need to convert gff file to gtf file. 
+```bash
+#covert gff to gtf
+gffread SuperDuper.gff -T -o SuperDuper.gtf
+```
+The gtf file is not complete and have the entire transcript as one exon. Need to re-run the supertranscriptome assembly to get a better gff file. 
+```
+```
+
+```bash
+~/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Analysis/SuperTranscripts/DTU/dexseq_wrapper.pl \
+       --genes_fasta /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/SuperDuper.fasta \
+       --genes_gtf /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/SuperDuper.gff \
+       --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_superTrans_DTU/borealis_de_liver_samplefile.tsv \
+       --out_prefix borealis_DTU --aligner STAR
+```
 
