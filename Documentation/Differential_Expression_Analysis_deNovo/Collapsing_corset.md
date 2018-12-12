@@ -3,7 +3,7 @@ Corset clusters transcripts from de novo transcriptome assembly to gene-level co
 - Corset documentation: https://github.com/Oshlack/Corset/wiki/InstallingRunningUsage
 - Example: https://github.com/Oshlack/Corset/wiki/Example
 
-#### salmon
+### salmon
 building index
 ```bash
 salmon index --index Trinity --transcripts trinity_out_dir.Trinity.fasta
@@ -20,7 +20,7 @@ for F in $FILES ; do
         salmon quant --index Trinity --libType IU --dumpEq -1 $R1 -2 $R2 --output ${F}.out
 done
 ```
-#### corset
+### corset
 ```bash
 corset -g 1,1,1,2,2,2 -n A1,A2,A3,B1,B2,B3 -i salmon_eq_classes SRR*/aux_info/eq_classes.txt
 ```
