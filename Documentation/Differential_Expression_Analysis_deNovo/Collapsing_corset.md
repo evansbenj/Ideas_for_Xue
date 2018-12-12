@@ -23,9 +23,7 @@ done
 ### corset
 install corset
 ```
-./configure --prefix=/home/xue/software/Corset-version-1.07 --with-bam_inc=/usr/local/samtools/current/sam.h --with-bam_lib=/usr/local/samtools/current/libbam.a
-
-./configure --prefix=/home/xue/software/Corset-version-1.07 --with-bam_inc=/usr/local/samtools/current/ --with-bam_lib=/usr/local/samtools/current/
+./configure --prefix=/home/xue/software/Corset-version-1.07 --with-bam_inc=/usr/local/samtools/1.3.1/ --with-bam_lib=/usr/local/samtools/1.3.1/
 ```
 run corset
 ```bash
