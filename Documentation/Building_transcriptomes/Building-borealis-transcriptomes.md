@@ -125,3 +125,26 @@ In this assembly run, I included `--no_salmon` because the current version of Sa
 ```bash
 time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 25 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --no_salmon --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info113 in screen assembly" | mail songxy2@mcmaster.ca
 ```
+
+Building transcriptome assembly with the newest version of Trinity in Graham
+
+```
+#load the latest version of Trinity
+module load trinity/2.8.4
+
+#batch scrip to run Trinity
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=10 
+#SBATCH --time=3-12:00
+#SBATCH --mem=200G
+#SBATCH --job-name=borealis_transcriptome_dec2018
+#SBATCH --account=def-ben
+
+module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
+module load trinity/2.8.4
+module load samtools/1.9
+
+Trinity --seqType fq --left borealis_R1_paired.fastq.gz --right borealis_R2_paired.fastq.gz --CPU 10 --full_cleanup --max_memory 200G --include_supertranscripts --output /project/def-ben/songxy/borealis_transcriptome/borealis_denovo_transcriptome_dec2018_trinityOut
+```
