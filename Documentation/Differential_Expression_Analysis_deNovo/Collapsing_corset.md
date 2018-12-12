@@ -22,7 +22,7 @@ done
 ```
 ### corset
 ```bash
-corset -g 1,1,1,2,2,2 -n A1,A2,A3,B1,B2,B3 -i salmon_eq_classes SRR*/aux_info/eq_classes.txt
+corset -g 1,1,1,2,2,2 -n A1,A2,A3,B1,B2,B3 -i salmon_eq_classes BJE*/aux_info/eq_classes.txt
 ```
 ```bash
 for FILE in `ls *.bam` ; do
