@@ -21,9 +21,11 @@ for F in $FILES ; do
 done
 ```
 ### corset
-install corset
-```
+install corset, which didn't go well on info. I will move to graham to do this analysis since Graham already have Corset 1.07 installed. 
+```bash
 ./configure --prefix=/home/xue/software/Corset-version-1.07 --with-bam_inc=/usr/local/samtools/1.3.1/ --with-bam_lib=/usr/local/samtools/1.3.1/
+
+make #make didn't work; 
 ```
 run corset
 ```bash
