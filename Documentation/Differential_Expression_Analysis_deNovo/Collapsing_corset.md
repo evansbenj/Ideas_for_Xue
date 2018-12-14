@@ -29,11 +29,18 @@ make #make didn't work;
 ```
 run corset
 ```bash
-corset -g 1,1,1,2,2,2 -n A1,A2,A3,B1,B2,B3 -i salmon_eq_classes BJE*/aux_info/eq_classes.txt
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1 
+#SBATCH --time=00:10:00
+#SBATCH --mem=5G
+#SBATCH --job-name=corset_grouping
+#SBATCH --account=def-ben
+
+module load nixpkgs/16.09  gcc/7.3.0
+module load corset/1.07
+
+corset -g 1,1,1,1,2,2,2,1 -n female_rep1,female_rep2,female_rep3,female_rep4,female_rep1,female_rep2,female_rep3,female_rep4 -i salmon_eq_classes salmon_out/BJE*/aux_info/eq_classes.txt
 ```
-```bash
-for FILE in `ls *.bam` ; do
-   corset -r true-stop $FILE &
-done
-wait
-```
+
