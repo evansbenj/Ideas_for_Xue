@@ -43,7 +43,7 @@ module load nixpkgs/16.09  gcc/7.3.0
 module load bowtie2/2.3.4.3
 module load corset/1.07
 
-corset -g 1,1,1,1,2,2,2,1 -n female_rep1,female_rep2,female_rep3,female_rep4,male_rep1,male_rep2,male_rep3,male_rep4 -f true -i salmon_eq_classes salmon_out/BJE*/aux_info/eq_classes.txt
+corset -g 1,1,1,1,2,2,2,2 -n female_rep1,female_rep2,female_rep3,female_rep4,male_rep1,male_rep2,male_rep3,male_rep4 -f true -i salmon_eq_classes salmon_out/BJE*/aux_info/eq_classes.txt
 ```
 Corset output a txt file, which contain the clustering of transcripts, and also a count table, which collapsed the expression count of transcripts that belong to the same cluster. The path to the files are:
 ```
