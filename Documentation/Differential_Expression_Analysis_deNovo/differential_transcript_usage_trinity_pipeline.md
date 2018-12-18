@@ -24,6 +24,7 @@ module load nixpkgs/16.09  gcc/7.3.0
 module load nixpkgs/16.09  intel/2018.3
 module load samtools/1.9
 module load r/3.5.1
+module load star/2.6.1c
 module load python/3.7.0
 module load trinity/2.8.4
 
