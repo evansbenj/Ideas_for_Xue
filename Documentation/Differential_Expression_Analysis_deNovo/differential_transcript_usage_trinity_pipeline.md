@@ -1,6 +1,16 @@
 following tutorial: `https://github.com/trinityrnaseq/trinityrnaseq/wiki/DiffTranscriptUsage`
 
+How to run it on info:
+```
+/home/xue/software/trinityrnaseq-Trinity-v2.8.4/Analysis/SuperTranscripts/DTU/dexseq_wrapper.pl \
+       --genes_fasta /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/supertranscriptome_dec2018/trinity_genes.fasta \
+       --genes_gtf /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/supertranscriptome_dec2018/trinity_genes.gtf \
+       --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_superTrans_DTU/borealis_de_liver_samplefile.tsv \
+       --out_prefix DTU --aligner STAR
+```
 
+How to run it in Graham:
+```
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -22,3 +32,4 @@ module load python/3.7.0
        --genes_gtf trinity_genes.gtf \
        --samples_file samples.txt \
        --out_prefix DTU --aligner STAR
+```
