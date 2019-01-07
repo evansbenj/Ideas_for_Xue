@@ -23,6 +23,34 @@ module load trinity/2.8.4
 
 Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R1_paired.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/borealis_transcriptome_trinityOut
 ```
+## Perform DTU for supertranscriptome dec 2018
+```
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1 
+#SBATCH --time=00:12:00
+#SBATCH --mem=1G
+#SBATCH --job-name=borealis_supertranscriptome_DTU
+#SBATCH --account=def-ben
+
+
+module load nixpkgs/16.09 intel/2016.4
+#module load star/2.6.1a
+module load hisat2/2.1.0
+module load r/3.5.0
+module load trinity/2.8.4
+module load python/3.7.0
+
+
+/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/trinity/2.8.4/trinityrnaseq-Trinity-v2.8.4/Analysis/SuperTranscripts/DTU/dexseq_wrapper.pl \
+               --genes_fasta /home/songxy/projects/def-ben/songxy/borealis_transcriptome/supertranscriptome/trinity_genes.fasta \
+                      --genes_gtf /home/songxy/projects/def-ben/songxy/borealis_transcriptome/supertranscriptome/trinity_genes.gtf \
+                             --samples_file /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/borealis_liver_trimmed_reads_samples.txt \
+                                    --CPU 10 \
+                                           --out_prefix DTU --aligner hisat2
+
+```
 
 ## Mapping borealis transcriptome to laevis genome
 ```
