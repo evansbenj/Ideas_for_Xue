@@ -67,5 +67,5 @@ module load nixpkgs/16.09  gcc/7.3.0
 module load gmap-gsnap/2018-07-04
 module load samtools/1.9
 
-time gmap -D /home/songxy/projects/def-ben/songxy/genome/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 20 -f samse --cross-species /home/songxy/projects/def-ben/songxy/borealis_transcriptome/borealis_denovo_transcriptome_dec2018_trinityOut/borealis_transcriptome_trinityOut.Trinity.fasta | samtools view -S -b > /home/songxy/projects/def-ben/songxy/borealis_transcriptome/mapping_xb_denovoTrans_xl_genomev92_gmap/borealis_denovoT_laevisv92_genome_gmap.bam
+time gmap -D /home/songxy/projects/def-ben/songxy/genome/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 20 -f samse --cross-species /home/songxy/projects/def-ben/songxy/borealis_transcriptome/data/borealis_denovo_transcriptome_dec2018_trinityOut/borealis_transcriptome_trinityOut.Trinity.fasta | samtools view -S -b > /home/songxy/projects/def-ben/songxy/borealis_transcriptome/analysis/mapping_xb_denovoTrans_xl_genomev92_gmap/borealis_denovoT_laevisv92_genome_gmap.bam
 ```
