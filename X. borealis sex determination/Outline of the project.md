@@ -1,6 +1,6 @@
 # Outline
 
-Based on conversation with Ben on Jan 8 2018, below is the overview of the steps involved in this project. 
+Based on conversation with Ben on Jan 8 2018, below is the overview of the bioinformatic steps involved in this project. 
 - Build transcriptome
 - Quality check using the genome and gtf file
 - Collapse raw count to gene level with GTF 
