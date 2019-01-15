@@ -1,12 +1,12 @@
 
-## Obtaining RNAseq raw data
-### Downloading Raw RNAseq data from sequencing center
+## RNAseq raw data
+#### Downloading Raw RNAseq data from sequencing center
 ```
 ```
-### Upload the Raw RNAseq data to info
+#### Upload the Raw RNAseq data to info
 ```
 ```
-### Do fastqc on raw data
+#### Do fastqc on raw data
 ```
 ```
 
@@ -61,7 +61,7 @@ What the parameters mean:
 - TOPHRED33: Convert quality scores to Phred-33
 - TOPHRED64: Convert quality scores to Phred-64
 
-#### run fastqc on scythe data
+#### run fastqc on Trimmomatic trimmed data
 We did it for all fastq.gz file in the folder
 ```bash
 for i in *fastq.gz ; do fastqc $i; done
@@ -107,14 +107,14 @@ Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/tropicalis_gona
 ```
 The one ran in info gave my error message and stopped running. The one in graham ran for a little bit more than 1 days with max 191Gb of memories. Much shorter time than I expected. 
 
-### output from trinity
+#### output from trinity
 - the output will be a fasta file by default. It will have the transcript name and transcript sequence for each transcript it builds.
 - example of a transcript name is: >TRINITY_DN86389_c0_g1_i1 len=398 path=[0:0-159 2:160-208 3:209-275 5:276-397]
   - the c means cluster
   - the g means gene
   - the i means isoform: different isoform of a gene are supposely splice variants if Trinity did the assembly correctly.
 
-# GMAP - Mapping to *X.tropicalis* genome (v91)
+## GMAP - Mapping to *X.tropicalis* genome (v91)
 I mapped the *de novo* assembled tropicalis transcriptome to the tropicalis genome (v91) using gmap on Graham. 
 ```bash
 #downloading the genome from Xenbase (ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/) 
