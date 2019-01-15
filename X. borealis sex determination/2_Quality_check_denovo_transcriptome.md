@@ -1,4 +1,4 @@
-# *de novo* Assembled Transcriptome Quality Assessment
+# Quality Assessment for *de novo* Assembled Transcriptome 
 ## Transfer Data to Info
 ```bash
 #I transfer the transcriptome and supertranscriptome data, and mapping result back to Info for down stream analysis
@@ -26,3 +26,6 @@ Below is the result:
 ```
 
 ```
+Note/interpretation about the result
+     - 
+     - 
