@@ -16,7 +16,7 @@ I ran the below script provided by Trinity to check the read contents of the tra
 #build a bowtie2 index for the transcriptome
 bowtie2-build tropicalis_transcriptome_trinityOut.Trinity.fasta tropicalis_transcriptome_trinityOut.Trinity.fasta
 
-#perform the alignment (example for paired-end reads) 
+#perform the alignment for paired-end reads 
 bowtie2 -p 10 -q --no-unal -k 20 -x tropicalis_transcriptome_trinityOut.Trinity.fasta -1 /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/XT_R1.fastq.gz -2 /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/XT_R2.fastq.gz 2 > align_stats.txt| samtools view -@10 -Sb -o bowtie2.bam 
      
 #capture the read alignment statistics
