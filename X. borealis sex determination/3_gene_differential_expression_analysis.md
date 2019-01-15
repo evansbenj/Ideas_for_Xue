@@ -1,3 +1,11 @@
 # Gene differential expression_analysis
 ## Workflow 
-- [ ] collapsed transcriptome into gene level 
+- [ ] Collapsed transcriptome into gene level -> use supertranscriptome?
+- [ ] Raw count quantafication - Kallisto
+- [ ] Differential expression analysis - EdgeR
+
+## Collapsing
+
+## Kallisto
+
+## EdgeR
