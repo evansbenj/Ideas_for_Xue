@@ -68,7 +68,7 @@ for i in *fastq.gz ; do fastqc $i; done
 ```
 
 
-## Transcriptome assembly with Trinity
+## Trinity - Transcriptome assembly
 More detail about trinity here: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity
 
 Before I start Trinity run, I will like to combine all the R1_paired together and all the R2_paired together by doing:
@@ -114,7 +114,7 @@ The one ran in info gave my error message and stopped running. The one in graham
   - the g means gene
   - the i means isoform: different isoform of a gene are supposely splice variants if Trinity did the assembly correctly.
 
-# Mapping to *X.tropicalis* genome (v91)
+# GMAP - Mapping to *X.tropicalis* genome (v91)
 I mapped the *de novo* assembled tropicalis transcriptome to the tropicalis genome (v91) using gmap on Graham. 
 ```bash
 #downloading the genome from Xenbase (ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/) 
@@ -141,7 +141,7 @@ time gmap -D /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/db_
 
 
 ```
-## Summary of basic stat for reads and transcriptome
+## Summary - basic stat for reads and transcriptome
 Raw read
 - total:
 - quality:
