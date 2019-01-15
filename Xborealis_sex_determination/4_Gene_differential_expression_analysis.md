@@ -16,11 +16,7 @@ time perl /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimat
 kallisto index -i /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/transcript_expression_raw_count/kallisto_indexing_transcriptome/tropicalis_transcriptome_trinityOut.Trinity.fasta.kallisto_idx /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta
 
 #Transcript abundance quantification
-kallisto quant -i /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/transcript_expression_raw_count/kallisto_indexing_transcriptome/tropicalis_transcriptome_trinityOut.Trinity.fasta.kallisto_idx  -o $name <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R2_scythe.fastq.gz)
-
-for i in /home/xue/borealis_transcriptome/data/trimmed/*_liver_R1_paired.fastq.gz; do name=$(grep -o "BJE[0-9]*_[a-z]*_" <(echo $i));r1=/home/xue/borealis_transcriptome/data/trimmed/$name\liver_R1_paired.fastq.gz;r2=/home/xue/borealis_transcriptome/data/trimmed/$name\liver_R2_paired.fastq.gz; ;done
-
-
+for i in /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/*_R1_paired.fastq.gz; do name=$(grep -o "XT[0-9]*" <(echo $i));r1=/home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/$name\_R1_paired.fastq.gz;r2=/home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/$name\_R2_paired.fastq.gz; kallisto quant -i /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/transcript_expression_raw_count/kallisto_indexing_transcriptome/tropicalis_transcriptome_trinityOut.Trinity.fasta.kallisto_idx  -o /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/transcript_expression_raw_count/kallisto_indexing_transcriptome/$name <(gunzip -c $r1) <(gunzip -c $r2);done
 
 #To compute the matrix (time cost: ~10min)-didnt do yet
 #time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv
