@@ -17,14 +17,19 @@ I ran the below script provided by Trinity to check the read contents of the tra
 bowtie2-build tropicalis_transcriptome_trinityOut.Trinity.fasta tropicalis_transcriptome_trinityOut.Trinity.fasta
 
 #perform the alignment for paired-end reads 
-bowtie2 -p 10 -q --no-unal -k 20 -x tropicalis_transcriptome_trinityOut.Trinity.fasta -1 /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/XT_R1.fastq.gz -2 /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/XT_R2.fastq.gz 2 > /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/denovo_transcriptome_quality_check/read_contents_check/align_stats.txt| samtools view -@10 -Sb -o /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/denovo_transcriptome_quality_check/read_contents_check/bowtie2.bam 
+bowtie2 -p 10 -q --no-unal -k 20 --phred33 -x tropicalis_transcriptome_trinityOut.Trinity.fasta -1 /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/XT_R1.fastq.gz -2 /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/trim/XT_R2.fastq.gz 2 > /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/denovo_transcriptome_quality_check/read_contents_check/align_stats.txt| samtools view -@10 -Sb -o /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/denovo_transcriptome_quality_check/read_contents_check/bowtie2.bam 
      
 #capture the read alignment statistics
 cat 2>&1 align_stats.txt
 ```
 The flags used in the alignment included:
-
-- -k mode: -a mode is similar to -k mode except that there is no upper limit on the number of alignments Bowtie 2 should report. Alignments are reported in descending order by alignment score. The alignment score for a paired-end alignment equals the sum of the alignment scores of the individual mates.
+	
+- `-q`: Reads (specified with <m1>, <m2>, <s>) are FASTQ files.
+- `-x <bt2-idx>`: The basename of the index for the reference genome.
+- `-k mode`: -a mode is similar to -k mode except that there is no upper limit on the number of alignments Bowtie 2 should report. Alignments are reported in descending order by alignment score. The alignment score for a paired-end alignment equals the sum of the alignment scores of the individual mates.
+- `--phred33`: Input qualities are ASCII chars equal to the Phred quality plus 33. This is also called the “Phred+33” encoding, which is used by the very latest Illumina pipelines.
+- `-1 <m1>`: Comma-separated list of files containing mate 1s
+- `-2 <m2>`: Comma-separated list of files containing mate 2s
 
 
 Below is the result:
