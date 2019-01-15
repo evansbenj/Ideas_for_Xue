@@ -10,7 +10,7 @@ scp -r songxy@graham.computecanada.ca:/home/songxy/projects/def-ben/songxy/tropi
 ## Basic check 
 I followed the Trinity instruction and ran a few protocols provided by Trinity. 
 
-## Assessing the Read Content of the Transcriptome Assembly
+### Assessing the Read Content of the Transcriptome Assembly
 I ran the below script provided by Trinity to check the read contents of the transcriptome assembly. I was following the tutorial provided by Trinity (https://github.com/trinityrnaseq/trinityrnaseq/wiki/RNA-Seq-Read-Representation-by-Trinity-Assembly).
 ```bash
 #build a bowtie2 index for the transcriptome
