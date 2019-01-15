@@ -1,7 +1,7 @@
 # Mapping tools indexing
 Here I will document the codes that I used for indexing reference genome/transcriptome for different alignment tools.
 
-# GMAP - Indexing laevis genome (v91)  
+## GMAP - Indexing laevis genome (v91)  
 Below is how I build laevis genome (v91) database on Graham for GMAP
 ```
 #!/bin/bash
