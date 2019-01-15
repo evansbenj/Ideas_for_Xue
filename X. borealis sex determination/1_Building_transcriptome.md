@@ -10,7 +10,7 @@
 ```
 ```
 
-## Scythe on raw data
+## Scythe - raw data
 more detail about scythe: https://github.com/vsbuffalo/scythe. 
 
 #### how to run Scythe
@@ -43,7 +43,7 @@ and then download the file to a local folder and then inspect with a browser lik
 scp xue@info.mcmaster.ca:/home/xue/tropicalis_gonad_transcriptome_Dec2018/scythed_data/*html .
 ```
 
-## Trimmomatic
+## Trimmomatic - 
 run it like this if it is paired end
 learn how to run trimmomatic and what the command means: http://www.usadellab.org/cms/?page=trimmomatic
 
