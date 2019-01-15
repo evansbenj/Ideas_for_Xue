@@ -16,5 +16,5 @@ Below is how I build laevis genome (v91) database on Graham for GMAP
 module load nixpkgs/16.09  gcc/7.3.0
 module load gmap-gsnap/2018-07-04
 
-gmap_build -d db_gmap_tropicalis_v91/ -D /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/db_gmap_tropicalis_v91 -g /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/XT9_1.fa.gz
+gmap_build -d gmap_laevis_v92 -D /home/songxy/projects/def-ben/songxy/genome/laevis_genome/db_gmap_xl92 -g /home/songxy/projects/def-ben/songxy/genome/laevis_genome/XL9_2.fa
 ```
