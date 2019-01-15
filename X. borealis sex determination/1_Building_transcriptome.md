@@ -141,5 +141,17 @@ time gmap -D /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/db_
 
 
 ```
-
+## Summary of basic stat for reads and transcriptome
+Raw read
+- total:
+- quality:
+Scythe trimmed read
+- total:
+- quality:
+Trimmomatic trimmed reads
+- total:
+- quality:
+Transcriptome
+- total # of transcripts:
+- quality assesment: go to 
 
