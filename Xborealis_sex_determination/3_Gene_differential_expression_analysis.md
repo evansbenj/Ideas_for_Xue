@@ -7,5 +7,29 @@
 ## Collapsing
 
 ## Kallisto
+```
+#Indexing the transcriptomes
+kallisto index -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcript_sequence.fa.kallisto_idx /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcript_sequence.fa
 
+#Transcript abundance quantification
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o female_rep1 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3897_mom_liver_R2_scythe.fastq.gz)
+
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o female_rep2 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4009_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4009_girl_liver_R2_scythe.fastq.gz)
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o female_rep3 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4072_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4072_girl_liver_R2_scythe.fastq.gz)
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o female_rep4 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o male_rep1 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3896_dad_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3896_dad_liver_R2_scythe.fastq.gz)
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o male_rep2 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3929_boy_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE3929_boy_liver_R2_scythe.fastq.gz)
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o male_rep3 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4017_boy_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4017_boy_liver_R2_scythe.fastq.gz)
+
+kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_august2017/mapped_borealis_transcripts/mapped_borealis_transcript_sequence.fa.kallisto_idx  -o male_rep4 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4039_boy_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4039_boy_liver_R2_scythe.fastq.gz)
+
+#To compute the matrix (time cost: ~10min):
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv
+```
 ## EdgeR
