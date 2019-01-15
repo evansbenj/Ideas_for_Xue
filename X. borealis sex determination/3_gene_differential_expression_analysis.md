@@ -1,3 +1,3 @@
 # Gene differential expression_analysis
-## Step involved
+## Workflow 
 - [ ] collapsed transcriptome into gene level 
