@@ -15,4 +15,4 @@ In the paper by Fehrmann et al (2015), their "preprocessing and aggregation of r
 Reference
 - https://www.nature.com/articles/ng.3173#methods
 - https://www.hindawi.com/journals/bmri/2018/2906292/
-
+- https://www.datacamp.com/community/tutorials/pca-analysis-r
