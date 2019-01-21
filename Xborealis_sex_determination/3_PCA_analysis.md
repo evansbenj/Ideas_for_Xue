@@ -7,6 +7,7 @@ I know nothing about PCA so I started this analysis by learning what it is and h
 
 Reference
 - Bio-Star Q&A: https://www.biostars.org/p/171925/
+- nature methods: https://www.nature.com/articles/nmeth.4346
 
 
 #### How to do PCA?
