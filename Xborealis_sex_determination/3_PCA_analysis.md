@@ -8,6 +8,7 @@ I know nothing about PCA so I started this analysis by learning what it is and h
 Reference
 - Bio-Star Q&A: https://www.biostars.org/p/171925/
 - nature methods: https://www.nature.com/articles/nmeth.4346
+- Stackexchange Q&A: https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
 
 
 #### How to do PCA?
@@ -17,3 +18,5 @@ Reference
 - https://www.nature.com/articles/ng.3173#methods
 - https://www.hindawi.com/journals/bmri/2018/2906292/
 - https://www.datacamp.com/community/tutorials/pca-analysis-r
+- https://www.biostars.org/p/282685/
+- http://strata.uga.edu/8370/handouts/pcaTutorial.pdf
