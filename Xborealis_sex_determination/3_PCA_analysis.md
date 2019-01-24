@@ -23,3 +23,9 @@ Reference
 - https://www.datacamp.com/community/tutorials/pca-analysis-r
 - https://www.biostars.org/p/282685/
 - http://strata.uga.edu/8370/handouts/pcaTutorial.pdf
+
+
+## Other method
+PCA analysis didn't really work in seperating our samples into two clusters. We are going to try more unsupervised clustering methods. A biostars Q&A (https://www.biostars.org/p/56897/) provided good resource to check out. 
+### k-mean
+A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are looking for two group of clustering (males and females). 
