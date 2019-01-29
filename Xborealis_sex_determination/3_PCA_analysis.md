@@ -23,6 +23,7 @@ Reference
 - https://www.datacamp.com/community/tutorials/pca-analysis-r
 - https://www.biostars.org/p/282685/
 - http://strata.uga.edu/8370/handouts/pcaTutorial.pdf
+- http://uc-r.github.io/pca
 
 
 ## Other method
