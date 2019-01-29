@@ -1,6 +1,6 @@
-# Principle Component Analysis (PCA)
-
-## Learning
+# Samples clustering - separate male and female samples
+## Principle Component Analysis (PCA)
+### Learning
 I know nothing about PCA so I started this analysis by learning what it is and how to do it in R. 
 
 #### What is PCA?
