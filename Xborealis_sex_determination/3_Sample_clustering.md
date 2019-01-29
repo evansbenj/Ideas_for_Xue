@@ -32,10 +32,14 @@ PCA analysis didn't really work in seperating our samples into two clusters. We 
 A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are looking for two group of clustering (males and females). 
 
 ### By examining dmrt1 expression
-
+By theory, dmrt1 expression level should be different in tropicalis males and females. So Im going to blast dmrt1 sequence to the tropicalis transcriptome and found out which transcripts mapped to dmrt1 gene. Then I will look at the expression level of those transcripts. Our prediction is that they would have different expression level between sexes, which will allow us to identify the sex of the samples. We will then compare the list of males and females identified by dmrt1 epxression level to the list identified by clustering. The hope is that they should match to each other. If not, we need discuss about this further.
+**obtain sequence of dmrt1 genes in NCBI**
+```
+```
+**blastn dmrt1 sequence to the tropicalis transcriptome**
 ```
 #blastn index tropicalis de novo transcriptome 
-
+makeblastdb -in /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta -dbtype nucl -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome
 
 # blastn dmrt1 genes into tropicalis transcriptome
 
