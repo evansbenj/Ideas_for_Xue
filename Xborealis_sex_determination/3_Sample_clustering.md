@@ -30,3 +30,14 @@ Reference
 PCA analysis didn't really work in seperating our samples into two clusters. We are going to try more unsupervised clustering methods. A biostars Q&A (https://www.biostars.org/p/56897/) provided good resource to check out. 
 ### kmeans
 A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are looking for two group of clustering (males and females). 
+
+### By examining dmrt1 expression
+
+```
+#blastn index tropicalis de novo transcriptome 
+
+
+# blastn dmrt1 genes into tropicalis transcriptome
+
+
+```
