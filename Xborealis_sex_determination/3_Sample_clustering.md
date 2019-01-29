@@ -35,15 +35,19 @@ A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are
 
 ### By examining dmrt1 expression
 By theory, dmrt1 expression level should be different in tropicalis males and females. So Im going to blast dmrt1 sequence to the tropicalis transcriptome and found out which transcripts mapped to dmrt1 gene. Then I will look at the expression level of those transcripts. Our prediction is that they would have different expression level between sexes, which will allow us to identify the sex of the samples. We will then compare the list of males and females identified by dmrt1 epxression level to the list identified by clustering. The hope is that they should match to each other. If not, we need discuss about this further.
-**obtain sequence of dmrt1 genes in NCBI**
+#### obtain sequence of dmrt1 genes in NCBI
+I grabbed the mRNA and gene sequence of tropicalis dmrt1 gene from http://www.xenbase.org/gene/showgene.do?method=display&geneId=XB-GENE-852569. 
 ```
+#path to the fasta file
+/home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/tropicalis_dmrt1_seq.fasta
 ```
+
 **blastn dmrt1 sequence to the tropicalis transcriptome**
 ```
 #blastn index tropicalis de novo transcriptome 
 makeblastdb -in /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta -dbtype nucl -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome
 
 # blastn dmrt1 genes into tropicalis transcriptome
-blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
+blastn -task /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/tropicalis_dmrt1_seq.fasta -out home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/dmrt1_tropTrna_blastnOut.tsv
 
 ```
