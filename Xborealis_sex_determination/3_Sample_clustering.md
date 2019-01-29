@@ -29,9 +29,9 @@ Reference
 The script that I used to perform PCA is in the script folder with name `PCA_analysis_RNAseq_data.R`.
 
 PCA analysis didn't really work in seperating our samples into two clusters. We are going to try more unsupervised clustering methods. A biostars Q&A (https://www.biostars.org/p/56897/) provided good resource to check out. 
-## kmeans
+## Kmeans
 A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are looking for two group of clustering (males and females). 
-### What is Kmeans and how to do Kmeans?
+#### What is Kmeans and how to do Kmeans?
 - https://uc-r.github.io/kmeans_clustering
 
 ## Examining gene expressions
