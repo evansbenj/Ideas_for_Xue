@@ -25,6 +25,8 @@ Reference
 - http://strata.uga.edu/8370/handouts/pcaTutorial.pdf
 - http://uc-r.github.io/pca
 
+#### PCA analysis
+The script that I used to perform PCA is in the script folder with name `PCA_analysis_RNAseq_data.R`.
 
 ## Other method
 PCA analysis didn't really work in seperating our samples into two clusters. We are going to try more unsupervised clustering methods. A biostars Q&A (https://www.biostars.org/p/56897/) provided good resource to check out. 
@@ -42,6 +44,6 @@ By theory, dmrt1 expression level should be different in tropicalis males and fe
 makeblastdb -in /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta -dbtype nucl -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome
 
 # blastn dmrt1 genes into tropicalis transcriptome
-
+blastn -task blastn -db /home/xue/borealis_DE/xl_genome/db_Xlaevis_v91 -outfmt 6 -evalue 0.00005 -query  /home/xue/borealis_DE/all_mvsf/all_trans_fdr005.fa -out /home/xue/borealis_DE/all_mvsf/all_mvsf_blastout
 
 ```
