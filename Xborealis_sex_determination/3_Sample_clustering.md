@@ -33,6 +33,7 @@ PCA analysis didn't really work in seperating our samples into two clusters. We 
 A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are looking for two group of clustering (males and females). 
 #### What is Kmeans and how to do Kmeans?
 - https://uc-r.github.io/kmeans_clustering
+- https://2-bitbio.com/2017/10/clustering-rnaseq-data-using-k-means.html
 
 ## Examining gene expressions
 ### dmrt1
