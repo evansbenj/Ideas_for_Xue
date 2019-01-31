@@ -35,7 +35,7 @@ A phd student from Dr. Brian Golding's lab suggested kmean and set k=2 if we are
 - https://uc-r.github.io/kmeans_clustering
 - https://2-bitbio.com/2017/10/clustering-rnaseq-data-using-k-means.html
 
-## Examining gene expressions
+## Identify cluster by examining expressions pattern of sex-related gene
 ### dmrt1
 By theory, dmrt1 expression level should be different in tropicalis males and females. So Im going to blast dmrt1 sequence to the tropicalis transcriptome and found out which transcripts mapped to dmrt1 gene. Then I will look at the expression level of those transcripts. Our prediction is that they would have different expression level between sexes, which will allow us to identify the sex of the samples. We will then compare the list of males and females identified by dmrt1 epxression level to the list identified by clustering. The hope is that they should match to each other. If not, we need discuss about this further.
 #### obtain sequence of dmrt1 genes in NCBI
@@ -52,5 +52,13 @@ makeblastdb -in /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_
 
 # blastn dmrt1 genes into tropicalis transcriptome
 blastn -task blastn -db /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/tropicalis_dmrt1_seq.fasta -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/dmrt1_tropTrna_blastnOut.tsv
+
+```
+
+### DE genes in borealis gonad (stage50)
+Ben sent me the fasta file that contained sequence of DE gene in borealis stage 50 gonad. I uploaded in into info and blastn it against the tropicalis transcriptome. Then I will extract the transcript that mapped to those gene and perform PCA/Kmeans clustering again with those mapped transcripts only.
+```
+blastn -task blastn -db /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_borealisGonad_DEgene/Femaletads_4X_maletads.fasta -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_borealisGonad_DEgene/borealisGonadDEgene_tropTrna_blastnOut.tsv
+
 
 ```
