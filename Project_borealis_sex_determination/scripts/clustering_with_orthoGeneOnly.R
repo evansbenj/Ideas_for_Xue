@@ -1,11 +1,14 @@
-setwd("D:/school_grad school/Project_borealis_sex_determination/Analysis/sample_clustering_analysis/identify_by_borealisGonad_DEgene")
 
+input_file_path <- file.path("D:", "school_grad school", 
+                             "Xue_master_projects/Project_borealis_sex_determination/Analysis",
+                             "sample_clustering_analysis", "identify_by_borealisGonad_DEgene")
+output_file_path <- input_file_path
 
 library(tidyverse)  # data manipulation
 library(cluster)    # clustering algorithms
 library(factoextra) # clustering algorithms & visualization
 
-input_file <- "borealisGonadDEgene_tropTrna_blastnOut.tsv"
+input_file <- paste(input_file_path,"borealisGonadDEgene_tropTrna_blastnOut.tsv", sep="/")
 
 input_data <- read_tsv(input_file, col_names = FALSE)
 
