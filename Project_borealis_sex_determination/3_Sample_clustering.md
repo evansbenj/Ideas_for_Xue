@@ -12,7 +12,6 @@ Reference
 - Stackexchange Q&A: https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
 - https://www.biostars.org/p/280615/
 
-
 #### How to do PCA?
 In the paper by Fehrmann et al (2015), their "preprocessing and aggregation of raw data were performed according to the robust multi-array average (RMA) algorithm in combination with quantile normalization".
 
@@ -43,7 +42,7 @@ I grabbed the mRNA and gene sequence of tropicalis dmrt1 gene from http://www.xe
 ```
 #path to the fasta file
 /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/tropicalis_dmrt1_seq.fasta
-```
+```bash
 
 **blastn dmrt1 sequence to the tropicalis transcriptome**
 ```
@@ -52,13 +51,23 @@ makeblastdb -in /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_
 
 # blastn dmrt1 genes into tropicalis transcriptome
 blastn -task blastn -db /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/tropicalis_dmrt1_seq.fasta -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_dmrt1/dmrt1_tropTrna_blastnOut.tsv
-
 ```
+
+Then I ran the script `clustering_with_orthoGeneOnly.R` with blastn output `dmrt1_tropTrna_blastnOut.tsv`. Nothing really clutered.
 
 ### DE genes in borealis gonad (stage50)
-Ben sent me the fasta file that contained sequence of DE gene in borealis stage 50 gonad. I uploaded in into info and blastn it against the tropicalis transcriptome. Then I will extract the transcript that mapped to those gene and perform PCA/Kmeans clustering again with those mapped transcripts only.
-```
+Ben sent me the fasta file that contained sequence of DE gene (4 fold higher in female) in borealis stage 50 gonad. I uploaded it onto info and blastn it against the tropicalis transcriptome. 
+```bash
 blastn -task blastn -db /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_borealisGonad_DEgene/Femaletads_4X_maletads.fasta -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_borealisGonad_DEgene/borealisGonadDEgene_tropTrna_blastnOut.tsv
-
-
 ```
+Then I ran the script `clustering_with_orthoGeneOnly.R` with blastn output `borealisGonadDEgene_tropTrna_blastnOut.tsv`. The R script would extract the transcript that mapped to those gene and perform PCA/Kmeans clustering with only expression value of those mapped transcripts.
+
+The result from the above analysis produced the same result as the PCA and Kmeans analysis using the entire trop transcriptome expression data. Hence, Ben sent me the another fasta file that contain sequence of DE gene (rawcount cutoff of 4, and 4 fold higher in male or 4 folder higher in female) in borealis gonad at stage 50. I uploaded it onto info and blastn it against the tropicalis transcriptome.
+```bash
+#blastn; time cost: 44min
+time blastn -task blastn -db /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_transcriptome_build_dec2018/db_tropicalis_gonad_transcriptome_blastn/db_tropicalis_gonad_transcriptome -outfmt 6 -evalue 0.00005 -query  /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_borealisGonad_DEgene/Sex_bias_4X_and_expression_4X.fasta -out /home/xue/tropicalis_gonad_transcriptome_Dec2018/analysis/samples_clustering_analysis/identify_sex_by_borealisGonad_DEgene/borealisGonadDEgene_4xBothSex_tropTran_blastnOut.tsv
+```
+Then I ran the script `clustering_with_orthoGeneOnly.R` with blastn output `borealisGonadDEgene_4xBothSex_tropTran_blastnOut.tsv`. PCA result remain the same - 3 different group of clutering, PC1 account for 12% of the variants (a little bit higher than the one above). Kmean produce a slightly different result. - with k=2, T11, T19, T20 clustered into a group; the rest clutered into a group 
+- with k=3, the same 3 distinct group as before
+
+
