@@ -39,8 +39,10 @@ ortho_expression <- ortho_expression[rowSums(ortho_expression)>1,]
 ortho_expression <- ortho_expression[,]
 ortho_expression <- t(ortho_expression)
 ortho_expression <- ortho_expression[,colSums(ortho_expression)>0]
-ortho_expression <- scale(ortho_expression)
+ortho_expression <- scale(ortho_expression, scale)
 project_pca <- prcomp(ortho_expression, retx=TRUE, center = TRUE, scale. = FALSE)
+
+head(ortho_expression)
 
 #calculate the project_pca_proportionvarianes
 #way 1
