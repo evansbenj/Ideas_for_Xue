@@ -70,4 +70,7 @@ time blastn -task blastn -db /home/xue/tropicalis_gonad_transcriptome_Dec2018/da
 Then I ran the script `clustering_with_orthoGeneOnly.R` with blastn output `borealisGonadDEgene_4xBothSex_tropTran_blastnOut.tsv`. PCA result remain the same - 3 different group of clutering, PC1 account for 12% of the variants (a little bit higher than the one above). Kmean produce a slightly different result. - with k=2, T11, T19, T20 clustered into a group; the rest clutered into a group 
 - with k=3, the same 3 distinct group as before
 
+## Using SNP
+We have RADseq data for the east population that BenF did genotyping and found SNP that have a sex-specific pattern. We can mapped the RNAseq reads (East population) to the transcriptome and use the SNP information to identify the sex of the samples. 
+
 
