@@ -55,9 +55,7 @@ scaling_check <- as.data.frame (t(ortho_expression)) %>%
 
 
 ###### PCA
-project_pca <- prcomp(ortho_expression, retx=TRUE, center = TRUE, scale. = FALSE)
-
-head(ortho_expression)
+project_pca <- prcomp(ortho_expression, retx=TRUE, center = FALSE, scale. = FALSE)
 
 #calculate the project_pca_proportionvarianes
 #way 1
