@@ -2,13 +2,16 @@ library(tidyverse)  # data manipulation
 library(cluster)    # clustering algorithms
 library(factoextra) # clustering algorithms & visualization
 
-input_file_path <- file.path("D:", "school_grad school", 
-                             "Xue_master_projects/Project_borealis_sex_determination/Analysis",
-                             "sample_clustering_analysis", "identify_by_borealisGonad_DEgene")
+#input_file_path <- file.path("D:", "school_grad school", 
+input_file_path <- file.path("/Users/evanslab/Desktop",
+                             "Xue_master_projects","Project_borealis_sex_determination/Analysis",
+                             "sample_clustering_analysis")
 
 output_file_path <- input_file_path
 
-input_file <- paste(input_file_path,"borealisGonadDEgene_tropTrna_blastnOut.tsv", sep="/")
+input_file <- paste(input_file_path, 
+                    "identify_by_borealisGonad_DEgene/borealisGonadDEgene_4xBothSex_tropTran_blastnOut.tsv", 
+                    sep="/")
 
 input_data <- read_tsv(input_file, col_names = FALSE)
 
@@ -26,20 +29,32 @@ ortho_trans <- ortho_list %>%
   rename("Transcript_name"="X2")%>%
   unique()
 
-expression_file = "../PCA/tropicalis_gonad.isoform.TMM.EXPR.matrix"
+expression_file = paste(input_file_path,
+                        "PCA/tropicalis_gonad.isoform.TMM.EXPR.matrix",
+                        sep="/")
 
-expression_data <- read.table(expression_file,header = TRUE, row.names ="Transcript_name")
+expression_data <- read_tsv(expression_file)
 
 ortho_expression <- expression_data %>%
-  rownames_to_column("Transcript_name")%>%
   inner_join(ortho_trans, by=("Transcript_name"))%>%
   column_to_rownames("Transcript_name")
 
-ortho_expression <- ortho_expression[rowSums(ortho_expression)>1,]
-ortho_expression <- ortho_expression[,]
+ortho_expression <- ortho_expression[rowSums(ortho_expression)>0,]
 ortho_expression <- t(ortho_expression)
-ortho_expression <- ortho_expression[,colSums(ortho_expression)>0]
-ortho_expression <- scale(ortho_expression, scale)
+ortho_expression <- scale(ortho_expression)
+
+head(ortho_expression)
+
+####### Check scaling
+#The below indicated that scaling did scale the data to have a mean of 0 and sd of 1
+scaling_check <- as.data.frame (t(ortho_expression)) %>%
+  rownames_to_column("Transcript_name")%>%
+  gather(key = "samples", value = "expression_value", -Transcript_name)%>%
+  group_by(Transcript_name)%>%
+  mutate (Mean = mean(expression_value), SD =sd(expression_value) )
+
+
+###### PCA
 project_pca <- prcomp(ortho_expression, retx=TRUE, center = TRUE, scale. = FALSE)
 
 head(ortho_expression)
