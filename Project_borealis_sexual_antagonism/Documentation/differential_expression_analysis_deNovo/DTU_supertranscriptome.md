@@ -49,3 +49,52 @@ male   male_rep2   /home/songxy/projects/def-ben/songxy/borealis_transcriptome/t
 male male_rep3   /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4017_boy_liver_R1_scythe.fastq.gz     /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4017_boy_liver_R2_scythe.fastq.gz
 male male_rep4   /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4039_boy_liver_R1_scythe.fastq.gz     /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4039_boy_liver_R2_scythe.fastq.gz
 ```
+
+## Salmon
+#### indexing
+```
+salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/supertranscriptome/borealis_superTrans.fasta -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+
+```
+#### quantifying  
+```bash
+#!/bin/bash
+
+index_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+
+sample_dir=/home/xue/borealis_transcriptome/data/trimmed
+
+out_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon
+
+cd /home/xue/borealis_transcriptome/data/trimmed
+
+for i in *fastq.gz; do 
+        sample_name=$(grep -o "BJE[0-9]*_[a-z]*" <(echo $i)) 
+        
+        salmon quant -i ${index_dir} -l A \
+          -1 ${sample_dir}/${sample_name}_liver_R1_paired.fastq.gz \
+          -2 ${sample_dir}/${sample_name}_liver_R2_paired.fastq.gz \
+          -p 15 --validateMappings --rangeFactorizationBins 4 \
+          --seqBias --gcBias \
+          -o ${out_dir}/${sample_name}_quant
+done
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
