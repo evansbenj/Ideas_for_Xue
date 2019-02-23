@@ -57,6 +57,7 @@ salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_d
 
 ```
 #### quantifying  
+bash script to run salmon for all the files
 ```bash
 #!/bin/bash
 
@@ -78,6 +79,73 @@ for i in *fastq.gz; do
           --seqBias --gcBias \
           -o ${out_dir}/${sample_name}_quant
 done
+```
+to run the bash script
+```
+~/script/run_salmon.sh
+```
+
+## DTU using rnaseqDTU
+This is done following the tutorial descripted in https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd.
+
+#### DTU with DEXseq
+```{r}
+library(rnaseqDTU)
+csv.dir <- system.file("extdata", package="rnaseqDTU")
+
+samps <- read.csv(file.path(csv.dir, "samples.csv"))
+head(samps)
+samps$condition <- factor(samps$condition)
+table(samps$condition)
+files <- file.path("/path/to/dir", samps$sample_id, "quant.sf")
+names(files) <- samps$sample_id
+head(files)
+
+library(DEXSeq)
+sample.data <- DRIMSeq::samples(d)
+count.data <- round(as.matrix(counts(d)[,-c(1:2)]))
+dxd <- DEXSeqDataSet(countData=count.data,
+                     sampleData=sample.data,
+                     design=~sample + exon + condition:exon,
+                     featureID=counts(d)$feature_id,
+                     groupID=counts(d)$gene_id)
+
+system.time({
+  dxd <- estimateSizeFactors(dxd)
+  dxd <- estimateDispersions(dxd, quiet=TRUE)
+  dxd <- testForDEU(dxd, reducedModel=~sample + exon)
+})
+
+dxr <- DEXSeqResults(dxd, independentFiltering=FALSE)
+qval <- perGeneQValue(dxr)
+dxr.g <- data.frame(gene=names(qval),qval)
+
+
+columns <- c("featureID","groupID","pvalue")
+dxr <- as.data.frame(dxr[,columns])
+head(dxr)
+```
+#### stageR 
+```{r}
+data(dex_tables)
+
+library(stageR)
+strp <- function(x) substr(x,1,15)
+pConfirmation <- matrix(dxr$pvalue,ncol=1)
+dimnames(pConfirmation) <- list(strp(dxr$featureID),"transcript")
+pScreen <- qval
+names(pScreen) <- strp(names(pScreen))
+tx2gene <- as.data.frame(dxr[,c("featureID", "groupID")])
+for (i in 1:2) tx2gene[,i] <- strp(tx2gene[,i])
+
+stageRObj <- stageRTx(pScreen=pScreen, pConfirmation=pConfirmation,
+                      pScreenAdjusted=TRUE, tx2gene=tx2gene)
+stageRObj <- stageWiseAdjustment(stageRObj, method="dtu", alpha=0.05)
+suppressWarnings({
+  dex.padj <- getAdjustedPValues(stageRObj, order=FALSE,
+                                 onlySignificantGenes=TRUE)
+})
+head(dex.padj)
 ```
 
 
