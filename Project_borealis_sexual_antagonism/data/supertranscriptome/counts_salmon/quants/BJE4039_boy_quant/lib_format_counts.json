@@ -1,0 +1,25 @@
+{
+    "read_files": [
+        "/home/xue/borealis_transcriptome/data/trimmed/BJE4039_boy_liver_R1_paired.fastq.gz",
+        "/home/xue/borealis_transcriptome/data/trimmed/BJE4039_boy_liver_R2_paired.fastq.gz"
+    ],
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 1.0,
+    "num_compatible_fragments": 27330404,
+    "num_assigned_fragments": 27330404,
+    "num_frags_with_concordant_consistent_mappings": 26485671,
+    "num_frags_with_inconsistent_or_orphan_mappings": 927710,
+    "strand_mapping_bias": 0.43439371424646935,
+    "MSF": 0,
+    "OSF": 0,
+    "ISF": 14980462,
+    "MSR": 0,
+    "OSR": 0,
+    "ISR": 11505209,
+    "SF": 494981,
+    "SR": 432729,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

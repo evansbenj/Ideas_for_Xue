@@ -1,0 +1,14 @@
+{
+    "salmon_version": "0.12.0",
+    "index": "/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index",
+    "libType": "A",
+    "mates1": "/home/xue/borealis_transcriptome/data/trimmed/BJE3929_boy_liver_R1_paired.fastq.gz",
+    "mates2": "/home/xue/borealis_transcriptome/data/trimmed/BJE3929_boy_liver_R2_paired.fastq.gz",
+    "threads": "15",
+    "validateMappings": [],
+    "rangeFactorizationBins": "4",
+    "seqBias": [],
+    "gcBias": [],
+    "output": "/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE3929_boy_quant",
+    "auxDir": "aux_info"
+}

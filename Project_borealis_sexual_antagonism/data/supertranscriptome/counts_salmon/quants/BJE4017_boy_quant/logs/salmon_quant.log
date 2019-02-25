@@ -1,0 +1,432 @@
+[2019-02-23 02:30:18.810] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 02:30:18.810] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 02:30:18.810] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 02:30:18.810] [jointLog] [info] parsing read library format
+[2019-02-23 02:30:18.810] [jointLog] [info] There is 1 library.
+[2019-02-23 02:30:18.929] [jointLog] [info] Loading Quasi index
+[2019-02-23 02:30:18.929] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 02:30:57.212] [jointLog] [info] done
+[2019-02-23 02:30:57.212] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 02:31:04.339] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 02:38:27.116] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:38:27.123] [jointLog] [info] Thread saw mini-batch with a maximum of 0.36% zero probability fragments
+[2019-02-23 02:38:27.226] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:38:27.236] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:38:27.248] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:38:27.290] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:38:27.300] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 02:38:27.378] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:38:27.421] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:38:27.499] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:38:27.505] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:38:27.613] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:38:27.645] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:38:27.685] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:38:27.688] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:38:28.414] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 02:38:28.413] [jointLog] [info] Computed 319,148 rich equivalence classes for further processing
+[2019-02-23 02:38:28.413] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 02:38:28.438] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 02:38:28.438] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 02:38:28.450] [jointLog] [info] Starting optimizer
+[2019-02-23 02:38:29.220] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 02:38:29.254] [jointLog] [info] iteration = 0 | max rel diff. = 193.924
+[2019-02-23 02:38:29.598] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 02:40:58.214] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 02:40:58.215] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 02:41:14.729] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 02:41:33.413] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 02:41:59.099] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 02:42:37.162] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 02:43:10.314] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 02:43:13.397] [jointLog] [info] iteration = 100 | max rel diff. = 0.00817963
+[2019-02-23 02:43:13.463] [jointLog] [info] Finished optimizer
+[2019-02-23 02:43:13.463] [jointLog] [info] writing output 
+
+[2019-02-23 02:43:15.548] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 02:43:21.309] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 02:43:21.309] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 02:43:21.309] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 02:43:21.309] [jointLog] [info] parsing read library format
+[2019-02-23 02:43:21.310] [jointLog] [info] There is 1 library.
+[2019-02-23 02:43:21.424] [jointLog] [info] Loading Quasi index
+[2019-02-23 02:43:21.425] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 02:43:58.157] [jointLog] [info] done
+[2019-02-23 02:43:58.157] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 02:44:05.076] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 02:51:21.982] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:51:22.022] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:51:22.023] [jointLog] [info] Thread saw mini-batch with a maximum of 0.36% zero probability fragments
+[2019-02-23 02:51:22.039] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:51:22.086] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:51:22.096] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:51:22.102] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:51:22.144] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:51:22.246] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:51:22.256] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 02:51:22.298] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:51:22.319] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 02:51:22.420] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:51:22.430] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 02:51:22.441] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 02:51:23.180] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 02:51:23.178] [jointLog] [info] Computed 319,148 rich equivalence classes for further processing
+[2019-02-23 02:51:23.179] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 02:51:23.205] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 02:51:23.209] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 02:51:23.212] [jointLog] [info] Starting optimizer
+[2019-02-23 02:51:23.727] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 02:51:23.763] [jointLog] [info] iteration = 0 | max rel diff. = 193.925
+[2019-02-23 02:51:24.142] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 02:53:51.804] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 02:53:51.805] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 02:54:06.650] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 02:54:26.473] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 02:54:51.715] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 02:55:30.181] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 02:56:03.559] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 02:56:07.047] [jointLog] [info] iteration = 100 | max rel diff. = 0.00836583
+[2019-02-23 02:56:07.117] [jointLog] [info] Finished optimizer
+[2019-02-23 02:56:07.117] [jointLog] [info] writing output 
+
+[2019-02-23 02:56:09.373] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 02:56:14.352] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 02:56:14.352] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 02:56:14.352] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 02:56:14.352] [jointLog] [info] parsing read library format
+[2019-02-23 02:56:14.352] [jointLog] [info] There is 1 library.
+[2019-02-23 02:56:14.507] [jointLog] [info] Loading Quasi index
+[2019-02-23 02:56:14.507] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 02:56:51.739] [jointLog] [info] done
+[2019-02-23 02:56:51.739] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 02:56:58.867] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 03:04:14.961] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:04:14.965] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:04:14.982] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:04:15.030] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:04:15.042] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:04:15.081] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:04:15.196] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:04:15.197] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:04:15.222] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:04:15.397] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:04:15.423] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:04:15.439] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:04:15.454] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:04:15.493] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 03:04:15.503] [jointLog] [info] Thread saw mini-batch with a maximum of 0.36% zero probability fragments
+[2019-02-23 03:04:16.274] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 03:04:16.272] [jointLog] [info] Computed 319,146 rich equivalence classes for further processing
+[2019-02-23 03:04:16.272] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 03:04:16.298] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 03:04:16.306] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 03:04:16.308] [jointLog] [info] Starting optimizer
+[2019-02-23 03:04:16.943] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 03:04:16.977] [jointLog] [info] iteration = 0 | max rel diff. = 193.924
+[2019-02-23 03:04:17.327] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 03:06:44.596] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 03:06:44.597] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 03:07:00.398] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 03:07:19.545] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 03:07:49.767] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 03:08:26.275] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 03:08:56.539] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 03:08:59.652] [jointLog] [info] iteration = 100 | max rel diff. = 0.00823044
+[2019-02-23 03:08:59.708] [jointLog] [info] Finished optimizer
+[2019-02-23 03:08:59.708] [jointLog] [info] writing output 
+
+[2019-02-23 03:09:01.682] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 03:09:06.879] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 03:09:06.879] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 03:09:06.879] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 03:09:06.879] [jointLog] [info] parsing read library format
+[2019-02-23 03:09:06.879] [jointLog] [info] There is 1 library.
+[2019-02-23 03:09:06.991] [jointLog] [info] Loading Quasi index
+[2019-02-23 03:09:06.992] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 03:09:44.444] [jointLog] [info] done
+[2019-02-23 03:09:44.444] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 03:09:51.871] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 03:17:09.520] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:17:09.521] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:17:09.557] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:17:09.577] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:17:09.581] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:17:09.615] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:17:09.636] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:17:09.644] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:17:09.676] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 03:17:09.718] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:17:09.788] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:17:09.866] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:17:09.887] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:17:09.959] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:17:09.975] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:17:10.719] [jointLog] [info] Computed 319,147 rich equivalence classes for further processing
+[2019-02-23 03:17:10.719] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 03:17:10.746] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 03:17:10.753] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 03:17:10.755] [jointLog] [info] Starting optimizer
+[2019-02-23 03:17:10.720] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 03:17:11.386] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 03:17:11.421] [jointLog] [info] iteration = 0 | max rel diff. = 193.925
+[2019-02-23 03:17:11.774] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 03:19:38.826] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 03:19:38.826] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 03:19:54.331] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 03:20:16.975] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 03:20:42.841] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 03:21:15.452] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 03:21:50.932] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 03:21:54.079] [jointLog] [info] iteration = 100 | max rel diff. = 0.00818721
+[2019-02-23 03:21:54.135] [jointLog] [info] Finished optimizer
+[2019-02-23 03:21:54.135] [jointLog] [info] writing output 
+
+[2019-02-23 03:21:56.327] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 03:22:02.294] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 03:22:02.295] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 03:22:02.295] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 03:22:02.295] [jointLog] [info] parsing read library format
+[2019-02-23 03:22:02.295] [jointLog] [info] There is 1 library.
+[2019-02-23 03:22:02.410] [jointLog] [info] Loading Quasi index
+[2019-02-23 03:22:02.410] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 03:22:39.119] [jointLog] [info] done
+[2019-02-23 03:22:39.119] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 03:22:45.944] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 03:30:15.789] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:30:15.792] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:30:15.797] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:30:15.850] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:30:15.864] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:30:15.888] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:30:15.891] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:30:15.894] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 03:30:15.913] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:30:16.045] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:30:16.145] [jointLog] [info] Thread saw mini-batch with a maximum of 0.36% zero probability fragments
+[2019-02-23 03:30:16.226] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:30:16.275] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:30:16.279] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:30:16.376] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:30:16.989] [jointLog] [info] Computed 319,146 rich equivalence classes for further processing
+[2019-02-23 03:30:16.989] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 03:30:17.012] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 03:30:17.016] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 03:30:17.037] [jointLog] [info] Starting optimizer
+[2019-02-23 03:30:16.992] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 03:30:17.636] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 03:30:17.671] [jointLog] [info] iteration = 0 | max rel diff. = 193.923
+[2019-02-23 03:30:18.007] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 03:32:45.361] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 03:32:45.362] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 03:33:06.838] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 03:33:32.389] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 03:33:57.369] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 03:34:34.476] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 03:34:57.315] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 03:35:00.303] [jointLog] [info] iteration = 100 | max rel diff. = 0.00800333
+[2019-02-23 03:35:00.339] [jointLog] [info] Finished optimizer
+[2019-02-23 03:35:00.339] [jointLog] [info] writing output 
+
+[2019-02-23 03:35:02.453] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 03:35:07.895] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 03:35:07.895] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 03:35:07.895] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 03:35:07.895] [jointLog] [info] parsing read library format
+[2019-02-23 03:35:07.895] [jointLog] [info] There is 1 library.
+[2019-02-23 03:35:08.012] [jointLog] [info] Loading Quasi index
+[2019-02-23 03:35:08.012] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 03:35:44.779] [jointLog] [info] done
+[2019-02-23 03:35:44.779] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 03:35:51.674] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 03:43:44.765] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:43:44.780] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:43:44.785] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:43:44.812] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:43:44.863] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:43:44.912] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:43:44.923] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:43:44.932] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:43:44.952] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 03:43:44.994] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:43:45.069] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:43:45.210] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:43:45.301] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:43:45.318] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:43:45.348] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:43:46.009] [jointLog] [info] Computed 319,146 rich equivalence classes for further processing
+[2019-02-23 03:43:46.009] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 03:43:46.033] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 03:43:46.039] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 03:43:46.042] [jointLog] [info] Starting optimizer
+[2019-02-23 03:43:46.010] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 03:43:46.643] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 03:43:46.676] [jointLog] [info] iteration = 0 | max rel diff. = 193.926
+[2019-02-23 03:43:47.011] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 03:46:17.788] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 03:46:17.789] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 03:46:39.286] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 03:47:04.887] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 03:47:27.934] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 03:48:02.119] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 03:48:33.052] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 03:48:36.070] [jointLog] [info] iteration = 100 | max rel diff. = 0.00812069
+[2019-02-23 03:48:36.141] [jointLog] [info] Finished optimizer
+[2019-02-23 03:48:36.141] [jointLog] [info] writing output 
+
+[2019-02-23 03:48:38.157] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 03:48:43.591] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 03:48:43.591] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 03:48:43.591] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 03:48:43.591] [jointLog] [info] parsing read library format
+[2019-02-23 03:48:43.592] [jointLog] [info] There is 1 library.
+[2019-02-23 03:48:43.703] [jointLog] [info] Loading Quasi index
+[2019-02-23 03:48:43.703] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 03:49:21.571] [jointLog] [info] done
+[2019-02-23 03:49:21.571] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 03:49:28.523] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 03:57:11.841] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:57:11.861] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:57:11.864] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:57:11.872] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 03:57:11.907] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:57:11.980] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:57:12.007] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:57:12.012] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:57:12.071] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:57:12.084] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:57:12.165] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:57:12.195] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:57:12.224] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 03:57:12.243] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 03:57:12.291] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 03:57:13.030] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 03:57:13.028] [jointLog] [info] Computed 319,148 rich equivalence classes for further processing
+[2019-02-23 03:57:13.028] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 03:57:13.053] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 03:57:13.057] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 03:57:13.061] [jointLog] [info] Starting optimizer
+[2019-02-23 03:57:13.491] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 03:57:13.525] [jointLog] [info] iteration = 0 | max rel diff. = 193.927
+[2019-02-23 03:57:13.863] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 03:59:51.343] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 03:59:51.343] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 04:00:10.089] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 04:00:33.183] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 04:00:59.465] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 04:01:36.973] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 04:02:05.203] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 04:02:08.269] [jointLog] [info] iteration = 100 | max rel diff. = 0.00815982
+[2019-02-23 04:02:08.304] [jointLog] [info] Finished optimizer
+[2019-02-23 04:02:08.304] [jointLog] [info] writing output 
+
+[2019-02-23 04:02:10.584] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
+[2019-02-23 04:02:16.051] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2019-02-23 04:02:16.051] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2019-02-23 04:02:16.051] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 1. Setting consensusSlack to 1.
+[2019-02-23 04:02:16.051] [jointLog] [info] parsing read library format
+[2019-02-23 04:02:16.051] [jointLog] [info] There is 1 library.
+[2019-02-23 04:02:16.163] [jointLog] [info] Loading Quasi index
+[2019-02-23 04:02:16.163] [jointLog] [info] Loading 32-bit quasi index
+[2019-02-23 04:02:52.921] [jointLog] [info] done
+[2019-02-23 04:02:52.921] [jointLog] [info] Index contained 608,776 targets
+[2019-02-23 04:02:59.797] [jointLog] [info] Automatically detected most likely library type as IU
+[2019-02-23 04:10:21.449] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:21.480] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 04:10:21.484] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 04:10:21.534] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 04:10:21.566] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:21.590] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:21.617] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:21.623] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 04:10:21.686] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 04:10:21.719] [jointLog] [info] Thread saw mini-batch with a maximum of 0.40% zero probability fragments
+[2019-02-23 04:10:21.807] [jointLog] [info] Thread saw mini-batch with a maximum of 0.42% zero probability fragments
+[2019-02-23 04:10:21.849] [jointLog] [info] Thread saw mini-batch with a maximum of 0.48% zero probability fragments
+[2019-02-23 04:10:21.889] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:21.927] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:21.928] [jointLog] [info] Thread saw mini-batch with a maximum of 0.38% zero probability fragments
+[2019-02-23 04:10:22.546] [jointLog] [info] Computed 319,148 rich equivalence classes for further processing
+[2019-02-23 04:10:22.546] [jointLog] [info] Counted 29,179,324 total reads in the equivalence classes 
+[2019-02-23 04:10:22.571] [jointLog] [info] Mapping rate = 53.9994%
+
+[2019-02-23 04:10:22.576] [jointLog] [info] finished quantifyLibrary()
+[2019-02-23 04:10:22.579] [jointLog] [info] Starting optimizer
+[2019-02-23 04:10:22.548] [fileLog] [info] 
+At end of round 0
+==================
+Observed 54036412 total fragments (54036412 in most recent round)
+
+[2019-02-23 04:10:23.222] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2019-02-23 04:10:23.256] [jointLog] [info] iteration = 0 | max rel diff. = 193.929
+[2019-02-23 04:10:23.600] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2019-02-23 04:12:51.000] [jointLog] [info] Computed expected counts (for bias correction)
+[2019-02-23 04:12:51.001] [jointLog] [info] processed bias for 0.0% of the transcripts
+[2019-02-23 04:13:08.147] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2019-02-23 04:13:27.454] [jointLog] [info] processed bias for 20.0% of the transcripts
+[2019-02-23 04:13:54.641] [jointLog] [info] processed bias for 30.0% of the transcripts
+[2019-02-23 04:14:26.525] [jointLog] [info] processed bias for 40.0% of the transcripts
+[2019-02-23 04:15:02.552] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2019-02-23 04:15:05.635] [jointLog] [info] iteration = 100 | max rel diff. = 0.00793805
+[2019-02-23 04:15:05.702] [jointLog] [info] Finished optimizer
+[2019-02-23 04:15:05.702] [jointLog] [info] writing output 
+
+[2019-02-23 04:15:07.851] [jointLog] [warning] NOTE: Read Lib [[ /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R1_paired.fastq.gz, /home/xue/borealis_transcriptome/data/trimmed/BJE4017_boy_liver_R2_paired.fastq.gz]] :
+
+Detected a *potential* strand bias > 1% in an unstranded protocol check the file: /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/BJE4017_boy_quant/lib_format_counts.json for details
+
