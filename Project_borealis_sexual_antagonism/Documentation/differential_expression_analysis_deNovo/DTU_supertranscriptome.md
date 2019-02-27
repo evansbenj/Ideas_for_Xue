@@ -149,6 +149,33 @@ head(dex.padj)
 ```
 
 
+How they do it in trinity
+```
+library(DEXSeq)
+samples_info = read.table("$samples_table_file", header=T, row.names=1)
+dxd = DEXSeqDataSetFromHTSeq(as.vector(samples_info\$counts_filename), sampleData=samples_info, design = ~ sample + exon + condition:exon, flattenedfile="$genes_gtf_file.dexseq.gff")
+dxd = estimateSizeFactors( dxd )
+dxd = estimateDispersions( dxd )
+plotDispEsts( dxd )
+dxd = testForDEU( dxd )
+dxd = estimateExonFoldChanges( dxd, fitExpToVar="condition")
+dxr1 = DEXSeqResults( dxd )
+dxr1.sorted = dxr1[order(dxr1\$padj),]
+save(list = ls(all=TRUE), file = "$out_prefix.Rdata")
+write.table(dxr1.sorted, file="$out_prefix.results.dat", quote=F, sep="\t")
+
+ pdf("$out_prefix.pdf")
+
+ top_genes = unique(dxr1.sorted\$groupID[dxr1.sorted\$padj < 0.1 & ! is.na(dxr1.sorted\$padj)]);
+ top_genes = top_genes[1:min($top_genes_plot, length(top_genes))];
+ message("Top $top_genes_plot genes: (", paste(top_genes, collapse=','), ")") 
+for (gene in top_genes) { 
+   plotDEXSeq( dxr1 , gene, legend=TRUE, cex.axis=1.2, cex=1.3, lwd=2 , expression=FALSE, norCounts=TRUE, splicing=TRUE, displayTranscripts=TRUE)
+};
+
+plotMA( dxr1, cex=0.8 )
+```
+
 
 
 
