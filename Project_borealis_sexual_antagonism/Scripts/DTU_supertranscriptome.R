@@ -39,9 +39,9 @@ txdf$ntx <- tab[match(txdf$GENEID, names(tab))]
 #build a DRIMSeq object
 cts[1:3,1:3]
 range(colSums(cts)/1e6)
-all(rownames(cts) %in% txdf$TXNAME)
-txdf <- txdf[match(rownames(cts),txdf$TXNAME),]
-all(rownames(cts) == txdf$TXNAME)
+all(rownames(cts) %in% txdf$GENEID)
+txdf <- txdf[match(rownames(cts),txdf$GENEID),]
+all(rownames(cts) == txdf$GENEID)
 
 counts <- data.frame(gene_id=txdf$GENEID,
                      feature_id=txdf$TXNAME,
