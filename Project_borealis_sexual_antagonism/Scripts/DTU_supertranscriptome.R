@@ -28,9 +28,9 @@ table(samps$condition)
 #transcript to gene mapping
 library(GenomicFeatures)
 gtf <- "Project_borealis_sexual_antagonism/data/supertranscriptome/supertranscriptome_fasta/borealis_superTrans.gtf"
-txdb.filename <- "borealis_superTrans_gtf.sqlite"
-txdb <- makeTxDbFromGFF(gtf)
-saveDb(txdb, txdb.filename)
+txdb.filename <- "Project_borealis_sexual_antagonism/data/supertranscriptome/borealis_superTrans_gtf.sqlite"
+# txdb <- makeTxDbFromGFF(gtf)
+# saveDb(txdb, txdb.filename)
 txdb <- loadDb(txdb.filename)
 txdf <- select(txdb, keys(txdb, "GENEID"), "TXNAME", "GENEID")
 tab <- table(txdf$GENEID)
