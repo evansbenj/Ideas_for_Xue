@@ -9,8 +9,16 @@ Here, I repeated the same step that I did for tropicalis.
 ```
 ```
 #### Do fastqc on raw data
+We did it for all fastq.gz file in the folder
 ```
+for i in *fastq.gz ; do fastqc --outdir=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/2019_XB_gonad_RNAseq/fastqc_raw $i ; done
 ```
+and then download the file to a local folder and then inspect with a browser like this:
+
+```
+scp xue@info.mcmaster.ca:/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/2019_XB_gonad_RNAseq/fastqc_raw/*html .
+```
+
 
 ## Scythe - raw data
 more detail about scythe: https://github.com/vsbuffalo/scythe. 
@@ -33,7 +41,7 @@ Other options:
 #### run fastqc on scythe data
 We did it for all fastq.gz file in the folder
 ```
-for i in *fastq.gz ; do fastqc --outdir=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/2019_XB_gonad_RNAseq/fastqc_raw $i ; done
+for i in *fastq.gz ; do fastqc --outdir=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/scythed_data/fastqc_scythed/ $i ; done
 ```
 
 and then download the file to a local folder and then inspect with a browser like this:
