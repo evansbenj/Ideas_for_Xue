@@ -55,7 +55,7 @@ run it like this if it is paired end
 learn how to run trimmomatic and what the command means: http://www.usadellab.org/cms/?page=trimmomatic
 
 ```bash
-java -jar /home/xue/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 -trimlog trim_out.txt /home/xue/transcriptome_data/Sample_BenEvansBJE3909cDNA_Library/BenEvansBJE3909cDNA_Library_GTGAAA_L004_R1_001.fastq.gz /home/xue/transcriptome_data/Sample_BenEvansBJE3909cDNA_Library/BenEvansBJE3909cDNA_Library_GTGAAA_L004_R2_001.fastq.gz /home/xue/transcriptome_data/BJE3909_tropicalis_trimmed_data/BenEvansBJE3909cDNA_Library_GTGAAA_L004_R1_001_paired.fastq.gz /home/xue/transcriptome_data/BJE3909_tropicalis_trimmed_data/BenEvansBJE3909cDNA_Library_GTGAAA_L004_R1_001_single.fastq.gz /home/xue/transcriptome_data/BJE3909_tropicalis_trimmed_data/BenEvansBJE3909cDNA_Library_GTGAAA_L004_R2_001_paired.fastq.gz /home/xue/transcriptome_data/BJE3909_tropicalis_trimmed_data/BenEvansBJE3909cDNA_Library_GTGAAA_L004_R2_001_single.fastq.gz ILLUMINACLIP:/home/xue/Trimmomatic-0.36/adapters/TruSeq2-PE.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:36
+
 ```
 What the parameters mean:
 - LLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.
@@ -67,6 +67,12 @@ What the parameters mean:
 - MINLEN: Drop the read if it is below a specified length
 - TOPHRED33: Convert quality scores to Phred-33
 - TOPHRED64: Convert quality scores to Phred-64
+
+
+#### running Trimmomatic on all scythed data
+```bash
+perl ~/script/run_trimmomatic.pl /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/scythed_data/ /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/
+```
 
 #### run fastqc on Trimmomatic trimmed data
 We did it for all fastq.gz file in the folder

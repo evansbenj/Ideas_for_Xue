@@ -61,6 +61,11 @@ What the parameters mean:
 - TOPHRED33: Convert quality scores to Phred-33
 - TOPHRED64: Convert quality scores to Phred-64
 
+#### running Trimmomatic on all scythed data
+```
+perl ~/script/run_trimmomatic.pl /home/xue/tropicalis_gonad_transcriptome_Dec2018/scythed_data/ /home/xue/tropicalis_gonad_transcriptome_Dec2018/trim/
+```
+
 #### run fastqc on Trimmomatic trimmed data
 We did it for all fastq.gz file in the folder
 ```bash
