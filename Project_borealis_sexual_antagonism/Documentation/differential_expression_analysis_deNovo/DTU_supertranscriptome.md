@@ -1,6 +1,9 @@
+# Differential exon usage
+
+### DTU using Trinity wrapper
 following tutorial: `https://github.com/trinityrnaseq/trinityrnaseq/wiki/DiffTranscriptUsage`
 
-How to run it on info:
+I tried to do it in info with the following:
 ```
 /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Analysis/SuperTranscripts/DTU/dexseq_wrapper.pl \
        --genes_fasta /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/supertranscriptome_dec2018/trinity_genes.fasta \
@@ -8,8 +11,9 @@ How to run it on info:
        --samples_file /home/xue/borealis_transcriptome/borealis_supertranscriptome_2018/borealis_superTrans_DTU/borealis_de_liver_samplefile.tsv \
        --out_prefix DTU --aligner STAR
 ```
+It didn't work. 
 
-How to run it in Graham:
+I tried to run it on Graham. 
 ```
 #!/bin/bash
 #SBATCH --nodes=1
@@ -85,8 +89,6 @@ to run the bash script
 ~/script/run_salmon.sh
 ```
 
-## DTU using rnaseqDTU
-This is done partially following the tutorial descripted in https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd.
 
 ### DTU with DEXseq
 The usage of DEXSeq is following the DEXSeq vignett and also learned form the above link. 
@@ -111,6 +113,11 @@ alignment position
 ```bash
 time python3 /home/xue/software/DEXSeq/inst/python_scripts/dexseq_count.py -p yes -s no -f bam -r pos /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/DTU/dexseq_count/borealis_SuperTrans_dexseq.gff /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/mapping_reads_to_superTrans_star/BJE3896_dad_superTrans_star.bam /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/DTU/dexseq_count/BJE3896_dad_count.txt
 ```
+### DTU using *featureCount* and DEXSeq
+This is done partially following the tutorial descripted in https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd.
+
+The above script ran for two months and still going on. This is too slow. I came across this paper (https://www.biorxiv.org/content/biorxiv/early/2018/07/26/377762.full.pdf) which compare the speed, memory and accuracy about different DTU work flow. It concluded that dexseq_count.py has the slowest speed and featureCounts from the Rsubread package has the fastest speed. For the interest of time, I switch to the Rsubread-featureCount workflow even though it is not the standard workflow outlined in the DEXSeq manual. The featureCount workflow was used in this tutorial (https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd) 
+
 
 Now, the count information is ready to be used by DESeq in a R script. Below is the R script. 
 
