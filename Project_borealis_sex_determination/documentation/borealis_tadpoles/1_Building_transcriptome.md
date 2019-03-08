@@ -84,17 +84,16 @@ for i in *fastq.gz ; do fastqc $i; done
 ## Trinity - Transcriptome assembly
 More detail about trinity here: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity
 
-Before I start Trinity run, I will like to combine all the R1_paired together and all the R2_paired together by doing:
+Before start building transcriptome, I will like to combine all the R1_paired together and all the R2_paired together by doing the below. The reason is that we want to build once single transcriptome that we can map read to instead of building individual ones and trying to find what is the equavalent transcripts in each transcriptome. 
 ```bash
-cat *_R1_paired.fastq.gz > XT_R1.fastq.gz
-cat *_R2_paired.fastq.gz > XT_R2.fastq.gz
+cat *_R1_paired.fastq.gz > XBO_tad_R1.fastq.gz
+cat *_R2_paired.fastq.gz > XBO_tad_R2.fastq.gz
 ```
 
-Since I can install Trinity 2.8 and 2.7 after multiple tries, I decide to go with version 2.5.1 on info. 
-```bash
-export PATH="/home/xue/software/bowtie2-2.3.4.3:$PATH";time /home/xue/software/trinityrnaseq-Trinity-v2.5.1/Trinity --seqType fq  --left /home/xue/tropicalis_gonad_transcriptome_Dec2018/trim/XT_R1.fastq.gz --right /home/xue/tropicalis_gonad_transcriptome_Dec2018/trim/XT_R2.fastq.gz --CPU 20 --inchworm_cpu 6 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/tropicalis_gonad_transcriptome_Dec2018/tropicali_gonad_transcriptome_trinityOut;echo "trinity done in screen tropicalis_gonad on info114"|mail songxy2@mcmaster.ca
+I built the *de novo* transcriptome in Graham since Graham has the newest version of Trinity (2.8). Once it is build, I will transfer the transcriptome back to info for down-stream analysis. I moved the data to Graham by:
 ```
-
+scp xue@info.mcmaster.ca:/home/xue//home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*XT_R* .
+```
 
 Graham alread have the newest version of Trinity (Trinity 2.8.4) installed, I am running the newest verion on Graham with the below bash script.
 ```bash
@@ -103,8 +102,8 @@ Graham alread have the newest version of Trinity (Trinity 2.8.4) installed, I am
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=20
 #SBATCH --time=5-12:00
-#SBATCH --mem=210G
-#SBATCH --job-name=tropicalis_transcriptome_dec2018
+#SBATCH --mem=230G
+#SBATCH --job-name=borealis_transcriptome_Feb2019
 #SBATCH --account=def-ben
 
 module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
@@ -127,16 +126,16 @@ The one ran in info gave my error message and stopped running. The one in graham
   - the g means gene
   - the i means isoform: different isoform of a gene are supposely splice variants if Trinity did the assembly correctly.
 
-## GMAP - Mapping to *X.tropicalis* genome (v91)
-I mapped the *de novo* assembled tropicalis transcriptome to the tropicalis genome (v91) using gmap on Graham. 
+## GMAP - Mapping to *X. laevis* genome (v92)
+I mapped the *de novo* assembled tropicalis transcriptome to the *X. laevis* genome (v92) using gmap on Graham. 
 ```bash
-#downloading the genome from Xenbase (ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/) 
-wget ftp://ftp.xenbase.org/pub/Genomics/JGI/Xentr9.1/XT9_1.fa.gz
+#the X. laevis genome (v92) was already indexed and the indexings were stored in the following path
 
-#indexing
-gmap_build -d db_gmap_tropicalis_v91/ -D /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/db_gmap_tropicalis_v91 -g /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/XT9_1.fa.gz
 
-#mapping 
+
+
+#mapping
+
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -154,6 +153,9 @@ time gmap -D /home/songxy/scratch/tropicalis_transcriptome/tropicalis_genome/db_
 
 
 ```
+
+
+
 ## Summary - basic stat for reads and transcriptome
 Raw read
 - total:
