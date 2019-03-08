@@ -115,7 +115,7 @@ module load bowtie2/2.3.4.3
 module load jellyfish/2.2.6
 module load trinity/2.8.4
 
-Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/tropicalis_gonad_transcriptome/data/trim/XT_R1.fastq.gz --right /home/songxy/projects/def-ben/songxy/tropicalis_gonad_transcriptome/data/trim/XT_R2.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/tropicalis_transcriptome/tropicalis_transcriptome_trinityOut
+Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/trimmed_data/XBO_tad_R1.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/trimmed_data/XBO_tad_R2.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/borealis_tad_trinityOut
 ```
 The one ran in info gave my error message and stopped running. The one in graham ran for a little bit more than 1 days with max 191Gb of memories. Much shorter time than I expected. 
 
