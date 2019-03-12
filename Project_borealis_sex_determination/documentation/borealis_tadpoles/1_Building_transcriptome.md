@@ -171,7 +171,7 @@ kallisto index -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analys
 #Transcript abundance quantification
 for i in /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*_R1_paired.fastq.gz; do name=$(grep -o "XBO[0-9]*" <(echo $i));r1=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R1_paired.fastq.gz;r2=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R2_paired.fastq.gz; kallisto quant -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/borealis_tad_goand_transcriptome.fasta.kallisto_idx  -o /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/$name <(gunzip -c $r1) <(gunzip -c $r2);done
 
-#To compute the matrix (time cost: ~10min)-didnt do yet
+#To compute the matrix (time cost: ~10min)
 time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.1/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix tropicalis_gonad --gene_trans_map /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_gonad_supertranscriptome_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta.gene_trans_map --name_sample_by_basedir XT1/abundance.tsv XT10/abundance.tsv XT11/abundance.tsv XT13/abundance.tsv XT16/abundance.tsv XT17/abundance.tsv XT19/abundance.tsv XT2/abundance.tsv XT20/abundance.tsv XT3/abundance.tsv XT6/abundance.tsv XT7/abundance.tsv XT8/abundance.tsv XT9/abundance.tsv
 
 ```
@@ -183,7 +183,7 @@ kallisto index -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analys
 #Transcript abundance quantification
 for i in /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*_R1_paired.fastq.gz; do name=$(grep -o "XBO[0-9]*" <(echo $i));r1=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R1_paired.fastq.gz;r2=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R2_paired.fastq.gz; kallisto quant -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/supertranscriptome/raw_count_kallisto/borealis_tad_goand_supertranscriptome.fasta.kallisto_idx  -o /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/$name <(gunzip -c $r1) <(gunzip -c $r2);done
 
-#To compute the matrix (time cost: ~10min)-didnt do yet
+#To compute the matrix (time cost: ~10min)
 time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.1/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix tropicalis_gonad --gene_trans_map /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_gonad_supertranscriptome_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta.gene_trans_map --name_sample_by_basedir XT1/abundance.tsv XT10/abundance.tsv XT11/abundance.tsv XT13/abundance.tsv XT16/abundance.tsv XT17/abundance.tsv XT19/abundance.tsv XT2/abundance.tsv XT20/abundance.tsv XT3/abundance.tsv XT6/abundance.tsv XT7/abundance.tsv XT8/abundance.tsv XT9/abundance.tsv
 
 ```
