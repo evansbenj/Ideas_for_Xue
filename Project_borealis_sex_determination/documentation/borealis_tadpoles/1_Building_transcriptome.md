@@ -54,9 +54,6 @@ scp xue@info.mcmaster.ca:/home/xue/tropicalis_gonad_transcriptome_Dec2018/scythe
 run it like this if it is paired end
 learn how to run trimmomatic and what the command means: http://www.usadellab.org/cms/?page=trimmomatic
 
-```bash
-
-```
 What the parameters mean:
 - LLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.
 - SLIDINGWINDOW: Perform a sliding window trimming, cutting once the average quality within the window falls below a threshold.
@@ -67,7 +64,6 @@ What the parameters mean:
 - MINLEN: Drop the read if it is below a specified length
 - TOPHRED33: Convert quality scores to Phred-33
 - TOPHRED64: Convert quality scores to Phred-64
-
 
 #### running Trimmomatic on all scythed data
 ```bash
@@ -80,7 +76,6 @@ We did it for all fastq.gz file in the folder
 for i in *fastq.gz ; do fastqc $i; done
 ```
 
-
 ## Trinity - Transcriptome assembly
 More detail about trinity here: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Running-Trinity
 
@@ -92,7 +87,7 @@ cat *_R2_paired.fastq.gz > XBO_tad_R2.fastq.gz
 
 I built the *de novo* transcriptome in Graham since Graham has the newest version of Trinity (2.8). Once it is build, I will transfer the transcriptome back to info for down-stream analysis. I moved the data to Graham by:
 ```
-scp xue@info.mcmaster.ca:/home/xue//home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*XT_R* .
+scp xue@info.mcmaster.ca:/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*XBO_tad_* .
 ```
 
 Graham alread have the newest version of Trinity (Trinity 2.8.4) installed, I am running the newest verion on Graham with the below bash script.
@@ -115,7 +110,7 @@ module load bowtie2/2.3.4.3
 module load jellyfish/2.2.6
 module load trinity/2.8.4
 
-Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/tropicalis_gonad_transcriptome/data/trim/XT_R1.fastq.gz --right /home/songxy/projects/def-ben/songxy/tropicalis_gonad_transcriptome/data/trim/XT_R2.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/tropicalis_transcriptome/tropicalis_transcriptome_trinityOut
+Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/trimmed_data/XBO_tad_R1.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/trimmed_data/XBO_tad_R2.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/borealis_tad_trinityOut
 ```
 The one ran in info gave my error message and stopped running. The one in graham ran for a little bit more than 1 days with max 191Gb of memories. Much shorter time than I expected. 
 
