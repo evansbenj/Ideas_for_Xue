@@ -2,8 +2,8 @@ library(tidyverse)  # data manipulation
 library(cluster)    # clustering algorithms
 library(factoextra) # clustering algorithms & visualization
 
-#input_file_path <- file.path("D:", "school_grad school", 
-input_file_path <- file.path("/Users/evanslab/Desktop",
+input_file_path <- file.path("D:", "school_grad", 
+#input_file_path <- file.path("/Users/evanslab/Desktop",
                              "Xue_master_projects","Project_borealis_sex_determination/Analysis",
                              "sample_clustering_analysis")
 output_file_path <- input_file_path
@@ -40,6 +40,8 @@ ortho_expression <- expression_data %>%
 ortho_expression <- ortho_expression[rowSums(ortho_expression)>0,]
 ortho_expression <- t(ortho_expression)
 ortho_expression <- scale(ortho_expression)
+
+head(ortho_expression)
 
 ####### Check scaling
 #The below indicated that scaling did scale the data to have a mean of 0 and sd of 1
