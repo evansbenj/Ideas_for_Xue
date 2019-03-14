@@ -1,6 +1,6 @@
 # Differential exon usage
 
-### DTU using Trinity wrapper
+## DTU using Trinity wrapper
 following tutorial: `https://github.com/trinityrnaseq/trinityrnaseq/wiki/DiffTranscriptUsage`
 
 I tried to do it in info with the following:
@@ -53,44 +53,13 @@ male   male_rep2   /home/songxy/projects/def-ben/songxy/borealis_transcriptome/t
 male male_rep3   /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4017_boy_liver_R1_scythe.fastq.gz     /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4017_boy_liver_R2_scythe.fastq.gz
 male male_rep4   /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4039_boy_liver_R1_scythe.fastq.gz     /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/trimmed_reads_individual/BJE4039_boy_liver_R2_scythe.fastq.gz
 ```
-
-## Salmon
-#### indexing
-```
-salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/supertranscriptome/borealis_superTrans.fasta -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
-
-```
-#### quantifying  
-bash script to run salmon for all the files
-```bash
-#!/bin/bash
-
-index_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
-
-sample_dir=/home/xue/borealis_transcriptome/data/trimmed
-
-out_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon
-
-cd /home/xue/borealis_transcriptome/data/trimmed
-
-for i in *fastq.gz; do 
-        sample_name=$(grep -o "BJE[0-9]*_[a-z]*" <(echo $i)) 
-        
-        salmon quant -i ${index_dir} -l A \
-          -1 ${sample_dir}/${sample_name}_liver_R1_paired.fastq.gz \
-          -2 ${sample_dir}/${sample_name}_liver_R2_paired.fastq.gz \
-          -p 15 --validateMappings --rangeFactorizationBins 4 \
-          --seqBias --gcBias \
-          -o ${out_dir}/${sample_name}_quant
-done
-```
-to run the bash script
-```
-~/script/run_salmon.sh
-```
+It didn't run on Graham either.
 
 
-### DTU with DEXseq
+
+
+
+# DTU with DEXseq
 The usage of DEXSeq is following the DEXSeq vignett and also learned form the above link. 
 
 Before running DEXSeq in R, count files needs to be reformatted to a style that DEXSeq can use. Since the transcripts of a gene might contain different exons, DEXSeq provide a python script that collapsed the exons information to define exon counting bins The first script converts the gtf file into a gff file with collapsed exon counting files, which should include the coordintate of exon bins. From DEXSeq vegnett section 2.4, this first script can be ran like this:
@@ -113,7 +82,15 @@ alignment position
 ```bash
 time python3 /home/xue/software/DEXSeq/inst/python_scripts/dexseq_count.py -p yes -s no -f bam -r pos /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/DTU/dexseq_count/borealis_SuperTrans_dexseq.gff /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/mapping_reads_to_superTrans_star/BJE3896_dad_superTrans_star.bam /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/DTU/dexseq_count/BJE3896_dad_count.txt
 ```
-### DTU using *featureCount* and DEXSeq
+The second script `dexseq_count.py` ran forever - has been running for 2 months and still not done. This takes too long. Hence, I looked at alternative method to do this. 
+
+
+
+
+
+
+
+## DTU using *featureCount* and DEXSeq - not done
 This is done partially following the tutorial descripted in https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd.
 
 The above script ran for two months and still going on. This is too slow. I came across this paper (https://www.biorxiv.org/content/biorxiv/early/2018/07/26/377762.full.pdf) which compare the speed, memory and accuracy about different DTU work flow. It concluded that dexseq_count.py has the slowest speed and featureCounts from the Rsubread package has the fastest speed. For the interest of time, I switch to the Rsubread-featureCount workflow even though it is not the standard workflow outlined in the DEXSeq manual. The featureCount workflow was used in this tutorial (https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd) 
@@ -209,6 +186,52 @@ plotMA( dxr1, cex=0.8 )
 ```
 
 
+
+
+
+## DTU using DRIMSeq - following rnaseqDTU tutorial 
+https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd.
+
+
+## Salmon
+#### indexing
+```
+salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/supertranscriptome/borealis_superTrans.fasta -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+
+```
+#### quantifying  
+bash script to run salmon for all the files
+```bash
+#!/bin/bash
+
+index_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+
+sample_dir=/home/xue/borealis_transcriptome/data/trimmed
+
+out_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon
+
+cd /home/xue/borealis_transcriptome/data/trimmed
+
+for i in *fastq.gz; do 
+        sample_name=$(grep -o "BJE[0-9]*_[a-z]*" <(echo $i)) 
+        
+        salmon quant -i ${index_dir} -l A \
+          -1 ${sample_dir}/${sample_name}_liver_R1_paired.fastq.gz \
+          -2 ${sample_dir}/${sample_name}_liver_R2_paired.fastq.gz \
+          -p 15 --validateMappings --rangeFactorizationBins 4 \
+          --seqBias --gcBias \
+          -o ${out_dir}/${sample_name}_quant
+done
+```
+to run the bash script
+```
+~/script/run_salmon.sh
+```
+
+
+
+
+## DTU using DRIMSeq - following rnaseqDTU tutorial 
 
 
 
