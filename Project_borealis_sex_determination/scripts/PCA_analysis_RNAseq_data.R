@@ -1,4 +1,4 @@
-setwd("D:/school_grad school/Project_borealis_sex_determination/Analysis/sample_clustering_analysis/PCA/")
+#setwd("D:/school_grad school/Project_borealis_sex_determination/Analysis/sample_clustering_analysis/PCA/")
 #setwd("~/Desktop/borealis_sex_determination/PCA")
 
 library(tidyverse)
@@ -9,11 +9,14 @@ library(graphics)
 #library(mass)
 #library(ad4)
 
-#list of input_files
+#list of input_files for trop
 #input_file = "tropicalis_gonad.gene.counts.matrix"	
-input_file = "tropicalis_gonad.gene.TMM.EXPR.matrix"
+#input_file = "tropicalis_gonad.gene.TMM.EXPR.matrix"
 #input_file = "tropicalis_gonad.isoform.counts.matrix"
 #input_file = "tropicalis_gonad.isoform.TMM.EXPR.matrix"
+
+#list of input_files for borealis
+input_file = "Project_borealis_sex_determination/data/borealis_tad_gonad_supertrans.TMM.EXPR.matrix"
 
 #read in the data
 input_data <- read.table(input_file,header = TRUE, row.names ="Transcript_name")
@@ -32,7 +35,7 @@ express_data_head <- express_data_before[,]
 #express_data <- log10(express_data)
 express_data <- t(express_data_head)
 express_data <- express_data[,colSums(express_data)>0]
-express_data <- scale(express_data)
+#express_data <- scale(express_data)
 
 #Do PCA analysis using prcomp 
 #By default, center = TRUE and it centers the variable to have mean equals to zero. 
@@ -42,7 +45,7 @@ express_data <- scale(express_data)
 ###rotation: the matrix of variable loadings (i.e., a matrix whose columns contain the eigenvectors). 
 ###x: if retx is true the value of the rotated data (the centred (and scaled if requested) data multiplied by the rotation matrix) is returned
 ###center, scale: the centering and scaling used
-project_pca <- prcomp(express_data, retx=TRUE, center = TRUE, scale. = FALSE)
+project_pca <- prcomp(express_data, retx=TRUE, center = TRUE, scale. = TRUE)
 
 #calculate the project_pca_proportionvarianes
 #way 1
@@ -82,7 +85,7 @@ ggplot(data=pca_plot, aes(x=X, y=Y, label=Sample)) +
   xlab(paste("PC1 - ", project_pca_proportionvariances[1], "%", sep="")) +
   ylab(paste("PC2 - ", project_pca_proportionvariances[2], "%", sep="")) +
   theme_classic() +
-  ggtitle("X.tropicalis gonad RNAseq PCA") +
+  ggtitle("Gonad RNAseq PCA") +
   geom_hline(mapping = NULL, data = NULL, yintercept = 0,
              na.rm = FALSE, show.legend = NA) +
   geom_vline(mapping = NULL, data = NULL, xintercept = 0,

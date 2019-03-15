@@ -196,19 +196,33 @@ https://github.com/mikelove/rnaseqDTU/blob/master/vignettes/rnaseqDTU.Rmd.
 ## Salmon
 #### indexing
 ```
-salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/supertranscriptome/borealis_superTrans.fasta -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+# for supertranscriptome
+salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/denovo_transcriptome/supertranscriptome/borealis_superTrans.fasta -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+
+#for transcriptome
+salmon index -t /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/denovo_transcriptome/transcriptome/borealis_transcriptome_trinityOut.fasta -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/raw_count_salmon/borealis_trans_index
+
 
 ```
 #### quantifying  
-bash script to run salmon for all the files
+bash script to run salmon for all the files 
 ```bash
 #!/bin/bash
 
-index_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+##### for supertranscriptome
+#index_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon/borealis_superTrans_index
+
+#sample_dir=/home/xue/borealis_transcriptome/data/trimmed
+
+#out_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon
+
+#########for transcriptome
+index_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/raw_count_salmon/borealis_trans_index
 
 sample_dir=/home/xue/borealis_transcriptome/data/trimmed
 
-out_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/supertranscriptome/count_salmon
+out_dir=/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/raw_count_salmon/quants
+
 
 cd /home/xue/borealis_transcriptome/data/trimmed
 
@@ -231,7 +245,6 @@ to run the bash script
 
 
 
-## DTU using DRIMSeq - following rnaseqDTU tutorial 
 
 
 

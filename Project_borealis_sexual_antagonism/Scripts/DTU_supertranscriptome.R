@@ -1,8 +1,11 @@
 
 ####import data####
+
 library(tximport)
-quant_files <- file.path("Project_borealis_sexual_antagonism/data/supertranscriptome/counts_salmon/quants", 
-                         list.files("Project_borealis_sexual_antagonism/data/supertranscriptome/counts_salmon/quants"), "quant.sf")
+library(tidyverse)
+
+quant_files <- file.path("Project_borealis_sexual_antagonism/data/transcriptome/counts_salmon/quants", 
+                         list.files("Project_borealis_sexual_antagonism/data/transcriptome/counts_salmon/quants/"), "quant.sf")
 samples <- c("BJE3896_dad_quant",
              "BJE3897_mom_quant",
              "BJE3929_boy_quant",
@@ -17,20 +20,33 @@ names(quant_files) <- samples
 txi <- tximport(quant_files, type="salmon", txOut=TRUE,
                 countsFromAbundance="scaledTPM")
 cts <- txi$counts
-cts <- cts[rowSums(cts) > 0,]
+cts <- cts[rowSums(cts) > 16,]
+
+table(table(count(txi)$gene_id))
 
 
 #load in the condition information
+# BJE3896_dad_quant,2
+# BJE3897_mom_quant,1
+# BJE3929_boy_quant,2
+# BJE4009_girl_quant,1
+# BJE4017_boy_quant,2 
+# BJE4039_boy_quant,2
+# BJE4072_girl_quant,1
+# BJE4082_girl_quant,1
 samps <- read.csv(file.path("Project_borealis_sexual_antagonism/data/supertranscriptome/DTU_analysis", "sample_condition.csv"))
-samps$condition <- factor(samps$condition)
+samps$condition <- factor(samps$condition) 
 table(samps$condition)
+
+
+
 
 #transcript to gene mapping
 library(GenomicFeatures)
-gtf <- "Project_borealis_sexual_antagonism/data/supertranscriptome/supertranscriptome_fasta/borealis_superTrans.gtf"
+gtf <- "Project_borealis_sexual_antagonism/data/supertranscriptome/borealis_superTrans.gtf"
 txdb.filename <- "Project_borealis_sexual_antagonism/data/supertranscriptome/borealis_superTrans_gtf.sqlite"
-# txdb <- makeTxDbFromGFF(gtf)
-# saveDb(txdb, txdb.filename)
+#txdb <- makeTxDbFromGFF(gtf)
+#saveDb(txdb, txdb.filename)
 txdb <- loadDb(txdb.filename)
 txdf <- select(txdb, keys(txdb, "GENEID"), "TXNAME", "GENEID")
 tab <- table(txdf$GENEID)
@@ -39,16 +55,31 @@ txdf$ntx <- tab[match(txdf$GENEID, names(tab))]
 #build a DRIMSeq object
 cts[1:3,1:3]
 range(colSums(cts)/1e6)
-all(rownames(cts) %in% txdf$GENEID)
-txdf <- txdf[match(rownames(cts),txdf$GENEID),]
-all(rownames(cts) == txdf$GENEID)
+all(rownames(cts) %in% txdf$TXNAME)
+txdf <- txdf[match(rownames(cts),txdf$TXNAME),]
+all(rownames(cts) == txdf$TXNAME)
 
 counts <- data.frame(gene_id=txdf$GENEID,
                      feature_id=txdf$TXNAME,
                      cts)
 library(DRIMSeq)
 d <- dmDSdata(counts=counts, samples=samps)
-d
+
+methods(class=class(d))
+
+#possible filtering method - can reduce amount of data
+n<- 8 #total number of samples
+n.small <- 2 #for a gene, the number of samples that should have count data
+d_filter <- dmFilter(d, #for a transcript to be retained in the dataset
+              min_samps_feature_expr = n.small,
+              min_feature_expr=1, #the transcript has a count of at least 1 in at least 2 samples
+              min_samps_feature_prop=n.small, 
+              min_feature_prop=0.01, # the transcript has a relative abundance proportion of at least 0.01 in at lease 2 samples
+              min_samps_gene_expr = n.small,
+              min_gene_expr =1 #the total count of the corresponding gene is at least 10 in all n samples
+              ) 
+
+table(table(counts(d)$gene_id))
 
 #build a DEXSeq 
 library(DEXSeq)
