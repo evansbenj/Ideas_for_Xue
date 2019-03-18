@@ -23,9 +23,12 @@ input_data <- read.table(input_file,header = TRUE, row.names ="Transcript_name")
 
 #do some filtering
 # I filtered out the genes with zeros expression in all samples;
-#The second line is just there in case I more filtering to do
-express_data_before <- input_data[rowSums(input_data)>1,]
-express_data_head <- express_data_before[,]
+express_data <- input_data[rowSums(input_data)>1,]
+#stage information
+stage46 <- c("XBO12","XBO15","XBO16","XBO23","XBO24","XBO26","XBO27","XBO08")
+stage48 <- c("XBO17","XBO19","XBO20","XBO21","XBO28","XBO29","XBO30","XBO31","XBO32","XBO33","XBO34","XBO35","XBO36")
+
+express_data <- express_data[,which (names(express_data) %in% stage46)]
 
 #prcomp would expect the column to be variable (different genes) and row to be samples. Below is an example.
 #Sample Gene1 Gene2 Gene3 Gene4
@@ -33,7 +36,7 @@ express_data_head <- express_data_before[,]
 #Sample2  2 3 15  29
 #Hence I transcponse the data into the format that prcomp expects
 #express_data <- log10(express_data)
-express_data <- t(express_data_head)
+express_data <- t(express_data)
 express_data <- express_data[,colSums(express_data)>0]
 #express_data <- scale(express_data)
 
@@ -80,7 +83,7 @@ pca_plot <- data.frame(Sample=rownames(project_pca$x),
                        Y=project_pca$x[,2])
 pca_plot
 
-ggplot(data=pca_plot, aes(x=X, y=Y, label=Sample)) +
+pca<-ggplot(data=pca_plot, aes(x=X, y=Y, label=Sample)) +
   geom_text() +
   xlab(paste("PC1 - ", project_pca_proportionvariances[1], "%", sep="")) +
   ylab(paste("PC2 - ", project_pca_proportionvariances[2], "%", sep="")) +
@@ -90,6 +93,8 @@ ggplot(data=pca_plot, aes(x=X, y=Y, label=Sample)) +
              na.rm = FALSE, show.legend = NA) +
   geom_vline(mapping = NULL, data = NULL, xintercept = 0,
              na.rm = FALSE, show.legend = NA)
+
+pca
 
 
 #Pairs plots
