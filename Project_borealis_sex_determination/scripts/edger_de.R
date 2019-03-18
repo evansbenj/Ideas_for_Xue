@@ -1,6 +1,3 @@
-#setwd("~/Desktop/borealis_SA/script/edgeR")
-#setwd("C:/Users/Sarah/Desktop/borealis_sexual_antagonism/Differential expression/EdgeR DE")
-
 #---------------------------------------perform DE--------------------------
 library("limma")
 library("edgeR")
