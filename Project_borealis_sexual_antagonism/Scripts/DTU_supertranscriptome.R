@@ -22,7 +22,6 @@ txi <- tximport(quant_files, type="salmon", txOut=TRUE,
 cts <- txi$counts
 cts <- cts[rowSums(cts) > 16,]
 
-table(table(count(txi)$gene_id))
 
 
 #load in the condition information
