@@ -93,8 +93,8 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --lef
 ```
 The amount of transcripts that we end up having after running the above assembly is 1.5m. The initial run in Sept 2017 had 1.6m. This Oct2018 run have 0.1m less transcripts but still not very good. 
 
-### Trinity de novo transcriptome assembly with version 2.7.0-PRERELEASE
-I would like to try the newer version of trinity. I tried to build the newest version v2.8 but it needs the most updated version of cmake 2.9 (current version on info is v2.8.12.2). To install cmake 2.9, it needs g++ v4.7 and current version on info is v4.4.7. I can't update g++ compilor and hence give up on installing Trinity v2.8. I went down the Trinty version list and installed Trinity v2.7.0. Trinity v2.7.0 need a newer version of jellyfish and bowtie2 than what we have on info. Hence, I locally installed them and exported their path. 
+### Fail to assemble transcriptome with Trinity version 2.7 
+I would like to try the newer version of trinity and see if we will get less isoform and better assembled transcriptomes. I tried to build the newest version v2.8 on info but it needs the most updated version of cmake 2.9 (current version on info is v2.8.12.2). To install cmake 2.9, it needs g++ v4.7 and current version on info is v4.4.7. On info, I can't update g++ compilor and hence give up on installing Trinity v2.8. I went down the Trinty version list and installed Trinity v2.7.0. Trinity v2.7.0 need a newer version of jellyfish and bowtie2 than what we have on info. Hence, I locally installed them and exported their path. 
 ```bash
 # installing Trinity v2.7.0
 # installation instruction: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Installing-Trinity
@@ -125,26 +125,29 @@ In this assembly run, I included `--no_salmon` because the current version of Sa
 ```bash
 time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqType fq --samples_file /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_rnaseq_trimmed_samples_file.tsv  --CPU 25 --inchworm_cpu 15 --full_cleanup --max_memory 200G --min_kmer_cov 2 --no_salmon --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/borealis_denovo_nov2018trinityOut; echo "trinity is done at info113 in screen assembly" | mail songxy2@mcmaster.ca
 ```
+### Trinity de novo transcriptome assembly with version 2.8.4
 
 Building transcriptome assembly with the newest version of Trinity in Graham
 
 ```
-#load the latest version of Trinity
-module load trinity/2.8.4
-
-#batch scrip to run Trinity
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10 
-#SBATCH --time=3-12:00
-#SBATCH --mem=200G
+#SBATCH --cpus-per-task=20
+#SBATCH --time=1-22:00
+#SBATCH --mem=210G
 #SBATCH --job-name=borealis_transcriptome_dec2018
 #SBATCH --account=def-ben
 
 module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
-module load trinity/2.8.4
+module load openmpi/3.1.2
+#module load trinity/2.8.4
 module load samtools/1.9
+module load salmon/0.11.3
+module load bowtie2/2.3.4.3
+module load jellyfish/2.2.6
+module load trinity/2.8.4
 
-Trinity --seqType fq --left borealis_R1_paired.fastq.gz --right borealis_R2_paired.fastq.gz --CPU 10 --full_cleanup --max_memory 200G --include_supertranscripts --output /project/def-ben/songxy/borealis_transcriptome/borealis_denovo_transcriptome_dec2018_trinityOut
+
+Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R1_paired.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/borealis_transcriptome_trinityOut
 ```

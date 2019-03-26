@@ -2,7 +2,7 @@
 
 BenF already builded one supertranscriptome before but it is missing the gtf file, which I need as an input to the DTU script that trinity provided for DTU analysis. Hence, I decided to re-build this supertranscriptome following tutorial: `https://github.com/trinityrnaseq/trinityrnaseq/wiki/SuperTranscripts`.
 
-|The working directory is: /home/songxy/projects/def-ben/songxy/borealis_transcriptome/supertranscriptome/
+The working directory is: /home/songxy/projects/def-ben/songxy/borealis_transcriptome/supertranscriptome/
 
 I stated in info and try to generate Trinity SuperTranscripts like:
 ```bash
@@ -40,4 +40,55 @@ and this generates two output files:
 trinity_genes.fasta   :supertranscripts in fasta format
 trinity_genes.gtf     :transcript structure annotation in gtf format
 ```
+
+## Supertranscriptome - Dec 2018
+I was rebuilding the borealis transcriptome with the newest version of Trinity on Dec 2018. The newest version included a flag `--include_supertranscripts` and I included this flag to get a supertranscriptome with the transcriptome. Since it was hard to install Trinity version 2.8.4 on info, I did the transriptome assembly in Graham. 
+```
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --time=1-22:00
+#SBATCH --mem=210G
+#SBATCH --job-name=borealis_transcriptome_dec2018
+#SBATCH --account=def-ben
+
+module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
+module load openmpi/3.1.2
+#module load trinity/2.8.4
+module load samtools/1.9
+module load salmon/0.11.3
+module load bowtie2/2.3.4.3
+module load jellyfish/2.2.6
+module load trinity/2.8.4
+
+
+Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R1_paired.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/borealis_transcriptome_trinityOut
+```
+The path to the supertranscriptome is:
+- on graham: 
+  ```
+  #sequence fasta
+  /home/songxy/projects/def-ben/songxy/borealis_transcriptome/data/supertranscriptome_dec2018/borealis_superTrans.fasta
+  
+  #gene_trans_map
+  /home/songxy/projects/def-ben/songxy/borealis_transcriptome/data/supertranscriptome_dec2018/borealis_superTrans_fasta.gene_trans_map
+  
+  #gtf
+  /home/songxy/projects/def-ben/songxy/borealis_transcriptome/data/supertranscriptome_dec2018/borealis_superTrans.gtf
+  ```
+
+- on info: 
+  ```
+  #sequence fasta
+  /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/denovo_transcriptome/supertranscriptome/borealis_superTrans.fasta
+  
+  #gene_trans_map
+  /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/denovo_transcriptome/borealis_superTrans_fasta.gene_trans_map
+  
+  #gtf
+  /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/denovo_transcriptome/borealis_superTrans.gtf
+  
+  ```
+
 
