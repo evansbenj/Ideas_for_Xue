@@ -43,7 +43,7 @@ trinity_genes.gtf     :transcript structure annotation in gtf format
 
 ## Supertranscriptome - Dec 2018
 I was rebuilding the borealis transcriptome with the newest version of Trinity on Dec 2018. The newest version included a flag `--include_supertranscripts` and I included this flag to get a supertranscriptome with the transcriptome. Since it was hard to install Trinity version 2.8.4 on info, I did the transriptome assembly in Graham. 
-```
+```bash
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1

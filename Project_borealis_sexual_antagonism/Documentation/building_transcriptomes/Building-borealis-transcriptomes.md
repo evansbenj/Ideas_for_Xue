@@ -127,9 +127,9 @@ time /home/xue/software/trinityrnaseq-Trinity-v2.7.0-PRERELEASE/Trinity --seqTyp
 ```
 ### Trinity de novo transcriptome assembly with version 2.8.4
 
-Building transcriptome assembly with the newest version of Trinity in Graham
+Graham has the newest version of Trinity, hence, I build the borealis transcriptome with the following bash script. 
 
-```
+```bash
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -151,3 +151,18 @@ module load trinity/2.8.4
 
 Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R1_paired.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/borealis_transcriptome_trinityOut
 ```
+
+The path to the supertranscriptome is:
+- on graham: 
+  ```
+  #sequence fasta
+  /home/songxy/projects/def-ben/songxy/borealis_transcriptome/data/borealis_denovo_transcriptome_dec2018_trinityOut/borealis_transcriptome_trinityOut.Trinity.fasta
+
+  ```
+
+- on info: 
+  ```
+  #sequence fasta
+  /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/denovo_transcriptome/transcriptome/borealis_transcriptome_trinityOut.fasta
+
+  ```
