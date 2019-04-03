@@ -122,17 +122,17 @@ The one ran in info gave my error message and stopped running. The one in graham
   - the i means isoform: different isoform of a gene are supposely splice variants if Trinity did the assembly correctly.
 
 ## GMAP - Mapping to *X. laevis* genome (v92)
-I mapped the *de novo* assembled tropicalis transcriptome to the *X. laevis* genome (v92) using gmap on Graham. 
-```bash
-#the X. laevis genome (v92) was already indexed and the indexings were stored in the following path
-/home/songxy/projects/def-ben/songxy/genome/laevis_genome/db_gmap_xl92
+# Identify transcript's genomic location
 
-#mapping transcriptome to laevis genome
+## Mapping borealis transcriptome to laevis genome
+
+Do mapping in graham since it is faster
+```bash
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=15
-#SBATCH --time=01:20:00
+#SBATCH --cpus-per-task=25
+#SBATCH --time=04:20:00
 #SBATCH --mem=10G
 #SBATCH --job-name=tropicalis_gmap_indexing
 #SBATCH --account=def-ben
@@ -142,54 +142,30 @@ module load gmap-gsnap/2018-07-04
 module load samtools/1.9
 
 time gmap -D /home/songxy/projects/def-ben/songxy/genome/laevis_genome/db_gmap_xl92 -d gmap_laevis_v92 -A -B 5 -t 15 -f samse /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/transcriptome/borealis_tad_goand_transcriptome.fasta | samtools view -S -b > /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/analysis/transcriptome/mapping_trans_laevisGenome92_gmap/borealisTad_denovoT_laevisGenome92_gmap.bam
+```
+Gmap on graham ran for 3.5hrs. 
 
-#mapping supertranscriptome to laevis genome
-time gmap -D /home/songxy/projects/def-ben/songxy/genome/laevis_genome/db_gmap_xl92 -d gmap_laevis_v92 -A -B 5 -t 15 -f samse /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/data/supertranscriptome/borealis_tad_goand_supertanscriptome.fasta | samtools view -S -b > /home/songxy/projects/def-ben/songxy/borealis_tad_gonad_transcriptome/analysis/supertranscriptome/mapping_supertrans_laevisGenome92_gmap/borealisTad_supertrans_laevisGenome92_gmap.bam
+## Coverting to bedfile
+Following the pipeline that I did in `Collapsing_transcripts.md`.
+
+I removed the unmapped reads, which is indicated by flag 0x04. Then I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings;
+```
+#transcriptome
+samtools view -F 0x04 -b borealisTad_denovoT_laevisGenome92_gmap.bam | samtools sort -n | bedtools bamtobed -i > borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed
+
+#supertranscriptome
+samtools view -F 0x04 -b borealisTad_supertrans_laevisGenome92_gmap.bam | samtools sort -n | bedtools bamtobed -i > borealisTad_supertrans_laevisGenome92_gmap_bedfile.bed
 
 ```
-
-## Summary - basic stat for reads and transcriptome
-Raw read
-- total:
-- quality:
-Scythe trimmed read
-- total:
-- quality:
-Trimmomatic trimmed reads
-- total:
-- quality:
-Transcriptome
-- total # of transcripts:
-- quality assesment: go to 
-
-
-## Transcript expression level Quantification - Kallisto
+With a perl script, I filterred the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score, keep the first one only; **This might cause problem in the future**. 
+  - one of the reason that the transcript mapped to multiple location with the same mapping quality is that the transcript was not assembled correctly. This transcript should be drop from the data set
+  - another reason could be that it was mapping to the homologous chromosome. This can be fix by looking at the supertranscriptome and see which chromosome the corresponding supertranscript mapped to. -> **look at it in R** -> this can be used as a extra step to confirm genomic location in the case of doubt.
+  
 ```
-#Indexing the transcriptomes
-kallisto index -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/borealis_tad_goand_transcriptome.fasta.kallisto_idx /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/transcriptome/borealis_tad_goand_transcriptome.fasta
-
-#Transcript abundance quantification
-for i in /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*_R1_paired.fastq.gz; do name=$(grep -o "XBO[0-9]*" <(echo $i));r1=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R1_paired.fastq.gz;r2=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R2_paired.fastq.gz; kallisto quant -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/borealis_tad_goand_transcriptome.fasta.kallisto_idx  -o /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/$name <(gunzip -c $r1) <(gunzip -c $r2);done
-
-cd /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/
-
-kallisto quant -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/borealis_tad_goand_transcriptome.fasta.kallisto_idx  -o /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/transcriptome/raw_count_kallisto/XBO27 <(gzip -c XBO27_R1_paired.fastq.gz) <(gzip -c XBO27_R2_paired.fastq.gz)
-
-
-#To compute the matrix (time cost: ~10min)
-time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.1/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix tropicalis_gonad --gene_trans_map /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_gonad_supertranscriptome_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta.gene_trans_map --name_sample_by_basedir XT1/abundance.tsv XT10/abundance.tsv XT11/abundance.tsv XT13/abundance.tsv XT16/abundance.tsv XT17/abundance.tsv XT19/abundance.tsv XT2/abundance.tsv XT20/abundance.tsv XT3/abundance.tsv XT6/abundance.tsv XT7/abundance.tsv XT8/abundance.tsv XT9/abundance.tsv
-
+perl ~/script/orthologs_identification_filterBedfile.pl borealis_denovoT_laevisV92_genome_gmap_bedfile.bed > borealis_de_laevisV92_genome_gmap_bedfile_filtered.tsv
 ```
-Did the same for supertranscriptome
+The path to bedfile is 
 ```
-#Indexing the transcriptomes
-kallisto index -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/supertranscriptome/raw_count_kallisto/borealis_tad_goand_supertranscriptome.fasta.kallisto_idx /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/supertranscriptome/borealis_tad_goand_supertanscriptome.fasta 
-
-#Transcript abundance quantification
-for i in /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/*_R1_paired.fastq.gz; do name=$(grep -o "XBO[0-9]*" <(echo $i));r1=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R1_paired.fastq.gz;r2=/home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/data/trimmed_data/$name\_R2_paired.fastq.gz; kallisto quant -i /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/supertranscriptome/raw_count_kallisto/borealis_tad_goand_supertranscriptome.fasta.kallisto_idx  -o /home/xue/borealis_tadpoles_gonad_transcriptome_Feb2019/analysis/supertranscriptome/raw_count_kallisto/$name <(gunzip -c $r1) <(gunzip -c $r2);done
-
-#To compute the matrix (time cost: ~10min)
-time perl /home/xue/software/trinityrnaseq-Trinity-v2.5.1/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix tropicalis_gonad --gene_trans_map /home/xue/tropicalis_gonad_transcriptome_Dec2018/data/tropicali_gonad_transcriptome_trinityOut/tropicalis_gonad_supertranscriptome_dec2018/tropicalis_transcriptome_trinityOut.Trinity.fasta.gene_trans_map --name_sample_by_basedir XT1/abundance.tsv XT10/abundance.tsv XT11/abundance.tsv XT13/abundance.tsv XT16/abundance.tsv XT17/abundance.tsv XT19/abundance.tsv XT2/abundance.tsv XT20/abundance.tsv XT3/abundance.tsv XT6/abundance.tsv XT7/abundance.tsv XT8/abundance.tsv XT9/abundance.tsv
-
+/home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/mapping_xb_denovoTrans_xl_genomev92_gmap/
 ```
 
