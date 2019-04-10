@@ -60,12 +60,12 @@ additional <-(dat %>% filter( site_type == "hetDad"
                          , sex_fdr = p.adjust(1-pchisq(sex_chi,1), method = "BH")
                          , raw_p = 1-pchisq(sex_chi,1)
                         )
-              %>% filter( male_match >=1              #number of: son = dad
+              %>% filter( #male_match >=1              #number of: son = dad
                           #,female_match >= 7         #number of: daughter = mom
                           #,total_match >= 8          #number of: son = dad, daughter = mom
-                          ,father_daughter_match == 0 #the number of daughter's genotype = dad's genotype 
+                          #,father_daughter_match == 0 #the number of daughter's genotype = dad's genotype 
                           #,raw_p <=0.5 
-                          ,`[2]POS` < 2178835 & `[2]POS` > 902118 #narrow down the region of SNP coordinate 
+                          `[2]POS` > 1 & `[2]POS` < 5000000   #narrow down the region of SNP coordinate (lower bound, upper bound)
                         )
               %>% select (`[1]CHROM`, `[2]POS`,female_match, male_match, total_match,father_daughter_match, raw_p,`[3]REF` 
                           , male_4362_dad =`[30]Xt_dad_BJE4362:GT`
