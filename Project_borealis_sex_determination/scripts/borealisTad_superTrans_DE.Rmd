@@ -69,6 +69,10 @@ mulMatch_OneChr <- (mapping
 
 filtered_mapping <- bind_rows(SingleMatch,mulMatch_sameChr, mulMatch_allSca, mulMatch_OneChr)
 
+remove(mulMatch_allSca)
+remove(SingleMatch)
+remove(mulMatch_OneChr)
+remove(mulMatch_sameChr)
 ```
 
 ## Performing Differential expression using EdgeR
@@ -111,7 +115,6 @@ summary (result_table)
 result_table <- rownames_to_column(result_table, var = "supertrans_id")
 result_filter <- (result_table
                   %>% filter(FDR <= 0.05)
-
 ) 
 
 joined <- full_join(filtered_mapping,result_filter,  by = "supertrans_id")

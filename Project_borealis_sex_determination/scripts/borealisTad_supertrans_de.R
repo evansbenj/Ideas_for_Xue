@@ -3,7 +3,6 @@ library(graphics)
 library(dplyr)
 library(edgeR)
 
-
 #-------------------------------------mapping information-------------------------------------
 
 #list of input_files for borealis
@@ -109,6 +108,7 @@ joined <- full_join(filtered_mapping,result_filter,  by = "supertrans_id")
 FDR_cutoff = 0.05
 
 de_table <- (joined 
+  %>% filter (!is.na(start))
   %>% mutate(category_broad = case_when (
         FDR > FDR_cutoff ~ "Non DE",
         chromosome == "chr8L" & start < 56690925 & end > 4605306 ~ "chr8L sex-link region",
@@ -207,7 +207,7 @@ de_ci_plot
 #------------------------------------make a pretty MA plot for the DE result-------------------------------------
 ma_col <- c("1" = "red1", "2" = "hotpink2", "3" = "blue", "4" = "steelblue3", "5" = "black", "6" = "brown4", "7" = "grey")
 
-labels = c("chr8L sex-link region (1.7%)", "chr8L non-sex-link region (6.8%)", "chr8S sex-link region (0.4%)", "chr8S non-sex-link region (6.4%)", "Other chromosomes (77.1%)", "Scaffolds (7.6%)", "Non DE")
+labels = c("chr8L sex-link region", "chr8L non-sex-link region ", "chr8S sex-link region ", "chr8S non-sex-link region", "Other chromosomes", "Scaffolds (7.6%)", "Non DE")
 
 #to make the point transparent (the transparency level is known as the alpha), the lower the alpha, the more transparent the point will be
 de_table<- de_table %>% arrange(desc(category_broad_num))
