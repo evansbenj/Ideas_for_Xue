@@ -7,11 +7,15 @@ library(edgeR)
 
 #list of input_files for borealis
 
-input_file_folder <- file.path("Project_borealis_sex_determination/data/xb_transcriptome/supertrans/")
+#input_file_folder <- file.path("Project_borealis_sex_determination/data/xb_transcriptome/supertrans/")
+#input_file <- paste(input_file_folder,"borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed", sep="/")
+
+input_file_folder <- file.path("Project_borealis_sex_determination/data/analysis/transcriptome/mapping_trans_laevisGenome92_gmap")
+input_file <- paste(input_file_folder,"borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed", sep="/")
+
+
 
 output_file_folder <- input_file_folder
-
-input_file <- paste(input_file_folder,"borealisTad_supertrans_laevisGenome92_gmap_bedfile.bed", sep="/")
 
 #read in the data
 input_data <- read_tsv(input_file, col_names = FALSE)
@@ -62,7 +66,13 @@ filtered_mapping <- bind_rows(SingleMatch,mulMatch_sameChr, mulMatch_allSca, mul
 
 #-------------------------------------de--------------------------------------------
 #read in the data
-input_file <- paste(input_file_folder,"borealis_tad_gonad_supertrans.counts.matrix", sep="/")
+#supertrans
+#input_file <- paste(input_file_folder,"borealis_tad_gonad_supertrans.counts.matrix", sep="/")
+
+#transcriptome
+input_file_folder <- file.path("Project_borealis_sex_determination/data/analysis/transcriptome/raw_count_kallisto")
+input_file <- paste(input_file_folder,"borealis_tad_gonad_trans.counts.matrix", sep="/")
+
 express_data <- read.table(input_file, header=T, row.names=1, com='')
 express_data = express_data[rowSums(express_data)> 8,]
 
@@ -78,8 +88,8 @@ stage48_49_sex <- factor(c(rep("female", 8), rep("male", 5)))
 stage48_sex <- factor(c(rep("female", 7), rep("male", 5)))
 
 #select stage and conditions
-rnaseqMatrix <- express_data[ ,which (names(express_data) %in% stage48_49)]
-conditions = stage48_49_sex
+rnaseqMatrix <- express_data[ ,which (names(express_data) %in% stage46)]
+conditions = stage46
 
 # do DE with edgeR
 exp_study = DGEList(counts=rnaseqMatrix, group=conditions)
@@ -96,19 +106,20 @@ result_table = data.frame(sampleA="female", sampleB="male", result_table)
 summary (result_table)
 
 result_table <- rownames_to_column(result_table, var = "supertrans_id")
-result_filter <- (result_table
-                  %>% filter(FDR <= 0.05)
+# result_filter <- (result_table
+#                   %>% filter(FDR <= 0.05)
+# 
+# ) 
 
-) 
-
-joined <- full_join(filtered_mapping,result_filter,  by = "supertrans_id")
+joined <- full_join(filtered_mapping,result_table,  by = "supertrans_id")
 
 #-------------------------------------Summarize DE result by categories--------------------------
 #extract chromosome and coordinate information 
-FDR_cutoff = 0.05
+FDR_cutoff = 0.1
 
 de_table <- (joined 
   %>% filter (!is.na(start))
+  %>% filter (!is.na(logFC))
   %>% mutate(category_broad = case_when (
         FDR > FDR_cutoff ~ "Non DE",
         chromosome == "chr8L" & start < 56690925 & end > 4605306 ~ "chr8L sex-link region",
@@ -158,12 +169,13 @@ de_summary_per_chr <- (de_table
     DE_status = case_when(
       FDR < FDR_cutoff ~ "DE",
       FDR > FDR_cutoff ~ "Non-DE",
+      )
     )
-  )
+  %>%group_by(category_byChr)
   %>%count(category_byChr, DE_status)
   %>%rename(DE_count=n)
-  %>%group_by(category_byChr)
   %>%mutate(total_gene = sum(DE_count), proportion=DE_count/total_gene)
+  %>%filter(DE_status=="DE")
 )
 #-------------------------------------binomial confidence interval-----------------------
 de_summary_per_chr_ci <- de_summary_per_chr %>% 
@@ -237,5 +249,6 @@ ma_plot<-ggplot(de_table) +
     legend.background = element_blank(),
     legend.box.background = element_rect(colour = "black")
   )
+
 ma_plot
 
