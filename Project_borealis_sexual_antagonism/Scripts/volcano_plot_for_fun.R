@@ -6,8 +6,8 @@ result_table <- read_csv("input_file")
 result_volcano <- (result_table
                    %>% mutate(logP = (-log(pvalue)))
                     %>% mutate (case_cols = case_when(
-                         logP >= 1.3 & abs(log2FoldChange) >= 5  ~ "Large FC",
-                         logP >= 1.3 & abs(log2FoldChange) >= 3 ~ "Medium Significant",
+                         logP >= 2 & abs(log2FoldChange) >= 5  ~ "Large FC",
+                         logP >= 2 & abs(log2FoldChange) >= 3 ~ "Medium Significant",
                          logP >= 2 & abs(log2FoldChange) > 0 ~ "Significant",
                          logP < 2 ~ "NS"
                        ))

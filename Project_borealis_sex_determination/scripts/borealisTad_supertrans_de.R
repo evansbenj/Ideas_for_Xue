@@ -15,6 +15,8 @@ input_file <- paste(input_file_folder,"borealisTad_denovoT_laevisGenome92_gmap_b
 
 
 
+
+
 output_file_folder <- input_file_folder
 
 #read in the data
