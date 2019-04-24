@@ -7,11 +7,11 @@ library(edgeR)
 
 #list of input_files for borealis
 
-#input_file_folder <- file.path("Project_borealis_sex_determination/data/xb_transcriptome/supertrans/")
-#input_file <- paste(input_file_folder,"borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed", sep="/")
+input_file_folder <- file.path("Project_borealis_sex_determination/data/borealis_tad/supertrans/mapping_supertrans_laevisGenome92_gmap")
+input_file <- paste(input_file_folder,"borealisTad_supertrans_laevisGenome92_gmap_bedfile.bed", sep="/")
 
-input_file_folder <- file.path("Project_borealis_sex_determination/data/analysis/transcriptome/mapping_trans_laevisGenome92_gmap")
-input_file <- paste(input_file_folder,"borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed", sep="/")
+#input_file_folder <- file.path("Project_borealis_sex_determination/data/analysis/transcriptome/mapping_trans_laevisGenome92_gmap")
+#input_file <- paste(input_file_folder,"borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed", sep="/")
 
 
 
@@ -70,11 +70,12 @@ filtered_mapping <- bind_rows(SingleMatch,mulMatch_sameChr, mulMatch_allSca, mul
 #read in the data
 
 #supertrans
-#input_file <- paste(input_file_folder,"borealis_tad_gonad_supertrans.counts.matrix", sep="/")
+input_file_folder <- file.path("Project_borealis_sex_determination/data/borealis_tad/supertrans/raw_count_kallisto")
+input_file <- paste(input_file_folder,"borealis_tad_gonad_supertrans.counts.matrix", sep="/")
 
 #transcriptome
-input_file_folder <- file.path("Project_borealis_sex_determination/data/analysis/transcriptome/raw_count_kallisto")
-input_file <- paste(input_file_folder,"borealis_tad_gonad_trans.counts.matrix", sep="/")
+#input_file_folder <- file.path("Project_borealis_sex_determination/data/analysis/transcriptome/raw_count_kallisto")
+#input_file <- paste(input_file_folder,"borealis_tad_gonad_trans.counts.matrix", sep="/")
 
 express_data <- read.table(input_file, header=T, row.names=1, com='')
 express_data = express_data[rowSums(express_data)> 8,]
