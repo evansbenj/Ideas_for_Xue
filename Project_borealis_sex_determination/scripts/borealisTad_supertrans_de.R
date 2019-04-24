@@ -68,6 +68,7 @@ filtered_mapping <- bind_rows(SingleMatch,mulMatch_sameChr, mulMatch_allSca, mul
 
 #-------------------------------------de--------------------------------------------
 #read in the data
+
 #supertrans
 #input_file <- paste(input_file_folder,"borealis_tad_gonad_supertrans.counts.matrix", sep="/")
 
@@ -91,7 +92,7 @@ stage48_sex <- factor(c(rep("female", 7), rep("male", 5)))
 
 #select stage and conditions
 rnaseqMatrix <- express_data[ ,which (names(express_data) %in% stage46)]
-conditions = stage46
+conditions = stage46_sex
 
 # do DE with edgeR
 exp_study = DGEList(counts=rnaseqMatrix, group=conditions)
@@ -117,7 +118,7 @@ joined <- full_join(filtered_mapping,result_table,  by = "supertrans_id")
 
 #-------------------------------------Summarize DE result by categories--------------------------
 #extract chromosome and coordinate information 
-FDR_cutoff = 0.1
+FDR_cutoff = 0.05
 
 de_table <- (joined 
   %>% filter (!is.na(start))
