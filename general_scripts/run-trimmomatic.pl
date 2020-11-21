@@ -5,6 +5,7 @@ use warnings;
 
 ########
 # Runs trimmomatic on paired files.
+# By Ben Furman
 ########
 
 # my @IDs = ("BJE3896","BJE3897","BJE3929","BJE4009","BJE4017","BJE4039","BJE4072","BJE4082")
