@@ -1,10 +1,12 @@
 library(tidyverse)
 library(vcfR)
 
-dat <- read_tsv("Project_borealis_sex_determination/data/clustering_analysis/mpile_dp15_tropicalisFamilyEast_sexLinkage.table.gz")
+dat <- read_tsv("project_sex_determination_gene/data/tropicalis_tad/sample_clustering_analysis/identify_sex_by_SNP/radseq_east_trop_data/mpile_dp15_tropicalisFamilyEast_sexLinkage.table.gz")
 
 #the filter will give you useful sites, and can then filter on the "sex_chi" column
 #the mutate will compute p-values (FDR corrected and not) for association with sex based on the chi values.
+
+
 useful<-(dat %>% filter( `[1]CHROM` == "Chr07" & 
                   site_status == "goodTag" & 
                   site_type == "hetDad") 
