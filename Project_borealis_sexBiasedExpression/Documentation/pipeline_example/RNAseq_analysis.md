@@ -11,7 +11,11 @@ THe raw data are in fastq files.
 ## Quality Check
 The quality check were done using fastqc. 
 ```bash
-fastqc 
+fastqc *.fastq.gz 
+```
+Then download files ended with `_fastqc.html` to you local computer to look at the fastqc result
+```bash
+scp xue@info.mcmaster.ca:/home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/fastqc/*fastqc.html .
 ```
 
 
@@ -25,21 +29,22 @@ The Trimmomatic command in the script is:
 java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 $r1_name $r2_name $r1_par_out $r1_unpar_out $r2_par_out $r2_unpar_out ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:30:0.7 MINLEN:36
 ```
 **Quality check again** We do quality check on trimmed reads again using fastqc. 
-
+```bash
+fastqc *.paired.fastq.gz 
+```
 
 ## Transcriptome assembly
 I merged R1 from all the samples into one files and did the same for R2 reads. 
 ```bash
-
+cat *R1_paired.fastq.gz > borealis_R1_paired.fastq.gz; cat *R2_paired.fastq.gz > borealis_R2_paired.fastq.gz
 ```
-
 
 I run trinity v2.4.0 with an additional parameter `--min_kmer_cov 2`, which should reduce the amount of low coverage transcript.
 ```{bash}
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo "trinity is done at info114 in screen assembly" | mail songxy2@mcmaster.ca
 
 ```
-The amount of transcripts that we end up having after running the above assembly is 1.5m. The initial run in Sept 2017 had 1.6m. This Oct2018 run have 0.1m less transcripts but still not very good. 
+The amount of transcripts that we end up having after running the above assembly is 1.5m. The initial run in Sept 2017 had 1.6m. This Oct2018 run have 0.1m less transcripts but still very large transciptome. 
 
 Graham (ComputeCanada) has the newest version of Trinity, hence, I build the *Xenopus borealis* transcriptome with the following bash script *build_transcriptome.sh*. 
 
@@ -77,10 +82,6 @@ Due to lack of *X. borealis*, we mapped *X. borealis* RNAseq reads to *X. laevis
 
 ~/bin/STAR-2.5.3a/bin/Linux_x86_64/STAR --runThreadN 10 --genomeDir /home/benf/Borealis_Genome_HiSeqX/Analyses/Laevis_SuperScaffold_Reference/STAR-Index/ --readFilesCommand zcat --outFileNamePrefix dad-star-lessStringent --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --readFilesIn ../Trimmed/BJE3896_dad_liver_R1_scythe.fastq.gz ../Trimmed/BJE3896_dad_liver_R2_scythe.fastq.gz
 ```
-Read mapping to transcriptome
-```bash
-
-```
 
 ## Mapping transcriptome to genome
 
@@ -91,7 +92,6 @@ filter the mapping read remove the unmapped reads, which is indicated by flag 0x
 ```bash
 samtools view -F 0x04 -b borealis_denovoT_laevisv92_genome_gmap.bam | bedtools bamtobed -i > borealis_denovoT_laevisV92_genome_gmap_bedfile.bed
 ```
-
 
 ## Transccript expression quantification
 It was done using kallisto, which is a harsh based quantification tools. 
@@ -132,6 +132,7 @@ After you have the table that contain the result of differential expression anal
 - extract the sequence of the differentially expression trancripts
 ```bash
 #filter and visualize the result
+
 
 # extract the sequence 
 
