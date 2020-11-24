@@ -28,11 +28,11 @@ STAR --runThreadN 20 --runMode alignReads --genomeDir /home/xue/borealis_transcr
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/Borealis_scythe_R1.fastq.gz --right /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/Borealis_scythe_R2.fastq.gz --genome_guided_bam /home/xue/borealis_transcriptome/borealis_gg_transcriptome_may2018/borealis_RNAseq_StarAligned_coordSorted.bam --genome_guided_max_intron 20000 --CPU 25 --full_cleanup --max_memory 200G --output /home/xue/borealis_transcriptome/borealis_gg_transcriptome_may2018/borealis_gg_transcriptome_trinityout; echo "trinity is done at info114 in screen borealis" | mail sarahsongxy@gmail.com
 ```
 ### Kallisto
-```
+```bash
 /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/align_and_estimate_abundance.pl --transcripts /home/xue/borealis_transcriptome/borealis_gg_transcriptome_may2018/borealis_gg_transcriptome_trinityout --seqType fq --samples_file /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out/laevis_trimmed_samples_files.tsv --est_method kallisto --output_dir /home/xue/laevis_transcriptome_mar2018/laevis_gg_trancsriptome/kallisto_out --trinity_mode --prep_reference
 ```
 ### Covert the quantification into matrix for EdgeR
-```
+```bash
 time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix laevis_gg  --name_sample_by_basedir liver_f1/abundance.tsv liver_f2/abundance.tsv liver_f3/abundance.tsv liver_m1/abundance.tsv liver_m2/abundance.tsv liver_m3/abundance.tsv 
 ```
 ### EdgeR: differential analysis 
