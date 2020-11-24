@@ -132,10 +132,10 @@ After you have the table that contain the result of differential expression anal
 - extract the sequence of the differentially expression trancripts
 ```bash
 #filter and visualize the result
-
+volcano_plot.R
 
 # extract the sequence 
-
+perl extract_sequence.pl seq_name.file fasta.file position_of_sequence_in_seq_name.file > output
 
 ```
 
