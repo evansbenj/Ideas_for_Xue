@@ -151,8 +151,12 @@ bor_de_deseq2.R
 # EdgeR script
 bor_de_edgeR.R
 ```
+The critiria used to identify significantlly differential expressed transcripts are:
 
-## Post differential expression
+- FDR or adjusted_p_value <= 0.05
+- logFC >= 2 and logFC <= -2
+
+## Post differential expression analysis
 After you have the table that contain the result of differential expression analysis, you can do the following
 - filter and visualize the result
 - extract the sequence of the differentially expression trancripts
