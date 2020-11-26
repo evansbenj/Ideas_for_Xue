@@ -1,23 +1,22 @@
 #!/usr/bin/env Rscript
-#----------------------------Usage-------------------------
-#usage:  Rscript borealis_adult_de_R expression_matrix tissue_type output_folder
+#---------------------Usage----------------------------------------------------------
 #
-#-----------------------------------------------------------
+# usage:  Rscript bor_de_edgeR.R path_to_expression_matrix tissue_type output_folder
+#
+#--------------------getting arguments from command line-------------------------------------
 
-
-#-------------------------------------getting arguments from command line-------------------------------------
 args = commandArgs(trailingOnly=TRUE)
 
 # test if there is at least one argument: if not, return an error
 if (length(args) < 2) {
   stop("At least two argument must be supplied (input file).n
-       usage:  Rscript borealis_adult_de_R expression_matrix tissue_type output_folder", call.=FALSE)
+       usage:  Rscript bor_de_edgeR.R path_to_expression_matrix tissue_type output_folder", call.=FALSE)
 } else if (length(args)==2) {
   # default output file
   args[3] = pasete(args[1], "_de_result.tsv")
 }
 
-#--------------------------------------------------------------------------
+#--------------------load package----------------------------------------------------
 #loading package
 library(dplyr)
 library(readr)
