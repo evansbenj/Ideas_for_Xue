@@ -1,0 +1,86 @@
+---
+title: "redo_bor_liver_transcriptome"
+author: "Xue Song"
+date: "27/05/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# build transcriptome
+Trinity de novo transcriptome assembly with version 2.8.4. Graham has the newest version of Trinity, hence, I build the borealis transcriptome with the following bash script. 
+
+```bash
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --time=3-22:00
+#SBATCH --mem=260G
+#SBATCH --job-name=borealis_transcriptome_Jun2020
+#SBATCH --account=def-ben
+
+module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
+module load openmpi/3.1.2
+module load samtools/1.9
+module load salmon/0.11.3
+module load bowtie2/2.3.4.3
+module load jellyfish/2.2.6
+module load trinity/2.8.4
+
+
+Trinity --seqType fq --left /home/songxy/scratch/borealis_transcriptome/trimmed/borealis_liver_R1_paired.fastq.gz --right /home/songxy/scratch/borealis_transcriptome/trimmed/borealis_liver_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 250G --min_kmer_cov 2 --output /home/songxy/scratch/borealis_transcriptome/borealis_adult_liver_transcriptome_trinityOut
+```
+
+# mapping
+The outputed transcritome was moved to info
+```{bash}
+#ran on info115; this took about 37hrs
+#real    2269m54.858s
+#user    32242m29.231s
+#sys     21379m39.735s
+time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 25 -f samse --cross-species /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityOut.Trinity.fasta | samtools view -S -b > /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/mapping_xb_liverTrans_laevisG92_gmap/borealis_liverTrans_laevisGenomeV92_gmap.bam
+
+#ran on info114; stopped due to error
+time gmap -D /home/xue/genome_data/borealis_genome/db_borealis_genome_v1_gmap -d db_borealis_genome_v1_gmap -A -B 5 -t 25 -f samse /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityOut.Trinity.fasta | samtools view -S -b > /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/mapping_xb_liverTrans_borGenomeV1_gmap/borealis_liverTrans_borGenomeV1_gmap.bam
+```
+filtering alignment: 
+1) removed those that didn't mapped
+2) filter the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score, keep the first one only;
+```{bash}
+#1) on info: removed those that didn't mapped
+samtools view -F 0x04 -b borealis_liverTrans_borGenomeV1_gmap.bam | bedtools bamtobed -i > borealis_liverTrans_borGenomeV1_gmap.bed
+
+#2) run the below script to keep the top hit
+Rscript ~/script/filter_bedfile_keep1match.R borealis_liverTrans_laevisGenomeV92_gmap.bed borealis_liverTrans_laevisGenomeV92_gmap_keep1match.tsv
+```
+
+```{bash}
+#downlaod it to the local dir
+cd ProjectDocumentation_BenGithub/project_borealis_sexual_antagonism/data/transcriptome/borealis_adult_liver_transcriptome/mapping_xb_liverTrans_laevisG92_gmap
+
+scp xue@info.mcmaster.ca:/home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/mapping_xb_liverTrans_laevisG92_gmap/borealis_liverTrans_laevisGenomeV92_gmap_keep1match.tsv .
+
+
+```
+
+
+
+# read count quatificaiton
+```{bash}
+#Indexing the transcriptomes:
+kallisto index -i /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/raw_count_kallisto/borealis_adult_liver_transcriptome_trinityout.fasta.kallisto_idx /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityout.fasta
+
+# Transcript abundance quantification:
+# Transcript abundance quantification:
+kallisto quant -i /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/raw_count_kallisto/borealis_adult_liver_transcriptome_trinityout.fasta.kallisto_idx  -o BJE4039_boy <(gunzip -c /home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/BJE4039_boy_liver_R1_paired.fastq.gz) <(gunzip -c /home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/BJE4039_boy_liver_R2_paired.fastq.gz)
+# compile the read count for each samples into a matrix; used a script included in the Trinity RNAseq analysis package
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir BJE3897_mom/abundance.tsv BJE4009_girl/abundance.tsv BJE4072_girl/abundance.tsv BJE4082_girl/abundance.tsv BJE3896_dad/abundance.tsv BJE3929_boy/abundance.tsv BJE4017_boy/abundance.tsv BJE4039_boy/abundance.tsv
+```
+
+# differential expression
+It was done using the script `bor_de_edgeR.R`.
+
+# Genomic coverage 
