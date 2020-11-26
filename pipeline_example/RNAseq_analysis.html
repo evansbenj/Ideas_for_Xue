@@ -389,9 +389,6 @@ BCBBCGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0&lt;FGEGGGGGGGGGGGGGGGGGGGGGGGDGG
 <h2>Quality Check</h2>
 <p>The quality check were done using fastqc.</p>
 <pre class="bash"><code>fastqc *.fastq.gz </code></pre>
-<p>Then download files ended with <code>_fastqc.html</code> to you local computer to look at the fastqc result</p>
-<pre class="bash"><code>#download fastqc result to local computer
-scp xue@info.mcmaster.ca:/home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/fastqc/*fastqc.html .</code></pre>
 </div>
 <div id="trimming" class="section level2">
 <h2>Trimming</h2>
@@ -401,42 +398,14 @@ scp xue@info.mcmaster.ca:/home/xue/borealis_adult_transcriptome/borealis_denovo_
 <pre class="{bash}"><code>java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 $r1_name $r2_name $r1_par_out $r1_unpar_out $r2_par_out $r2_unpar_out ILLUMINACLIP:/home/xue/software/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 MAXINFO:30:0.7 MINLEN:36</code></pre>
 <p><strong>Quality check again</strong> We do quality check on trimmed reads again using fastqc.</p>
 <pre class="bash"><code>fastqc *.paired.fastq.gz </code></pre>
-</div>
-<div id="transcriptome-assembly" class="section level2">
-<h2>Transcriptome assembly</h2>
-<p>I merged R1 from all the samples into one files and did the same for R2 reads.</p>
-<pre class="bash"><code>cat *R1_paired.fastq.gz &gt; borealis_R1_paired.fastq.gz; cat *R2_paired.fastq.gz &gt; borealis_R2_paired.fastq.gz</code></pre>
-<p>I run trinity v2.4.0 with an additional parameter <code>--min_kmer_cov 2</code>, which should reduce the amount of low coverage transcript.</p>
-<pre class="{bash}"><code>time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo &quot;trinity is done at info114 in screen assembly&quot; | mail songxy2@mcmaster.ca
-</code></pre>
-<p>The amount of transcripts that we end up having after running the above assembly is 1.5m. The initial run in Sept 2017 had 1.6m. This Oct2018 run have 0.1m less transcripts but still very large transciptome.</p>
-<p>Graham (ComputeCanada) has the newest version of Trinity, hence, I build the <em>Xenopus borealis</em> transcriptome with the following bash script <em>build_transcriptome.sh</em>.</p>
-<pre class="bash"><code>#!/bin/bash
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20
-#SBATCH --time=1-22:00
-#SBATCH --mem=210G
-#SBATCH --job-name=borealis_transcriptome_dec2018
-#SBATCH --account=def-ben
-
-#build_transcriptome.sh
-
-module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
-module load openmpi/3.1.2
-#module load trinity/2.8.4
-module load samtools/1.9
-module load salmon/0.11.3
-module load bowtie2/2.3.4.3
-module load jellyfish/2.2.6
-module load trinity/2.8.4
-
-
-Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R1_paired.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/borealis_transcriptome_trinityOut</code></pre>
+<p>Then download files ended with <code>_fastqc.html</code> to my local computer to look at the fastqc result.</p>
+<p>-usually RNAseq data have high duplication level and it’s not a big issue to worry about even when the duplication session gives a error message</p>
+<pre class="bash"><code>#download fastqc result to local computer
+scp xue@info.mcmaster.ca:/home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/fastqc/*fastqc.html .</code></pre>
 </div>
 <div id="read-mapping" class="section level2">
 <h2>Read mapping</h2>
-<p>Due to lack of <em>X. borealis</em>, we mapped <em>X. borealis</em> RNAseq reads to <em>X. laevis</em> genome using STAR.</p>
+<p>Due to lack of <em>X. borealis</em> genome, we mapped <em>X. borealis</em> RNAseq reads to <em>X. laevis</em> genome using STAR.</p>
 <pre class="bash"><code># done by BenF
 # --outFilterMismatchNmax 20 # default is 10
 # --outFilterMismatchNoverLmax 0.5 # default is 0.3, ratio mismatches to mapped length
@@ -444,43 +413,126 @@ Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transc
 
 ~/bin/STAR-2.5.3a/bin/Linux_x86_64/STAR --runThreadN 10 --genomeDir /home/benf/Borealis_Genome_HiSeqX/Analyses/Laevis_SuperScaffold_Reference/STAR-Index/ --readFilesCommand zcat --outFileNamePrefix dad-star-lessStringent --outSAMtype BAM SortedByCoordinate --outFilterMismatchNmax 20 --outFilterMismatchNoverLmax 0.5 --outFilterScoreMinOverLread 0.33 --outFilterMatchNminOverLread 0.33 --readFilesIn ../Trimmed/BJE3896_dad_liver_R1_scythe.fastq.gz ../Trimmed/BJE3896_dad_liver_R2_scythe.fastq.gz</code></pre>
 </div>
+<div id="transcriptome-assembly" class="section level2">
+<h2>Transcriptome assembly</h2>
+<p>I merged R1 reads from all inividual into one files and did the same for R2 reads.</p>
+<pre class="bash"><code>cat *R1_paired.fastq.gz &gt; borealis_R1_paired.fastq.gz; cat *R2_paired.fastq.gz &gt; borealis_R2_paired.fastq.gz</code></pre>
+<p>I run trinity v2.4.0 with an additional parameter <code>--min_kmer_cov 2</code>, which should reduce the amount of low coverage transcript.</p>
+<pre class="{bash}"><code>time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/Trinity --seqType fq  --left /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R1_paired.fastq.gz --right /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/Trimmed/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --output /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_oct2018/; echo &quot;trinity is done at info114 in screen assembly&quot; | mail songxy2@mcmaster.ca
+</code></pre>
+<p>The amount of transcripts that we end up having after running the above assembly (OCt2018) is 1.5m. The initial run in Sept 2017 had 1.6m. This Oct2018 run have 0.1m less transcripts but still very large transciptome.</p>
+<p>Graham (ComputeCanada) has the newest version of Trinity, hence, I build the <em>Xenopus borealis</em> transcriptome with the following bash script <em>build_transcriptome.sh</em>.</p>
+<pre class="bash"><code>#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --time=3-22:00
+#SBATCH --mem=260G
+#SBATCH --job-name=borealis_transcriptome_Jun2020
+#SBATCH --account=def-ben
+
+module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
+module load openmpi/3.1.2
+module load samtools/1.9
+module load salmon/0.11.3
+module load bowtie2/2.3.4.3
+module load jellyfish/2.2.6
+module load trinity/2.8.4
+
+
+Trinity --seqType fq --left /home/songxy/scratch/borealis_transcriptome/trimmed/borealis_liver_R1_paired.fastq.gz --right /home/songxy/scratch/borealis_transcriptome/trimmed/borealis_liver_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 250G --min_kmer_cov 2 --output /home/songxy/scratch/borealis_transcriptome/borealis_adult_liver_transcriptome_trinityOut</code></pre>
+</div>
 <div id="mapping-transcriptome-to-genome" class="section level2">
 <h2>Mapping transcriptome to genome</h2>
-<pre class="bash"><code>time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 25 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/borealis_transcriptome_trinityOut.fasta | samtools view -S -b &gt; /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/mapping_xb_denovoTrans_xl_genomev92_gmap/borealis_denovoT_laevisv92_genome_gmap.bam</code></pre>
-<p>filter the mapping read remove the unmapped reads, which is indicated by flag 0x04. Then I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings;</p>
-<pre class="bash"><code>samtools view -F 0x04 -b borealis_denovoT_laevisv92_genome_gmap.bam | bedtools bamtobed -i &gt; borealis_denovoT_laevisV92_genome_gmap_bedfile.bed</code></pre>
+<p>Since genome contains introns+exons and transcriptome only contain exons, we need a gap-aware mapper such <a href="https://academic.oup.com/bioinformatics/article/21/9/1859/409207">Gmap</a> to align <em>X. borealis</em> transcripts to <em>X. laevis</em> genome.</p>
+<pre class="bash"><code># index the X. laevis genome
+# default k-mer value for genomic index is 15; use -k to change it to int &lt;= 16
+# gmap_build [options...] -d &lt;genomename&gt; &lt;fasta_files&gt;
+gmap_build -d db_gmap_xl92 /home/xue/genome_data/laevis_genome/XL9_2.fa 
+
+# map X. borealis transcript to X. laevis genome
+# added --cross-species to use a more sensitive search for canonical splicing
+# piled to samtools to output as a bamfile to save space on cluster
+# ran on info115; this took about 37hrs
+# real    2269m54.858s
+# user    32242m29.231s
+# sys     21379m39.735s
+time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 25 -f samse --cross-species /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityOut.Trinity.fasta | samtools view -S -b &gt; /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/mapping_xb_liverTrans_laevisG92_gmap/borealis_liverTrans_laevisGenomeV92_gmap.bam</code></pre>
+<p>filtering alignment:</p>
+<ol style="list-style-type: decimal">
+<li>remove the unmapped transcripts, which is indicated by flag 0x04. I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings.</li>
+<li>filter the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score and mapped to the same chromosome, keep the first one only;</li>
+</ol>
+<pre class="{bash}"><code>#1) on info: removed those that didn&#39;t mapped
+samtools view -F 0x04 -b borealis_liverTrans_borGenomeV1_gmap.bam | bedtools bamtobed -i &gt; borealis_liverTrans_borGenomeV1_gmap.bed
+
+#2) run the below script to keep the top hit
+Rscript ~/script/filter_bedfile_keep1match.R borealis_liverTrans_laevisGenomeV92_gmap.bed borealis_liverTrans_laevisGenomeV92_gmap_keep1match.tsv</code></pre>
 </div>
 <div id="transccript-expression-quantification" class="section level2">
 <h2>Transccript expression quantification</h2>
-<p>It was done using kallisto, which is a harsh based quantification tools.</p>
-<pre class="bash"><code>#Indexing the transcriptomes:
-kallisto index -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/kallisto_index/borealis_transcriptome_trinityOut.fasta.kallisto_idx /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/borealis_transcriptome_trinityOut.fasta
+<p>It was done using kallisto.</p>
+<ul>
+<li>Kallisto is a RNA-seq transcript abundance quantification tool that estimates transcripts abundance with pseudo-alignment method</li>
+<li>Input: transcriptome file and trimmed reads</li>
+<li>output: plain text file containing transcript abundances information for each transcript - transcript id, length, effective length, estimated count, count in TPM (transcript in millions); the output file is used in downstream analysis such as differential expression level analysis</li>
+<li>below is a brief description of how it works in steps:
+<ul>
+<li>indexing step: build transcriptome de Bruijn Graph (T-DBG) with k-mers from transcripts in the assembled transcriptome. In a hash table, store the information about the k-mers - which transcripts a k-mer is from and along with information the position of the k-mer in the transcript.</li>
+<li>pseudo alignment step: for each k-mer in the read, look for those k-mers in the hash table to found out which transcripts those k-mers could be from. In the case where a read has 5 k-mers and k-mer #1-#3 are from transcript A &amp; B &amp; C but k-mer #4-#5 are from transcript A &amp; B, kallisto will then decide that the read is probably from transcript A &amp;B.<br />
+</li>
+<li>quantification step: for a multi-mapping read like the example above, the read is fractionally assigned to each transcript based on the expectation-maximization algorithm. With the above example, a fraction of the read will be assigned to transcript A and transcript B.</li>
+</ul></li>
+</ul>
+<pre class="bash"><code># Indexing the transcriptome:
+kallisto index -i /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/raw_count_kallisto/borealis_adult_liver_transcriptome_trinityout.fasta.kallisto_idx /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityout.fasta
 
 # Transcript abundance quantification:
-kallisto quant -i /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trinity-Build-Info/All-together/trinity_out_dir.Trinity.fasta.kallisto_idx  -o female_rep7 &lt;(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) &lt;(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
+kallisto quant -i /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/raw_count_kallisto/borealis_adult_liver_transcriptome_trinityout.fasta.kallisto_idx  -o BJE4039_boy &lt;(gunzip -c /home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/BJE4039_boy_liver_R1_paired.fastq.gz) &lt;(gunzip -c /home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/BJE4039_boy_liver_R2_paired.fastq.gz)
 
 # compile the read count for each samples into a matrix; used a script included in the Trinity RNAseq analysis package
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv</code></pre>
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir BJE3897_mom/abundance.tsv BJE4009_girl/abundance.tsv BJE4072_girl/abundance.tsv BJE4082_girl/abundance.tsv BJE3896_dad/abundance.tsv BJE3929_boy/abundance.tsv BJE4017_boy/abundance.tsv BJE4039_boy/abundance.tsv</code></pre>
 </div>
 <div id="differential-expression-analysis" class="section level2">
 <h2>Differential expression analysis</h2>
 <p>There are a lot of R package that can do differential expression. I used two of them EdgeR and DESeq2. Please go to the general_scripts sub-repo for the detailed scripts.</p>
-<p>The general steps in these two methods are: - read in the raw transcript read counts for each sample - filter out transcripts that have zero or very low read counts across all the samples - put the count data into the right type of matrix - normalized the read counts - fit the data into a negative binomial distribution - perform comparative test (ex, exact test) - extract result and store it in a output file</p>
+<p>The general steps in these two methods are:</p>
+<ul>
+<li>read in the raw transcript read counts for each sample</li>
+<li>filter out transcripts that have zero or very low read counts across all the samples</li>
+<li>put the count data into the right type of matrix</li>
+<li>normalized the read counts</li>
+<li>fit the data into a negative binomial distribution</li>
+<li>perform comparative test (ex, exact test)</li>
+<li>extract result and store it in a output file</li>
+</ul>
 <pre class="bash"><code># DESeq2 script
 bor_de_deseq2.R
 
 # EdgeR script
 bor_de_edgeR.R</code></pre>
+<p>The critiria used to identify significantlly differential expressed transcripts are:</p>
+<ul>
+<li>FDR or adjusted_p_value &lt;= 0.05</li>
+<li>logFC &gt;= 2 and logFC &lt;= -2</li>
+</ul>
 </div>
-<div id="post-differential-expression" class="section level2">
-<h2>Post differential expression</h2>
+<div id="post-differential-expression-analysis" class="section level2">
+<h2>Post differential expression analysis</h2>
 <p>After you have the table that contain the result of differential expression analysis, you can do the following - filter and visualize the result - extract the sequence of the differentially expression trancripts</p>
 <pre class="bash"><code>#filter and visualize the result
 volcano_plot.R
 
 # extract the sequence 
-perl extract_sequence.pl seq_name.file fasta.file position_of_sequence_in_seq_name.file &gt; output
-</code></pre>
+perl extract_sequence.pl seq_name.file fasta.file position_of_sequence_in_seq_name.file &gt; output</code></pre>
+</div>
+<div id="links-to-useful-articles" class="section level2">
+<h2>Links to useful articles</h2>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6373869/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6373869/</a></li>
+<li><a href="https://www.bioconductor.org/packages/devel/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html" class="uri">https://www.bioconductor.org/packages/devel/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html</a></li>
+<li><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0881-8" class="uri">https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0881-8</a></li>
+</ul>
 </div>
 </div>
 

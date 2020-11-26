@@ -79,16 +79,13 @@ Graham (ComputeCanada) has the newest version of Trinity, hence, I build the *Xe
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=20
-#SBATCH --time=1-22:00
-#SBATCH --mem=210G
-#SBATCH --job-name=borealis_transcriptome_dec2018
+#SBATCH --time=3-22:00
+#SBATCH --mem=260G
+#SBATCH --job-name=borealis_transcriptome_Jun2020
 #SBATCH --account=def-ben
-
-#build_transcriptome.sh
 
 module load nixpkgs/16.09  gcc/7.3.0 nixpkgs/16.09
 module load openmpi/3.1.2
-#module load trinity/2.8.4
 module load samtools/1.9
 module load salmon/0.11.3
 module load bowtie2/2.3.4.3
@@ -96,7 +93,7 @@ module load jellyfish/2.2.6
 module load trinity/2.8.4
 
 
-Trinity --seqType fq --left /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R1_paired.fastq.gz --right /home/songxy/projects/def-ben/songxy/borealis_transcriptome/trimmed_reads/borealis_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 200G --min_kmer_cov 2 --include_supertranscripts --output /home/songxy/scratch/borealis_transcriptome_trinityOut
+Trinity --seqType fq --left /home/songxy/scratch/borealis_transcriptome/trimmed/borealis_liver_R1_paired.fastq.gz --right /home/songxy/scratch/borealis_transcriptome/trimmed/borealis_liver_R2_paired.fastq.gz --CPU 20 --full_cleanup --max_memory 250G --min_kmer_cov 2 --output /home/songxy/scratch/borealis_transcriptome/borealis_adult_liver_transcriptome_trinityOut
 ```
 
 
@@ -111,31 +108,52 @@ gmap_build -d db_gmap_xl92 /home/xue/genome_data/laevis_genome/XL9_2.fa
 # map X. borealis transcript to X. laevis genome
 # added --cross-species to use a more sensitive search for canonical splicing
 # piled to samtools to output as a bamfile to save space on cluster
-time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 25 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/borealis_transcriptome_trinityOut.fasta | samtools view -S -b > /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/mapping_xb_denovoTrans_xl_genomev92_gmap/borealis_denovoT_laevisv92_genome_gmap.bam
+# ran on info115; this took about 37hrs
+# real    2269m54.858s
+# user    32242m29.231s
+# sys     21379m39.735s
+time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 25 -f samse --cross-species /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityOut.Trinity.fasta | samtools view -S -b > /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/mapping_xb_liverTrans_laevisG92_gmap/borealis_liverTrans_laevisGenomeV92_gmap.bam
 ```
-Then I remove the unmapped transcripts, which is indicated by flag 0x04. I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings. 
-```bash
-samtools view -F 0x04 -b borealis_denovoT_laevisv92_genome_gmap.bam | bedtools bamtobed -i > borealis_denovoT_laevisV92_genome_gmap_bedfile.bed
+filtering alignment: 
+
+1) remove the unmapped transcripts, which is indicated by flag 0x04. I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings.
+2) filter the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score and mapped to the same chromosome, keep the first one only;
+
+```{bash}
+#1) on info: removed those that didn't mapped
+samtools view -F 0x04 -b borealis_liverTrans_borGenomeV1_gmap.bam | bedtools bamtobed -i > borealis_liverTrans_borGenomeV1_gmap.bed
+
+#2) run the below script to keep the top hit
+Rscript ~/script/filter_bedfile_keep1match.R borealis_liverTrans_laevisGenomeV92_gmap.bed borealis_liverTrans_laevisGenomeV92_gmap_keep1match.tsv
 ```
 
 ## Transccript expression quantification
-It was done using kallisto, which is a harsh based quantification tools. 
+It was done using kallisto. 
+
+- Kallisto is a RNA-seq transcript abundance quantification tool that estimates transcripts abundance with pseudo-alignment method
+- Input: transcriptome file and trimmed reads
+- output: plain text file containing transcript abundances information for each transcript - transcript id, length, effective length, estimated count, count in TPM (transcript in millions); the output file is used in downstream analysis such as differential expression level analysis
+- below is a brief description of how it works in steps:
+  - indexing step: build transcriptome de Bruijn Graph (T-DBG) with k-mers from transcripts in the assembled transcriptome. In a hash table, store the information about the k-mers - which transcripts a k-mer is from and along with information the position of the k-mer in the transcript. 
+  - pseudo alignment step: for each k-mer in the read, look for those k-mers in the hash table to found out which transcripts those k-mers could be from. In the case where a read has 5 k-mers and k-mer #1-#3 are from transcript A & B & C but k-mer #4-#5 are from transcript A & B, kallisto will then decide that the read is probably from transcript A &B.      
+  - quantification step:  for a multi-mapping read like the example above, the read is fractionally assigned to each transcript based on the expectation-maximization algorithm. With the above example, a fraction of the read will be assigned to transcript A and transcript B.
 
 ```bash
-#Indexing the transcriptomes:
-kallisto index -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/kallisto_index/borealis_transcriptome_trinityOut.fasta.kallisto_idx /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/borealis_transcriptome_trinityOut.fasta
+# Indexing the transcriptome:
+kallisto index -i /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/raw_count_kallisto/borealis_adult_liver_transcriptome_trinityout.fasta.kallisto_idx /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/build_transcriptome/borealis_adult_liver_transcriptome_trinityout.fasta
 
 # Transcript abundance quantification:
-kallisto quant -i /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/kallisto_index/borealis_transcriptome_trinityOut.fasta.kallisto_idx -o female_rep7 <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R1_scythe.fastq.gz) <(gunzip -c /home/benf/Borealis-Family-Transcriptomes-July2017/Data/Trimmed/BJE4082_girl_liver_R2_scythe.fastq.gz)
+kallisto quant -i /home/xue/borealis_adult_transcriptome/borealis_liver_denovo_transcriptome_May2020/raw_count_kallisto/borealis_adult_liver_transcriptome_trinityout.fasta.kallisto_idx  -o BJE4039_boy <(gunzip -c /home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/BJE4039_boy_liver_R1_paired.fastq.gz) <(gunzip -c /home/xue/borealis_adult_transcriptome/borealis_denovo_transcriptome_dec2018/data/trimmed/BJE4039_boy_liver_R2_paired.fastq.gz)
 
 # compile the read count for each samples into a matrix; used a script included in the Trinity RNAseq analysis package
-time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir female_rep1/abundance.tsv female_rep2/abundance.tsv female_rep3/abundance.tsv female_rep4/abundance.tsv male_rep1/abundance.tsv male_rep2/abundance.tsv male_rep3/abundance.tsv male_rep4/abundance.tsv
+time /home/xue/software/trinityrnaseq-Trinity-v2.4.0/util/abundance_estimates_to_matrix.pl --est_method kallisto --out_prefix borealis_liver  --name_sample_by_basedir BJE3897_mom/abundance.tsv BJE4009_girl/abundance.tsv BJE4072_girl/abundance.tsv BJE4082_girl/abundance.tsv BJE3896_dad/abundance.tsv BJE3929_boy/abundance.tsv BJE4017_boy/abundance.tsv BJE4039_boy/abundance.tsv
 ```
 
 ## Differential expression analysis
 There are a lot of R package that can do differential expression. I used two of them EdgeR and DESeq2. Please go to the general_scripts sub-repo for the detailed scripts.
 
 The general steps in these two methods are:
+
 - read in the raw transcript read counts for each sample
 - filter out transcripts that have zero or very low read counts across all the samples
 - put the count data into the right type of matrix 
@@ -167,7 +185,9 @@ volcano_plot.R
 # extract the sequence 
 perl extract_sequence.pl seq_name.file fasta.file position_of_sequence_in_seq_name.file > output
 ```
-
-# Grouping transcipts into trancript bins
+## Links to useful articles
+- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6373869/
+- https://www.bioconductor.org/packages/devel/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html
+- https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0881-8
 
 
