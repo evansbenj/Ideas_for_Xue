@@ -1,12 +1,24 @@
 # RNAseq analysis
-This document will use the RNAseq data from **Xenopus borealis** liver tissue of 4 males and 4 females. The samples are from a family consist of father, mother, 3 brothers, and 3 sisters. 
+This document will use the RNAseq data from *Xenopus borealis* liver tissue of 4 males and 4 females. The samples are from a family consist of father, mother, 3 brothers, and 3 sisters. 
 
 ## Raw data
 THe raw data are in fastq files.
 ```bash
-
+#path to the raw reads
+/home/benf/Borealis-Family-Transcriptomes-July2017/Data/RawReads
 ```
+One sequence read from dad's liver R1 file
 
+- line 1: name of read
+- line 2: sequence of the read
+- line 3: a plus sign
+- line 4: quality score of the base call from the sequencer
+```
+@D00430:256:CB2H9ANXX:1:1106:1227:2076 1:N:0:ATCACG
+GGACTCAGACTGATTCCTGCACAGGGGGTTCATACCCATCAGCACGTTCCACTTTGGCACCAGTCTCGTCTCCTGCTGGTTTTGCAGTACCACCACCCTCGCCATGAAGTTCCATTAGTTTGCCCA
++
+BCBBCGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0<FGEGGGGGGGGGGGGGGGGGGGGGGGDGGGGGGEGEGFGGGEGGGGGGBGGGGGGGGGGGGFECGGGGCEGGGEGGG/
+```
 
 ## Quality Check
 The quality check were done using fastqc. 
