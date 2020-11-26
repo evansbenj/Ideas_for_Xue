@@ -23,11 +23,25 @@ BCBBCGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG0<FGEGGGGGGGGGGGGGGGGGGGGGGGDGGGGG
 ## Quality Check
 The quality check were done using fastqc. 
 ```bash
-fastqc *.fastq.gz 
+for i in *fastq.gz ; do fastqc $i; done
 ```
 
 ## Trimming
-A perl script that was written by BenF was modified to run Trimmomatic on each inidividual rnaseq read files
+A perl script that was written by BenF was modified to run Trimmomatic on each inidividual rnaseq read files. 
+
+run it like this if it is paired end. learn how to run trimmomatic and what the command means: http://www.usadellab.org/cms/?page=trimmomatic
+
+What the parameters mean:
+- LLUMINACLIP: Cut adapter and other illumina-specific sequences from the read.
+- SLIDINGWINDOW: Perform a sliding window trimming, cutting once the average quality within the window falls below a threshold.
+- LEADING: Cut bases off the start of a read, if below a threshold quality
+- TRAILING: Cut bases off the end of a read, if below a threshold quality
+- CROP: Cut the read to a specified length
+- HEADCROP: Cut the specified number of bases from the start of the read
+- MINLEN: Drop the read if it is below a specified length
+- TOPHRED33: Convert quality scores to Phred-33
+- TOPHRED64: Convert quality scores to Phred-64
+
 ```{bash}
 perl run_trimmomatic.pl 
 ```
@@ -37,7 +51,7 @@ java -jar /home/xue/software/Trimmomatic-0.36/trimmomatic-0.36.jar PE -phred33 $
 ```
 **Quality check again** We do quality check on trimmed reads again using fastqc. 
 ```bash
-fastqc *.paired.fastq.gz 
+for i in *fastq.gz ; do fastqc $i; done
 ```
 Then download files ended with `_fastqc.html` to my local computer to look at the fastqc result.
 
@@ -116,7 +130,7 @@ time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -
 ```
 filtering alignment: 
 
-1) remove the unmapped transcripts, which is indicated by flag 0x04. I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings.
+1) remove the unmapped transcripts, which is indicated by flag 0x04. I piped the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings.
 2) filter the bedfile and keep only the hit with the highest mapping quality score; if there are two hit with the same mapping quality score and mapped to the same chromosome, keep the first one only;
 
 ```{bash}

@@ -148,7 +148,7 @@ Gmap on graham ran for 3.5hrs.
 ## Coverting to bedfile
 Following the pipeline that I did in `Collapsing_transcripts.md`.
 
-I removed the unmapped reads, which is indicated by flag 0x04. Then I piled the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings;
+I removed the unmapped reads, which is indicated by flag 0x04. Then I piped the filtered output to bedtools, which extracts alignment coordinates for transcripts based on their CIGAR strings;
 ```
 #transcriptome
 samtools view -F 0x04 -b borealisTad_denovoT_laevisGenome92_gmap.bam | samtools sort -n | bedtools bamtobed -i > borealisTad_denovoT_laevisGenome92_gmap_bedfile.bed
