@@ -2,8 +2,9 @@
 # Identify transcript's genomic location
 
 ## Mapping borealis transcriptome to laevis genome
-I did it in infor like this:
+I did it on info like this:
 ```bash
+#the indexing of X. laevis genome was previously done
 time gmap -D /home/xue/genome_data/laevis_genome/db_gmap_xl92 -d laevis92_gmap -A -B 5 -t 25 -f samse --cross-species /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/transcriptome/borealis_transcriptome_trinityOut.fasta | samtools view -S -b > /home/xue/borealis_transcriptome/borealis_denovo_transcriptome_dec2018/analysis/transcriptome/mapping_xb_denovoTrans_xl_genomev92_gmap/borealis_denovoT_laevisv92_genome_gmap.bam
 ```
 Meanwhile, I also tried it in graham just to see which one finish faster and I would know which I should use if I want a faster result.
